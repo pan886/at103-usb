@@ -1,5 +1,5 @@
 #!/bin/bash
-export TOP_DIR=`pwd`/../../..
+export TOP_DIR=`pwd`/..
 export TOOLS_DIR=$TOP_DIR/tools
 
 ## for JTAG interface
@@ -14,7 +14,7 @@ export PATH=$TOOLS_DIR/lin/gcc/7.1.1-20181125-20201113-1236/bin/:$PATH
 ## for at103 udl tools
 export PATH=$TOOLS_DIR/lin/udl/:$PATH
 
-export AT_SDK_HOME_SH=`pwd`/../..
+export AT_SDK_HOME_SH=`pwd`
 
 export RELEASE=no
 

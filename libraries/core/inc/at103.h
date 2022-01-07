@@ -85,8 +85,15 @@ typedef struct
   */
 #define ICACHE ((ICACHE_TypeDef *)ICACHE_BASE)
 
+/** system level driver */
 #include "at103_icache.h"
+
+/** peripherals driver */
+#include "at103_driver_conf.h"
+
+#ifdef USART_MODULE_ENABLED
 #include "uart.h"
+#endif /* USART_MODULE_ENABLED */
 
 #ifdef __cplusplus
 }

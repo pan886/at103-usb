@@ -5,13 +5,10 @@ MEMORY
     RAM(rxw)    :   ORIGIN = 0x00010000, LENGTH = 20k
 }
 
-
-
 ENTRY(Reset_Handler)
 
 SECTIONS
 {
-    /* The program code and other data goes into FLASH */
     .text :
     {
         . = ALIGN(4);
@@ -46,14 +43,15 @@ SECTIONS
         __bss_end = .;
     } > RAM
 
-#if defined(__HEAP_SIZE) && (__HEAP_SIZE > 0)    
+#if defined(__HEAP_SIZE) && (__HEAP_SIZE > 0)
     .heap (NOLOAD):
     {
         . = ALIGN(4);
+        __heap_start = .;
         . += __HEAP_SIZE;
         . = ALIGN(4);
-        __heap_top = .;
-    } > RAM  
+        __heap_end = .;
+    } > RAM
 #endif
 
     .stack (NOLOAD):
@@ -62,5 +60,6 @@ SECTIONS
         __stack = .;
         . += __STACK_SIZE;
         __stack_top = .;
+        . = ALIGN(4);
     } > RAM
 }

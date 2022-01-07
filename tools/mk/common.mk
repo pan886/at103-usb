@@ -141,14 +141,12 @@ endif
 CORE_DIR             = ./libraries/core/
 DRIVER_DIR           = ./libraries/driver/
 
-include $(AT_SDK_HOME_SH)/$(CORE_DIR)/core-component.mk
-C_INCLUDE           += $(CORE_INC)
-ASM_SRC             += $(CORE_ASM_SRC)
-C_SRC               += $(CORE_C_SRC)
+C_INCLUDE           += -I$(AT_SDK_HOME_SH)/$(CORE_DIR)/inc
+ASM_SRC             += $(subst $(AT_SDK_HOME_SH),,$(call wildcards,$(AT_SDK_HOME_SH)/$(CORE_DIR)/asm,%.S))
+C_SRC               += $(subst $(AT_SDK_HOME_SH),,$(call wildcards,$(AT_SDK_HOME_SH)/$(CORE_DIR)/src,%.c))
 
-include $(AT_SDK_HOME_SH)/$(DRIVER_DIR)/drv-component.mk
-C_INCLUDE           += $(DRV_INC)
-C_SRC               += $(DRV_C_SRC)
+C_INCLUDE           += -I$(AT_SDK_HOME_SH)/$(DRIVER_DIR)/inc
+C_SRC               += $(subst $(AT_SDK_HOME_SH),,$(call wildcards,$(AT_SDK_HOME_SH)/$(DRIVER_DIR)/src,%.c))
 
 C_INCLUDE           += $(APP_C_INC)
 CPP_INCLUDE         += $(APP_CPP_INC)

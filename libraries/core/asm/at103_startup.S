@@ -1,9 +1,11 @@
-/**************************************************************************//**
- * @file     at103_startup.S
- * @brief    Device Startup File for TS103
- * @version  V1.0
- * @date     2022.1.5
- ******************************************************************************/
+/**
+ * @file at103_startup.S
+ * @brief Device Startup File for AT103. 
+ * @author Dong Qin (dong.qin@timesintelli.com)
+ * @version 1.0
+ * @date 2022-01-07
+ * @copyright Copyright (c) 2022 Timesintelli, Inc
+ */
 
                 .section .vectors
                 .align   2
