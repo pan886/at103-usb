@@ -1,0 +1,19 @@
+*
+!/**/
+!*.*
+**/BUILD/
+# *.gitignore
+*.exe
+*.dump
+*.bin
+*.img
+# *.ini
+*.map
+*.vscode
+link.lds
+!Makefile
+.config
+*.o
+*.pyc
+*.bin.gz
+load.gdb
