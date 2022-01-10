@@ -19,65 +19,52 @@ extern "C" {
 #include "at103_memmap.h"
 
 /**
- * @brief ICACHE Peripheral Interface
- * 
+ * @brief Instruction Cache Peripheral Interface
  */
 typedef struct
 {
     union {
         struct {
-            __OM uint32_t ENABLE;
-            __OM          uint32_t : 32; /**< Reserved */
+            __OM uint32_t EN_BIT : 1;    /**< Instruction cache enable/disable bit */
+            __OM          uint32_t : 31; /**< Reserved */
         };
-    };
+    } ENABLE;
     union {
         struct {
-            __OM uint32_t FLUSH;
-            __OM          uint32_t : 32; /**< Reserved */
+            __OM uint32_t FLUSH_BIT : 1; /**< Instruction cache flush bit */
+            __OM          uint32_t : 31; /**< Reserved */
         };
-    };
+    } FLUSH;
     union {
         struct {
-            __OM uint32_t PREF_CNT_EN;
-            __OM          uint32_t : 32; /**< Reserved */
+            __OM uint32_t EN_BIT : 1;    /**< Instruction cache performance counter enable bit */
+            __OM          uint32_t : 31; /**< Reserved */
         };
-    };
+    } PREF_CNT_EN;
     union {
         struct {
-            __OM uint32_t PERF_CNT_CLR;
-            __OM          uint32_t : 32; /**< Reserved */
+            __OM uint32_t CLR_BIT : 1;   /**< Instruction cache performance counter clear bit */
+            __OM          uint32_t : 31; /**< Reserved */
         };
-    };
+    } PERF_CNT_CLR;
     union {
         struct {
-            __OM uint32_t SEL_FLUSH_REQ;
-            __OM          uint32_t : 32; /**< Reserved */
+            __OM uint32_t REQ_EN_BIT : 1; /**< Instruction cache select flush request bit */
+            __OM          uint32_t : 31;  /**< Reserved */
         };
-    };
+    } SEL_FLUSH_REQ;
+    __OM uint32_t SEL_FLUSH_ID; /**< ID of cachline to be flushed. */
     union {
         struct {
-            __OM uint32_t SEL_FLUSH_ID;
-            __OM          uint32_t : 32; /**< Reserved */
+            __IM uint32_t IS_ENABLE_BIT : 1;     /**< Instruction cache enable/bypass status. */
+            __IM uint32_t IS_FLUSH_BIT : 1;      /**< Instruction cache flush status. */
+            __IM uint32_t IS_LINE_FLUSH_BIT : 1; /**< Selected cachline status. */
+            __IM          uint32_t : 29;         /**< Reserved */
         };
-    };
-    union {
-        struct {
-            __IM uint32_t STATUS;
-            __IM          uint32_t : 32; /**< Reserved */
-        };
-    };
-    union {
-        struct {
-            __IM uint32_t HIT_CNT;
-            __IM          uint32_t : 32; /**< Reserved */
-        };
-    };
-    union {
-        struct {
-            __IM uint32_t TRANS_CNT;
-            __IM          uint32_t : 32; /**< Reserved */
-        };
-    };
+        __IM uint32_t value;
+    } STATUS;
+    __IM uint32_t HIT_CNT;   /**< Number of instruction cache hit count. */
+    __IM uint32_t TRANS_CNT; /**< Number of instruction request count. */
 } ICACHE_TypeDef;
 
 /** @addtogroup Peripheral declaration
@@ -89,7 +76,7 @@ typedef struct
 #include "at103_icache.h"
 
 /** peripherals driver */
-#include "at103_driver_conf.h"
+#include "at103_conf.h"
 
 #ifdef USART_MODULE_ENABLED
 #include "uart.h"
