@@ -16,24 +16,28 @@ extern "C" {
 
 #include "at103.h"
 
+/**
+ * @brief Instruction cache enable.
+ */
 static inline void __icache_enable()
 {
-    ICACHE->ENABLE = 1;
+    ICACHE->ENABLE.EN_BIT = 1;
 }
 
+/**
+ * @brief Instruction cache disable.
+ */
 static inline void __icache_disable()
 {
-    ICACHE->ENABLE = 0;
+    ICACHE->ENABLE.EN_BIT = 0;
 }
 
+/**
+ * @brief Instruction cache flush.
+ */
 static inline void __icache_flush()
 {
-    ICACHE->FLUSH = 1;
-}
-
-static inline uint32_t __icache_get_status()
-{
-    return ICACHE->STATUS;
+    ICACHE->FLUSH.FLUSH_BIT = 1;
 }
 
 #ifdef __cplusplus
