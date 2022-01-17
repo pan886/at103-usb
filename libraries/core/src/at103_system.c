@@ -18,6 +18,13 @@ void _SysInit(void)
     __icache_enable();
 }
 
+void NopDelay(uint32_t time)
+{
+    for (volatile uint32_t i = 0; i < time; i++) {
+        __NOP();
+    }
+}
+
 #ifdef __cplusplus
 }
 #endif
