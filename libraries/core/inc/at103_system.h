@@ -21,6 +21,12 @@ extern "C" {
  */
 extern void _SysInit(void);
 
+/**
+ * @brief nop delay.
+ * @param[in] time delay time.
+ */
+extern void NopDelay(uint32_t time);
+
 #ifdef __cplusplus
 }
 #endif
