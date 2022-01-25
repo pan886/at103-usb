@@ -96,17 +96,17 @@ __attribute__((always_inline)) __STATIC_INLINE void __WFE(void)
 {
 }
 
-__attribute__((always_inline)) __STATIC_INLINE void riscv32_enable_irq(void)
+__attribute__((always_inline)) __STATIC_INLINE void __enable_irq(void)
 {
     __ASM volatile("csrsi mstatus, 8");
 }
 
-__attribute__((always_inline)) __STATIC_INLINE void riscv32_disable_irq(void)
+__attribute__((always_inline)) __STATIC_INLINE void __disable_irq(void)
 {
     __ASM volatile("csrci mstatus, 8");
 }
 
-__attribute__((always_inline)) __STATIC_INLINE void riscv32_swi(void)
+__attribute__((always_inline)) __STATIC_INLINE void __SWI(void)
 {
     __ASM volatile("ecall");
 }

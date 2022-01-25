@@ -146,6 +146,10 @@
 
 #define PTE_TABLE(PTE) (((PTE) & (PTE_V | PTE_R | PTE_W | PTE_X)) == PTE_V)
 
+#ifndef __riscv
+#define __riscv
+#endif
+
 #ifdef __riscv
 
 #ifdef __riscv64
