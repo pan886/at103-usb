@@ -16,12 +16,15 @@ extern "C" {
 void _SysInit(void)
 {
     __icache_enable();
-}
 
-void NopDelay(uint32_t time)
-{
-    for (volatile uint32_t i = 0; i < time; i++) {
-        __NOP();
+    /*reset interrupt controller*/
+    NVIC->IRQ_INTEN_L               = 0;
+    NVIC->IRQ_INTEN_H               = 0;
+    NVIC->IRQ_INTFORCE_L            = 0;
+    NVIC->IRQ_INTFORCE_H            = 0;
+    NVIC->IRQ_PLEVEL.IRQ_PLEVEL_BIT = 0;
+    for (uint32_t i = 0; i < 64; i++) {
+        NVIC->IRQ_PR[i].PROIORITY_BIT = 0;
     }
 }
 

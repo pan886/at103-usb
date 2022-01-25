@@ -16,19 +16,6 @@ extern "C" {
 
 #include "core_riscv32.h"
 
-/* uart used, waiting for the delete*/
-#define ROM_BASE_ADDR         0x00008000
-#define SRAM_BASE_ADDR        0x00010000 /* 20K */
-#define WDT_CTRL_BASE_ADDR    0x40004000 /* WDT  */
-#define UART_CTRL_BASE_ADDR   0x40007000 /* UART2 */
-#define AFIO_BASE_ADDR        0x40010000 /* AFIO */
-#define TIMER_CTRL_BASE_ADDR  0x40019000 /* timer 1*/
-#define RCC_BASE_ADDR         0x4001D000 /* system clock*/
-#define CRC_CTRL_BASE_ADDR    0x40040000 /* CRC */
-#define EFLASH_BASE_ADDR      0x4001C000 /* EFlash */
-#define DMA_CTRL_BASE_ADDR    0x40030000
-#define ICACHE_CTRL_BASE_ADDR 0x4001F000
-
 /* AT103 memory map begin */
 #define FLASH_BASE  ((uint32_t)0x40050000) /**< FLASH base address in the alias region */
 #define SRAM_BASE   ((uint32_t)0x00010000) /**< SRAM base address in the alias region */
@@ -51,25 +38,24 @@ extern "C" {
 #define I2C1_BASE   (APB1PERIPH_BASE + 0x9000)
 #define I2C2_BASE   (APB1PERIPH_BASE + 0xA000)
 #define CAN_BASE    (APB1PERIPH_BASE + 0xC000)
-#define PMU_BASE    (APB1PERIPH_BASE + 0xE000)
+#define PWR_BASE    (APB1PERIPH_BASE + 0xE000)
 
 /* APB2 slaves */
-#define AFIO_BASE   (APB2PERIPH_BASE + 0x0000)
-#define ICTL_BASE   (APB2PERIPH_BASE + 0x1000)
-#define GPIOA_BASE  (APB2PERIPH_BASE + 0x2000)
-#define GPIOB_BASE  (APB2PERIPH_BASE + 0x3000)
-#define GPIOC_BASE  (APB2PERIPH_BASE + 0x4000)
-#define GPIOD_BASE  (APB2PERIPH_BASE + 0x5000)
-#define GPIOE_BASE  (APB2PERIPH_BASE + 0x6000)
-#define ADC1_BASE   (APB2PERIPH_BASE + 0x7000)
-#define ADC2_BASE   (APB2PERIPH_BASE + 0x8000)
-#define TIM1_BASE   (APB2PERIPH_BASE + 0x9000)
-#define SPI1_BASE   (APB2PERIPH_BASE + 0xA000)
-#define USART1_BASE (APB2PERIPH_BASE + 0xB000)
-#define EFC_BASE    (APB2PERIPH_BASE + 0xC000)
-#define RCC_BASE    (APB2PERIPH_BASE + 0xD000)
-#define RSVD_BASE   (APB2PERIPH_BASE + 0xE000)
-#define ICACHE_BASE (APB2PERIPH_BASE + 0xF000)
+#define AFIO_BASE    (APB2PERIPH_BASE + 0x0000)
+#define NVIC_BASE    (APB2PERIPH_BASE + 0x1000)
+#define GPIOA_BASE   (APB2PERIPH_BASE + 0x2000)
+#define GPIOB_BASE   (APB2PERIPH_BASE + 0x3000)
+#define GPIOC_BASE   (APB2PERIPH_BASE + 0x4000)
+#define GPIOD_BASE   (APB2PERIPH_BASE + 0x5000)
+#define GPIOE_BASE   (APB2PERIPH_BASE + 0x6000)
+#define ADC1_BASE    (APB2PERIPH_BASE + 0x7000)
+#define ADC2_BASE    (APB2PERIPH_BASE + 0x8000)
+#define TIM1_BASE    (APB2PERIPH_BASE + 0x9000)
+#define SPI1_BASE    (APB2PERIPH_BASE + 0xA000)
+#define USART1_BASE  (APB2PERIPH_BASE + 0xB000)
+#define FLASH_R_BASE (APB2PERIPH_BASE + 0xC000)
+#define RCC_BASE     (APB2PERIPH_BASE + 0xD000)
+#define ICACHE_BASE  (APB2PERIPH_BASE + 0xF000)
 
 /* AHB slaves */
 #define USB_BASE (AHBPERIPH_BASE + 0x00000)

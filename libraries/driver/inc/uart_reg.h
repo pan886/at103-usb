@@ -9,6 +9,20 @@
 #include <stdint.h>
 #include <stdarg.h>
 
+/* uart used, waiting for the delete*/
+#define ROM_BASE_ADDR         0x00008000
+#define SRAM_BASE_ADDR        0x00010000 /* 20K */
+#define WDT_CTRL_BASE_ADDR    0x40004000 /* WDT  */
+#define UART_CTRL_BASE_ADDR   0x40007000 /* UART2 */
+#define AFIO_BASE_ADDR        0x40010000 /* AFIO */
+#define TIMER_CTRL_BASE_ADDR  0x40019000 /* timer 1*/
+#define RCC_BASE_ADDR         0x4001D000 /* system clock*/
+#define CRC_CTRL_BASE_ADDR    0x40040000 /* CRC */
+#define EFLASH_BASE_ADDR      0x4001C000 /* EFlash */
+#define DMA_CTRL_BASE_ADDR    0x40030000
+#define ICACHE_CTRL_BASE_ADDR 0x4001F000
+
+
 /*************************************************************************************************************/
 // macro definition
 /*************************************************************************************************************/
