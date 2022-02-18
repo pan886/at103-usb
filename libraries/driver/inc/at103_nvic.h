@@ -63,11 +63,11 @@ typedef struct
     FunctionalState NVIC_IRQChannelCmd;                /**< This parameter can be set either to ENABLE or DISABLE */
 } NVIC_InitTypeDef;
 
-#define NVIC_PriorityGroup_0 0                                          /**< 0 bits for pre-emption priority 4 bits for subpriority */
-#define IS_NVIC_PRIORITY_GROUP(GROUP) (((GROUP) == NVIC_PriorityGroup_0)/**< Check the priority group parameters */
-#define IS_NVIC_PREEMPTION_PRIORITY(PRIORITY) ((PRIORITY) == 0x0)       /**< Check priority parameters */
-#define IS_NVIC_SUB_PRIORITY(PRIORITY)        ((PRIORITY) == 0x0)       /**< Check priority parameters */
-#define IS_NVIC_SUB_IRQ_TYPE(IRQn)            ((IRQn) < 30)             /**< Check IRQn_Type parameters */
+#define NVIC_PriorityGroup_0                  0                                   /**< 0 bits for pre-emption priority 4 bits for subpriority */
+#define IS_NVIC_PRIORITY_GROUP(GROUP)         (((GROUP) == NVIC_PriorityGroup_0)) /**< Check the priority group parameters */
+#define IS_NVIC_PREEMPTION_PRIORITY(PRIORITY) ((PRIORITY) == 0x0)                 /**< Check priority parameters */
+#define IS_NVIC_SUB_PRIORITY(PRIORITY)        ((PRIORITY) == 0x0)                 /**< Check priority parameters */
+#define IS_NVIC_SUB_IRQ_TYPE(IRQn)            ((IRQn) < 30)                       /**< Check IRQn_Type parameters */
 
 /**
  * @brief Set the Priority Grouping.
