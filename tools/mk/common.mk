@@ -148,11 +148,29 @@ C_SRC               += $(subst $(AT_SDK_HOME_SH),,$(call wildcards,$(AT_SDK_HOME
 C_INCLUDE           += -I$(AT_SDK_HOME_SH)/$(DRIVER_DIR)/inc
 C_SRC               += $(subst $(AT_SDK_HOME_SH),,$(call wildcards,$(AT_SDK_HOME_SH)/$(DRIVER_DIR)/src,%.c))
 
+CFLAGS              += $(APP_CFLAGS)
+CPPFLAGS            += $(APP_CPPFLAGS)
+ASMFLAGS            += $(APP_ASMFLAGS)
+LDFLAGS             += $(APP_LDFLAGS)
 C_INCLUDE           += $(APP_C_INC)
 CPP_INCLUDE         += $(APP_CPP_INC)
 ASM_SRC             += $(APP_ASM_SRC)
 C_SRC               += $(APP_C_SRC)
 CPP_SRC             += $(APP_CPP_SRC)
+
+# MIDDLE-WARE
+MIDWARE_DIR         = ./middleware
+include $(AT_SDK_HOME_SH)/$(MIDWARE_DIR)/component.mk
+CFLAGS              += $(MID_CFLAGS)
+CPPFLAGS            += $(MID_CPPFLAGS)
+ASMFLAGS            += $(MID_ASMFLAGS)
+LDFLAGS             += $(MID_LDFLAGS)
+C_INCLUDE           += $(MID_C_INC)
+CPP_INCLUDE         += $(MID_CPP_INC)
+ASM_SRC             += $(MID_ASM_SRC)
+C_SRC               += $(MID_C_SRC)
+CPP_SRC             += $(MID_CPP_SRC)
+
 
 ASM_OBJS             = $(patsubst %.S, $(BUILDDIR)/%.o, $(ASM_SRC))
 C_OBJS               = $(patsubst %.c, $(BUILDDIR)/%.o, $(C_SRC))
@@ -194,7 +212,6 @@ $(BIN): $(OBJS) $(EXTERNAL_OBJ)
 	@$(CC) -MMD -MP -o $@ $(LDFLAGS) $+ $(LIBS) $(LIBSFLAGS) $(STRIP)
 
 $(BIN_DUMP): $(BIN)
-	@echo "    OBJDUMP  $(<F) > $(@F)"
 	@$(OBJDUMP) $(OBJDUMP_OPT) $< > $@
 	@$(OBJCOPY) -O binary -j .text -j .data $< $<.bin
 
