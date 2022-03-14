@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2022 Icore, Inc
  */
 
-#ifndef _RCC_H_
-#define _RCC_H_
+#ifndef __AT103_RCC_H_
+#define __AT103_RCC_H_
 
 #ifdef __cplusplus
 extern "C" {

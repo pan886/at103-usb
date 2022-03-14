@@ -1,10 +1,11 @@
 /**
- * @file at103_config.h
+ * @file at103_conf.h
  * @brief Library configuration file.
- * @author Dong Qin (dong.qin@timesintelli.com)
+ *
+ * @author zhangsheng (zhangsheng@zhangsheng.ic.com)
  * @version 1.0
- * @date 2022-01-07
- * @copyright Copyright (c) 2022 Timesintelli, Inc
+ * @date 2022-02-08
+ * @copyright Copyright (c) 2022 Icore, Inc
  */
 
 #ifndef __AT103_CONFIG_H
@@ -16,6 +17,7 @@ extern "C" {
 
 #define USART_MODULE_ENABLED
 #define NVIC_MODULE_ENABLED
+#define USE_FULL_ASSERT
 #define RCC_MODULE_ENABLED
 
 #ifdef __cplusplus
