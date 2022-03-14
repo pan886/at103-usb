@@ -15,6 +15,7 @@ extern "C" {
 #endif
 
 #define USART_MODULE_ENABLED
+#define RCC_MODULE_ENABLED
 
 #ifdef __cplusplus
 }

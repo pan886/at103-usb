@@ -146,6 +146,254 @@ typedef struct
 } NVIC_TypeDef;
 
 /**
+ * @brief USART Peripheral Interface.
+ */
+typedef struct
+{
+    union {
+        union {
+            struct
+            {
+                __IM uint32_t DATA : 9;      /**< Data byte received on the serial input */
+                __IM          uint32_t : 23; /**< Reserved. */
+            };
+            __IM uint32_t value;
+        } RBR;
+        union {
+            struct
+            {
+                __OM uint32_t DATA : 9;      /**< Data to be transmitted on the serial output port */
+                __IM          uint32_t : 23; /**< Reserved. */
+            };
+            __OM uint32_t value;
+        } THR;
+        union {
+            struct
+            {
+                __IOM uint32_t DIV_L : 8;     /**< Low 8 bits of a 16bit divisor. */
+                __IM           uint32_t : 24; /**< Reserved. */
+            };
+            __IOM uint32_t value;
+        } DLL;
+    } BRB_THR_DLL;
+    union {
+        union {
+            struct
+            {
+                __IOM uint32_t DIV_H : 8;     /**< Upper 8-bits of a 16-bit divisor. */
+                __IM           uint32_t : 24; /**< Reserved. */
+            };
+            __IOM uint32_t value;
+        } DLH;
+        union {
+            struct
+            {
+                __IOM uint32_t ERBFI : 1;     /**< Enable Received Data Available Interrupt. */
+                __IOM uint32_t ETBEI : 1;     /**< Enable Transmit Holding Register Empty Interrupt. */
+                __IOM uint32_t ELSI : 1;      /**< Enable Receiver Line Status Interrupt. */
+                __IOM uint32_t EDSSI : 1;     /**< Enable Modem Status Interrupt. */
+                __IM           uint32_t : 3;  /**< Reserved. */
+                __IOM uint32_t PTIME : 1;     /**< Enable programmable THRE Interrupt. */
+                __IM           uint32_t : 24; /**< Reserved. */
+            };
+            __IOM uint32_t value;
+        } IER;
+    } DLH_IER;
+    union {
+        union {
+            struct
+            {
+                __IM uint32_t INTERRUPT_ID : 4; /**< Indicates the highest priority pending interrupt. */
+                __IM          uint32_t : 2;     /**< Reserved. */
+                __IM uint32_t FIFO_ENABLE : 2;  /**< Indicate whether the FIFOs are enabled or disabled. */
+                __IM          uint32_t : 24;    /**< Reserved. */
+            };
+            __IM uint32_t value;
+        } IIR;
+        union {
+            struct
+            {
+                __OM uint32_t FIFOE : 1;     /**< Enables/Disables the transmit (XMIT) and receive (RCVR) FIFOs. */
+                __OM uint32_t RFIFOR : 1;    /**< Resets the control portion of the receive FIFO and treats the FIFO as empty. */
+                __OM uint32_t XFIFOR : 1;    /**< Resets the control portion of the transmit FIFO and treats the FIFO as empty. */
+                __OM uint32_t DMAM : 1;      /**< DMA Mode (or DMAM). */
+                __OM uint32_t TET : 2;       /**< Select the empty threshold level. */
+                __OM uint32_t RT : 2;        /**< select the trigger level in the receiver FIFO . */
+                __IM          uint32_t : 24; /**< Reserved. */
+            };
+            __OM uint32_t value;
+        } FCR;
+    } IIR_FCR;
+    union {
+        struct
+        {
+            __IOM uint32_t DLS : 2;       /**< Data length Select.*/
+            __IOM uint32_t STOP : 1;      /**< Number of stop bits select. */
+            __IOM uint32_t PEN : 1;       /**< Parity Enable. */
+            __IOM uint32_t EPS : 1;       /**< Enable/Disable parity. */
+            __IOM uint32_t SP : 1;        /**< Force parity value. */
+            __IOM uint32_t BREAK : 1;     /**< Break Control Bit. */
+            __IOM uint32_t DLAB : 1;      /**< Divisor Latch Access Bit. */
+            __IOM          uint32_t : 24; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } LCR;
+    union {
+        struct
+        {
+            __IOM uint32_t DTR : 1;       /**< Control the Data Terminal Ready (dtr_n) output*/
+            __IOM uint32_t RTS : 1;       /**< Control the Request to Send (rts_n) output. */
+            __IOM uint32_t OUT1 : 1;      /**< Control the user-designated Output1. */
+            __IOM uint32_t OUT2 : 1;      /**< Control the user-designated Output2. */
+            __IOM uint32_t LOOP_BACK : 1; /**< Put the UART into a diagnostic mode for test purposes. */
+            __IOM uint32_t AFCE : 1;      /**< Auto Flow Control Enable. */
+            __IOM uint32_t SIRE : 1;      /**< SIR Mode Enable. */
+            __IM           uint32_t : 25; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } MCR;
+    union {
+        struct
+        {
+            __IM uint32_t DR : 1;        /**< Data Ready bit. */
+            __IM uint32_t OE : 1;        /**< Indicate the occurrence of an overrun error. */
+            __IM uint32_t PE : 1;        /**< Indicate the occurrence of a parity error. */
+            __IM uint32_t FE : 1;        /**< Indicate the occurrence of a framing error. */
+            __IM uint32_t BI : 1;        /**< Indicate the detection of a break sequence on the serial input data.*/
+            __IM uint32_t THRE : 1;      /**< Transmit Holding Register Empty bit. */
+            __IM uint32_t TEMT : 1;      /**< Transmitter Empty bit. */
+            __IM uint32_t RFE : 1;       /**< Receiver FIFO Error bit. */
+            __IM uint32_t ADDR_RCVD : 1; /**< Address Received Bit.*/
+            __IM          uint32_t : 23; /**< Reserved .*/
+        };
+        __IM uint32_t value;
+    } LSR;
+    union {
+        struct
+        {
+            __IM uint32_t DCTS : 1;      /**< Delta Clear to Send. */
+            __IM uint32_t DDSR : 1;      /**< Delta Data Set Ready. */
+            __IM uint32_t TERI : 1;      /**< Trailing Edge of Ring Indicator. */
+            __IM uint32_t DDCD : 1;      /**< Delta Data Carrier Detect. */
+            __IM uint32_t CTS : 1;       /**< Clear to Send. */
+            __IM uint32_t DSR : 1;       /**< Data Set Ready. */
+            __IM uint32_t RI : 1;        /**< Ring Indicator. */
+            __IM uint32_t DCD : 1;       /**< Data Carrier Detect. */
+            __IM          uint32_t : 24; /**< Reserved .*/
+        };
+        __IM uint32_t value;
+    } MSR;
+    union {
+        struct
+        {
+            __IOM uint32_t DATA : 8;      /**< Temporary storage space. */
+            __IM           uint32_t : 24; /**< Reserved .*/
+        };
+        __IOM uint32_t value;
+    } SCR;
+    union {
+        struct
+        {
+            __IOM uint32_t LPDLL : 8;     /**< Low Power Divisor Latch Low Register. */
+            __IM           uint32_t : 24; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } LPDLL;
+    union {
+        struct
+        {
+            __IOM uint32_t LPDLH : 8;     /**< Low Power Divisor Latch High Register. */
+            __IM           uint32_t : 24; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } LPDLH;
+    __IM uint32_t RESERVED1[2]; /**< Reserved. */
+    union {
+        struct
+        {
+            __IOM uint32_t DATA : 9;      /**< Shadow register for the RBR. */
+            __IM           uint32_t : 23; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } SRBRn_STHRn[16];
+    union {
+        struct
+        {
+            __IOM uint32_t ENABLE_BIT : 1; /**< This register is use to enable a FIFO access mode for testing. */
+            __IM           uint32_t : 31;  /**< Reserved. */
+        };
+    } FAR;
+    union {
+        struct
+        {
+            __IM uint32_t DATA : 8;      /**< Data at the top of the transmit FIFO. */
+            __IM          uint32_t : 24; /**< Reserved. */
+        };
+        __IM uint32_t value;
+    } TFR;
+    union {
+        struct
+        {
+            __OM uint32_t DATA : 8;      /**< Receive FIFO Write Data. */
+            __OM uint32_t RFPE : 1;      /**< Receive FIFO Parity Error Detection Enable bit. */
+            __OM uint32_t RFFE : 1;      /**< Receive FIFO Framing Error Detection Enable bit. */
+            __IM          uint32_t : 22; /**< Reserved. */
+        };
+        __OM uint32_t value;
+    } RFW;
+    __IM uint32_t RESERVED2[10]; /**< Reserved. */
+    union {
+        struct
+        {
+            __IOM uint32_t ENABLE : 1;    /**< Halt Transmission enable/disabled. */
+            __IM           uint32_t : 31; /**< Reserved. */
+        };
+    } HTX;
+    union {
+        struct
+        {
+            __IOM uint32_t SOFT_ACK : 1;  /**< DMA Software Acknowledge. */
+            __IM           uint32_t : 31; /**< Reserved. */
+        };
+    } DMASA;
+    __IM uint32_t RESERVED3[5]; /**< Reserved. */
+    union {
+        struct
+        {
+            __IOM uint32_t DIV : 4;       /**< Fractional part of divisor. */
+            __IM           uint32_t : 28; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } DLF;
+    union {
+        struct
+        {
+            __IOM uint32_t ADDRESS : 8;   /**< Address matching register during receive mode. */
+            __IM           uint32_t : 24; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } RAR;
+    union {
+        struct
+        {
+            __IOM uint32_t ADRESS : 8;    /**< Address matching register during transmit mode. */
+            __IM           uint32_t : 24; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TAR;
+    union {
+        struct
+        {
+            __IOM uint32_t DLS_E : 1;         /**< Extension for DLS,use to enable 9-bit data. */
+            __IOM uint32_t ADDR_MATCH : 1;    /**< Address Match Mode. */
+            __IOM uint32_t SEND_ADDR : 1;     /**< Send address control bit. */
+            __IOM uint32_t TRANSMIT_MODE : 1; /**< Transmit mode control bit.  */
+            __IM           uint32_t : 29;     /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } LCR_EXT;
+} USART_TypeDef;
+/**
  * @brief RCC Peripheral Interface
  */
 typedef struct
@@ -439,6 +687,9 @@ typedef struct
 #define ICACHE ((ICACHE_TypeDef *)ICACHE_BASE)
 #define RCC    ((RCC_TypeDef *)RCC_BASE)
 #define NVIC   ((NVIC_TypeDef *)NVIC_BASE)
+#define USART1 ((USART_TypeDef *)USART1_BASE)
+#define USART2 ((USART_TypeDef *)USART2_BASE)
+#define USART3 ((USART_TypeDef *)USART3_BASE)
 
 /** system level driver */
 #include "at103_icache.h"
@@ -451,7 +702,8 @@ typedef struct
 #include "at103_nvic.h"
 #endif /* NVIC_MODULE_ENABLED */
 #ifdef USART_MODULE_ENABLED
-#include "uart.h"
+#include "at103_debug.h"
+#include "at103_uart.h"
 #endif /* USART_MODULE_ENABLED */
 #ifdef RCC_MODULE_ENABLED
 #include "at103_rcc.h"
