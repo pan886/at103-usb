@@ -3,13 +3,13 @@
  * @brief uart module poll test.
  * This example provides a basic communication between USARTy and USARTz using flags.
  * First, the USARTy sends TxBuffer to USARTz. The USARTz reads the received data and
- * store it into RxBuffer.The received data is then compared with the send ones and 
- * the result of this comparison is stored in the "TransferStatus" variable. 
- * 
+ * store it into RxBuffer.The received data is then compared with the send ones and
+ * the result of this comparison is stored in the "TransferStatus" variable.
+ *
  * Connect USART1 Tx pin (PA.09) to USART3 Rx pin (PD.9).
  * Connect USART1 Rx pin (PA.10) to USART3 Tx pin (PD.8).
  * PA.10 and PA.09 are on jumper J90
- * 
+ *
  * @author zhangsheng (zhangsheng@zhangsheng.ic.com)
  * @version 1.0
  * @date 2022-02-08
@@ -24,8 +24,6 @@ typedef enum { FAILED = 0,
 
 /* Private define ------------------------------------------------------------*/
 #define TxBufferSize (countof(TxBuffer))
-#define USARTy       USART1
-#define USARTz       USART3
 /* Private macro -------------------------------------------------------------*/
 #define countof(a) (sizeof(a) / sizeof(*(a)))
 
@@ -97,44 +95,19 @@ void main(void)
  */
 void GPIO_Configuration(void)
 {
-#define AFIO_GPIOC_FUNC_SEL (AFIO_BASE_ADDR + 0x88)
-#define AFIO_GPIOD_FUNC_SEL (AFIO_BASE_ADDR + 0x8C)
+    GPIO_InitTypeDef GPIO_InitStructure;
+    /* Remap USART1 use PA9 PA10 */
+    GPIO_PinRemapConfig(GPIO_FullRemap_TIM1, ENABLE);
+    GPIO_PinRemapConfig(GPIO_Remap_USART1, DISABLE);
 
-    /* UART1 PA9,PA10 Alternate function select */
-    uint32_t tempvalue = readl(AFIO_GPIOA_FUNC_SEL);
-    tempvalue &= ~((3 << 18) | (3 << 20));
-    tempvalue |= (1 << 18) | (1 << 20);
-    writel(tempvalue, AFIO_GPIOA_FUNC_SEL);
+    /* Enable the USART2 Pins Software Remapping */
+    GPIO_PinRemapConfig(GPIO_FullRemap_USART3, ENABLE);
 
-    /* Remap TIM1 not use PA9 PA10 */
-    tempvalue = readl(AFIO_PIN_REMAP_CTL);
-    tempvalue &= ~(3 << 6);
-    tempvalue |= (3 << 6);
-    writel(tempvalue, AFIO_PIN_REMAP_CTL);
-
-    // /* UART3 PC10,PC11 Alternate function select */
-    // tempvalue = readl(AFIO_GPIOC_FUNC_SEL);
-    // tempvalue &= ~((3 << 20) | (3 << 22));
-    // tempvalue |= (1 << 20) | (1 << 22);
-    // writel(tempvalue, AFIO_GPIOC_FUNC_SEL);
-
-    // /* Remap UART3 Tx-Rx to PC10-PC11 */
-    // tempvalue = readl(AFIO_PIN_REMAP_CTL);
-    // tempvalue &= ~(3 << 4);
-    // tempvalue |= (1 << 4);
-    // writel(tempvalue, AFIO_PIN_REMAP_CTL);
-
-    /* UART3 PD8,PD9 Alternate function select */
-    tempvalue = readl(AFIO_GPIOD_FUNC_SEL);
-    tempvalue &= ~((3 << 16) | (3 << 18));
-    tempvalue |= (1 << 16) | (1 << 18);
-    writel(tempvalue, AFIO_GPIOD_FUNC_SEL);
-
-    /* Remap UART3 Tx-Rx to PD8-PD9 */
-    tempvalue = readl(AFIO_PIN_REMAP_CTL);
-    tempvalue &= ~(3 << 4);
-    tempvalue |= (3 << 4);
-    writel(tempvalue, AFIO_PIN_REMAP_CTL);
+    /* Configure USART as AF mode */
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
+    GPIO_InitStructure.GPIO_Pin   = USARTy_RxPin | USARTz_RxPin | USARTy_TxPin | USARTz_TxPin;
+    GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AF;
+    GPIO_Init(USARTy_GPIO, &GPIO_InitStructure);
 }
 
 /**
@@ -142,7 +115,7 @@ void GPIO_Configuration(void)
  * @param[in] pBuffer1 buffers to be compared.
  * @param[in] pBuffer2 buffers to be compared.
  * @param[in] BufferLength buffer's length
- * @return TestStatus PASSED: pBuffer1 identical to pBuffer2 
+ * @return TestStatus PASSED: pBuffer1 identical to pBuffer2
  *                    FAILED: pBuffer1 differs from pBuffer2
  */
 TestStatus Buffercmp(uint8_t *pBuffer1, uint8_t *pBuffer2, uint16_t BufferLength)
@@ -163,8 +136,8 @@ TestStatus Buffercmp(uint8_t *pBuffer1, uint8_t *pBuffer2, uint16_t BufferLength
 /**
  * @brief Reports the name of the source file and the source line number
  *        where the assert_param error has occurred.
- * @param[in] file: pointer to the source file name 
- * @param[in] line: assert_param error line source number 
+ * @param[in] file: pointer to the source file name
+ * @param[in] line: assert_param error line source number
  */
 void assert_failed(uint8_t *file, uint32_t line)
 {

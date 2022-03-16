@@ -1,7 +1,7 @@
 /**
  * @file at103_debug.c
  * @brief This file provides all the debug firmware functions.
- * 
+ *
  * @author zhangsheng (zhangsheng@zhangsheng.ic.com)
  * @version 1.0
  * @date 2022-02-27
@@ -133,7 +133,7 @@ static void uart_debug_puts(char *str)
 void v_uart_debug(char *fmt, va_list args)
 {
     uint32_t j;
-    int8_t * p_buf, *p_next;
+    int8_t  *p_buf, *p_next;
     uint32_t dword, temp, ch, flag, sftBits;
     char     buffer[MAX_UINT_DIGITS + sizeof((char)'\0') + sizeof((char)'-')];
     int      len_modifier = 0;
@@ -291,20 +291,15 @@ void pll_init(void)
 
 void sys_io_init(void)
 {
-    /* BOOT UART port is not its default function. Init it here. */
-    /* uart 2   tx :PA2   rx :PA3*/
-    volatile uint32_t tmp_value;
-    tmp_value = readl(AFIO_GPIOA_FUNC_SEL);
-    tmp_value &= ~(AFIO_GPIOA_SEL_BITS_MASK << AFIO_GPIOA_UART2_TX_SHIFT);
-    tmp_value |= AFIO_GPIOA_UART2_TX_SEL << AFIO_GPIOA_UART2_TX_SHIFT;
-    tmp_value &= ~(AFIO_GPIOA_SEL_BITS_MASK << AFIO_GPIOA_UART2_RX_SHIFT);
-    tmp_value |= AFIO_GPIOA_UART2_RX_SEL << AFIO_GPIOA_UART2_RX_SHIFT;
-    writel(tmp_value, AFIO_GPIOA_FUNC_SEL);
-    /*uart2 PIN REMAP CF0 */
-    tmp_value = readl(AFIO_PIN_REMAP_CTL);
-    tmp_value &= ~(AFIO_PIN_REMAP_CTL_UART2_MASK << AFIO_PIN_REMAP_CTL_UART2_SHIFT);
-    /*timer2 PIN REMAP CF10 */
-    tmp_value &= ~(AFIO_PIN_REMAP_CTL_TIMER2_MASK << AFIO_PIN_REMAP_CTL_TIMER2_SHIFT);
-    tmp_value |= AFIO_PIN_REMAP_CTL_TIMER2 << AFIO_PIN_REMAP_CTL_TIMER2_SHIFT;
-    writel(tmp_value, AFIO_PIN_REMAP_CTL);
+    GPIO_InitTypeDef GPIO_InitStructure;
+
+    /* Remap USART2 use PA2 PA3 */
+    GPIO_PinRemapConfig(GPIO_FullRemap_TIM2, ENABLE);
+    GPIO_PinRemapConfig(GPIO_Remap_USART2, DISABLE);
+
+    /* Configure USART as AF mode */
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
+    GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_2 | GPIO_Pin_3;
+    GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AF;
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
 }
