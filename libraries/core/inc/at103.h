@@ -1,8 +1,8 @@
 /**
  * @file at103.h
  * @brief Device Peripheral Access Layer Header File.
- *        This file contains all the peripheral register's definitions, bits definitions for AT103 
- *        The file is the unique include file that the application programmer is using in the C source code, usually in main.c. 
+ *        This file contains all the peripheral register's definitions, bits definitions for AT103
+ *        The file is the unique include file that the application programmer is using in the C source code, usually in main.c.
  * @author Dong Qin (dong.qin@timesintelli.com)
  * @version 1.0
  * @date 2022-01-07
@@ -75,13 +75,13 @@ typedef struct
     } PREF_CNT_EN;
     union {
         struct {
-            __OM uint32_t CLR_BIT : 1;   /**< Instruction cache performance counter clear bit */
+            __OM uint32_t CLR_BIT : 1;   /**< Instruction cache performance counter clear bit. */
             __OM          uint32_t : 31; /**< Reserved */
         };
     } PERF_CNT_CLR;
     union {
         struct {
-            __OM uint32_t REQ_EN_BIT : 1; /**< Instruction cache select flush request bit */
+            __OM uint32_t REQ_EN_BIT : 1; /**< Instruction cache select flush request bit. */
             __OM          uint32_t : 31;  /**< Reserved */
         };
     } SEL_FLUSH_REQ;
@@ -533,7 +533,7 @@ typedef struct
         };
         __IOM uint32_t value;
     } CLK_DIV_CFG;
-    __IOM uint32_t RESERVED3; /**<Reserved. */
+    __IOM uint32_t RESERVED3; /**< Reserved. */
     union {
         struct
         {
@@ -681,12 +681,103 @@ typedef struct
     __IOM uint32_t RESERVED6[8]; /**< Reserved. */
 } RCC_TypeDef;
 
-/** @addtogroup Peripheral declaration
-  * @{
-  */
+/**
+ * @brief GPIO Peripheral Interface
+ */
+typedef struct
+{
+    __IOM uint32_t DATA; /**< Data of Input/Output register. */
+    __IOM uint32_t DIR;  /**< Direction of data flow register. */
+    __IOM uint32_t CTRL; /**< Control mode select register. */
+    __IOM uint32_t EXT;  /**< Port data extend register. */
+    __IOM uint32_t IEN;  /**< Interrupt enable register. */
+    __IOM uint32_t IS;   /**< Interrupt sense register. */
+    __IOM uint32_t IBE;  /**< Interrupt both edge register. */
+    __IOM uint32_t IEV;  /**< Interrupt event register. */
+    __IM uint32_t  RIS;  /**< Raw interrupt status register. */
+    __IOM uint32_t IM;   /**< Interrupt mask register.  */
+    __IOM uint32_t MIS;  /**< Masked interrupt status register. */
+    __OM uint32_t  IC;   /**< Interrupt clear register. */
+    __IOM uint32_t DB;   /**< Delete Bounce flag. */
+    __IOM uint32_t DFG;  /**< Define Filter-ed Glitch. */
+    __IOM uint32_t IG;   /**< Specify Interrupt Group. */
+} GPIO_TypeDef;
+
+/**
+ * @brief AFIO Peripheral Interface
+ */
+typedef struct
+{
+    union {
+        struct
+        {
+            __IOM uint32_t SPI1_REMAP : 1;
+            __IOM uint32_t I2C1_REMAP : 1;
+            __IOM uint32_t USART1_REMAP : 1;
+            __IOM uint32_t USART2_REMAP : 1;
+            __IOM uint32_t USART3_REMAP : 2;
+            __IOM uint32_t TIM1_REMAP : 2;
+            __IOM uint32_t TIM2_REMAP : 2;
+            __IOM uint32_t TIM3_REMAP : 2;
+            __IOM uint32_t TIM4_REMAP : 1;
+            __IOM uint32_t CAN_REMAP : 2;
+            __IOM uint32_t PD01_REMAP : 1;
+            __IOM uint32_t SPI2_REMAP : 1;
+            __IOM          uint32_t : 15;
+        };
+        __IOM uint32_t value;
+    } PIN_REMAP_CTRL;
+
+    struct {
+        __IOM uint32_t OD; /** <Open-Drain output mode control of GPIOA ports. */
+        __IOM uint32_t PC; /**< Pull resistor selection signal for GPIO ports.*/
+        __IOM uint32_t IC; /**< Input mode controlling signal */
+        __IOM uint32_t DR; /**< bit[2n+1:2n]: Driving strength select for GPIO bit[n]. */
+    } GPIO[5];
+    union {
+        struct
+        {
+            __IOM uint32_t OSCOUT : 5;    /**< IO configuration for OSC_OUT pin as GPIO port. */
+            __IOM uint32_t OSCIN : 5;     /**< IO configuration for OSC_IN pin as GPIO port. */
+            __IOM          uint32_t : 22; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } OSC_GPIO_CTRL;
+    __IOM uint32_t RESERVED1[6];     /**< Reserved. */
+    __IOM uint32_t EXTICR[2];        /**< bit[4n+3:4n] EXTI 15-0 select. */
+    __IOM uint32_t RESERVED2[2];     /**< Reserved. */
+    __IOM uint32_t GPIO_FUNC_SEL[5]; /**< bit[2n+1:2n]:  function selection for GPIOA. */
+    union {
+        struct
+        {
+            __IOM uint32_t IREN : 3;      /**< USART IO function select. */
+            __IOM          uint32_t : 29; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } USART_IREN;
+} AFIO_TypeDef;
+
+/**
+ * @brief External Interrupt/Event Controller
+ */
+typedef struct {
+    __IOM uint32_t EMR;         /**< EXTEvent mask. */
+    __IOM uint32_t RESERVED[2]; /**< Reserved. */
+    __IOM uint32_t IMR;         /**< EXT Interruprt mask */
+    __IOM uint32_t PR;          /**< Interruprt status.*/
+} EXTI_TypeDef;
+
+/** Peripheral declaration */
 #define ICACHE ((ICACHE_TypeDef *)ICACHE_BASE)
 #define RCC    ((RCC_TypeDef *)RCC_BASE)
 #define NVIC   ((NVIC_TypeDef *)NVIC_BASE)
+#define AFIO   ((AFIO_TypeDef *)AFIO_BASE)
+#define EXTI   ((EXTI_TypeDef *)EXTI_BASE)
+#define GPIOA  ((GPIO_TypeDef *)GPIOA_BASE)
+#define GPIOB  ((GPIO_TypeDef *)GPIOB_BASE)
+#define GPIOC  ((GPIO_TypeDef *)GPIOC_BASE)
+#define GPIOD  ((GPIO_TypeDef *)GPIOD_BASE)
+#define GPIOE  ((GPIO_TypeDef *)GPIOE_BASE)
 #define USART1 ((USART_TypeDef *)USART1_BASE)
 #define USART2 ((USART_TypeDef *)USART2_BASE)
 #define USART3 ((USART_TypeDef *)USART3_BASE)
@@ -701,22 +792,32 @@ typedef struct
 #ifdef NVIC_MODULE_ENABLED
 #include "at103_nvic.h"
 #endif /* NVIC_MODULE_ENABLED */
+
 #ifdef USART_MODULE_ENABLED
 #include "at103_debug.h"
 #include "at103_uart.h"
 #endif /* USART_MODULE_ENABLED */
+
 #ifdef RCC_MODULE_ENABLED
 #include "at103_rcc.h"
 #endif /* RCC_MODULE_ENABLED */
-#ifdef USE_FULL_ASSERT
+
+#ifdef EXTI_MODULE_ENABLED
+#include "at103_exti.h"
+#endif /* EXTI_MODULE_ENABLED */
+
+#ifdef GPIO_MODULE_ENABLED
+#include "at103_gpio.h"
+#endif /* GPIO_MODULE_ENABLED */
 
 /**
-  * @brief  The assert_param macro is used for function's parameters check.
-  * @param  expr: If expr is false, it calls assert_failed function which reports 
-  *         the name of the source file and the source line number of the call 
-  *         that failed. If expr is true, it returns no value.
-  * @retval None
-  */
+ * @brief  The assert_param macro is used for function's parameters check.
+ * @param  expr: If expr is false, it calls assert_failed function which reports
+ *         the name of the source file and the source line number of the call
+ *         that failed. If expr is true, it returns no value.
+ * @retval None
+ */
+#ifdef USE_FULL_ASSERT
 #define assert_param(expr) ((expr) ? (void)0 : assert_failed((uint8_t *)__FILE__, __LINE__))
 /* Exported functions ------------------------------------------------------- */
 void assert_failed(uint8_t *file, uint32_t line);

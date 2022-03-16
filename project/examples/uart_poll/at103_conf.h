@@ -17,8 +17,24 @@ extern "C" {
 
 #define USART_MODULE_ENABLED
 #define NVIC_MODULE_ENABLED
-#define USE_FULL_ASSERT
 #define RCC_MODULE_ENABLED
+#define GPIO_MODULE_ENABLED
+#define USE_FULL_ASSERT
+
+/* board specific*/
+#define USARTy            USART1
+#define USARTy_GPIO       GPIOA
+#define USARTy_RxPin      GPIO_Pin_10
+#define USARTy_TxPin      GPIO_Pin_9
+#define USARTy_IRQn       USART1_IRQn
+#define USARTy_IRQHandler USART1_IRQHandler
+
+#define USARTz            USART3
+#define USARTz_GPIO       GPIOD
+#define USARTz_RxPin      GPIO_Pin_9
+#define USARTz_TxPin      GPIO_Pin_8
+#define USARTz_IRQn       USART3_IRQn
+#define USARTz_IRQHandler USART3_IRQHandler
 
 #ifdef __cplusplus
 }

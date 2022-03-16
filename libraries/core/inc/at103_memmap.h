@@ -42,6 +42,7 @@ extern "C" {
 
 /* APB2 slaves */
 #define AFIO_BASE    (APB2PERIPH_BASE + 0x0000)
+#define EXTI_BASE    (APB2PERIPH_BASE + 0x006C)
 #define NVIC_BASE    (APB2PERIPH_BASE + 0x1000)
 #define GPIOA_BASE   (APB2PERIPH_BASE + 0x2000)
 #define GPIOB_BASE   (APB2PERIPH_BASE + 0x3000)
