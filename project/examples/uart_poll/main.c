@@ -105,9 +105,11 @@ void GPIO_Configuration(void)
 
     /* Configure USART as AF mode */
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
-    GPIO_InitStructure.GPIO_Pin   = USARTy_RxPin | USARTz_RxPin | USARTy_TxPin | USARTz_TxPin;
+    GPIO_InitStructure.GPIO_Pin   = USARTy_RxPin | USARTy_TxPin;
     GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_AF;
     GPIO_Init(USARTy_GPIO, &GPIO_InitStructure);
+    GPIO_InitStructure.GPIO_Pin = USARTz_RxPin | USARTz_TxPin;
+    GPIO_Init(USARTz_GPIO, &GPIO_InitStructure);
 }
 
 /**
