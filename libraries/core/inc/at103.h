@@ -757,6 +757,55 @@ typedef struct
     } USART_IREN;
 } AFIO_TypeDef;
 
+typedef struct
+{
+
+    __IOM uint32_t LDR;
+
+    union {
+        struct
+        {
+            __OM uint32_t COUNTERRESTART : 8; /**< This register is used to restart the WDT counter. As a safety feature to prevent accidental restarts.*/
+            __OM          uint32_t : 24;
+        };
+        __OM uint32_t value;
+    } CRR;
+
+    union {
+        struct
+        {
+            __IOM uint32_t PSC_DIV_LOW : 4;  /**< The bits (3:0) further divide 4 higher bits (7:4) divided-clock by following prescale divisors .*/
+            __IOM uint32_t PSC_DIV_HIGH : 4; /**< 4 Higher Bits of the Prescale Divisor The 4 bits (7:4) divide the system clock by following prescale divisors. */
+            __IOM uint32_t ACTION : 1;
+            __IOM uint32_t ENANBLE : 1;
+            __IOM uint32_t TIMEOUT_RANGE : 3;
+        };
+        __IOM uint32_t value;
+    } TCR;
+
+    union {
+
+        struct
+        {
+            __IOM uint32_t LENGTH : 16; /**< Timer Reset Pulse Length Register. */
+            __IOM          uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } PLR;
+
+    __IM uint32_t CNT; /**< Current value of the timer counter. */
+
+    union {
+        struct
+        {
+
+            __IOM uint32_t INTSTAT : 1; /**< interrupt status of the WDT.*/
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } ISR;
+} WDT_TypeDef;
+
 /**
  * @brief External Interrupt/Event Controller
  */
@@ -781,6 +830,7 @@ typedef struct {
 #define USART1 ((USART_TypeDef *)USART1_BASE)
 #define USART2 ((USART_TypeDef *)USART2_BASE)
 #define USART3 ((USART_TypeDef *)USART3_BASE)
+#define WWDG   ((WDT_TypeDef *)WWDG_BASE)
 
 /** system level driver */
 #include "at103_icache.h"
@@ -810,6 +860,9 @@ typedef struct {
 #include "at103_gpio.h"
 #endif /* GPIO_MODULE_ENABLED */
 
+#ifdef WDT_MODULE_ENABLED
+#include "at103_wdt.h"
+#endif
 /**
  * @brief  The assert_param macro is used for function's parameters check.
  * @param  expr: If expr is false, it calls assert_failed function which reports
