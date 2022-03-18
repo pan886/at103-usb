@@ -92,52 +92,53 @@
 #define IS_WWDG_COUNTER(COUNTER) (COUNTER <= 0xFFFFFFFF)
 #define IS_WWDG_LENGTH(LENGTH)   ((LENGTH <= 0XFFFF) && (LENGTH >= 2))
 
+/**
+ * @brief clear interrupt flag
+ */
 void WWDG_ClearFlag(void);
+
 /**
  * @brief Reloads WWDG counter with value defined in the reload register
- * @param Reload 
- * @retval None
+ * @param[in] Reload :Watchdog Timer load value 
  */
 void WWDG_SetReload(uint32_t Reload);
 
 /**
- * @brief Set the length of Watchdog Timer Reset Pulse
- * @param length The value of reset pulse length is the number of pclk cycles. At the least 2 pclk cycles
- * @retval None.
+ * @brief :Set the length of Watchdog Timer Reset Pulse
+ * @param[in] length:The value of reset pulse length is the number of pclk cycles. At the least 2 pclk cycles
  */
 void WWDG_Set_Reset_Pulselength(uint16_t length);
 
 /**
- * @brief Sets WWDG higher and lower Prescaler value
- * @param WWDG_Higher_Prescaler :specifies the WWDG higher presaclaer value
- * @param WWDG_Lower_Prescaler :specifies the WWDG lower presaclaer value
- * @retval None.
+ * @brief :Sets WWDG higher and lower Prescaler value
+ * @param[in] WWDG_Higher_Prescaler:specifies the WWDG higher presaclaer value
+ * @param[in] WWDG_Lower_Prescaler:specifies the WWDG lower presaclaer value
  */
 void WWDG_SetPrescaler(uint32_t WWDG_Higher_Prescaler, uint32_t WWDG_Lower_Prescaler);
 
 /**
- * @brief set Time-out time,When a WDT Interrupt is generated, 
- *        if it is not cleared before the Time-out time, then it generates a system reset. 
- * @param cycle  WWDG Counter clock cycles 
- * @retval None.
+ * @brief :set Time-out time,When a WDT Interrupt is generated, if it is not cleared before the Time-out time, then it generates a system reset.
+ * @param[in] cycle:WWDG Counter clock cycles. 
  */
 void WWDG_Set_Timeout_range(uint8_t cycle);
 
 /**
  * @brief Enable WWDG 
- * 
  */
 void WWDG_Enable();
 
 /**
- * @brief Set the mode of WWDG
- * @param Mode :reset or interrupt
+ * @brief Disable WWDG
+ */
+void WWDG_Disable();
+
+/**
+ * @brief :Set the mode of WWDG
+ * @param[in] Mode :reset or interrupt
  */
 void WWDG_SetMode(uint8_t Mode);
 
 /**
- * @brief Restart the WWDG counter.
- * @param  None.
- * @retval None.
+ * @brief: Restart the WWDG counter.
  */
 void WWDG_ReloadCounter(void);
