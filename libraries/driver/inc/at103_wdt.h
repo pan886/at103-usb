@@ -1,7 +1,7 @@
 /**
  * @file at103_wdt.h
- * @brief 
- * 
+ * @brief This file contains all the functions prototypes for the WDT firmware 
+ *         library.
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-03-17

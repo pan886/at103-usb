@@ -1,7 +1,6 @@
 /**
  * @file at103_wdt.c
- * @brief 
- * 
+ * @brief This file provides all the WDT firmware functions.
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-03-17
