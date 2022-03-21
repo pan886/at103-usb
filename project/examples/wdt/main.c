@@ -17,8 +17,8 @@ __IO uint32_t interrupt_flag;
 GPIO_InitTypeDef GPIOE_struct1;
 GPIO_InitTypeDef GPIOE_struct2;
 GPIO_InitTypeDef GPIOA_struct;
-void             delay(void);
-void             main(void)
+
+void main(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure;
     AFIO_TypeDef     AFIO_InitStructure;
@@ -48,7 +48,6 @@ void             main(void)
     GPIO_SetBits(GPIOE, GPIO_Pin_5);
     GPIO_SetBits(GPIOE, GPIO_Pin_6);
 
-    delay();
     /*enable the WDT*/
     WWDG_Enable();
     /*set the mode of WDT*/
@@ -58,13 +57,14 @@ void             main(void)
     /*set the length of reset pluse*/
     WWDG_Set_Reset_Pulselength(0xffff);
     /*Reloads WWDG counter*/
-    WWDG_SetReload(0xAAAAA);
+    WWDG_SetReload(0x3FFFFFF);
     /*set the timeout range*/
     WWDG_Set_Timeout_range(Counter_Cycles_64);
     /*Restart the WWDG counter.*/
     WWDG_ReloadCounter();
 
     while (1) {
+        GPIO_Init(GPIOE, &GPIOE_struct1);
     }
 }
 
@@ -75,13 +75,4 @@ void WWDG_IRQHandler()
     debug("enter WDT interrupt!\n");
     /*change the GPIO mode,turn off the led */
     GPIOE_struct1.GPIO_Mode = GPIO_Mode_IPD;
-    GPIO_Init(GPIOE, &GPIOE_struct1);
-}
-
-void delay()
-{
-    uint16_t i, j;
-    for (i = 0; i < 0xffff; i++)
-        for (j = 0; j < 0x1ff; j++)
-            ;
 }
