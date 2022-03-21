@@ -767,6 +767,273 @@ typedef struct {
     __IOM uint32_t PR;          /**< Interruprt status.*/
 } EXTI_TypeDef;
 
+typedef struct
+{
+    union {
+        struct
+        {
+            __IOM uint32_t AWD : 1;   /**< Analog watchdog flag */
+            __IOM uint32_t EOC : 1;   /**< End of conversion */
+            __IOM uint32_t JEOC : 1;  /**< Injected channel end of conversion*/
+            __IOM uint32_t JSTRT : 1; /**< Injected channel Start flag*/
+            __IOM uint32_t STRT : 1;  /**< Regular channel Start flag*/
+            __IOM          uint32_t : 27;
+        };
+        __IOM uint32_t value;
+
+    } SR;
+
+    union {
+        struct
+        {
+            __IOM uint32_t AWDCH : 5;
+            __IOM uint32_t EOCIE : 1;
+            __IOM uint32_t AWDIE : 1;
+            __IOM uint32_t JEOCIE : 1;
+            __IOM uint32_t SCAN : 1;
+            __IOM uint32_t AWDSGL : 1;
+            __IOM uint32_t JAUTO : 1;
+            __IOM uint32_t DISCEN : 1;
+            __IOM uint32_t JDISCEN : 1;
+            __IOM uint32_t DISCNUM : 3;
+            __IOM uint32_t DUALMOD : 4;
+            __IOM          uint32_t : 2;
+            __IOM uint32_t JAWDEN : 1;
+            __IOM uint32_t AWDEN : 1;
+            __IOM          uint32_t : 8;
+        };
+        __IOM uint32_t value;
+    } CR1;
+
+    union {
+        struct
+        {
+            __IOM uint32_t ADON : 1;
+            __IOM uint32_t CONT : 1;
+            __IOM uint32_t CAL : 1;
+            __IOM uint32_t RSTCAL : 1;
+            __IOM          uint32_t : 4;
+            __IOM uint32_t DMA : 1;
+            __IOM          uint32_t : 2;
+            __IOM uint32_t ALIGN : 1;
+            __IOM uint32_t JEXTSEL : 3;
+            __IOM uint32_t JEXTTRIG : 1;
+            __IOM          uint32_t : 1;
+            __IOM uint32_t EXTSEL : 3;
+            __IOM uint32_t EXTTRIG : 1;
+            __IOM uint32_t JSWSTART : 1;
+            __IOM uint32_t SWSTART : 1;
+            __IOM uint32_t TSVREFE : 1;
+            __IOM          uint32_t : 8;
+        };
+        __IOM uint32_t value;
+    } CR2;
+
+    union {
+        __IOM uint32_t value;
+        struct
+        {
+            __IOM uint32_t SMP10 : 3;
+            __IOM uint32_t SMP11 : 3;
+            __IOM uint32_t SMP12 : 3;
+            __IOM uint32_t SMP13 : 3;
+            __IOM uint32_t SMP14 : 3;
+            __IOM uint32_t SMP15 : 3;
+            __IOM uint32_t SMP16 : 3;
+            __IOM uint32_t SMP17 : 3;
+            __IOM          uint32_t : 8;
+        };
+
+    } SMPR1;
+
+    union {
+        struct
+        {
+            __IOM uint32_t SMP0 : 3;
+            __IOM uint32_t SMP1 : 3;
+            __IOM uint32_t SMP2 : 3;
+            __IOM uint32_t SMP3 : 3;
+            __IOM uint32_t SMP4 : 3;
+            __IOM uint32_t SMP5 : 3;
+            __IOM uint32_t SMP6 : 3;
+            __IOM uint32_t SMP7 : 3;
+            __IOM uint32_t SMP8 : 3;
+            __IOM uint32_t SMP9 : 3;
+            __IOM          uint32_t : 2;
+        };
+        __IOM uint32_t value;
+    } SMPR2;
+
+    union {
+        struct
+        {
+            __IOM uint32_t JOFR : 12;
+            __IOM          uint32_t : 20;
+        };
+        __IOM uint32_t value;
+    } JOFR1;
+
+    union {
+        struct
+        {
+            __IOM uint32_t JOFR : 12;
+            __IOM          uint32_t : 20;
+        };
+        __IOM uint32_t value;
+    } JOFR2;
+
+    union {
+        struct
+        {
+            __IOM uint32_t JOFR : 12;
+            __IOM          uint32_t : 20;
+        };
+        __IOM uint32_t value;
+    } JOFR3;
+
+    union {
+        struct
+        {
+            __IOM uint32_t JOFR : 12;
+            __IOM          uint32_t : 20;
+        };
+        __IOM uint32_t value;
+    } JOFR4;
+
+    union {
+        struct
+        {
+            __IOM uint32_t HT : 12;
+            __IOM          uint32_t : 20;
+        };
+        __IOM uint32_t value;
+    } HTR;
+
+    union {
+        struct
+        {
+            __IOM uint32_t LT : 12;
+            __IOM          uint32_t : 20;
+        };
+        __IOM uint32_t value;
+    } LTR;
+
+    union {
+        struct
+        {
+            __IOM uint32_t SQ13 : 5;
+            __IOM uint32_t SQ14 : 5;
+            __IOM uint32_t SQ15 : 5;
+            __IOM uint32_t SQ16 : 5;
+            __IOM uint32_t L : 4;
+            __IOM          uint32_t : 8;
+        };
+        __IOM uint32_t value;
+    } SQR1;
+
+    union {
+        struct
+        {
+            __IOM uint32_t SQ7 : 5;
+            __IOM uint32_t SQ8 : 5;
+            __IOM uint32_t SQ9 : 5;
+            __IOM uint32_t SQ10 : 5;
+            __IOM uint32_t SQ11 : 5;
+            __IOM uint32_t SQ12 : 5;
+            __IOM          uint32_t : 2;
+        };
+        __IOM uint32_t value;
+    } SQR2;
+
+    union {
+        struct
+        {
+            __IOM uint32_t SQ1 : 5;
+            __IOM uint32_t SQ2 : 5;
+            __IOM uint32_t SQ3 : 5;
+            __IOM uint32_t SQ4 : 5;
+            __IOM uint32_t SQ5 : 5;
+            __IOM uint32_t SQ6 : 5;
+            __IOM          uint32_t : 2;
+        };
+        __IOM uint32_t value;
+    } SQR3;
+
+    union {
+        struct
+        {
+            __IOM uint32_t JSQ1 : 5;
+            __IOM uint32_t JSQ2 : 5;
+            __IOM uint32_t JSQ3 : 5;
+            __IOM uint32_t JSQ4 : 5;
+            __IOM uint32_t JSQ5 : 2;
+            __IOM          uint32_t : 10;
+        };
+        __IOM uint32_t value;
+
+    } JSQR;
+
+    union {
+        struct
+        {
+            __IOM uint32_t JDATA : 16;
+            __IOM          uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } JDR1;
+
+    union {
+        struct
+        {
+            __IOM uint32_t JDATA : 16;
+            __IOM          uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } JDR2;
+
+    union {
+        struct
+        {
+            __IOM uint32_t JDATA : 16;
+            __IOM          uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } JDR3;
+
+    union {
+        struct
+        {
+            __IOM uint32_t JDATA : 16;
+            __IOM          uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } JDR4;
+
+    union {
+        struct
+        {
+            __IOM uint32_t DATA : 16;
+            __IOM uint32_t ADC2DATA : 16;
+        };
+        __IOM uint32_t value;
+    } DR;
+
+    union {
+        struct
+        {
+            __IOM uint32_t GCMP : 1;
+            __IOM uint32_t ANA_EN : 1;
+            __IOM uint32_t RSTN : 1;
+            __IOM uint32_t RESERVED : 1;
+            __IOM uint32_t DISH : 1;
+            __IOM uint32_t OFFSET : 6;
+            __IOM uint32_t RESO : 2;
+            __IOM          uint32_t : 19;
+        };
+        __IOM uint32_t value;
+    } ANA;
+
+} ADC_TypeDef;
 /** Peripheral declaration */
 #define ICACHE ((ICACHE_TypeDef *)ICACHE_BASE)
 #define RCC    ((RCC_TypeDef *)RCC_BASE)
@@ -781,7 +1048,8 @@ typedef struct {
 #define USART1 ((USART_TypeDef *)USART1_BASE)
 #define USART2 ((USART_TypeDef *)USART2_BASE)
 #define USART3 ((USART_TypeDef *)USART3_BASE)
-
+#define ADC1   ((ADC_TypeDef *)ADC1_BASE)
+#define ADC2   ((ADC_TypeDef *)ADC2_BASE)
 /** system level driver */
 #include "at103_icache.h"
 
@@ -809,6 +1077,10 @@ typedef struct {
 #ifdef GPIO_MODULE_ENABLED
 #include "at103_gpio.h"
 #endif /* GPIO_MODULE_ENABLED */
+
+#ifdef ADC_MODULE_ENABLED
+#include "at103_adc.h"
+#endif
 
 /**
  * @brief  The assert_param macro is used for function's parameters check.
