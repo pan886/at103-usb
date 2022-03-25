@@ -1,13 +1,13 @@
 /**
- * @file at103_wdt.c
- * @brief This file provides all the WDT firmware functions.
+ * @file at103_wwdg.c
+ * @brief This file provides all the WWDG firmware functions.
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-03-17
  * @copyright Copyright (c) 2022 Icore, Inc
  */
-#include "at103_wdt.h"
-#ifdef WDT_MODULE_ENABLED
+#include "at103_wwdg.h"
+#ifdef WWDG_MODULE_ENABLED
 
 void WWDG_Enable()
 {

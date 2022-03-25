@@ -1,6 +1,6 @@
 /**
- * @file at103_wdt.h
- * @brief This file contains all the functions prototypes for the WDT firmware 
+ * @file at103_wwdg.h
+ * @brief This file contains all the functions prototypes for the WWDG firmware 
  *         library.
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
@@ -9,17 +9,21 @@
  */
 #include "at103.h"
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define RESET_MODE         0x0
 #define INTERRUPT_MODE     0x1
 #define IS_WWDG_MODE(Mode) ((((Mode) == RESET_MODE) || \
                              ((Mode) == INTERRUPT_MODE)))
-#define Counter_Cycles_64 ((uint8_t)0x0000)
-#define Counter_Cycles_32 ((uint8_t)0x0001)
-#define Counter_Cycles_16 ((uint8_t)0x0002)
-#define Counter_Cycles_8  ((uint8_t)0x0003)
-#define Counter_Cycles_4  ((uint8_t)0x0004)
-#define Counter_Cycles_2  ((uint8_t)0x0005)
-#define Counter_Cycles_1  ((uint8_t)0x0006)
+#define Counter_Cycles_64 ((uint8_t)0x0000) /**< 64K of WWDG Counter clock cycles */
+#define Counter_Cycles_32 ((uint8_t)0x0001) /**< 32K of WWDF Counter clock cycles */
+#define Counter_Cycles_16 ((uint8_t)0x0002) /**< 16K of WWDG Counter clock cycles */
+#define Counter_Cycles_8  ((uint8_t)0x0003) /**< 8K of WWDG Counter clock cycles */
+#define Counter_Cycles_4  ((uint8_t)0x0004) /**< 4K of WWDG Counter clock cycles */
+#define Counter_Cycles_2  ((uint8_t)0x0005) /**< 2K of WWDG Counter clock cycles */
+#define Counter_Cycles_1  ((uint8_t)0x0006) /**< 1K of WWDG Counter clock cycles */
 #define IS_WWDG_CYCLES(CYCLES)       (((CYCLES) == Counter_Cycles_64)||\
                                      ((CYCLES)  == Counter_Cycles_32)||\
                                      ((CYCLES)  == Counter_Cycles_16)||\
@@ -28,20 +32,20 @@
                                      ((CYCLES)  == Counter_Cycles_2)||\
                                      ((CYCLES)  == Counter_Cycles_1)))
 
-#define WWDG_Higher_Prescaler_2             ((uint32_t)0x0000)
-#define WWDG_Higher_Prescaler_4             ((uint32_t)0x0001)
-#define WWDG_Higher_Prescaler_8             ((uint32_t)0x0002)
-#define WWDG_Higher_Prescaler_16            ((uint32_t)0x0003)
-#define WWDG_Higher_Prescaler_32            ((uint32_t)0x0004)
-#define WWDG_Higher_Prescaler_64            ((uint32_t)0x0005)
-#define WWDG_Higher_Prescaler_128           ((uint32_t)0x0006)
-#define WWDG_Higher_Prescaler_256           ((uint32_t)0x0007)
-#define WWDG_Higher_Prescaler_512           ((uint32_t)0x0008)
-#define WWDG_Higher_Prescaler_1024          ((uint32_t)0x0009)
-#define WWDG_Higher_Prescaler_2048          ((uint32_t)0x000A)
-#define WWDG_Higher_Prescaler_4096          ((uint32_t)0x000B)
-#define WWDG_Higher_Prescaler_8192          ((uint32_t)0x000C)
-#define WWDG_Higher_Prescaler_16384         ((uint32_t)0x000D)
+#define WWDG_Higher_Prescaler_2             ((uint32_t)0x0000) /**< system clock Divide by 2 */
+#define WWDG_Higher_Prescaler_4             ((uint32_t)0x0001) /**< system clock Divide by 4 */
+#define WWDG_Higher_Prescaler_8             ((uint32_t)0x0002) /**< system clock Divide by 8 */
+#define WWDG_Higher_Prescaler_16            ((uint32_t)0x0003) /**< system clock Divide by 16 */
+#define WWDG_Higher_Prescaler_32            ((uint32_t)0x0004) /**< system clock Divide by 32 */
+#define WWDG_Higher_Prescaler_64            ((uint32_t)0x0005) /**< system clock Divide by 64 */
+#define WWDG_Higher_Prescaler_128           ((uint32_t)0x0006) /**< system clock Divide by 128 */
+#define WWDG_Higher_Prescaler_256           ((uint32_t)0x0007) /**< system clock Divide by 256 */
+#define WWDG_Higher_Prescaler_512           ((uint32_t)0x0008) /**< system clock Divide by 512 */
+#define WWDG_Higher_Prescaler_1024          ((uint32_t)0x0009) /**< system clock Divide by 1024 */
+#define WWDG_Higher_Prescaler_2048          ((uint32_t)0x000A) /**< system clock Divide by 2048 */
+#define WWDG_Higher_Prescaler_4096          ((uint32_t)0x000B) /**< system clock Divide by 4096 */
+#define WWDG_Higher_Prescaler_8192          ((uint32_t)0x000C) /**< system clock Divide by 8192 */
+#define WWDG_Higher_Prescaler_16384         ((uint32_t)0x000D) /**< system clock Divide by 16384 */
 #define IS_WWDG_HIGHER_PRESCALER(PRESCALER) (((PRESCALER) == WWDG_Higher_Prescaler_2) || \
                                              ((PRESCALER) == WWDG_Higher_Prescaler_4) || \
                                              ((PRESCALER) == WWDG_Higher_Prescaler_8) || \
@@ -57,21 +61,21 @@
                                              ((PRESCALER) == WWDG_Higher_Prescaler_8192) || \
                                              ((PRESCALER) == WWDG_Higher_Prescaler_16384))
 
-#define WWDG_Lower_Prescaler_1             ((uint32_t)0x0000)
-#define WWDG_Lower_Prescaler_2             ((uint32_t)0x0001)
-#define WWDG_Lower_Prescaler_4             ((uint32_t)0x0002)
-#define WWDG_Lower_Prescaler_8             ((uint32_t)0x0003)
-#define WWDG_Lower_Prescaler_16            ((uint32_t)0x0004)
-#define WWDG_Lower_Prescaler_32            ((uint32_t)0x0005)
-#define WWDG_Lower_Prescaler_64            ((uint32_t)0x0006)
-#define WWDG_Lower_Prescaler_128           ((uint32_t)0x0007)
-#define WWDG_Lower_Prescaler_256           ((uint32_t)0x0008)
-#define WWDG_Lower_Prescaler_512           ((uint32_t)0x0009)
-#define WWDG_Lower_Prescaler_1024          ((uint32_t)0x000A)
-#define WWDG_Lower_Prescaler_2048          ((uint32_t)0x000B)
-#define WWDG_Lower_Prescaler_4096          ((uint32_t)0x000C)
-#define WWDG_Lower_Prescaler_8192          ((uint32_t)0x000D)
-#define WWDG_Lower_Prescaler_16384         ((uint32_t)0x000E)
+#define WWDG_Lower_Prescaler_1             ((uint32_t)0x0000) /**< No divide */
+#define WWDG_Lower_Prescaler_2             ((uint32_t)0x0001) /**< further Divide by 2 */
+#define WWDG_Lower_Prescaler_4             ((uint32_t)0x0002) /**< further Divide by 4 */
+#define WWDG_Lower_Prescaler_8             ((uint32_t)0x0003) /**< further Divide by 8 */
+#define WWDG_Lower_Prescaler_16            ((uint32_t)0x0004) /**< further Divide by 16 */
+#define WWDG_Lower_Prescaler_32            ((uint32_t)0x0005) /**< further Divide by 32 */
+#define WWDG_Lower_Prescaler_64            ((uint32_t)0x0006) /**< further Divide by 64 */
+#define WWDG_Lower_Prescaler_128           ((uint32_t)0x0007) /**< further Divide by 128 */
+#define WWDG_Lower_Prescaler_256           ((uint32_t)0x0008) /**< further Divide by 256 */
+#define WWDG_Lower_Prescaler_512           ((uint32_t)0x0009) /**< further Divide by 512 */
+#define WWDG_Lower_Prescaler_1024          ((uint32_t)0x000A) /**< further Divide by 1024 */
+#define WWDG_Lower_Prescaler_2048          ((uint32_t)0x000B) /**< further Divide by 2048 */
+#define WWDG_Lower_Prescaler_4096          ((uint32_t)0x000C) /**< further Divide by 4096 */
+#define WWDG_Lower_Prescaler_8192          ((uint32_t)0x000D) /**< further Divide by 8192 */
+#define WWDG_Lower_Prescaler_16384         ((uint32_t)0x000E) /**< further Divide by 16384 */
 #define IS_WWDG_LOWER_PRESCALER(PRESCALER) (((PRESCALER) == WWDG_Lower_Prescaler_1) || \
                                             ((PRESCALER) == WWDG_Lower_Prescaler_2) || \
                                             ((PRESCALER) == WWDG_Lower_Prescaler_4) || \

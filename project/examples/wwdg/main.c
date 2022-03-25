@@ -17,7 +17,10 @@ __IO uint32_t interrupt_flag;
 GPIO_InitTypeDef GPIOE_struct1;
 GPIO_InitTypeDef GPIOE_struct2;
 GPIO_InitTypeDef GPIOA_struct;
-
+#define LED_ON  0x1
+#define LED_OFF 0x0
+void set_led(uint8_t led_state);
+void WWDG_Init(void);
 void main(void)
 {
     NVIC_InitTypeDef NVIC_InitStructure;
@@ -41,13 +44,18 @@ void main(void)
     GPIOE_struct1.GPIO_Pin   = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6;
     GPIOE_struct1.GPIO_Speed = GPIO_Speed_2MHz;
     GPIO_Init(GPIOE, &GPIOE_struct1);
-    /*light up the LED*/
-    GPIO_SetBits(GPIOE, GPIO_Pin_2);
-    GPIO_SetBits(GPIOE, GPIO_Pin_3);
-    GPIO_SetBits(GPIOE, GPIO_Pin_4);
-    GPIO_SetBits(GPIOE, GPIO_Pin_5);
-    GPIO_SetBits(GPIOE, GPIO_Pin_6);
 
+    /*light up the LED*/
+    set_led(LED_ON);
+    /*Initialize the WWDG configuration */
+    WWDG_Init();
+
+    while (1) {
+    }
+}
+
+void WWDG_Init()
+{
     /*enable the WDT*/
     WWDG_Enable();
     /*set the mode of WDT*/
@@ -62,9 +70,22 @@ void main(void)
     WWDG_Set_Timeout_range(Counter_Cycles_64);
     /*Restart the WWDG counter.*/
     WWDG_ReloadCounter();
+}
 
-    while (1) {
-        GPIO_Init(GPIOE, &GPIOE_struct1);
+void set_led(uint8_t led_state)
+{
+    if (led_state == LED_ON) {
+        GPIO_SetBits(GPIOE, GPIO_Pin_2);
+        GPIO_SetBits(GPIOE, GPIO_Pin_3);
+        GPIO_SetBits(GPIOE, GPIO_Pin_4);
+        GPIO_SetBits(GPIOE, GPIO_Pin_5);
+        GPIO_SetBits(GPIOE, GPIO_Pin_6);
+    } else {
+        GPIO_ResetBits(GPIOE, GPIO_Pin_2);
+        GPIO_ResetBits(GPIOE, GPIO_Pin_3);
+        GPIO_ResetBits(GPIOE, GPIO_Pin_4);
+        GPIO_ResetBits(GPIOE, GPIO_Pin_5);
+        GPIO_ResetBits(GPIOE, GPIO_Pin_6);
     }
 }
 
@@ -74,5 +95,5 @@ void WWDG_IRQHandler()
     WWDG_ClearFlag();
     debug("enter WDT interrupt!\n");
     /*change the GPIO mode,turn off the led */
-    GPIOE_struct1.GPIO_Mode = GPIO_Mode_IPD;
+    set_led(LED_OFF);
 }

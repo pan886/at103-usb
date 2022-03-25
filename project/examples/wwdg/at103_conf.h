@@ -18,7 +18,7 @@ extern "C" {
 #define GPIO_MODULE_ENABLED
 #define RCC_MODULE_ENABLED
 #define NVIC_MODULE_ENABLED
-#define WDT_MODULE_ENABLED
+#define WWDG_MODULE_ENABLED
 
 #ifdef __cplusplus
 }

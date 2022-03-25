@@ -757,6 +757,9 @@ typedef struct
     } USART_IREN;
 } AFIO_TypeDef;
 
+/**
+ * @brief WWDG Peripheral Interface
+ */
 typedef struct
 {
 
@@ -779,6 +782,7 @@ typedef struct
             __IOM uint32_t ACTION : 1;
             __IOM uint32_t ENANBLE : 1;
             __IOM uint32_t TIMEOUT_RANGE : 3;
+            __IOM          uint32_t : 19;
         };
         __IOM uint32_t value;
     } TCR;
@@ -804,7 +808,7 @@ typedef struct
         };
         __IOM uint32_t value;
     } ISR;
-} WDT_TypeDef;
+} WWDG_TypeDef;
 
 /**
  * @brief External Interrupt/Event Controller
@@ -830,7 +834,7 @@ typedef struct {
 #define USART1 ((USART_TypeDef *)USART1_BASE)
 #define USART2 ((USART_TypeDef *)USART2_BASE)
 #define USART3 ((USART_TypeDef *)USART3_BASE)
-#define WWDG   ((WDT_TypeDef *)WWDG_BASE)
+#define WWDG   ((WWDG_TypeDef *)WWDG_BASE)
 
 /** system level driver */
 #include "at103_icache.h"
@@ -860,8 +864,8 @@ typedef struct {
 #include "at103_gpio.h"
 #endif /* GPIO_MODULE_ENABLED */
 
-#ifdef WDT_MODULE_ENABLED
-#include "at103_wdt.h"
+#ifdef WWDG_MODULE_ENABLED
+#include "at103_wwdg.h"
 #endif
 /**
  * @brief  The assert_param macro is used for function's parameters check.
