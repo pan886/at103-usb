@@ -53,7 +53,7 @@ void GPIO_Init(GPIO_TypeDef *GPIOx, GPIO_InitTypeDef *GPIO_InitStruct)
     assert_param(IS_GPIO_MODE(GPIO_InitStruct->GPIO_Mode));
     assert_param(IS_GPIO_PIN(GPIO_InitStruct->GPIO_Pin));
     assert_param(IS_GPIO_SPEED(GPIO_InitStruct->GPIO_Speed));
-
+#if 1
     switch ((uint32_t)GPIOx) {
     case (uint32_t)GPIOA:
         gpio_group = 0;
@@ -126,6 +126,7 @@ void GPIO_Init(GPIO_TypeDef *GPIOx, GPIO_InitTypeDef *GPIO_InitStruct)
     } else {
         AFIO->GPIO[gpio_group].OD &= ~((uint32_t)GPIO_InitStruct->GPIO_Pin);
     }
+#endif
 }
 
 void GPIO_StructInit(GPIO_InitTypeDef *GPIO_InitStruct)
