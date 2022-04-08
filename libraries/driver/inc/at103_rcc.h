@@ -1,6 +1,6 @@
 /**
  * @file at103_rcc.h
- * @brief  This file contains all the functions prototypes for the RCC firmware 
+ * @brief  This file contains all the functions prototypes for the RCC firmware
  *         library.
  * @author zhangsheng (zhangsheng@zhangsheng.ic@gmail.com)
  * @version 1.0
@@ -27,12 +27,12 @@ extern "C" {
                          ((HSE) == RCC_HSE_Bypass))
 
 /**
- * @brief PLL Lock Timeout value 
+ * @brief PLL Lock Timeout value
  */
 #define PLL_LOCK_TIMEOUT ((uint32_t)0x0000FFFF)
 
 /**
- * @brief APB1_peripheral 
+ * @brief APB1_peripheral
  */
 #define RCC_APB1Periph_TIM2        ((uint32_t)0x00000001)
 #define RCC_APB1Periph_TIM3        ((uint32_t)0x00000002)
@@ -86,7 +86,7 @@ extern "C" {
  * @brief APB2_PeriphRest
  */
 #define RCC_APB2PeriphRest_AFIO         ((uint32_t)0x00010000)
-#define RCC_APB2PeriphRest_ITCL         ((uint32_t)0x00020000)
+#define RCC_APB2PeriphRest_NVIC         ((uint32_t)0x00020000)
 #define RCC_APB2PeriphRest_GPIOA        ((uint32_t)0x00040000)
 #define RCC_APB2PeriphRest_GPIOB        ((uint32_t)0x00080000)
 #define RCC_APB2PeriphRest_GPIOC        ((uint32_t)0x00100000)
@@ -119,7 +119,7 @@ extern "C" {
 #define IS_RCC_IT(IT)    (((IT) == RCC_IT_LSIRDY) || ((IT) == RCC_IT_PLLRDY) || ((IT) == RCC_IT_HSESTOP))
 
 /**
- * @brief RCC_FLAG 
+ * @brief RCC_FLAG
  */
 #define RCC_FLAG_PORRST   ((uint8_t)0x00)
 #define RCC_FLAG_WDTRST   ((uint8_t)0x01)
@@ -265,7 +265,7 @@ void RCC_PCLK1Config(uint32_t RCC_HCLK);
 void RCC_PCLK2Config(uint32_t RCC_HCLK);
 
 /**
- * @brief Enables or disables the Internal High Speed oscillator (HSI). 
+ * @brief Enables or disables the Internal High Speed oscillator (HSI).
  * @param[in] NewState: new state of the HSI. This parameter can be: ENABLE or DISABLE.
  */
 void RCC_HSICmd(FunctionalState NewState);
@@ -299,14 +299,14 @@ void RCC_APB2PeriphClockCmd(uint32_t RCC_APB2Periph, FunctionalState NewState);
 void RCC_APB2PeriphResetCmd(uint32_t RCC_APB2Periph, FunctionalState NewState);
 
 /**
- * @brief Enables or disables the APB1 peripheral clock. 
+ * @brief Enables or disables the APB1 peripheral clock.
  * @param[in] RCC_APB1Periph: specifies the APB1 peripheral to gates its clock.
  * @param[in] NewState: new state of the specified peripheral clock.
  */
 void RCC_APB1PeriphClockCmd(uint32_t RCC_APB1Periph, FunctionalState NewState);
 
 /**
- * @brief Forces or releases APB1 peripheral reset. 
+ * @brief Forces or releases APB1 peripheral reset.
  * @param[in] RCC_APB1Periph: specifies the APB1 peripheral to reset.
  * @param[in] NewState: new state of the specified peripheral reset.
  */
@@ -320,14 +320,14 @@ void RCC_OTGFSCLKConfig(uint32_t RCC_OTGFSCLKSource);
 
 /**
  * @brief Configures the ADC clock (ADCCLK).
- * @param[in] RCC_PCLK2: defines the ADC clock divider. 
+ * @param[in] RCC_PCLK2: defines the ADC clock divider.
  */
 void RCC_ADCCLKConfig(uint32_t RCC_PCLK2);
 
 /**
  * @brief Configures the UART clock (UARTCLK).
- * @param[in] RCC_UartDivMain: defines the uart main divider. 
- * @param[in] RCC_UartDivNum: defines the uart num divider. 
+ * @param[in] RCC_UartDivMain: defines the uart main divider.
+ * @param[in] RCC_UartDivNum: defines the uart num divider.
  */
 void RCC_UartClkConfig(uint32_t RCC_UartDivMain, uint32_t RCC_UartDivNum);
 
@@ -357,7 +357,7 @@ ErrorStatus RCC_WaitForPllLock(void);
 FlagStatus RCC_GetFlagStatus(uint8_t RCC_FLAG);
 
 /**
- * @brief Checks whether the specified RCC interrupt has occurred or not. 
+ * @brief Checks whether the specified RCC interrupt has occurred or not.
  * @param[in] RCC_IT: specifies the RCC interrupt source to check.
  * @return ITStatus  The new state of RCC_IT (SET or RESET).
  */
