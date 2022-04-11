@@ -69,7 +69,7 @@ typedef struct
 #define EXTI_Line14 ((uint32_t)0x4000)
 #define EXTI_Line15 ((uint32_t)0x8000)
 
-#define IS_EXTI_LINE(LINE)     (((LINE) & (uint32_t)0xFFFF0000 == 0x0) && (LINE) != (uint16_t)0x0)
+#define IS_EXTI_LINE(LINE)     ((((LINE) & (uint32_t)0xFFFF0000) == 0x0) && (LINE) != (uint16_t)0x0)
 #define IS_GET_EXTI_Line(LINE) ((LINE = EXTI_Line0) || (LINE = EXTI_Line1) || \
                                 (LINE = EXTI_Line2) || (LINE = EXTI_Line3) || \
                                 (LINE = EXTI_Line4) || (LINE = EXTI_Line5) || \
