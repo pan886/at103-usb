@@ -1,6 +1,6 @@
 /**
  * @file at103_memmap.h
- * @brief AT103 Device Peripheral Memory Mapping Layer Header File. 
+ * @brief AT103 Device Peripheral Memory Mapping Layer Header File.
  * @author Dong Qin (dong.qin@timesintelli.com)
  * @version 1.0
  * @date 2022-01-07
@@ -59,9 +59,17 @@ extern "C" {
 #define ICACHE_BASE  (APB2PERIPH_BASE + 0xF000)
 
 /* AHB slaves */
-#define USB_BASE (AHBPERIPH_BASE + 0x00000)
-#define DMA_BASE (AHBPERIPH_BASE + 0x08000)
-#define CRC_BASE (AHBPERIPH_BASE + 0x18000)
+#define USB_BASE          (AHBPERIPH_BASE + 0x00000)
+#define DMA_Channel1_BASE (AHBPERIPH_BASE + 0x08000)
+#define DMA_Channel2_BASE (AHBPERIPH_BASE + 0x08058)
+#define DMA_Channel3_BASE (AHBPERIPH_BASE + 0x080B0)
+#define DMA_Channel4_BASE (AHBPERIPH_BASE + 0x08108)
+#define DMA_Channel5_BASE (AHBPERIPH_BASE + 0x08160)
+#define DMA_Channel6_BASE (AHBPERIPH_BASE + 0x081B8)
+#define DMA_Channel7_BASE (AHBPERIPH_BASE + 0x08210)
+#define DMA_Channel8_BASE (AHBPERIPH_BASE + 0x08268)
+#define DMA_BASE          (AHBPERIPH_BASE + 0x082C0)
+#define CRC_BASE          (AHBPERIPH_BASE + 0x18000)
 
 /* DEBUG module */
 #define DBGMCU_BASE ((uint32_t)0x40020000)

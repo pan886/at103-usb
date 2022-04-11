@@ -767,6 +767,426 @@ typedef struct {
     __IOM uint32_t PR;          /**< Interruprt status.*/
 } EXTI_TypeDef;
 
+/**
+ * @brief DMA Peripheral Channels Interface
+ */
+typedef struct {
+    union {
+        struct {
+            __IOM uint32_t ADDR;          /** Source Address*/
+            __IOM          uint32_t : 32; /** Reserved */
+        };
+    } SAR; /** Channel x Source Address Register*/
+    union {
+        struct {
+            __IOM uint32_t ADDR;          /** Destination Address*/
+            __IOM          uint32_t : 32; /** Reserved */
+        };
+    } DAR; /** Channel x Destination Address Register*/
+    union {
+        struct {
+            __IOM          uint32_t : 2;  /** Reserved */
+            __IOM uint32_t LOC : 30;      /** Starting Address In Memory of next*/
+            __IOM          uint32_t : 32; /** Reserved */
+        };
+        __IOM uint32_t value[2];
+    } LLP; /** Channel x Linked List Pointer Register*/
+    union {
+        struct {
+            __IOM uint32_t INT_EN : 1;         /** Interrupt Enable Bit*/
+            __IOM uint32_t DST_TR_WIDTH : 3;   /** Destination Transfer Width*/
+            __IOM uint32_t SRC_TR_WIDTH : 3;   /** Source Transfer Width*/
+            __IOM uint32_t DINC : 2;           /** Destination Address Increment*/
+            __IOM uint32_t SINC : 2;           /** Source Address Increment*/
+            __IOM uint32_t DST_MSIZE : 3;      /** Destination Burst Transaction Length*/
+            __IOM uint32_t SRC_MSIZE : 3;      /** Source Burst Transaction Length*/
+            __IOM uint32_t SRC_GATHER_EN : 1;  /** Source gather enable bit*/
+            __IOM uint32_t DST_SCATTER_EN : 1; /** Destination scatter enable bit*/
+            __IOM          uint32_t : 1;       /** Reserved */
+            __IOM uint32_t TT_FC : 3;          /** Transfer Type and Flow Control*/
+            __IOM uint32_t DMS : 2;            /** Destination Master Select*/
+            __IOM uint32_t SMS : 2;            /** Source Master Select*/
+            __IOM uint32_t LLP_DST_EN : 1;     /** Destination block chaining enable bit*/
+            __IOM uint32_t LLP_SRC_EN : 1;     /** Source block chaining enable bit*/
+            __IOM          uint32_t : 3;       /** Reserved */
+            __IOM uint32_t BLOCK_TS : 12;      /** Block Transfer Size*/
+            __IOM uint32_t DONE : 1;           /** Done bit*/
+            __IOM          uint32_t : 19;      /** Reserved */
+        };
+        __IOM uint32_t value[2];
+    } CTL;                      /** Channel x Control Register*/
+    __IOM uint32_t RESERVED[8]; /** Reserved */
+    union {
+        struct {
+            __IOM          uint32_t : 5;   /** Reserved */
+            __IOM uint32_t CH_PRIOR : 3;   /** Channel priority*/
+            __IOM uint32_t CH_SUSP : 1;    /** Channel Suspend*/
+            __IOM uint32_t FIFO_EMPTY : 1; /** Indicates if there is data left in the channel FIFO*/
+            __IOM uint32_t HS_SEL_DST : 1; /** Destination Software or Hardware Handshaking Select*/
+            __IOM uint32_t HS_SEL_SRC : 1; /** Source Software or Hardware Handshaking Select*/
+            __IOM          uint32_t : 6;   /** Reserved */
+            __IOM uint32_t DST_HS_POL : 1; /** Destination Handshaking Interface Polarity*/
+            __IOM uint32_t SRC_HS_POL : 1; /** Source Handshaking Interface Polarity*/
+            __IOM uint32_t MAX_ABRST : 10; /** Maximum AMBA Burst Length*/
+            __IOM uint32_t RELOAD : 2;     /** Automatic Source Reload and Automatic Destination Reload*/
+            __IOM uint32_t FCMODE : 1;     /** Flow Control Mode*/
+            __IOM uint32_t FIFO_MODE : 1;  /** FIFO Mode Select*/
+            __IOM uint32_t PROTCTL : 3;    /** Protection Control bits*/
+            __IOM          uint32_t : 2;   /** Reserved */
+            __IOM uint32_t SRC_PER : 4;    /** Source hardware handshaking interface*/
+            __IOM uint32_t DST_PER : 4;    /** Destination hardware handshaking interface*/
+            __IOM          uint32_t : 17;  /** Reserved */
+        };
+        __IOM uint32_t value[2];
+    } CFG; /** Channel x Configuration Register*/
+    union {
+        struct {
+            __IOM uint32_t SGI : 20;      /** Source gather interval*/
+            __IOM uint32_t SGC : 12;      /** Source gather count*/
+            __IOM          uint32_t : 32; /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } SGR; /** Channel x Source Gather Register*/
+    union {
+        struct {
+            __IOM uint32_t DSI : 20;      /** Destination scatter interval*/
+            __IOM uint32_t DSC : 12;      /** Destination scatter count*/
+            __IOM          uint32_t : 32; /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } DSR; /** Channel x Destination Scatter Register*/
+} DMA_Channel_TypeDef;
+
+/**
+ * @brief DMA Peripheral Interface
+ */
+typedef struct {
+    union {
+        struct {
+            __IM uint32_t value : 8;     /** Raw Status for Tfr Interrupt*/
+            __IM          uint32_t : 24; /** Reserved*/
+            __IM          uint32_t : 32; /** Reserved*/
+        };
+    } RAW_TFR; /** Raw Status for Tfr Interrupt*/
+    union {
+        struct {
+            __IM uint32_t value : 8;     /** Raw Status for Block Interrupt*/
+            __IM          uint32_t : 24; /** Reserved*/
+            __IM          uint32_t : 32; /** Reserved*/
+        };
+    } RAW_BLOCK; /** Raw Status for Block Interrupt*/
+    union {
+        struct {
+            __IM uint32_t value : 8;     /** Raw Status for SrcTran Interrupt*/
+            __IM          uint32_t : 24; /** Reserved*/
+            __IM          uint32_t : 32; /** Reserved*/
+        };
+    } RAW_SRC_TRAN; /** Raw Status for SrcTran Interrupt*/
+    union {
+        struct {
+            __IM uint32_t value : 8;     /** Raw Status for DstTran Interrupt*/
+            __IM          uint32_t : 24; /** Reserved*/
+            __IM          uint32_t : 32; /** Reserved*/
+        };
+    } RAW_DST_TRAN; /** Raw Status for DstTran Interrupt*/
+    union {
+        struct {
+            __IM uint32_t value : 8;     /** Raw Status for Err Interrupt*/
+            __IM          uint32_t : 24; /** Reserved*/
+            __IM          uint32_t : 32; /** Reserved*/
+        };
+    } RAW_ERR; /** Raw Status for Err Interrupt*/
+    union {
+        struct {
+            __IM uint32_t value : 8;     /** Status for Tfr Interrupt*/
+            __IM          uint32_t : 24; /** Reserved*/
+            __IM          uint32_t : 32; /** Reserved*/
+        };
+    } STATUSES_TFR; /** Status for Tfr Interrupt*/
+    union {
+        struct {
+            __IM uint32_t value : 8;     /** Status for Block Interrupt*/
+            __IM          uint32_t : 24; /** Reserved*/
+            __IM          uint32_t : 32; /** Reserved*/
+        };
+    } STATUSES_BLOCK; /** Status for Block Interrupt*/
+    union {
+        struct {
+            __IM uint32_t value : 8;     /** Status for SrcTran Interrupt*/
+            __IM          uint32_t : 24; /** Reserved*/
+            __IM          uint32_t : 32; /** Reserved*/
+        };
+    } STATUSES_SRC_TRAN; /** Status for SrcTran Interrupt*/
+    union {
+        struct {
+            __IM uint32_t value : 8;     /** Status for DstTran Interrupt*/
+            __IM          uint32_t : 24; /** Reserved*/
+            __IM          uint32_t : 32; /** Reserved*/
+        };
+    } STATUSES_DST_TRAN; /** Status for DstTran Interrupt*/
+    union {
+        struct {
+            __IM uint32_t value : 8;     /** Status for Err Interrupt*/
+            __IM          uint32_t : 24; /** Reserved*/
+            __IM          uint32_t : 32; /** Reserved*/
+        };
+    } STATUSES_ERR; /** Status for Err Interrupt*/
+
+    union {
+        struct {
+            __IOM uint32_t INT_MASK : 8;    /** Mask for Tfr Interrupt*/
+            __OM uint32_t  INT_MASK_WE : 8; /** Interrupt Mask Write Enable*/
+            __IOM          uint32_t : 16;   /** Reserved*/
+            __IOM          uint32_t : 32;   /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } MASK_TFR; /** Mask for Tfr Interrupt*/
+    union {
+        struct {
+            __IOM uint32_t INT_MASK : 8;    /** Mask for Block Interrupt*/
+            __OM uint32_t  INT_MASK_WE : 8; /** Interrupt Mask Write Enable*/
+            __IOM          uint32_t : 16;   /** Reserved*/
+            __IOM          uint32_t : 32;   /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } MASK_BLOCK; /** Mask for Block Interrupt*/
+    union {
+        struct {
+            __IOM uint32_t INT_MASK : 8;    /** Mask for SrcTran Interrupt*/
+            __OM uint32_t  INT_MASK_WE : 8; /** Interrupt Mask Write Enable*/
+            __IOM          uint32_t : 16;   /** Reserved*/
+            __IOM          uint32_t : 32;   /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } MASK_SRC_TRAN; /** Mask for SrcTran Interrupt*/
+    union {
+        struct {
+            __IOM uint32_t INT_MASK : 8;    /** Mask for DstTran Interrupt*/
+            __OM uint32_t  INT_MASK_WE : 8; /** Interrupt Mask Write Enable*/
+            __IOM          uint32_t : 16;   /** Reserved*/
+            __IOM          uint32_t : 32;   /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } MASK_DST_TRAN; /** Mask for DstTran Interrupt*/
+    union {
+        struct {
+            __IOM uint32_t INT_MASK : 8;    /** Mask for Err Interrupt*/
+            __OM uint32_t  INT_MASK_WE : 8; /** Interrupt Mask Write Enable*/
+            __IOM          uint32_t : 16;   /** Reserved*/
+            __IOM          uint32_t : 32;   /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } MASK_ERR; /** Mask for Err Interrupt*/
+
+    union {
+        struct {
+            __OM uint32_t INT : 8;       /** Clear for Tfr Interrupt*/
+            __OM          uint32_t : 24; /** Reserved*/
+            __OM          uint32_t : 32; /** Reserved*/
+        };
+        __OM uint32_t value[2];
+    } CLEAR_TFR; /** Clear for Tfr Interrupt*/
+    union {
+        struct {
+            __OM uint32_t INT : 8;       /** Clear for Block Interrupt*/
+            __OM          uint32_t : 24; /** Reserved*/
+            __OM          uint32_t : 32; /** Reserved*/
+        };
+        __OM uint32_t value[2];
+    } CLEAR_BLOCK; /** Clear for Block Interrupt*/
+
+    union {
+        struct {
+            __OM uint32_t INT : 8;       /** Clear for SrcTran Interrupt*/
+            __OM          uint32_t : 24; /** Reserved*/
+            __OM          uint32_t : 32; /** Reserved*/
+        };
+        __OM uint32_t value[2];
+    } CLEAR_SRC_TRAN; /** Clear for SrcTran Interrupt*/
+
+    union {
+        struct {
+            __OM uint32_t INT : 8;       /** Clear for DstTran Interrupt*/
+            __OM          uint32_t : 24; /** Reserved*/
+            __OM          uint32_t : 32; /** Reserved*/
+        };
+        __OM uint32_t value[2];
+    } CLEAR_DST_TRAN; /** Clear for DstTran Interrupt*/
+
+    union {
+        struct {
+            __OM uint32_t INT : 8;       /** Clear for Err Interrupt*/
+            __OM          uint32_t : 24; /** Reserved*/
+            __OM          uint32_t : 32; /** Reserved*/
+        };
+        __OM uint32_t value[2];
+    } CLEAR_ERR; /** Clear for Err Interrupt*/
+
+    union {
+        struct {
+            __IM uint32_t TFR : 1;       /** OR of the contents of StatusTfr register*/
+            __IM uint32_t BLOCK : 1;     /** OR of the contents of StatusBlock register*/
+            __IM uint32_t SRCT : 1;      /** OR of the contents of StatusSrcTran register*/
+            __IM uint32_t DSTT : 1;      /** OR of the contents of StatusDst register*/
+            __IM uint32_t ERR : 1;       /** OR of the contents of StatusErr register*/
+            __IM          uint32_t : 27; /** Reserved*/
+            __IM          uint32_t : 32; /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } STATUS_INT; /** Status for each interrupt type*/
+
+    union {
+        struct {
+            __IOM uint32_t SRC_REQ : 8;    /** Source transaction request*/
+            __IM uint32_t  SRC_REQ_WE : 8; /** Source transaction request write enable*/
+            __IOM          uint32_t : 16;  /** Reserved*/
+            __IOM          uint32_t : 32;  /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } REQ_SRC_REG; /** Source Software Transaction Request Register*/
+
+    union {
+        struct {
+            __IOM uint32_t DST_REQ : 8;    /** Destination transaction request*/
+            __IM uint32_t  DST_REQ_WE : 8; /** Destination transaction request write enable*/
+            __IOM          uint32_t : 16;  /** Reserved*/
+            __IOM          uint32_t : 32;  /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } REQ_DST_REG; /** Destination Software Transaction Request Register*/
+
+    union {
+        struct {
+            __IOM uint32_t SRC_SGLREQ : 8;    /** Source single transaction request*/
+            __IM uint32_t  SRC_SGLREQ_WE : 8; /** Source single transaction request write enable*/
+            __IOM          uint32_t : 16;     /** Reserved*/
+            __IOM          uint32_t : 32;     /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } REQ_SGLSRC_REG; /** Single Source Transaction Request Register*/
+
+    union {
+        struct {
+            __IOM uint32_t DST_SGLREQ : 8;    /** Destination single transaction request*/
+            __IM uint32_t  DST_SGLREQ_WE : 8; /** Destination single transaction request write enable*/
+            __IOM          uint32_t : 16;     /** Reserved*/
+            __IOM          uint32_t : 32;     /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } REQ_SGLDST_REG; /** Single Destination Transaction Request Register*/
+
+    union {
+        struct {
+            __IOM uint32_t SRC_LSTREQ : 8;    /** Source last transaction request*/
+            __IM uint32_t  SRC_LSTREQ_WE : 8; /** Source last transaction request write enable*/
+            __IOM          uint32_t : 16;     /** Reserved*/
+            __IOM          uint32_t : 32;     /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } REQ_LSTSRC_REG; /** Last Source Transaction Request Register*/
+
+    union {
+        struct {
+            __IOM uint32_t DST_LSTREQ : 8;    /** Destination last transaction request*/
+            __IM uint32_t  DST_LSTREQ_WE : 8; /** Destination last transaction request write enable*/
+            __IOM          uint32_t : 16;     /** Reserved*/
+            __IOM          uint32_t : 32;     /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } REQ_LSTDST_REG; /** Last Destination Transaction Request Register*/
+
+    union {
+        struct {
+            __IOM uint32_t DMA_EN : 1;    /** DW_ahb_dmac Enable bit*/
+            __IOM          uint32_t : 31; /** Reserved*/
+            __IOM          uint32_t : 32; /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } DMA_CFG_REG; /** DMA Configuration Register*/
+
+    union {
+        struct {
+            __IOM uint32_t CH_EN : 8;     /** Enables/Disables the channel*/
+            __OM uint32_t  CH_EN_WE : 8;  /** Channel enable write enable*/
+            __IOM          uint32_t : 16; /** Reserved*/
+            __IOM          uint32_t : 32; /** Reserved*/
+        };
+        __IOM uint32_t value[2];
+    } CH_EN_REG;                   /**  DMA Channel Enable Register*/
+    __IM uint32_t DMA_ID_REG[2];   /**  DMA ID Register*/
+    __IM uint32_t DMA_TEST_REG[2]; /**  DMA Test Register*/
+    __IM uint32_t RESERVED[5];     /** Reserved*/
+    union {
+        struct {
+            __IM uint32_t DTW : 3;
+            __IM uint32_t STW : 3;
+            __IM uint32_t STAT_DST : 1;
+            __IM uint32_t STAT_SRC : 1;
+            __IM uint32_t DST_SCA_EN : 1;
+            __IM uint32_t SRC_GAT_EN : 1;
+            __IM uint32_t LOCK_EN : 1;
+            __IM uint32_t MULTI_BLK_EN : 1;
+            __IM uint32_t CTL_WB_EN : 1;
+            __IM uint32_t HC_LLP : 1;
+            __IM uint32_t FC : 2;
+            __IM uint32_t MAX_MULT_SIZE : 3;
+            __IM uint32_t DMS : 3;
+            __IM uint32_t LMS : 3;
+            __IM uint32_t SMS : 3;
+            __IM uint32_t FIFO_DEPTH : 3;
+            __IM          uint32_t : 1; /** Reserved*/
+        };
+        __IM uint32_t value;
+    } DMA_CHN_PARAMS[8]; /**  DMA Channels Component Parameters */
+    union {
+        struct {
+            __IM uint32_t CH0 : 4;
+            __IM uint32_t CH1 : 4;
+            __IM uint32_t CH2 : 4;
+            __IM uint32_t CH3 : 4;
+            __IM uint32_t CH4 : 4;
+            __IM uint32_t CH5 : 4;
+            __IM uint32_t CH6 : 4;
+            __IM uint32_t CH7 : 4;
+        };
+        __IM uint32_t value;
+    } DMA_CHN_MULTI_BLK_TYP_PARAMS; /**  DMA Channels Multi Block Type Component Parameters */
+    union {
+        struct {
+            __IM uint32_t CH0 : 4;
+            __IM uint32_t CH1 : 4;
+            __IM uint32_t CH2 : 4;
+            __IM uint32_t CH3 : 4;
+            __IM uint32_t CH4 : 4;
+            __IM uint32_t CH5 : 4;
+            __IM uint32_t CH6 : 4;
+            __IM uint32_t CH7 : 4;
+        };
+        __IM uint32_t value;
+    } DMA_CHN_MAX_BLK_SIZE_PARAMS; /**  DMA Channels Max Block Size Component Parameters */
+    union {
+        struct {
+            __IM uint32_t DMA_BIG_ENDIAN : 1;
+            __IM uint32_t INTR_IO : 2;
+            __IM uint32_t MABRST : 1;
+            __IM          uint32_t : 4;
+            __IM uint32_t NUM_CHANNELS : 3;
+            __IM uint32_t NUM_MASTER_INT : 2;
+            __IM uint32_t S_HDATA_WIDTH : 2;
+            __IM uint32_t M4_HDATA_WIDTH : 2;
+            __IM uint32_t M3_HDATA_WIDTH : 2;
+            __IM uint32_t M2_HDATA_WIDTH : 2;
+            __IM uint32_t M1_HDATA_WIDTH : 2;
+            __IM uint32_t NUM_HS_INT : 5;
+            __IM uint32_t ADD_ENCODED_PARAMS : 1;
+            __IM uint32_t STATIC_ENDIAN_SELECT : 1;
+            __IM          uint32_t : 2;
+        };
+        __IM uint32_t value;
+    } DMA_PARAMS; /**  DMA Component Parameters */
+    __IM uint32_t DMA_COMP_ID[2];
+} DMA_TypeDef;
+
 typedef struct
 {
     union {
@@ -1035,21 +1455,31 @@ typedef struct
 
 } ADC_TypeDef;
 /** Peripheral declaration */
-#define ICACHE ((ICACHE_TypeDef *)ICACHE_BASE)
-#define RCC    ((RCC_TypeDef *)RCC_BASE)
-#define NVIC   ((NVIC_TypeDef *)NVIC_BASE)
-#define AFIO   ((AFIO_TypeDef *)AFIO_BASE)
-#define EXTI   ((EXTI_TypeDef *)EXTI_BASE)
-#define GPIOA  ((GPIO_TypeDef *)GPIOA_BASE)
-#define GPIOB  ((GPIO_TypeDef *)GPIOB_BASE)
-#define GPIOC  ((GPIO_TypeDef *)GPIOC_BASE)
-#define GPIOD  ((GPIO_TypeDef *)GPIOD_BASE)
-#define GPIOE  ((GPIO_TypeDef *)GPIOE_BASE)
-#define USART1 ((USART_TypeDef *)USART1_BASE)
-#define USART2 ((USART_TypeDef *)USART2_BASE)
-#define USART3 ((USART_TypeDef *)USART3_BASE)
-#define ADC1   ((ADC_TypeDef *)ADC1_BASE)
-#define ADC2   ((ADC_TypeDef *)ADC2_BASE)
+#define ICACHE       ((ICACHE_TypeDef *)ICACHE_BASE)
+#define RCC          ((RCC_TypeDef *)RCC_BASE)
+#define NVIC         ((NVIC_TypeDef *)NVIC_BASE)
+#define AFIO         ((AFIO_TypeDef *)AFIO_BASE)
+#define EXTI         ((EXTI_TypeDef *)EXTI_BASE)
+#define GPIOA        ((GPIO_TypeDef *)GPIOA_BASE)
+#define GPIOB        ((GPIO_TypeDef *)GPIOB_BASE)
+#define GPIOC        ((GPIO_TypeDef *)GPIOC_BASE)
+#define GPIOD        ((GPIO_TypeDef *)GPIOD_BASE)
+#define GPIOE        ((GPIO_TypeDef *)GPIOE_BASE)
+#define USART1       ((USART_TypeDef *)USART1_BASE)
+#define USART2       ((USART_TypeDef *)USART2_BASE)
+#define USART3       ((USART_TypeDef *)USART3_BASE)
+#define DMA          ((DMA_TypeDef *)DMA_BASE)
+#define DMA_Channel1 ((DMA_Channel_TypeDef *)DMA_Channel1_BASE)
+#define DMA_Channel2 ((DMA_Channel_TypeDef *)DMA_Channel2_BASE)
+#define DMA_Channel3 ((DMA_Channel_TypeDef *)DMA_Channel3_BASE)
+#define DMA_Channel4 ((DMA_Channel_TypeDef *)DMA_Channel4_BASE)
+#define DMA_Channel5 ((DMA_Channel_TypeDef *)DMA_Channel5_BASE)
+#define DMA_Channel6 ((DMA_Channel_TypeDef *)DMA_Channel6_BASE)
+#define DMA_Channel7 ((DMA_Channel_TypeDef *)DMA_Channel7_BASE)
+#define DMA_Channel8 ((DMA_Channel_TypeDef *)DMA_Channel8_BASE)
+#define ADC1         ((ADC_TypeDef *)ADC1_BASE)
+#define ADC2         ((ADC_TypeDef *)ADC2_BASE)
+
 /** system level driver */
 #include "at103_icache.h"
 
@@ -1057,6 +1487,10 @@ typedef struct
 #include "at103_conf.h"
 
 /** peripherals driver */
+#ifdef DMA_MODULE_ENABLED
+#include "at103_dma.h"
+#endif /* DMA_MODULE_ENABLED */
+
 #ifdef NVIC_MODULE_ENABLED
 #include "at103_nvic.h"
 #endif /* NVIC_MODULE_ENABLED */
