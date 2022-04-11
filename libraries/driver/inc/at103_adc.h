@@ -11,7 +11,10 @@
 #ifndef AT103_ADC_H
 #define AT103_ADC_H
 #include "at103.h"
-#ifdef ADC_MODULE_ENABLED
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 typedef struct
 {
     uint32_t ADC_Mode; /**< configures the ADC to operate in Dual mode */
@@ -582,5 +585,4 @@ ITStatus ADC_GetITStatus(ADC_TypeDef *ADCx, uint16_t ADC_IT);
   */
 void ADC_ClearITPendingBit(ADC_TypeDef *ADCx, uint16_t ADC_IT);
 
-#endif
 #endif

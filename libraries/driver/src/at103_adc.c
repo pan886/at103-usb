@@ -9,7 +9,7 @@
  */
 #include "at103_adc.h"
 #include "at103_rcc.h"
-
+#ifdef ADC_MODULE_ENABLED
 void ADC_DeInit(ADC_TypeDef *ADCx)
 {
     /* Check the parameters */
@@ -657,3 +657,4 @@ void ADC_DMACmd(ADC_TypeDef *ADCx, FunctionalState NewState)
         ADCx->CR2.value &= CR2_DMA_Reset;
     }
 }
+#endif

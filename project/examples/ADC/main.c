@@ -1,7 +1,6 @@
 /**
  * @file main.c
- * @brief 
- * 
+ * @brief The example shows how to use channel 10 of ADC1 to acquire analog data.
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-03-21
