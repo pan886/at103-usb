@@ -1,6 +1,7 @@
 /**
  * @file main.c
  * @brief The example shows how to use channel 10 of ADC1 to acquire analog data.
+ * We can observe the data of adc from the serial port.
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-03-21

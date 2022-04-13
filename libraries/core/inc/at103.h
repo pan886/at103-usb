@@ -1514,7 +1514,7 @@ typedef struct
 
 #ifdef ADC_MODULE_ENABLED
 #include "at103_adc.h"
-#endif
+#endif /* ADC_MODULE_ENABLED */
 
 /**
  * @brief  The assert_param macro is used for function's parameters check.
