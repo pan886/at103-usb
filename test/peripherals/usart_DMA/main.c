@@ -45,16 +45,6 @@ void       NVIC_Configuration(void);
 void       DMA_Configuration(void);
 TestStatus Buffercmp(uint8_t *pBuffer1, uint8_t *pBuffer2, uint16_t BufferLength);
 
-/*Configure  USART parameter*/
-void USARTparameter(void)
-{
-    USART_InitStructure.USART_BaudRate            = 115200;
-    USART_InitStructure.USART_WordLength          = USART_WordLength_8b;
-    USART_InitStructure.USART_StopBits            = USART_StopBits_1;
-    USART_InitStructure.USART_Parity              = USART_Parity_No;
-    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
-}
-
 /**
  * @brief uart dma polling memory to Peripheral transfer example.
  */
@@ -111,8 +101,11 @@ void test_func(void)
     DMA_InitStructure.DMA_PeripheralHandshake = DMA_PeripheralHandshake_USART3_RX;
     DMA_Init(DMA_Channel4, &DMA_InitStructure);
 
-    /*Configure  USART parameter*/
-    USARTparameter();
+    USART_InitStructure.USART_BaudRate            = 115200;
+    USART_InitStructure.USART_WordLength          = USART_WordLength_8b;
+    USART_InitStructure.USART_StopBits            = USART_StopBits_1;
+    USART_InitStructure.USART_Parity              = USART_Parity_No;
+    USART_InitStructure.USART_HardwareFlowControl = USART_HardwareFlowControl_None;
 
     /* Configure USART1 */
     USART_Init(USART1, &USART_InitStructure);
@@ -123,8 +116,6 @@ void test_func(void)
     USART_DMACmd(USART1, USART_DMAReq_Tx, ENABLE);
     /* Enable USARTz DMA TX request */
     USART_DMACmd(USART3, USART_DMAReq_Tx, ENABLE);
-
-    debug("USART_DMACmd=%x\r\n", USART1->IIR_FCR.FCR.value);
 
     /* Enable DMA Channel1 transfer */
     DMA_Cmd(DMA_Channel1, ENABLE);
@@ -214,7 +205,6 @@ void unity_test(void)
 
 void main(void)
 {
-    // USART_DeInit(USART1);  /*default initialize*/
     pll_init();
     sys_io_init();
     uart_init(UART_BOOT_PORT, UART_PARITY_NONE, UART_STOPBITS_1, UART_DATABITS_8, UART_BOOT_BD);

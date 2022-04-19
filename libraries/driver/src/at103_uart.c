@@ -130,6 +130,48 @@ void USART_ITConfig(USART_TypeDef *USARTx, uint16_t USART_IT, FunctionalState Ne
     }
 }
 
+void USART_DMACmd(USART_TypeDef *USARTx, uint16_t USART_DMAReq, FunctionalState NewState)
+{
+    /* Check the parameters */
+    assert_param(IS_USART_ALL_PERIPH(USARTx));
+    assert_param(IS_USART_DMAREQ(USART_DMAReq));
+    assert_param(IS_FUNCTIONAL_STATE(NewState));
+    if (NewState != DISABLE) {
+
+        USARTx->IIR_FCR.FCR.value |= USART_DMAReq;
+    } else {
+
+        USARTx->IIR_FCR.FCR.value &= ~USART_DMAReq;
+    }
+}
+
+// void USART_DMAConfig(USART_TypeDef *USARTx, uint16_t USART_DMAmode, FunctionalState NewState)
+// {
+//     /* Check the parameters */
+//     assert_param(IS_USART_ALL_PERIPH(USARTx));
+//     assert_param(IS_USART_DMAMode(USART_DMAmode));
+//     assert_param(IS_FUNCTIONAL_STATE(NewState));
+//     if (NewState != DISABLE) {
+//         /* Enable the DMA transfer for selected requests by setting the DMAM
+//          bits in the USART FCR register */
+//         USARTx->IIR_FCR.FCR.value |= USART_DMAmode;
+//     } else {
+//         /* Disable the DMA transfer for selected requests by clearing the DMAM
+//          bits in the USART FCR register */
+//         USARTx->IIR_FCR.FCR.value &= ~USART_DMAmode;
+//     }
+// }
+
+void USART_FIFOConfig(USART_TypeDef *USARTx, uint16_t USART_FIFO)
+{
+    /* Check the parameters */
+    assert_param(IS_USART_ALL_PERIPH(USARTx));
+    assert_param(IS_USART_FIFO_FCR_CONTROL(USART_FIFO));
+
+    USARTx->IIR_FCR.FCR.value &= ~USART_FIFO;
+    USARTx->IIR_FCR.FCR.value |= USART_FIFO;
+}
+
 void USART_SetAddress(USART_TypeDef *USARTx, uint8_t USART_Address)
 {
     /* Check the parameters */
@@ -156,6 +198,22 @@ void USART_IrDACmd(USART_TypeDef *USARTx, FunctionalState NewState)
     } else {
 
         USARTx->MCR.SIRE = 0;
+    }
+}
+
+void USART_FIFOCmd(USART_TypeDef *USARTx, FunctionalState NewState)
+{
+    /* Check the parameters */
+    assert_param(IS_USART_ALL_PERIPH(USARTx));
+    assert_param(IS_FUNCTIONAL_STATE(NewState));
+    // assert_param(IS_USART_FIFO_FCR_FLAG(NewState));
+    if (NewState != DISABLE) {
+
+        USARTx->IIR_FCR.FCR.FIFOE = 1;
+
+    } else {
+
+        USARTx->IIR_FCR.FCR.FIFOE = 0;
     }
 }
 
@@ -243,6 +301,7 @@ void USART_ClearITPendingBit(USART_TypeDef *USARTx, uint16_t USART_IT)
 {
     /* Check the parameters */
     assert_param(IS_USART_ALL_PERIPH(USARTx));
+    assert_param(IS_USART_CONFIG_IT(USART_IT));
 }
 
 #endif
