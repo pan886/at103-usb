@@ -52,8 +52,6 @@ void test_func(void)
 {
     /* Configure the GPIO ports */
     GPIO_Configuration();
-    /* Configure NVIC */
-    NVIC_Configuration();
 
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_DMA, ENABLE);
 
@@ -113,9 +111,9 @@ void test_func(void)
     USART_Init(USART3, &USART_InitStructure);
 
     /* Enable USART1 DMA TX request */
-    USART_DMACmd(USART1, USART_DMAReq_Tx, ENABLE);
+    USART_DMACmd(USART1, USART_DMAReq_Rx | USART_DMAReq_Tx, ENABLE);
     /* Enable USARTz DMA TX request */
-    USART_DMACmd(USART3, USART_DMAReq_Tx, ENABLE);
+    USART_DMACmd(USART3, USART_DMAReq_Rx | USART_DMAReq_Tx, ENABLE);
 
     /* Enable DMA Channel1 transfer */
     DMA_Cmd(DMA_Channel1, ENABLE);
@@ -147,7 +145,7 @@ void test_func(void)
      received by USART1 are different */
     TransferStatus2 = Buffercmp(TxBuffer1, RxBuffer2, TxBufferSize1);
 
-    if (TransferStatus1 == PASSED || TransferStatus2 == PASSED) {
+    if (TransferStatus1 == PASSED && TransferStatus2 == PASSED) {
         debug("Transfer USART DMA [PASSED]!!!\n");
     } else {
         TEST_ASSERT_MESSAGE(0, "USART DMA controller function test fail !!!");
@@ -174,25 +172,6 @@ void GPIO_Configuration(void)
     GPIO_Init(USARTy_GPIO, &GPIO_InitStructure);
     GPIO_InitStructure.GPIO_Pin = USARTz_RxPin | USARTz_TxPin;
     GPIO_Init(USARTz_GPIO, &GPIO_InitStructure);
-}
-
-/**
- * @brief Configures the nested vectored interrupt controller.
- */
-void NVIC_Configuration(void)
-{
-    NVIC_InitTypeDef NVIC_InitStructure;
-    NVIC_InitStructure.NVIC_IRQChannel                   = DMA_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
-    NVIC_InitStructure.NVIC_IRQChannelSubPriority        = 0;
-    NVIC_InitStructure.NVIC_IRQChannelCmd                = ENABLE;
-    NVIC_InitStructure.NVIC_IRQChannel                   = USART1_IRQn;
-    NVIC_Init(&NVIC_InitStructure);
-
-    NVIC_InitStructure.NVIC_IRQChannel = USART3_IRQn;
-    NVIC_Init(&NVIC_InitStructure);
-    /* Enable Global Interrupt. */
-    __enable_irq();
 }
 
 /*****************************************************************************/
