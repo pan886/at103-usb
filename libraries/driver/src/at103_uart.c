@@ -145,31 +145,18 @@ void USART_DMACmd(USART_TypeDef *USARTx, uint16_t USART_DMAReq, FunctionalState 
     }
 }
 
-// void USART_DMAConfig(USART_TypeDef *USARTx, uint16_t USART_DMAmode, FunctionalState NewState)
-// {
-//     /* Check the parameters */
-//     assert_param(IS_USART_ALL_PERIPH(USARTx));
-//     assert_param(IS_USART_DMAMode(USART_DMAmode));
-//     assert_param(IS_FUNCTIONAL_STATE(NewState));
-//     if (NewState != DISABLE) {
-//         /* Enable the DMA transfer for selected requests by setting the DMAM
-//          bits in the USART FCR register */
-//         USARTx->IIR_FCR.FCR.value |= USART_DMAmode;
-//     } else {
-//         /* Disable the DMA transfer for selected requests by clearing the DMAM
-//          bits in the USART FCR register */
-//         USARTx->IIR_FCR.FCR.value &= ~USART_DMAmode;
-//     }
-// }
-
 void USART_FIFOConfig(USART_TypeDef *USARTx, uint16_t USART_FIFO)
 {
+    uint16_t tmpcr1 = 0;
     /* Check the parameters */
     assert_param(IS_USART_ALL_PERIPH(USARTx));
     assert_param(IS_USART_FIFO_FCR_CONTROL(USART_FIFO));
-
-    USARTx->IIR_FCR.FCR.value &= ~USART_FIFO;
-    USARTx->IIR_FCR.FCR.value |= USART_FIFO;
+    tmpcr1 = USARTx->IIR_FCR.FCR.value;
+    /* Reset the FIFO_ENABLE and FIFOE Bits */
+    tmpcr1 &= (uint16_t)(~((uint16_t)(USARTx->IIR_FCR.IIR.FIFO_ENABLE | USARTx->IIR_FCR.FCR.FIFOE)));
+    tmpcr1 |= USART_FIFO;
+    /* Write to USARTx FCR */
+    USARTx->IIR_FCR.FCR.value = tmpcr1;
 }
 
 void USART_SetAddress(USART_TypeDef *USARTx, uint8_t USART_Address)
@@ -182,8 +169,16 @@ void USART_SetAddress(USART_TypeDef *USARTx, uint8_t USART_Address)
 
 void USART_IrDAConfig(USART_TypeDef *USARTx, uint16_t USART_IrDAMode)
 {
+    uint16_t tmpcr1 = 0;
     /* Check the parameters */
     assert_param(IS_USART_ALL_PERIPH(USARTx));
+    assert_param(IS_USART_IRDA_MODE(USART_IrDAMode));
+    tmpcr1 = USARTx->LCR.value;
+    /* Reset the DLAB Bits */
+    tmpcr1 &= (uint16_t)(~((uint16_t)(USARTx->LCR.DLAB)));
+    tmpcr1 |= USART_IrDAMode;
+    /* Write to USARTx LCR */
+    USARTx->LCR.value = tmpcr1;
 }
 
 void USART_IrDACmd(USART_TypeDef *USARTx, FunctionalState NewState)
@@ -267,7 +262,9 @@ void USART_ClearFlag(USART_TypeDef *USARTx, uint16_t USART_FLAG)
 {
     /* Check the parameters */
     assert_param(IS_USART_ALL_PERIPH(USARTx));
-    /* Most flag already cleared in USART_GetFlagStatus() */
+    assert_param(IS_USART_CLEAR_FLAG(USART_FLAG));
+    /* Clear the flags */
+    USART_FLAG = ~(USARTx->LSR.value);
 }
 
 USART_InterruptID USART_GetInterruptID(USART_TypeDef *USARTx)
@@ -302,6 +299,8 @@ void USART_ClearITPendingBit(USART_TypeDef *USARTx, uint16_t USART_IT)
     /* Check the parameters */
     assert_param(IS_USART_ALL_PERIPH(USARTx));
     assert_param(IS_USART_CONFIG_IT(USART_IT));
+    /* Clear the IT pending Bit */
+    USARTx->DLH_IER.IER.value = ~USART_IT;
 }
 
 #endif

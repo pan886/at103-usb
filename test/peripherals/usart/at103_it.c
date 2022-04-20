@@ -27,7 +27,7 @@ extern uint8_t      NbrOfDataToRead2;
 /**
  * @brief This function handles USARTy global interrupt request.
  */
-void USART1_IRQHandler(void)    
+void USART1_IRQHandler(void)
 {
     USART_InterruptID ID = NO_PENDING;
 
@@ -107,20 +107,5 @@ void USART3_IRQHandler(void)
     default:
 
         break;
-    }
-}
-
-void IllegalInstruction_Handler(void)
-{
-    while (1) {
-        /* error debug */
-    }
-}
-
-void ECALL_InstructionExecuted_Handler(void)
-{
-    debug("Software Interrupt !!!\r\n");
-    while (1) {
-        /* swi */
     }
 }

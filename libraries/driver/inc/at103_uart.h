@@ -141,6 +141,8 @@ typedef enum {
                                  ((FLAG) == USART_FLAG_LSR_BI) || ((FLAG) == USART_FLAG_LSR_THRE) || \
                                  ((FLAG) == USART_FLAG_LSR_TEMT) || ((FLAG) == USART_FLAG_LSR_ERR))
 
+#define IS_USART_CLEAR_FLAG(FLAG) ((((FLAG) & (uint16_t)0x0000) == 0x0000) && ((FLAG) != 0x0000))
+
 /**
  * @brief USART_Modem_Status_Flags
  */
@@ -169,9 +171,17 @@ typedef enum {
 /**
  * @brief USART_DMA_Requests 
  */
-#define USART_DMAReq_Tx         ((uint16_t)0x00000020)
-#define USART_DMAReq_Rx         ((uint16_t)0x00000040)
-#define IS_USART_DMAREQ(DMAREQ) ((((DMAREQ) & (uint16_t)0xFFFFFF9F) == 0x00000000) && ((DMAREQ) != (uint16_t)0x00000000))
+#define USART_DMAReq_Tx         ((uint16_t)0x00000004)
+#define USART_DMAReq_Rx         ((uint16_t)0x00000002)
+#define IS_USART_DMAREQ(DMAREQ) ((((DMAREQ) & (uint16_t)0xFFFFFFF9) == 0x00000000) && ((DMAREQ) != (uint16_t)0x00000000))
+
+/**
+ * @brief USART_IrDA_Low_Power 
+ */
+#define USART_IrDAMode_LowPower  ((uint16_t)0x0080)
+#define USART_IrDAMode_Normal    ((uint16_t)0x0000)
+#define IS_USART_IRDA_MODE(MODE) (((MODE) == USART_IrDAMode_LowPower) || \
+                                  ((MODE) == USART_IrDAMode_Normal))
 
 /**
  * @brief USART_FIFO_Control
@@ -239,14 +249,6 @@ void USART_ITConfig(USART_TypeDef *USARTx, uint16_t USART_IT, FunctionalState Ne
  * @param[in] NewState: new state of the DMA Request sources.
  */
 void USART_DMACmd(USART_TypeDef *USARTx, uint16_t USART_DMAReq, FunctionalState NewState);
-
-/**
- * @brief Enables or disables the USART DMA interface.
- * @param[in] USARTx: Select the USART or the UART peripheral. 
- * @param[in] USART_DMAmode: specifies the DMA mode. 
- * @param[in] NewState: new state of the DMA Request sources. 
- */
-void USART_DMAConfig(USART_TypeDef *USARTx, uint16_t USART_DMAmode, FunctionalState NewState);
 
 /**
  * @brief Enables or disables the USART FIFO interface.
