@@ -12,30 +12,22 @@
 
 #include "at103.h"
 
-__IO uint32_t interrupt_flag;
-
-GPIO_InitTypeDef GPIOE_struct1;
-GPIO_InitTypeDef GPIOE_struct2;
-GPIO_InitTypeDef GPIOA_struct;
 #define LED_ON  0x1
 #define LED_OFF 0x0
+
 void set_led(uint8_t led_state);
 void WWDG_Init(void);
 void main(void)
 {
+    GPIO_InitTypeDef GPIOE_struct1;
     NVIC_InitTypeDef NVIC_InitStructure;
-    AFIO_TypeDef     AFIO_InitStructure;
-    uint32_t         PE_state   = 0;
-    uint8_t          PE14_state = 0;
-
     pll_init();
     sys_io_init();
     uart_init(UART_BOOT_PORT, UART_PARITY_NONE, UART_STOPBITS_1, UART_DATABITS_8, UART_BOOT_BD);
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority        = 0;
     NVIC_InitStructure.NVIC_IRQChannelCmd                = ENABLE;
-    interrupt_flag                                       = WWDG_IRQn;
-    NVIC_InitStructure.NVIC_IRQChannel                   = interrupt_flag;
+    NVIC_InitStructure.NVIC_IRQChannel                   = WWDG_IRQn;
     NVIC_Init(&NVIC_InitStructure);
     __enable_irq();
 
