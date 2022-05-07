@@ -128,20 +128,20 @@ typedef enum {
 /**
  * @brief USART_Line Status_Flags
  */
-#define USART_FLAG_LSR_DR       0x01 /**< Data ready */
-#define USART_FLAG_LSR_OE       0x02 /**< Overrun */
-#define USART_FLAG_LSR_PE       0x04 /**< Parity error */
-#define USART_FLAG_LSR_FE       0x08 /**< Framing error */
-#define USART_FLAG_LSR_BI       0x10 /**< Break */
-#define USART_FLAG_LSR_THRE     0x20 /**< Xmit holding register empty */
-#define USART_FLAG_LSR_TEMT     0x40 /**< Xmitter empty */
-#define USART_FLAG_LSR_ERR      0x80 /**< Error */
+#define USART_FLAG_LSR_DR       0x0001 /**< Data ready */
+#define USART_FLAG_LSR_OE       0x0002 /**< Overrun */
+#define USART_FLAG_LSR_PE       0x0004 /**< Parity error */
+#define USART_FLAG_LSR_FE       0x0008 /**< Framing error */
+#define USART_FLAG_LSR_BI       0x0010 /**< Break */
+#define USART_FLAG_LSR_THRE     0x0020 /**< Xmit holding register empty */
+#define USART_FLAG_LSR_TEMT     0x0040 /**< Xmitter empty */
+#define USART_FLAG_LSR_ERR      0x0080 /**< Error */
 #define IS_USART_LSR_FLAG(FLAG) (((FLAG) == USART_FLAG_LSR_DR) || ((FLAG) == USART_FLAG_LSR_OE) || \
                                  ((FLAG) == USART_FLAG_LSR_PE) || ((FLAG) == USART_FLAG_LSR_FE) || \
                                  ((FLAG) == USART_FLAG_LSR_BI) || ((FLAG) == USART_FLAG_LSR_THRE) || \
                                  ((FLAG) == USART_FLAG_LSR_TEMT) || ((FLAG) == USART_FLAG_LSR_ERR))
 
-#define IS_USART_CLEAR_FLAG(FLAG) ((((FLAG) & (uint16_t)0x0000) == 0x0000) && ((FLAG) != 0x0000))
+#define IS_USART_CLEAR_FLAG(FLAG) ((((FLAG) & (uint16_t)0xFFFF) == 0x0000) && ((FLAG) != 0x0000))
 
 /**
  * @brief USART_Modem_Status_Flags

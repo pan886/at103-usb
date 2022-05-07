@@ -147,16 +147,16 @@ void USART_DMACmd(USART_TypeDef *USARTx, uint16_t USART_DMAReq, FunctionalState 
 
 void USART_FIFOConfig(USART_TypeDef *USARTx, uint16_t USART_FIFO)
 {
-    uint16_t tmpcr1 = 0;
+    uint16_t tmpfcr = 0;
     /* Check the parameters */
     assert_param(IS_USART_ALL_PERIPH(USARTx));
     assert_param(IS_USART_FIFO_FCR_CONTROL(USART_FIFO));
-    tmpcr1 = USARTx->IIR_FCR.FCR.value;
+    tmpfcr = USARTx->IIR_FCR.FCR.value;
     /* Reset the FIFO_ENABLE and FIFOE Bits */
-    tmpcr1 &= (uint16_t)(~((uint16_t)(USARTx->IIR_FCR.IIR.FIFO_ENABLE | USARTx->IIR_FCR.FCR.FIFOE)));
-    tmpcr1 |= USART_FIFO;
+    tmpfcr &= (uint16_t)(~((uint16_t)(USARTx->IIR_FCR.IIR.FIFO_ENABLE | USARTx->IIR_FCR.FCR.FIFOE)));
+    tmpfcr |= USART_FIFO;
     /* Write to USARTx FCR */
-    USARTx->IIR_FCR.FCR.value = tmpcr1;
+    USARTx->IIR_FCR.FCR.value = tmpfcr;
 }
 
 void USART_SetAddress(USART_TypeDef *USARTx, uint8_t USART_Address)
@@ -169,16 +169,16 @@ void USART_SetAddress(USART_TypeDef *USARTx, uint8_t USART_Address)
 
 void USART_IrDAConfig(USART_TypeDef *USARTx, uint16_t USART_IrDAMode)
 {
-    uint16_t tmpcr1 = 0;
+    uint16_t tmplcr = 0;
     /* Check the parameters */
     assert_param(IS_USART_ALL_PERIPH(USARTx));
     assert_param(IS_USART_IRDA_MODE(USART_IrDAMode));
-    tmpcr1 = USARTx->LCR.value;
+    tmplcr = USARTx->LCR.value;
     /* Reset the DLAB Bits */
-    tmpcr1 &= (uint16_t)(~((uint16_t)(USARTx->LCR.DLAB)));
-    tmpcr1 |= USART_IrDAMode;
+    tmplcr &= (uint16_t)(~((uint16_t)(USARTx->LCR.DLAB)));
+    tmplcr |= USART_IrDAMode;
     /* Write to USARTx LCR */
-    USARTx->LCR.value = tmpcr1;
+    USARTx->LCR.value = tmplcr;
 }
 
 void USART_IrDACmd(USART_TypeDef *USARTx, FunctionalState NewState)
@@ -260,11 +260,12 @@ FlagStatus USART_GetModemFlagStatus(USART_TypeDef *USARTx, uint16_t USART_FLAG)
 
 void USART_ClearFlag(USART_TypeDef *USARTx, uint16_t USART_FLAG)
 {
+    uint16_t tmpclear = 0;
     /* Check the parameters */
     assert_param(IS_USART_ALL_PERIPH(USARTx));
     assert_param(IS_USART_CLEAR_FLAG(USART_FLAG));
-    /* Clear the flags */
-    USART_FLAG = ~(USARTx->LSR.value);
+    tmpclear = USARTx->LSR.value;
+    tmpclear &= ~USART_FLAG;
 }
 
 USART_InterruptID USART_GetInterruptID(USART_TypeDef *USARTx)
