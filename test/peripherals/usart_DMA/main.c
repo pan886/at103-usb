@@ -164,7 +164,7 @@ void GPIO_Configuration(void)
 
     /* Enable the USART3 Pins Software Remapping */
     GPIO_PinRemapConfig(GPIO_FullRemap_USART3, ENABLE);
-
+    
     /* Configure USART as AF mode */
     GPIO_InitStructure.GPIO_Speed = GPIO_Speed_10MHz;
     GPIO_InitStructure.GPIO_Pin   = USARTy_RxPin | USARTy_TxPin;
