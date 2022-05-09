@@ -77,7 +77,7 @@ void DMA_Init(DMA_Channel_TypeDef *DMA_Channelx, DMA_InitTypeDef *DMA_InitStruct
     DMA->DMA_CFG_REG.DMA_EN = 1;
     if (DMA_InitStruct->DMA_M2M != DMA_M2M_Enable) {
         DMA_Channelx->CTL.TT_FC = DMA_InitStruct->DMA_DIR;
-        RCC->DMA_HS_SEL.value &= 0x03 << ((DMA_InitStruct->DMA_PeripheralHandshake & 0xF) << 1);
+        RCC->DMA_HS_SEL.value &= ~(0x03 << ((DMA_InitStruct->DMA_PeripheralHandshake & 0xF) << 1));
         RCC->DMA_HS_SEL.value |= ((DMA_InitStruct->DMA_PeripheralHandshake >> 0x4) & 0x3) << ((DMA_InitStruct->DMA_PeripheralHandshake & 0xF) << 1);
         if (DMA_InitStruct->DMA_DIR == DMA_DIR_PeripheralSRC) {
             DMA_Channelx->CFG.HS_SEL_SRC = 0;
