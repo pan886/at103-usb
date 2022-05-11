@@ -59,6 +59,7 @@ void    test_func()
     reset_counter = 200;
     NopDelay(100000);
     TEST_ASSERT_MESSAGE(reset_counter == 200, "WWDG reset function test fail!");
+    debug("WWDG reset function test pass !!!\r\n");
 }
 
 void unity_test(void)
