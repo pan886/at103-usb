@@ -3,7 +3,7 @@
  * @brief WWDG test case.
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
- * @date 2022-05-12
+ * @date 2022-05-11
  * @copyright Copyright (c) 2022 Icore, Inc
  * 
  * Test function    : Test WWDG all function and api in turn.
@@ -98,7 +98,6 @@ void main(void)
 
 void WWDG_IRQHandler()
 {
-    debug("enter WDT interrupt!\n");
     WWDG_ClearFlag();
     interrupt_counter++;
 }
