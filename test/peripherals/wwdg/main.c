@@ -5,6 +5,10 @@
  * @version 1.0
  * @date 2022-05-12
  * @copyright Copyright (c) 2022 Icore, Inc
+ * 
+ * Test function    : Test WWDG all function and api in turn.
+ * Board Version    ：AiP32rv001_EVB_V01
+ * Hardware setup   : Without.
  */
 
 #include "at103.h"
@@ -90,24 +94,6 @@ void main(void)
 
     while (1) {
     }
-}
-
-void WWDG_Init()
-{
-    /*enable the WDT*/
-    WWDG_Enable();
-    /*set the mode of WDT*/
-    WWDG_SetMode(INTERRUPT_MODE);
-    /*set the prescale divisor*/
-    WWDG_SetPrescaler(WWDG_Higher_Prescaler_2, WWDG_Lower_Prescaler_1);
-    /*set the length of reset pluse*/
-    WWDG_Set_Reset_Pulselength(0xffff);
-    /*Reloads WWDG counter*/
-    WWDG_SetReload(0x3FFFFFF);
-    /*set the timeout range*/
-    WWDG_Set_Timeout_range(Counter_Cycles_64);
-    /*Restart the WWDG counter.*/
-    WWDG_ReloadCounter();
 }
 
 void WWDG_IRQHandler()
