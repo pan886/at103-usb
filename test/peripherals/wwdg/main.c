@@ -13,10 +13,6 @@
 #include "at103.h"
 #include "unity.h"
 
-#define LED_ON  0x1
-#define LED_OFF 0x0
-
-void    set_led(uint8_t led_state);
 void    WWDG_Init(void);
 uint8_t interrupt_counter = 0;
 uint8_t reset_counter     = 100;
