@@ -95,7 +95,7 @@ void DMA_Init(DMA_Channel_TypeDef *DMA_Channelx, DMA_InitTypeDef *DMA_InitStruct
     }
 
     if (DMA_InitStruct->DMA_DIR == DMA_DIR_PeripheralSRC) {
-        DMA_Channelx->CTL.SRC_MSIZE    = 0;
+        DMA_Channelx->CTL.SRC_MSIZE    = (DMA_InitStruct->DMA_PeripheralHandshake >> 8) & 0x7;
         DMA_Channelx->SAR.ADDR         = DMA_InitStruct->DMA_PeripheralBaseAddr;
         DMA_Channelx->DAR.ADDR         = DMA_InitStruct->DMA_MemoryBaseAddr;
         DMA_Channelx->CTL.SINC         = DMA_InitStruct->DMA_PeripheralInc;
@@ -103,7 +103,7 @@ void DMA_Init(DMA_Channel_TypeDef *DMA_Channelx, DMA_InitTypeDef *DMA_InitStruct
         DMA_Channelx->CTL.SRC_TR_WIDTH = DMA_InitStruct->DMA_PeripheralDataSize;
         DMA_Channelx->CTL.DST_TR_WIDTH = DMA_InitStruct->DMA_MemoryDataSize;
     } else {
-        DMA_Channelx->CTL.DST_MSIZE    = 0;
+        DMA_Channelx->CTL.DST_MSIZE    = (DMA_InitStruct->DMA_PeripheralHandshake >> 8) & 0x7;
         DMA_Channelx->SAR.ADDR         = DMA_InitStruct->DMA_MemoryBaseAddr;
         DMA_Channelx->DAR.ADDR         = DMA_InitStruct->DMA_PeripheralBaseAddr;
         DMA_Channelx->CTL.SINC         = DMA_InitStruct->DMA_MemoryInc;
