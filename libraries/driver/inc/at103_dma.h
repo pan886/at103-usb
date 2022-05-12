@@ -212,6 +212,8 @@ typedef struct
 
 /**
  * @brief DMA peripherals handshake definition
+ *        [7 :0] handshake value;
+ *        [10:8] burst size value;
  */
 #define DMA_PeripheralHandshake_ADC1      ((uint32_t)0x00000000)
 #define DMA_PeripheralHandshake_SPI1_TX   ((uint32_t)0x00000002)
