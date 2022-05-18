@@ -25,14 +25,14 @@ void main(void)
     CRC->CRC_IN         = 0x1;
 
     //delay();
-    //RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, DISABLE);
+
     debug("seed = %x\n", *((uint32_t *)(CRC_BASE + 0xFFFC)));
 
     debug("seed2= %x\n", CRC->CRCSEED.SEED);
 
     debug("out2 = %x\n", (*((uint32_t *)(CRC_BASE + 0xFFF4)) & 0xffff));
     debug("out = %x\n", CRC->CRC_OUT.COUT);
-
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, DISABLE);
     // *((uint32_t *)(CRC_BASE + 0xFFFC)) = 0x5A;
     //  *((uint32_t *)(CRC_BASE))          = 0x86;
     // *((uint32_t *)(CRC_BASE + 0xFFF8)) = 0x1;

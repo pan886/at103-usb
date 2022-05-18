@@ -1,7 +1,6 @@
 /**
  * @file at103_adc.c
  * @brief This file provides all the ADC firmware functions.
- * 
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-03-20
