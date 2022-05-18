@@ -36,7 +36,6 @@ void main(void)
     // *((uint32_t *)(CRC_BASE + 0xFFFC)) = 0x5A;
     //  *((uint32_t *)(CRC_BASE))          = 0x86;
     // *((uint32_t *)(CRC_BASE + 0xFFF8)) = 0x1;
-
     while (1) {
     }
 }
