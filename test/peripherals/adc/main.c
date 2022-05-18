@@ -15,17 +15,18 @@
 
 void test_func(void)
 {
-    uint32_t cmd            = 0;
-    uint32_t Rst_Cal        = 0;
-    uint32_t start_cal      = 0;
-    uint32_t start_conv     = 0;
-    uint32_t Analog_Wdg     = 0;
-    uint32_t HighThreshold  = 0;
-    uint32_t LowThreshold   = 0;
-    uint32_t TempVrefintCmd = 0;
-    uint32_t clear_flag     = 0;
-    uint32_t DiscModeCmd    = 0;
-    uint32_t DMACmd         = 0;
+    uint32_t cmd                     = 0;
+    uint32_t Rst_Cal                 = 0;
+    uint32_t start_cal               = 0;
+    uint32_t start_conv              = 0;
+    uint32_t Analog_Wdg              = 0;
+    uint32_t HighThreshold           = 0;
+    uint32_t LowThreshold            = 0;
+    uint32_t TempVrefintCmd          = 0;
+    uint32_t clear_flag              = 0;
+    uint32_t DiscModeCmd             = 0;
+    uint32_t DMACmd                  = 0;
+    uint32_t InjectedSequencerLength = 0;
 
     ADC_InitTypeDef ADC_InitStructure;
     /* ADC1 configuration */
@@ -81,6 +82,11 @@ void test_func(void)
     ADC_DMACmd(ADC1, ENABLE);
     DMACmd = ADC1->CR2.value & 0x100;
     TEST_ASSERT_MESSAGE(DMACmd == 0x100, " ADC DMA mode enabled failed!");
+
+    ADC_InjectedSequencerLengthConfig(ADC1, 0x1);
+    InjectedSequencerLength = ADC1->JSQR.JSQ5;
+    TEST_ASSERT_MESSAGE(InjectedSequencerLength == 0x0, " Injected Sequencer Length config failed!");
+    
 }
 
 void unity_test(void)
