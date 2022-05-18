@@ -1,7 +1,16 @@
 /**
  * @file at103_dma.h
- * @brief This file contains all the functions prototypes for the DMA
- *        firmware library.
+ * @brief This file contains all the functions prototypes for the DMA firmware library. \n
+ *        How to use this driver? \n
+ * (+) At first, use ''DMA_DeInit(...)'' to reset requires DMA channel. \n
+ * (+) Then, use ''DMA_Init(...)'' with DMA initialization structure to initialize a DMA channel. \n
+ *     For details on the DMA initialization structure, see @ref DMA_InitTypeDef. \n
+ * (+) Use ''DMA_ITConfig(...)'' to enable interrupts that require DMA channel, and you need to implement the corresponding channel service function: DMA_Channelx_IRQHandler. \n
+ *     For details on the DMA interrupt type, see @ref DMA_interrupts_definition. \n
+ * (+) Finally, use ''DMA_Cmd(...)'' to start a DMA channel transfer. \n
+ * (+) Of course, you can use ''DMA_GetFlagStatus(...)'' to get the state of the DMA channel at any time, this is helpful in determining whether the DMA channel has completed its transfer. \n
+ * (+) Note: \n
+ *     DMA channels can transfer up to 4095 units at a time. \n
  * @author Dong Qin (dong.qin@timesintelli.com)
  * @version 1.0
  * @date 2022-03-16
@@ -46,9 +55,6 @@ typedef struct
                                            This parameter can be a value of @ref DMA_peripherals_handshake_definition */
 } DMA_InitTypeDef;
 
-/**
- * @brief DMA exported constants
- */
 #define IS_DMA_ALL_PERIPH(PERIPH) (((PERIPH) == DMA_Channel1) || \
                                    ((PERIPH) == DMA_Channel2) || \
                                    ((PERIPH) == DMA_Channel3) || \
