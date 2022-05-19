@@ -30,6 +30,13 @@ void test_func(void)
     uint32_t        InjectedDiscModeCmd         = 0;
     uint32_t        AutoInjectedConvCmd         = 0;
     uint32_t        ExternalTrigInjectedConvCmd = 0;
+    uint32_t        DiscModeChannelCountConfig  = 0;
+    uint32_t        ADC_Mode                    = 0;
+    uint32_t        ScanConvMode                = 0;
+    uint32_t        ExternalTrigConv            = 0;
+    uint32_t        DataAlign                   = 0;
+    uint32_t        AnaWdg_SingleChannel_Cfg    = 0;
+    uint32_t        ClearITPendingBit           = 0;
     ADC_InitTypeDef ADC_InitStructure;
     /* ADC1 configuration */
     ADC_InitStructure.ADC_Mode               = ADC_Mode_Independent;
@@ -40,7 +47,14 @@ void test_func(void)
     ADC_InitStructure.ADC_NbrOfChannel       = 1;
 
     ADC_Init(ADC1, &ADC_InitStructure);
-
+    ADC_Mode         = ADC1->CR1.DUALMOD;
+    ScanConvMode     = ADC1->CR1.SCAN;
+    ExternalTrigConv = ADC1->CR2.EXTSEL;
+    DataAlign        = ADC1->CR2.ALIGN;
+    TEST_ASSERT_MESSAGE(ADC_Mode == 0x0, "ADC mode test failed!");
+    TEST_ASSERT_MESSAGE(ScanConvMode == 0x0, "Scan mode test failed!");
+    TEST_ASSERT_MESSAGE(ExternalTrigConv == 0b111, "External event select test failed!");
+    TEST_ASSERT_MESSAGE(DataAlign == 0x0, "data align test failed!");
     /* Enable ADC1 */
     ADC_Cmd(ADC1, ENABLE);
     cmd = ADC1->CR2.ADON;
@@ -70,16 +84,21 @@ void test_func(void)
     LowThreshold  = ADC1->LTR.LT;
     TEST_ASSERT_MESSAGE(HighThreshold == 0xff && LowThreshold == 0xaa, "analog threshold config test failed!");
 
+    ADC_AnalogWatchdogSingleChannelConfig(ADC1, ADC_Channel_0);
+    AnaWdg_SingleChannel_Cfg = ADC1->CR1.AWDCH;
+    TEST_ASSERT_MESSAGE(AnaWdg_SingleChannel_Cfg == 0x0, "analog watchdog single channel config failed!");
+
     ADC_TempSensorVrefintCmd(ENABLE);
     TempVrefintCmd = ADC1->CR2.TSVREFE;
     TEST_ASSERT_MESSAGE(TempVrefintCmd == 0x1, "Temperature sensor and VREFINT channel enabled failed!");
 
     ADC_ClearFlag(ADC1, ADC_FLAG_AWD);
     clear_flag = ADC1->SR.AWD;
-    ;
     TEST_ASSERT_MESSAGE(clear_flag == 0x0, "Clear Analog watchdog flag failed!");
 
     ADC_ClearITPendingBit(ADC1, ADC_IT_EOC);
+    ClearITPendingBit = ADC1->SR.EOC;
+    TEST_ASSERT_MESSAGE(ClearITPendingBit == 0x0, "clear IT pednding bit test failed!");
 
     ADC_DiscModeCmd(ADC1, ENABLE);
     DiscModeCmd = ADC1->CR1.DISCEN;
@@ -99,13 +118,15 @@ void test_func(void)
 
     ADC_AutoInjectedConvCmd(ADC1, ENABLE);
     AutoInjectedConvCmd = ADC1->CR1.JAUTO;
-    TEST_ASSERT_MESSAGE(AutoInjectedConvCmd == 0x1, " Enables the selected ADC automatic injected group conversion after regular one failed!");
+    TEST_ASSERT_MESSAGE(AutoInjectedConvCmd == 0x1, "Enables the selected ADC automatic injected group conversion after regular one failed!");
 
     ADC_ExternalTrigInjectedConvCmd(ADC1, ENABLE);
     ExternalTrigInjectedConvCmd = ADC1->CR2.JEXTTRIG;
-    TEST_ASSERT_MESSAGE(ExternalTrigInjectedConvCmd == 0x1, " Conversion on external event enabled failed!");
+    TEST_ASSERT_MESSAGE(ExternalTrigInjectedConvCmd == 0x1, "Conversion on external event enabled failed!");
 
-    
+    ADC_DiscModeChannelCountConfig(ADC1, 1);
+    DiscModeChannelCountConfig = ADC1->CR1.DISCNUM;
+    TEST_ASSERT_MESSAGE(DiscModeChannelCountConfig == 0x0, "discontinuous mode for the selected ADC regular group channel failed!");
 }
 
 void unity_test(void)
