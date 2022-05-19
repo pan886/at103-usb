@@ -15,19 +15,21 @@
 
 void test_func(void)
 {
-    uint32_t cmd                     = 0;
-    uint32_t Rst_Cal                 = 0;
-    uint32_t start_cal               = 0;
-    uint32_t start_conv              = 0;
-    uint32_t Analog_Wdg              = 0;
-    uint32_t HighThreshold           = 0;
-    uint32_t LowThreshold            = 0;
-    uint32_t TempVrefintCmd          = 0;
-    uint32_t clear_flag              = 0;
-    uint32_t DiscModeCmd             = 0;
-    uint32_t DMACmd                  = 0;
-    uint32_t InjectedSequencerLength = 0;
-
+    uint32_t        cmd                         = 0;
+    uint32_t        Rst_Cal                     = 0;
+    uint32_t        start_cal                   = 0;
+    uint32_t        start_conv                  = 0;
+    uint32_t        Analog_Wdg                  = 0;
+    uint32_t        HighThreshold               = 0;
+    uint32_t        LowThreshold                = 0;
+    uint32_t        TempVrefintCmd              = 0;
+    uint32_t        clear_flag                  = 0;
+    uint32_t        DiscModeCmd                 = 0;
+    uint32_t        DMACmd                      = 0;
+    uint32_t        InjectedSequencerLength     = 0;
+    uint32_t        InjectedDiscModeCmd         = 0;
+    uint32_t        AutoInjectedConvCmd         = 0;
+    uint32_t        ExternalTrigInjectedConvCmd = 0;
     ADC_InitTypeDef ADC_InitStructure;
     /* ADC1 configuration */
     ADC_InitStructure.ADC_Mode               = ADC_Mode_Independent;
@@ -58,6 +60,7 @@ void test_func(void)
     ADC_SoftwareStartConvCmd(ADC1, ENABLE);
     start_conv = ADC1->CR2.SWSTART && ADC1->CR2.EXTTRIG;
     TEST_ASSERT_MESSAGE(start_conv == 0x1, "start convert test failed!");
+
     ADC_AnalogWatchdogCmd(ADC1, ADC_AnalogWatchdog_SingleRegEnable);
     Analog_Wdg = ADC1->CR1.AWDSGL && ADC1->CR1.AWDEN;
     TEST_ASSERT_MESSAGE(Analog_Wdg == 0x1, "analog watchdog cmd test failed!");
@@ -66,6 +69,7 @@ void test_func(void)
     HighThreshold = ADC1->HTR.HT;
     LowThreshold  = ADC1->LTR.LT;
     TEST_ASSERT_MESSAGE(HighThreshold == 0xff && LowThreshold == 0xaa, "analog threshold config test failed!");
+
     ADC_TempSensorVrefintCmd(ENABLE);
     TempVrefintCmd = ADC1->CR2.TSVREFE;
     TEST_ASSERT_MESSAGE(TempVrefintCmd == 0x1, "Temperature sensor and VREFINT channel enabled failed!");
@@ -74,6 +78,8 @@ void test_func(void)
     clear_flag = ADC1->SR.AWD;
     ;
     TEST_ASSERT_MESSAGE(clear_flag == 0x0, "Clear Analog watchdog flag failed!");
+
+    ADC_ClearITPendingBit(ADC1, ADC_IT_EOC);
 
     ADC_DiscModeCmd(ADC1, ENABLE);
     DiscModeCmd = ADC1->CR1.DISCEN;
@@ -86,6 +92,19 @@ void test_func(void)
     ADC_InjectedSequencerLengthConfig(ADC1, 0x1);
     InjectedSequencerLength = ADC1->JSQR.JSQ5;
     TEST_ASSERT_MESSAGE(InjectedSequencerLength == 0x0, " Injected Sequencer Length config failed!");
+
+    ADC_InjectedDiscModeCmd(ADC1, ENABLE);
+    InjectedDiscModeCmd = ADC1->CR1.DISCEN;
+    TEST_ASSERT_MESSAGE(InjectedDiscModeCmd == 0x1, " Enables the discontinuous mode for injected group channel failed!");
+
+    ADC_AutoInjectedConvCmd(ADC1, ENABLE);
+    AutoInjectedConvCmd = ADC1->CR1.JAUTO;
+    TEST_ASSERT_MESSAGE(AutoInjectedConvCmd == 0x1, " Enables the selected ADC automatic injected group conversion after regular one failed!");
+
+    ADC_ExternalTrigInjectedConvCmd(ADC1, ENABLE);
+    ExternalTrigInjectedConvCmd = ADC1->CR2.JEXTTRIG;
+    TEST_ASSERT_MESSAGE(ExternalTrigInjectedConvCmd == 0x1, " Conversion on external event enabled failed!");
+
     
 }
 
