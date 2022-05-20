@@ -48,6 +48,11 @@ typedef enum {
     CHARACTER_TIMEOUT = 0x0c
 } USART_InterruptID;
 
+/* Bit definition for LCR and IIR\FCR register */
+#define LCR_DLAB                ((uint16_t)0x0080)
+#define IIR_FCR_IIR_FIFO_ENABLE ((uint16_t)0x00C0)
+#define IIR_FCR_FCR_FIFOE       ((uint16_t)0x0001)
+
 /**
  * @brief USART_FIFO_STATE
  */
@@ -178,7 +183,7 @@ typedef enum {
 /**
  * @brief USART_IrDA_Low_Power 
  */
-#define USART_IrDAMode_LowPower  ((uint16_t)0x0080)
+#define USART_IrDAMode_LowPower  ((uint16_t)0x00FF)
 #define USART_IrDAMode_Normal    ((uint16_t)0x0000)
 #define IS_USART_IRDA_MODE(MODE) (((MODE) == USART_IrDAMode_LowPower) || \
                                   ((MODE) == USART_IrDAMode_Normal))

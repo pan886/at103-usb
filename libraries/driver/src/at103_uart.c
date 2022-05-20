@@ -153,7 +153,7 @@ void USART_FIFOConfig(USART_TypeDef *USARTx, uint16_t USART_FIFO)
     assert_param(IS_USART_FIFO_FCR_CONTROL(USART_FIFO));
     tmpfcr = USARTx->IIR_FCR.FCR.value;
     /* Reset the FIFO_ENABLE and FIFOE Bits */
-    tmpfcr &= (uint16_t)(~((uint16_t)(USARTx->IIR_FCR.IIR.FIFO_ENABLE | USARTx->IIR_FCR.FCR.FIFOE)));
+    tmpfcr &= (uint16_t)(~((uint16_t)(IIR_FCR_IIR_FIFO_ENABLE | IIR_FCR_FCR_FIFOE)));
     tmpfcr |= USART_FIFO;
     /* Write to USARTx FCR */
     USARTx->IIR_FCR.FCR.value = tmpfcr;
@@ -175,7 +175,7 @@ void USART_IrDAConfig(USART_TypeDef *USARTx, uint16_t USART_IrDAMode)
     assert_param(IS_USART_IRDA_MODE(USART_IrDAMode));
     tmplcr = USARTx->LCR.value;
     /* Reset the DLAB Bits */
-    tmplcr &= (uint16_t)(~((uint16_t)(USARTx->LCR.DLAB)));
+    tmplcr &= (uint16_t)(~((uint16_t)LCR_DLAB));
     tmplcr |= USART_IrDAMode;
     /* Write to USARTx LCR */
     USARTx->LCR.value = tmplcr;
