@@ -17,7 +17,9 @@ void CRC_ResetDR(void)
 
 uint16_t CRC_CalcCRC(uint32_t Data)
 {
-    CRC->CRC_IN = Data;
+    uint32_t input_data = 0;
+    input_data          = (Data & 0xff) << 24 | ((Data & 0xff00) >> 8) << 16 | ((Data & 0xff0000) >> 16) << 8 | (Data & 0xff000000) >> 24;
+    CRC->CRC_IN         = input_data;
 
     return (CRC->CRC_OUT.COUT);
 }
@@ -32,9 +34,10 @@ void CRC_Clear_Value(void)
     CRC->CRC_CTL.CLEAR = 1;
 }
 
-void CRC_Input_Inversion(void)
+void CRC_Input_Control(uint8_t invout)
 {
-    CRC->CRC_CTL.INVOUT = 0x1;
+    assert_param(IS_CRC_DATA_INVOUT(INVOUT));
+    CRC->CRC_CTL.INVOUT = invout;
 }
 
 void CRC_Seed_Config(uint16_t value)

@@ -16,6 +16,14 @@ extern "C" {
 #endif
 
 /**
+ * @brief CRC input reverse.
+ */
+#define CRC_Reverse                ((uint8_t)0x01)
+#define CRC_Not_Reverse            ((uint8_t)0x00)
+#define IS_CRC_DATA_INVOUT(INVOUT) (((INVOUT) == CRC_Reverse) || \
+                                    ((ALIGN) == CRC_Not_Reverse))
+
+/**
  * @brief Resets the CRC Data register (DR).
  */
 void CRC_ResetDR(void);
@@ -40,8 +48,9 @@ void CRC_Clear_Value(void);
 
 /**
  * @brief CRC input inversion.
+ * @param[in] invout: can be 0x1 0r 0x0;
  */
-void CRC_Input_Inversion(void);
+void CRC_Input_Control(uint8_t invout);
 
 /**
  * @brief config CRC seed value. 
