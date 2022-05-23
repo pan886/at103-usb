@@ -3,11 +3,10 @@ CHIP                 ?= AT103
 HEAP_SIZE            ?= 0x0
 STACK_SIZE           ?= 0x400
 NO_FLASH             ?= no
-FPU                  ?= yes
 CXXSUPPORT           ?= yes
 CXX_RTTI             ?= yes
 CXX_EXCEPTION        ?= no
-RELEASE              ?= no
+DEBUG                ?= yes
 
 
 BUILDTOPDIR          = ./BUILD
@@ -27,13 +26,8 @@ OBJDUMP              = $(CROSS_COMPILE)objdump
 READELF              = $(CROSS_COMPILE)readelf
 
 ifeq ($(CHIP), AT103)
-ifeq ($(FPU), yes)
-MCU_RISCV_ARCH      ?= rv32imfcxpulpv2
-MCU_RISCV_ABI       ?= ilp32f
-else
 MCU_RISCV_ARCH      ?= rv32imcxpulpv2
 MCU_RISCV_ABI       ?= ilp32
-endif
 endif
 
 ifeq ($(CHIP), AT103)
@@ -227,6 +221,10 @@ $(GDB_SCRIPT)::
 	@sed -i -e "s/filename/$(TARGET)/g" $@
 
 -include $(DEPS)
+
+burn: $(BIN)
+	@$(AT_SDK_HOME_SH)/tools/burn_image/burn_image.sh $(AT_SDK_HOME_SH)/$(APP_DIR)/$< $(AT_SDK_HOME_SH)/tools/burn_image
+
 
 clean:
 	@rm -rf $(BUILDTOPDIR) $(BIN) $(BIN).map $(BIN_DUMP) $(LINKER_SCRIPT) $(GDB_SCRIPT) -rf
