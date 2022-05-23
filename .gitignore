@@ -17,3 +17,5 @@ link.lds
 *.pyc
 *.bin.gz
 load.gdb
+burn.ini
+!tools/burn_image/*
