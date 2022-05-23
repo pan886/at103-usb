@@ -1240,6 +1240,9 @@ typedef struct {
     __IM uint32_t DMA_COMP_ID[2];
 } DMA_TypeDef;
 
+/**
+ * @brief ADC Peripheral Interface
+ */
 typedef struct
 {
     union {
@@ -1508,6 +1511,7 @@ typedef struct
 
 } ADC_TypeDef;
 
+<<<<<<< HEAD
 typedef struct
 {
 
@@ -1542,6 +1546,113 @@ typedef struct
     } CRCSEED;
 
 } CRC_TypeDef;
+=======
+/**
+ * @brief FLASH Controller Interface
+ */
+typedef struct {
+    union {
+        struct
+        {
+            __IOM          uint32_t : 2;
+            __IOM uint32_t LVCTL : 1;
+            __IOM uint32_t VRED0 : 1;
+            __IOM uint32_t VRED1 : 1;
+            __IOM uint32_t PREFETCH : 1;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } CTL;
+    union {
+        struct
+        {
+            __IOM uint32_t TRW : 8;
+            __IOM uint32_t TRC : 8;
+            __IOM uint32_t TPROG : 16;
+        };
+        __IOM uint32_t value;
+    } CFG0;
+    union {
+        __IOM uint32_t SEC;
+    } CFG1;
+    union {
+        __IOM uint32_t CEC;
+    } CFG2;
+    union {
+        struct
+        {
+            __IOM uint32_t TPGH : 16;
+            __IOM uint32_t TPGS : 16;
+        };
+        __IOM uint32_t value;
+    } CFG3;
+    union {
+        struct
+        {
+            __IOM uint32_t TNVS : 16;
+            __IOM uint32_t TRCV_PROG : 16;
+        };
+        __IOM uint32_t value;
+    } CFG4;
+    union {
+        struct
+        {
+            __IOM uint32_t TRCV_ERASE_SECTOR : 16;
+            __IOM uint32_t TRCV_ERASE_CHIP : 16;
+        };
+        __IOM uint32_t value;
+    } CFG5;
+    union {
+        struct
+        {
+            __IOM uint32_t TWUP : 16;
+            __IOM          uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } CFG6;
+    union {
+        struct
+        {
+            __OM uint32_t  CODE : 12;
+            __IOM uint32_t ERASE_SEC_ADDR : 20;
+        };
+        __IOM uint32_t value;
+    } CMD;
+    __OM uint32_t LOCK;
+    union {
+        struct
+        {
+            __IOM uint32_t OPST : 1;
+            __IOM uint32_t BUSERR : 1;
+            __IOM uint32_t PRAM_LOCK : 1;
+            __IOM uint32_t PROG_MAIN_LOCK : 1;
+            __IOM uint32_t PROG_NVR_LOCK : 1;
+            __IOM uint32_t ERASE_LOCK : 1;
+            __IOM uint32_t INIT_STATUS : 1;
+            __IOM uint32_t UNALERR : 1;
+            __IOM uint32_t CURR_STATUS : 2;
+            __IOM          uint32_t : 22;
+        };
+        __IOM uint32_t value;
+    } STS0;
+    __IOM uint32_t SEC_P0;
+    __IOM uint32_t SEC_P1;
+    __IOM uint32_t SEC_P2;
+    __IOM uint32_t SEC_P3;
+    union {
+        struct
+        {
+            __OM uint32_t BUSERR_CLEAR : 1;
+            __IOM         uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } ERR_CLR;
+    __IOM uint32_t SEC_P4;
+    __IOM uint32_t SEC_P5;
+    __IOM uint32_t SEC_P6;
+    __IOM uint32_t SEC_P7;
+} FLASH_TypeDef;
+>>>>>>> master
 
 /** Peripheral declaration */
 #define ICACHE       ((ICACHE_TypeDef *)ICACHE_BASE)
@@ -1569,7 +1680,12 @@ typedef struct
 #define WWDG         ((WWDG_TypeDef *)WWDG_BASE)
 #define ADC1         ((ADC_TypeDef *)ADC1_BASE)
 #define ADC2         ((ADC_TypeDef *)ADC2_BASE)
-#define CRC          ((CRC_TypeDef *)CRC_BASE)
+<<<<<<< HEAD
+#define CRC((CRC_TypeDef *)CRC_BASE)
+=======
+#define FLASH((FLASH_TypeDef *)FLASH_R_BASE)
+
+>>>>>>> master
 /** system level driver */
 #include "at103_icache.h"
 
@@ -1610,9 +1726,14 @@ typedef struct
 #include "at103_adc.h"
 #endif /* ADC_MODULE_ENABLED */
 
+#ifdef FLASH_MODULE_ENABLED
+#include "at103_flash.h"
+#endif /* FLASH_MODULE_ENABLED */
+
 #ifdef CRC_MODULE_ENABLED
 #include "at103_crc.h"
 #endif /* CRC_MODULE_ENABLED */
+
 /**
  * @brief  The assert_param macro is used for function's parameters check.
  * @param  expr: If expr is false, it calls assert_failed function which reports
@@ -1622,8 +1743,9 @@ typedef struct
  */
 #ifdef USE_FULL_ASSERT
 #define assert_param(expr) ((expr) ? (void)0 : assert_failed((uint8_t *)__FILE__, __LINE__))
-/* Exported functions ------------------------------------------------------- */
-void assert_failed(uint8_t *file, uint32_t line);
+                           /* Exported functions ------------------------------------------------------- */
+    void
+    assert_failed(uint8_t *file, uint32_t line);
 #else
 #define assert_param(expr) ((void)0)
 #endif /* USE_FULL_ASSERT */

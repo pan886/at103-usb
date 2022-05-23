@@ -1,6 +1,10 @@
 /**
  * @file at103_nvic.h
- * @brief This file contains all the functions prototypes for the NVIC firmware library.
+ * @brief This file contains all the functions prototypes for the NVIC firmware library. \n
+ *        How to use this driver? \n
+ * (+) Use ''NVIC_Init(...)'' with NVIC initialization structure to initialize a interrupt channel. \n
+ *        For details on the NVIC initialization structure, see @ref NVIC_InitTypeDef. \n
+ * (+) Use ''NVIC_EnableIRQ(...)'' or ''NVIC_DisableIRQ(...)'' to enable or disable a channel interrupt, must use ''__enable_irq()'' to turn on global interrupts before doing so. \n
  * @author Dong Qin (dong.qin@timesintelli.com)
  * @version 1.0
  * @date 2022-01-17
@@ -70,13 +74,13 @@ typedef struct
 #define IS_NVIC_SUB_IRQ_TYPE(IRQn)            ((IRQn) < 30)                       /**< Check IRQn_Type parameters */
 
 /**
- * @brief Set the Priority Grouping.
+ * @brief Set the Priority Grouping, it won't work on the AT103.
  * @param[in] PriorityGroup is priority grouping field, Only support NVIC_PriorityGroup_0.
  */
 void NVIC_SetPriorityGrouping(uint32_t PriorityGroup);
 
 /**
- * @brief Get the Priority Grouping.
+ * @brief Get the Priority Grouping, it won't work on the AT103.
  * @return uint32_t priority grouping field, always return NVIC_PriorityGroup_0.
  */
 uint32_t NVIC_GetPriorityGrouping(void);
@@ -101,7 +105,7 @@ void NVIC_DisableIRQ(IRQn_Type IRQn);
 uint32_t NVIC_GetActive(IRQn_Type IRQn);
 
 /**
- * @brief Configures the priority grouping: pre-emption priority and subpriority.
+ * @brief Configures the priority grouping: pre-emption priority and subpriority, it won't work on the AT103.
  * @param[in] NVIC_PriorityGroup Only support NVIC_PriorityGroup_0.
  */
 void NVIC_PriorityGroupConfig(uint32_t NVIC_PriorityGroup);

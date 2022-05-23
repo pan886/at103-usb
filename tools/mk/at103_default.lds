@@ -2,7 +2,7 @@ OUTPUT_ARCH( "riscv" )
 
 MEMORY
 {
-    FLASH(rx)   :   ORIGIN = 0x40050000, LENGTH = 258k
+    FLASH(rx)   :   ORIGIN = 0x40050000, LENGTH = 257k
     RAM(rxw)    :   ORIGIN = 0x00010000, LENGTH = 20k
 }
 
