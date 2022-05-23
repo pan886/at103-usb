@@ -109,7 +109,7 @@ void test_func(void)
     TEST_ASSERT_MESSAGE(DMACmd == 0x100, " ADC DMA mode enabled failed!");
 
     ADC_InjectedSequencerLengthConfig(ADC1, 0x1);
-    InjectedSequencerLength = ADC1->JSQR.JSQ5;
+    InjectedSequencerLength = ADC1->JSQR.L;
     TEST_ASSERT_MESSAGE(InjectedSequencerLength == 0x0, " Injected Sequencer Length config failed!");
 
     ADC_InjectedDiscModeCmd(ADC1, ENABLE);
