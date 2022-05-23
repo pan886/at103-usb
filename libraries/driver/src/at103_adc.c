@@ -89,6 +89,7 @@ void ADC_Cmd(ADC_TypeDef *ADCx, FunctionalState NewState)
 {
 
     assert_param(IS_ADC_ALL_PERIPH(ADCx));
+    assert_param(IS_FUNCTIONAL_STATE(NewState));
     if (NewState != DISABLE) {
 
         ADCx->CR2.ADON |= 0x1;
@@ -110,7 +111,9 @@ void ADC_ITConfig(ADC_TypeDef *ADCx, uint16_t ADC_IT, FunctionalState NewState)
 {
     uint8_t itmask = 0;
     assert_param(IS_ADC_ALL_PERIPH(ADCx));
-
+    assert_param(IS_FUNCTIONAL_STATE(NewState));
+    assert_param(IS_ADC_IT(ADC_IT));
+    /* Get the ADC IT index */
     itmask = (uint8_t)ADC_IT;
     if (NewState != DISABLE) {
         ADCx->CR1.value |= itmask;
@@ -165,6 +168,7 @@ FlagStatus ADC_GetSoftwareStartConvStatus(ADC_TypeDef *ADCx)
 void ADC_DiscModeChannelCountConfig(ADC_TypeDef *ADCx, uint8_t Number)
 {
     assert_param(IS_ADC_ALL_PERIPH(ADCx));
+    assert_param(IS_ADC_REGULAR_DISC_NUMBER(Number));
     uint32_t tmpreg1 = 0;
     uint32_t tmpreg2 = 0;
     /* Get the old register value */
