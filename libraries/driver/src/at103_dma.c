@@ -10,6 +10,87 @@
 
 #ifdef DMA_MODULE_ENABLED
 
+#define IS_DMA_ALL_PERIPH(PERIPH) (((PERIPH) == DMA_Channel1) || \
+                                   ((PERIPH) == DMA_Channel2) || \
+                                   ((PERIPH) == DMA_Channel3) || \
+                                   ((PERIPH) == DMA_Channel4) || \
+                                   ((PERIPH) == DMA_Channel5) || \
+                                   ((PERIPH) == DMA_Channel6) || \
+                                   ((PERIPH) == DMA_Channel7) || \
+                                   ((PERIPH) == DMA_Channel8))
+
+#define IS_DMA_DIR(DIR) (((DIR) == DMA_DIR_PeripheralDST) || \
+                         ((DIR) == DMA_DIR_PeripheralSRC))
+
+#define IS_DMA_PERIPHERAL_INC_STATE(STATE) (((STATE) == DMA_PeripheralInc_Enable) || \
+                                            ((STATE) == DMA_PeripheralInc_Disable))
+
+#define IS_DMA_MEMORY_INC_STATE(STATE) (((STATE) == DMA_MemoryInc_Enable) || \
+                                        ((STATE) == DMA_MemoryInc_Disable))
+
+#define IS_DMA_PERIPHERAL_DATA_SIZE(SIZE) (((SIZE) == DMA_PeripheralDataSize_Byte) || \
+                                           ((SIZE) == DMA_PeripheralDataSize_HalfWord) || \
+                                           ((SIZE) == DMA_PeripheralDataSize_Word))
+
+#define IS_DMA_MEMORY_DATA_SIZE(SIZE) (((SIZE) == DMA_MemoryDataSize_Byte) || \
+                                       ((SIZE) == DMA_MemoryDataSize_HalfWord) || \
+                                       ((SIZE) == DMA_MemoryDataSize_Word))
+
+#define IS_DMA_MODE(MODE) (((MODE) == DMA_Mode_Circular) || ((MODE) == DMA_Mode_Normal))
+
+#define IS_DMA_PRIORITY(PRIORITY) (((PRIORITY) == DMA_Priority_VeryHigh) || \
+                                   ((PRIORITY) == DMA_Priority_High) || \
+                                   ((PRIORITY) == DMA_Priority_Medium) || \
+                                   ((PRIORITY) == DMA_Priority_Low))
+
+#define IS_DMA_M2M_STATE(STATE) (((STATE) == DMA_M2M_Enable) || ((STATE) == DMA_M2M_Disable))
+
+#define IS_DMA_CONFIG_IT(IT) ((((IT)&0xFFFFFFFC) == 0x00) && ((IT) != 0x00))
+
+#define IS_DMA_CLEAR_IT(IT) ((((IT)&0xFFFF0000) == 0x00) && ((IT) != 0x00))
+
+#define IS_DMA_GET_IT(IT) (((IT) == DMA_IT_GL1) || ((IT) == DMA_IT_TC1) || ((IT) == DMA_IT_TE1) || \
+                           ((IT) == DMA_IT_GL2) || ((IT) == DMA_IT_TC2) || ((IT) == DMA_IT_TE2) || \
+                           ((IT) == DMA_IT_GL3) || ((IT) == DMA_IT_TC3) || ((IT) == DMA_IT_TE3) || \
+                           ((IT) == DMA_IT_GL4) || ((IT) == DMA_IT_TC4) || ((IT) == DMA_IT_TE4) || \
+                           ((IT) == DMA_IT_GL5) || ((IT) == DMA_IT_TC5) || ((IT) == DMA_IT_TE5) || \
+                           ((IT) == DMA_IT_GL6) || ((IT) == DMA_IT_TC6) || ((IT) == DMA_IT_TE6) || \
+                           ((IT) == DMA_IT_GL7) || ((IT) == DMA_IT_TC7) || ((IT) == DMA_IT_TE7) || \
+                           ((IT) == DMA_IT_GL8) || ((IT) == DMA_IT_TC8) || ((IT) == DMA_IT_TE8))
+
+#define IS_DMA_CLEAR_FLAG(FLAG) ((((FLAG)&0xFFFF0000) == 0x00) && ((FLAG) != 0x00))
+
+#define IS_DMA_GET_FLAG(FLAG) (((FLAG) == DMA_FLAG_GL1) || ((FLAG) == DMA_FLAG_TC1) || ((FLAG) == DMA_FLAG_TE1) || \
+                               ((FLAG) == DMA_FLAG_GL2) || ((FLAG) == DMA_FLAG_TC2) || ((FLAG) == DMA_FLAG_TE2) || \
+                               ((FLAG) == DMA_FLAG_GL3) || ((FLAG) == DMA_FLAG_TC3) || ((FLAG) == DMA_FLAG_TE3) || \
+                               ((FLAG) == DMA_FLAG_GL4) || ((FLAG) == DMA_FLAG_TC4) || ((FLAG) == DMA_FLAG_TE4) || \
+                               ((FLAG) == DMA_FLAG_GL5) || ((FLAG) == DMA_FLAG_TC5) || ((FLAG) == DMA_FLAG_TE5) || \
+                               ((FLAG) == DMA_FLAG_GL6) || ((FLAG) == DMA_FLAG_TC6) || ((FLAG) == DMA_FLAG_TE6) || \
+                               ((FLAG) == DMA_FLAG_GL7) || ((FLAG) == DMA_FLAG_TC7) || ((FLAG) == DMA_FLAG_TE7) || \
+                               ((FLAG) == DMA_FLAG_GL8) || ((FLAG) == DMA_FLAG_TC8) || ((FLAG) == DMA_FLAG_TE8))
+
+#define IS_DMA_PERIPHERAL_HANDSHAKE(HANDSHAKE) (((HANDSHAKE) == DMA_PeripheralHandshake_ADC1) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_SPI1_TX) || ((HANDSHAKE) == DMA_PeripheralHandshake_SPI1_RX) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_SPI2_TX) || ((HANDSHAKE) == DMA_PeripheralHandshake_SPI2_RX) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_USART1_TX) || ((HANDSHAKE) == DMA_PeripheralHandshake_USART1_RX) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_USART2_TX) || ((HANDSHAKE) == DMA_PeripheralHandshake_USART2_RX) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_USART3_TX) || ((HANDSHAKE) == DMA_PeripheralHandshake_USART3_RX) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_I2C1_TX) || ((HANDSHAKE) == DMA_PeripheralHandshake_I2C1_RX) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_I2C2_TX) || ((HANDSHAKE) == DMA_PeripheralHandshake_I2C2_RX) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_TIM1_CH1) || ((HANDSHAKE) == DMA_PeripheralHandshake_TIM1_UP) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_TIM1_CH2) || ((HANDSHAKE) == DMA_PeripheralHandshake_TIM1_TRIG) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_TIM1_CH3) || ((HANDSHAKE) == DMA_PeripheralHandshake_TIM1_COM) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_TIM1_CH4) || ((HANDSHAKE) == DMA_PeripheralHandshake_TIM2_UP) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_TIM2_CH1) || ((HANDSHAKE) == DMA_PeripheralHandshake_TIM2_CH2) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_TIM2_CH3) || ((HANDSHAKE) == DMA_PeripheralHandshake_TIM2_CH4) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_TIM3_UP) || ((HANDSHAKE) == DMA_PeripheralHandshake_TIM3_TRIG) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_TIM3_CH1) || ((HANDSHAKE) == DMA_PeripheralHandshake_TIM3_CH3) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_TIM3_CH4) || ((HANDSHAKE) == DMA_PeripheralHandshake_TIM4_UP) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_TIM4_CH1) || ((HANDSHAKE) == DMA_PeripheralHandshake_TIM4_CH2) || \
+                                                ((HANDSHAKE) == DMA_PeripheralHandshake_TIM4_CH3))
+
+#define IS_DMA_BUFFER_SIZE(SIZE) (((SIZE) >= 0x1) && ((SIZE) < 0x1000))
+
 void DMA_DeInit(DMA_Channel_TypeDef *DMA_Channelx)
 {
     uint32_t ch = 0;
@@ -95,7 +176,7 @@ void DMA_Init(DMA_Channel_TypeDef *DMA_Channelx, DMA_InitTypeDef *DMA_InitStruct
     }
 
     if (DMA_InitStruct->DMA_DIR == DMA_DIR_PeripheralSRC) {
-        DMA_Channelx->CTL.SRC_MSIZE    = 0;
+        DMA_Channelx->CTL.SRC_MSIZE    = (DMA_InitStruct->DMA_PeripheralHandshake >> 8) & 0x7;
         DMA_Channelx->SAR.ADDR         = DMA_InitStruct->DMA_PeripheralBaseAddr;
         DMA_Channelx->DAR.ADDR         = DMA_InitStruct->DMA_MemoryBaseAddr;
         DMA_Channelx->CTL.SINC         = DMA_InitStruct->DMA_PeripheralInc;
@@ -103,7 +184,7 @@ void DMA_Init(DMA_Channel_TypeDef *DMA_Channelx, DMA_InitTypeDef *DMA_InitStruct
         DMA_Channelx->CTL.SRC_TR_WIDTH = DMA_InitStruct->DMA_PeripheralDataSize;
         DMA_Channelx->CTL.DST_TR_WIDTH = DMA_InitStruct->DMA_MemoryDataSize;
     } else {
-        DMA_Channelx->CTL.DST_MSIZE    = 0;
+        DMA_Channelx->CTL.DST_MSIZE    = (DMA_InitStruct->DMA_PeripheralHandshake >> 8) & 0x7;
         DMA_Channelx->SAR.ADDR         = DMA_InitStruct->DMA_MemoryBaseAddr;
         DMA_Channelx->DAR.ADDR         = DMA_InitStruct->DMA_PeripheralBaseAddr;
         DMA_Channelx->CTL.SINC         = DMA_InitStruct->DMA_MemoryInc;
