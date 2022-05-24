@@ -22,6 +22,4 @@ void     main(void)
     if (CRC_CalcCRC(0x12345678) == 0xb42c) {
         debug("CRC success!");
     }
-
-    debug("%x\n", CRC_CalcBlockCRC(adc, 1));
 }

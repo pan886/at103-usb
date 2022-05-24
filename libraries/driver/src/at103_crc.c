@@ -48,9 +48,15 @@ void CRC_Seed_Config(uint16_t value)
 uint16_t CRC_CalcBlockCRC(uint32_t pBuffer[], uint32_t BufferLength)
 {
     uint32_t index = 0;
+    uint32_t input = 0;
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, DISABLE);
+    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, ENABLE);
+    CRC_Clear_Value();
 
     for (index = 0; index < BufferLength; index++) {
-        CRC->CRC_IN = pBuffer[index];
+        input = (pBuffer[index] & 0xff) << 24 | ((pBuffer[index] & 0xff00) >> 8) << 16 | ((pBuffer[index] & 0xff0000) >> 16) << 8 | (pBuffer[index] & 0xff000000) >> 24;
+        ;
+        CRC->CRC_IN = input;
     }
     return (CRC->CRC_OUT.COUT);
 }
