@@ -58,4 +58,12 @@ void CRC_Input_Control(uint8_t invout);
  */
 void CRC_Seed_Config(uint16_t value);
 
+/**
+ * @brief  Computes the 16-bit CRC of a given buffer of data word(32-bit).
+ * @param[in] pBuffer: pointer to the buffer containing the data to be computed.
+ * @param[in] BufferLength: length of the buffer to be computed.		
+ * @return uint16_t: 16-bit CRC.
+ */
+uint16_t CRC_CalcBlockCRC(uint32_t pBuffer[], uint32_t BufferLength);
+
 #endif
