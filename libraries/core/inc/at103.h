@@ -1511,42 +1511,6 @@ typedef struct
 
 } ADC_TypeDef;
 
-<<<<<<< HEAD
-typedef struct
-{
-
-    uint32_t CRC_IN;
-    uint32_t RESERVED[16380];
-    union {
-        struct
-        {
-            uint32_t COUT : 16;
-            uint32_t RESERVED : 16;
-        };
-        __IOM uint32_t value;
-    } CRC_OUT;
-
-    union {
-        struct
-        {
-            uint32_t INVOUT : 1;
-            uint32_t CLEAR : 1;
-            uint32_t RESERVED : 30;
-        };
-        __IOM uint32_t value;
-    } CRC_CTL;
-
-    union {
-        struct
-        {
-            uint32_t SEED : 16;
-            uint32_t RESERVED : 16;
-        };
-        __IOM uint32_t value;
-    } CRCSEED;
-
-} CRC_TypeDef;
-=======
 /**
  * @brief FLASH Controller Interface
  */
@@ -1652,7 +1616,41 @@ typedef struct {
     __IOM uint32_t SEC_P6;
     __IOM uint32_t SEC_P7;
 } FLASH_TypeDef;
->>>>>>> master
+
+typedef struct
+{
+
+    uint32_t CRC_IN;
+    uint32_t RESERVED[16380];
+    union {
+        struct
+        {
+            uint32_t COUT : 16;
+            uint32_t RESERVED : 16;
+        };
+        __IOM uint32_t value;
+    } CRC_OUT;
+
+    union {
+        struct
+        {
+            uint32_t INVOUT : 1;
+            uint32_t CLEAR : 1;
+            uint32_t RESERVED : 30;
+        };
+        __IOM uint32_t value;
+    } CRC_CTL;
+
+    union {
+        struct
+        {
+            uint32_t SEED : 16;
+            uint32_t RESERVED : 16;
+        };
+        __IOM uint32_t value;
+    } CRCSEED;
+
+} CRC_TypeDef;
 
 /** Peripheral declaration */
 #define ICACHE       ((ICACHE_TypeDef *)ICACHE_BASE)

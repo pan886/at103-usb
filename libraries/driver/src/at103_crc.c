@@ -44,4 +44,14 @@ void CRC_Seed_Config(uint16_t value)
 {
     CRC->CRCSEED.SEED = value;
 }
+
+uint16_t CRC_CalcBlockCRC(uint32_t pBuffer[], uint32_t BufferLength)
+{
+    uint32_t index = 0;
+
+    for (index = 0; index < BufferLength; index++) {
+        CRC->CRC_IN = pBuffer[index];
+    }
+    return (CRC->CRC_OUT.COUT);
+}
 #endif

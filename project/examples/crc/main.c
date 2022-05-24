@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2022 Icore, Inc
  */
 #include "at103.h"
-
-void main(void)
+uint32_t adc[] = {0x2};
+void     main(void)
 {
     pll_init();
     sys_io_init();
@@ -22,4 +22,6 @@ void main(void)
     if (CRC_CalcCRC(0x12345678) == 0xb42c) {
         debug("CRC success!");
     }
+
+    debug("%x\n", CRC_CalcBlockCRC(adc, 1));
 }
