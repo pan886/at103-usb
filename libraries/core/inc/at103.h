@@ -1617,6 +1617,141 @@ typedef struct {
     __IOM uint32_t SEC_P7;
 } FLASH_TypeDef;
 
+/**
+ * @brief SPI Peripheral Interface
+ */
+typedef struct
+{
+    __IOM uint32_t TXREG; /**< Transmit Data Register. */
+    __IM uint32_t  RXREG; /**< Receive Data Register. */
+    union {
+        struct
+        {
+            __IM uint32_t TXEPT : 1;     /**< Transmitter FIFO and TX shifer are empty. */
+            __IM uint32_t RXAVL : 1;     /**< Receiver FIFO has a complete word. */
+            __IM uint32_t TXFULL : 1;    /**< Transmitter FIFO is full. */
+            __IM uint32_t RXAVL_4 : 1;   /**< Receiver FIFO has more than 4 complete words. */
+            __IM          uint32_t : 28; /**< Reserved. */
+        };
+        __IM uint32_t value;
+    } CSTAT;
+    union {
+        struct
+        {
+            __IM uint32_t TX_INTF : 1;          /**< Transmitter FIFO available interrupt flag.Depend on txtlf */
+            __IM uint32_t RX_INTF : 1;          /**< Receiver data available interrupt flag.Depend on rxtlf */
+            __IM uint32_t UNDERRUN_INTF : 1;    /**< SPI slave transmitter underrun flag bit. */
+            __IM uint32_t RXOERR_INTF : 1;      /**< Receiver Overrun Error interrupt Flag bit. */
+            __IM uint32_t RXMATCH_INTF : 1;     /**< The bit is set when SPI completes a receive task. */
+            __IM uint32_t RXFIFO_FULL_INTF : 1; /**< RX FIFO Full interrupt flag bit. */
+            __IM uint32_t TXEPT_INTF : 1;       /**< Transmitter empty interrupt flag bit. */
+            __IM uint32_t TXMATCH_INTF : 1;     /**< The bit is set when SPI completes a transmit task.  */
+            __IM          uint32_t : 24;        /**< Reserved. */
+        };
+        __IM uint32_t value;
+    } INTSTAT;
+    union {
+        struct
+        {
+            __IOM uint32_t TXIEN : 1;           /**< Transmitter FIFO empty interrupt enable bit. */
+            __IOM uint32_t RXIEN : 1;           /**< Receiver FIFO interrupt enable bit. */
+            __IOM uint32_t UNDERRUNEN : 1;      /**< SPI slave transmitter underrun interrupt enable bit. */
+            __IOM uint32_t RXOERREN : 1;        /**< Receiver Overrun Error interrupt enable bit. */
+            __IOM uint32_t RXMATCHEN : 1;       /**< Receive data completed interrupt enable bit. */
+            __IOM uint32_t RXFIFO_FULL_IEN : 1; /**< RX FIFO Full interrupt enable bit. */
+            __IOM uint32_t TXEPT_IEN : 1;       /**< Transmitter empty interrupt enable bit. */
+            __IOM uint32_t TXMATCHEN : 1;       /**< Transmit data complete interrupt enable bit.  */
+            __IOM          uint32_t : 24;       /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } INTENA;
+    union {
+        struct
+        {
+            __IOM uint32_t TXICLR : 1;           /**< Transmitter FIFO empty interrupt clear bit. */
+            __IOM uint32_t RXICLR : 1;           /**< Receiver FIFO interrupt clear bit. */
+            __IOM uint32_t UNDERRUNCLR : 1;      /**< SPI slave transmitter underrun interrupt clear bit. */
+            __IOM uint32_t RXOERRCLR : 1;        /**< Receiver Overrun Error interrupt clear bit. */
+            __IOM uint32_t RXMATCHCLR : 1;       /**< Receive data completed interrupt clear bit. */
+            __IOM uint32_t RXFIFO_FULL_ICLR : 1; /**< RX FIFO Full interrupt clear bit. */
+            __OM uint32_t  TXEPT_ICLR : 1;       /**< Transmitter empty interrupt clear bit. */
+            __IOM uint32_t TXMATCHCLR : 1;       /**< Transmit data completed interrupt clear bit.  */
+            __IOM          uint32_t : 24;        /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } INTCLR;
+    union {
+        struct
+        {
+            __IOM uint32_t SPIEN : 1;     /**< SPI Select bit. */
+            __IOM uint32_t INT_EN : 1;    /**< SPI interrupt enable bit. */
+            __IOM uint32_t MM : 1;        /**< Master Mode bit. */
+            __IOM uint32_t TXEN : 1;      /**< Transmit Enable bit. */
+            __IOM uint32_t RXEN : 1;      /**< Receive Enable bit. */
+            __IOM uint32_t RXTLF : 2;     /**< RX FIFO trigger level bit. */
+            __IOM uint32_t TXTLF : 2;     /**< TX FIFO trigger level bit. */
+            __IOM uint32_t DMAMODE : 1;   /**< DMA access mode bit. */
+            __IOM uint32_t CSN_SEL : 1;   /**< Only support software method. */
+            __IOM          uint32_t : 1;  /**< Reserved. */
+            __IM           uint32_t : 2;  /**< Reserved. */
+            __IOM uint32_t TIMODE : 1;    /**< TI mode.  */
+            __IM           uint32_t : 17; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } GCTL;
+    union {
+        struct
+        {
+            __IOM uint32_t CKPH : 1;      /**< Clock Phase Select bit . */
+            __IOM uint32_t CKPL : 1;      /**< SPI Clock Polarity Select bit. */
+            __IOM uint32_t LSBFE : 1;     /**< LSB First Enable. */
+            __IOM          uint32_t : 1;  /**< Reserved. */
+            __IOM uint32_t RXEDGE : 1;    /**< Master mode rx data sample edge select. */
+            __IOM uint32_t TXEDGE : 1;    /**< Slave mode tx data transmit phase adjust bit. */
+            __IM           uint32_t : 2;  /**< Reserved. */
+            __IOM uint32_t SPILEN : 5;    /**< spi length bits(ti_mode only support 4to31 bit). */
+            __IOM uint32_t TX_STITCH : 1; /**< Transmit data stitch. */
+            __IOM uint32_t RX_STITCH : 1; /**< Receive data stitch.  */
+            __IM           uint32_t : 17; /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } CCTL;
+    union {
+        struct
+        {
+            __IOM uint32_t BAUDRATE : 16; /**< The SPI Baud Rate Control register for baud rate. */
+            __IOM          uint32_t : 16; /**< Reserved .*/
+        };
+        __IOM uint32_t value;
+    } SPBRG;
+
+    union {
+        struct
+        {
+            __IOM uint32_t RXDATANUM : 16; /**< A count of to be received beats in next receive process. */
+            __IOM          uint32_t : 16;  /**< Reserved .*/
+        };
+        __IOM uint32_t value;
+    } RXDNR;
+    union {
+        struct
+        {
+            __IOM uint32_t RXDATANUM : 16; /**< A count of to be transmited beats in next transmitter process. */
+            __IOM          uint32_t : 16;  /**< Reserved .*/
+        };
+        __IOM uint32_t value;
+    } TXDNR;
+
+    union {
+        struct
+        {
+            __IOM uint32_t CSN : 8;       /**< Chip select output signal in Master mode. */
+            __IOM          uint32_t : 24; /**< Reserved .*/
+        };
+        __IOM uint32_t value;
+    } SCSR;
+} SPI_TypeDef;
+
 /** Peripheral declaration */
 #define ICACHE       ((ICACHE_TypeDef *)ICACHE_BASE)
 #define RCC          ((RCC_TypeDef *)RCC_BASE)
@@ -1644,7 +1779,8 @@ typedef struct {
 #define ADC1         ((ADC_TypeDef *)ADC1_BASE)
 #define ADC2         ((ADC_TypeDef *)ADC2_BASE)
 #define FLASH        ((FLASH_TypeDef *)FLASH_R_BASE)
-
+#define SPI1         ((SPI_TypeDef *)SPI1_BASE)
+#define SPI2         ((SPI_TypeDef *)SPI2_BASE)
 /** system level driver */
 #include "at103_icache.h"
 
@@ -1688,6 +1824,10 @@ typedef struct {
 #ifdef FLASH_MODULE_ENABLED
 #include "at103_flash.h"
 #endif /* FLASH_MODULE_ENABLED */
+
+#ifdef SPI_MODULE_ENABLED
+#include "at103_spi.h"
+#endif /* SPI_MODULE_ENABLED */
 
 /**
  * @brief  The assert_param macro is used for function's parameters check.
