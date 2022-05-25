@@ -12,6 +12,22 @@
 
 #define EXTI_LINENONE ((uint32_t)0x00000) /* No interrupt selected */
 
+#define IS_EXTI_MODE(MODE) (((MODE) == EXTI_Mode_Interrupt) || ((MODE) == EXTI_Mode_Event))
+
+#define IS_EXTI_TRIGGER(TRIGGER) (((TRIGGER) == EXTI_Trigger_Rising) || \
+                                  ((TRIGGER) == EXTI_Trigger_Falling) || \
+                                  ((TRIGGER) == EXTI_Trigger_Rising_Falling))
+
+#define IS_EXTI_LINE(LINE)     ((((LINE) & (uint32_t)0xFFFF0000) == 0x0) && (LINE) != (uint16_t)0x0)
+#define IS_GET_EXTI_Line(LINE) ((LINE = EXTI_Line0) || (LINE = EXTI_Line1) || \
+                                (LINE = EXTI_Line2) || (LINE = EXTI_Line3) || \
+                                (LINE = EXTI_Line4) || (LINE = EXTI_Line5) || \
+                                (LINE = EXTI_Line6) || (LINE = EXTI_Line7) || \
+                                (LINE = EXTI_Line8) || (LINE = EXTI_Line9) || \
+                                (LINE = EXTI_Line10) || (LINE = EXTI_Line11) || \
+                                (LINE = EXTI_Line12) || (LINE = EXTI_Line13) || \
+                                (LINE = EXTI_Line14) || (LINE = EXTI_Line15))
+
 void EXTI_DeInit(void)
 {
     EXTI->IMR = 0x0;

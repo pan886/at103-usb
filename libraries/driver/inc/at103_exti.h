@@ -1,6 +1,9 @@
 /**
  * @file at103_exti.h
- * @brief This file contains all the functions prototypes for the EXTI firmware library.
+ * @brief This file contains all the functions prototypes for the EXTI firmware library. \n
+ *        How to use this driver? \n
+ * (+) Use EXTI_Init(...) with EXTI initialization structure to initialize a EXTI line, this module must work with the GPIO module. \n
+ *     For details on the EXTI initialization structure, see "EXTI_InitTypeDef". \n
  * @author Dong Qin (dong.qin@timesintelli.com)
  * @version 1.0
  * @date 2022-03-11
@@ -19,65 +22,47 @@ extern "C" {
  * @brief EXTI mode enumeration.
  */
 typedef enum {
-    EXTI_Mode_Interrupt = 0x00,
-    EXTI_Mode_Event
+    EXTI_Mode_Interrupt = 0x00, /**< EXTI interrupt mode. */
+    EXTI_Mode_Event             /**< EXTI event mode. */
 } EXTIMode_TypeDef;
-
-#define IS_EXTI_MODE(MODE) (((MODE) == EXTI_Mode_Interrupt) || ((MODE) == EXTI_Mode_Event))
 
 /**
  * @brief EXTI Trigger enumeration.
  */
 typedef enum {
-    EXTI_Trigger_Falling = 0x1,
-    EXTI_Trigger_Rising,
-    EXTI_Trigger_Rising_Falling
+    EXTI_Trigger_Falling = 0x1, /**< EXTI falling edge trigger mode. */
+    EXTI_Trigger_Rising,        /**< EXTI rising edge trigger mode. */
+    EXTI_Trigger_Rising_Falling /**< EXTI rising and falling edge trigger mode. */
 } EXTITrigger_TypeDef;
-
-#define IS_EXTI_TRIGGER(TRIGGER) (((TRIGGER) == EXTI_Trigger_Rising) || \
-                                  ((TRIGGER) == EXTI_Trigger_Falling) || \
-                                  ((TRIGGER) == EXTI_Trigger_Rising_Falling))
 
 /**
  * @brief EXTI Init Structrure definition.
  */
 typedef struct
 {
-    uint32_t            EXTI_Line;    /**< Specifies the EXTI lines to be enabled or disabled*/
-    EXTIMode_TypeDef    EXTI_Mode;    /**< Specifies the mode for the EXTI lines. This parameter can be a value of @ref EXTIMode_TypeDef */
-    EXTITrigger_TypeDef EXTI_Trigger; /**< Specifies the trigger signal active edge for the EXTI lines*/
-    FunctionalState     EXTI_LineCmd; /**< Specifies the new state of the selected EXTI lines*/
+    uint32_t            EXTI_Line;    /**< Specifies the EXTI lines to be enabled or disabled. */
+    EXTIMode_TypeDef    EXTI_Mode;    /**< Specifies the mode for the EXTI lines. This parameter can be a value of EXTIMode_TypeDef. */
+    EXTITrigger_TypeDef EXTI_Trigger; /**< Specifies the trigger signal active edge for the EXTI lines. */
+    FunctionalState     EXTI_LineCmd; /**< Specifies the new state of the selected EXTI lines. */
 } EXTI_InitTypeDef;
 
-/**
- * @brief EXTI_Lines.
- */
-#define EXTI_Line0  ((uint32_t)0x0001)
-#define EXTI_Line1  ((uint32_t)0x0002)
-#define EXTI_Line2  ((uint32_t)0x0004)
-#define EXTI_Line3  ((uint32_t)0x0008)
-#define EXTI_Line4  ((uint32_t)0x0010)
-#define EXTI_Line5  ((uint32_t)0x0020)
-#define EXTI_Line6  ((uint32_t)0x0040)
-#define EXTI_Line7  ((uint32_t)0x0080)
-#define EXTI_Line8  ((uint32_t)0x0100)
-#define EXTI_Line9  ((uint32_t)0x0200)
-#define EXTI_Line10 ((uint32_t)0x0400)
-#define EXTI_Line11 ((uint32_t)0x0800)
-#define EXTI_Line12 ((uint32_t)0x1000)
-#define EXTI_Line13 ((uint32_t)0x2000)
-#define EXTI_Line14 ((uint32_t)0x4000)
-#define EXTI_Line15 ((uint32_t)0x8000)
+#define EXTI_Line0  ((uint32_t)0x0001) /**< EXTI line 0. */
+#define EXTI_Line1  ((uint32_t)0x0002) /**< EXTI line 1. */
+#define EXTI_Line2  ((uint32_t)0x0004) /**< EXTI line 2. */
+#define EXTI_Line3  ((uint32_t)0x0008) /**< EXTI line 3. */
+#define EXTI_Line4  ((uint32_t)0x0010) /**< EXTI line 4. */
+#define EXTI_Line5  ((uint32_t)0x0020) /**< EXTI line 5. */
+#define EXTI_Line6  ((uint32_t)0x0040) /**< EXTI line 6. */
+#define EXTI_Line7  ((uint32_t)0x0080) /**< EXTI line 7. */
+#define EXTI_Line8  ((uint32_t)0x0100) /**< EXTI line 8. */
+#define EXTI_Line9  ((uint32_t)0x0200) /**< EXTI line 9. */
+#define EXTI_Line10 ((uint32_t)0x0400) /**< EXTI line 10. */
+#define EXTI_Line11 ((uint32_t)0x0800) /**< EXTI line 11. */
+#define EXTI_Line12 ((uint32_t)0x1000) /**< EXTI line 12. */
+#define EXTI_Line13 ((uint32_t)0x2000) /**< EXTI line 13. */
+#define EXTI_Line14 ((uint32_t)0x4000) /**< EXTI line 14. */
+#define EXTI_Line15 ((uint32_t)0x8000) /**< EXTI line 15. */
 
-#define IS_EXTI_LINE(LINE)     ((((LINE) & (uint32_t)0xFFFF0000) == 0x0) && (LINE) != (uint16_t)0x0)
-#define IS_GET_EXTI_Line(LINE) ((LINE = EXTI_Line0) || (LINE = EXTI_Line1) || \
-                                (LINE = EXTI_Line2) || (LINE = EXTI_Line3) || \
-                                (LINE = EXTI_Line4) || (LINE = EXTI_Line5) || \
-                                (LINE = EXTI_Line6) || (LINE = EXTI_Line7) || \
-                                (LINE = EXTI_Line8) || (LINE = EXTI_Line9) || \
-                                (LINE = EXTI_Line10) || (LINE = EXTI_Line11) || \
-                                (LINE = EXTI_Line12) || (LINE = EXTI_Line13) || \
-                                (LINE = EXTI_Line14) || (LINE = EXTI_Line15))
 /**
  * @brief Deinitializes the EXTI peripheral registers to their default reset values.
  */
