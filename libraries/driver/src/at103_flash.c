@@ -25,6 +25,16 @@
 #define TimeCEC              ((uint32_t)12000000)
 #define TimeSEC              ((uint32_t)5000000)
 
+#define IS_FLASH_PREFETCHBUFFER_STATE(STATE) (((STATE) == FLASH_PrefetchBuffer_Enable) || \
+                                              ((STATE) == FLASH_PrefetchBuffer_Disable))
+
+#define IS_FLASH_ADDRESS(ADDRESS) (((ADDRESS) >= FLASH_BASE) && ((ADDRESS) < FLASH_BASE + (uint32_t)0x40400))
+
+#define IS_FLASH_CLEAR_FLAG(FLAG) (((FLAG) == FLASH_FLAG_BUS_ERR) || ((FLAG) == FLASH_FLAG_UNAL_ERR))
+#define IS_FLASH_GET_FLAG(FLAG)   (((FLAG) == FLASH_FLAG_BUS_ERR) || ((FLAG) == FLASH_FLAG_UNAL_ERR))
+
+#define IS_FLASH_WRPROT_PAGE(PAGE) (((PAGE) < (uint32_t)0x100) && (((PAGE) & (uint32_t)0xFF) != (uint32_t)0))
+
 void FLASH_UpdateLatency(void)
 {
     uint32_t sys_clk      = 0;

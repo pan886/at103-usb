@@ -11,6 +11,80 @@
 
 #ifdef GPIO_MODULE_ENABLED
 
+#define IS_GPIO_ALL_PERIPH(PERIPH) (((PERIPH) == GPIOA) || \
+                                    ((PERIPH) == GPIOB) || \
+                                    ((PERIPH) == GPIOC) || \
+                                    ((PERIPH) == GPIOD) || \
+                                    ((PERIPH) == GPIOE))
+
+#define IS_GPIO_SPEED(SPEED) (((SPEED) == GPIO_Speed_10MHz) || ((SPEED) == GPIO_Speed_2MHz) || \
+                              ((SPEED) == GPIO_Speed_50MHz))
+
+#define IS_GPIO_MODE(MODE) (((MODE) == GPIO_Mode_AIN) || ((MODE) == GPIO_Mode_IN_FLOATING) || \
+                            ((MODE) == GPIO_Mode_IPD) || ((MODE) == GPIO_Mode_IPU) || \
+                            ((MODE) == GPIO_Mode_Out_OD) || ((MODE) == GPIO_Mode_Out_PP) || \
+                            ((MODE) == GPIO_Mode_AF))
+
+#define IS_GPIO_BIT_ACTION(ACTION) (((ACTION) == Bit_RESET) || ((ACTION) == Bit_SET))
+
+#define IS_GPIO_PIN(PIN) ((((PIN) & (uint16_t)0x00) == 0x00) && ((PIN) != (uint16_t)0x00))
+
+#define IS_GET_GPIO_PIN(PIN) (((PIN) == GPIO_Pin_0) || \
+                              ((PIN) == GPIO_Pin_1) || \
+                              ((PIN) == GPIO_Pin_2) || \
+                              ((PIN) == GPIO_Pin_3) || \
+                              ((PIN) == GPIO_Pin_4) || \
+                              ((PIN) == GPIO_Pin_5) || \
+                              ((PIN) == GPIO_Pin_6) || \
+                              ((PIN) == GPIO_Pin_7) || \
+                              ((PIN) == GPIO_Pin_8) || \
+                              ((PIN) == GPIO_Pin_9) || \
+                              ((PIN) == GPIO_Pin_10) || \
+                              ((PIN) == GPIO_Pin_11) || \
+                              ((PIN) == GPIO_Pin_12) || \
+                              ((PIN) == GPIO_Pin_13) || \
+                              ((PIN) == GPIO_Pin_14) || \
+                              ((PIN) == GPIO_Pin_15))
+
+#define IS_GPIO_REMAP(REMAP) (((REMAP) == GPIO_Remap_SPI1) || ((REMAP) == GPIO_Remap_I2C1) || \
+                              ((REMAP) == GPIO_Remap_USART1) || ((REMAP) == GPIO_Remap_USART2) || \
+                              ((REMAP) == GPIO_PartialRemap_USART3) || ((REMAP) == GPIO_FullRemap_USART3) || \
+                              ((REMAP) == GPIO_PartialRemap_TIM1) || ((REMAP) == GPIO_FullRemap_TIM1) || \
+                              ((REMAP) == GPIO_PartialRemap1_TIM2) || ((REMAP) == GPIO_PartialRemap2_TIM2) || \
+                              ((REMAP) == GPIO_FullRemap_TIM2) || ((REMAP) == GPIO_PartialRemap_TIM3) || \
+                              ((REMAP) == GPIO_FullRemap_TIM3) || ((REMAP) == GPIO_Remap_TIM4) || \
+                              ((REMAP) == GPIO_Remap1_CAN) || ((REMAP) == GPIO_Remap2_CAN) || \
+                              ((REMAP) == GPIO_Remap_PD01) || ((REMAP) == GPIO_Remap_SPI2))
+
+#define IS_GPIO_EVENTOUT_PORT_SOURCE(PORTSOURCE) (((PORTSOURCE) == GPIO_PortSourceGPIOA) || \
+                                                  ((PORTSOURCE) == GPIO_PortSourceGPIOB) || \
+                                                  ((PORTSOURCE) == GPIO_PortSourceGPIOC) || \
+                                                  ((PORTSOURCE) == GPIO_PortSourceGPIOD) || \
+                                                  ((PORTSOURCE) == GPIO_PortSourceGPIOE))
+
+#define IS_GPIO_EXTI_PORT_SOURCE(PORTSOURCE) (((PORTSOURCE) == GPIO_PortSourceGPIOA) || \
+                                              ((PORTSOURCE) == GPIO_PortSourceGPIOB) || \
+                                              ((PORTSOURCE) == GPIO_PortSourceGPIOC) || \
+                                              ((PORTSOURCE) == GPIO_PortSourceGPIOD) || \
+                                              ((PORTSOURCE) == GPIO_PortSourceGPIOE))
+
+#define IS_GPIO_PIN_SOURCE(PINSOURCE) (((PINSOURCE) == GPIO_PinSource0) || \
+                                       ((PINSOURCE) == GPIO_PinSource1) || \
+                                       ((PINSOURCE) == GPIO_PinSource2) || \
+                                       ((PINSOURCE) == GPIO_PinSource3) || \
+                                       ((PINSOURCE) == GPIO_PinSource4) || \
+                                       ((PINSOURCE) == GPIO_PinSource5) || \
+                                       ((PINSOURCE) == GPIO_PinSource6) || \
+                                       ((PINSOURCE) == GPIO_PinSource7) || \
+                                       ((PINSOURCE) == GPIO_PinSource8) || \
+                                       ((PINSOURCE) == GPIO_PinSource9) || \
+                                       ((PINSOURCE) == GPIO_PinSource10) || \
+                                       ((PINSOURCE) == GPIO_PinSource11) || \
+                                       ((PINSOURCE) == GPIO_PinSource12) || \
+                                       ((PINSOURCE) == GPIO_PinSource13) || \
+                                       ((PINSOURCE) == GPIO_PinSource14) || \
+                                       ((PINSOURCE) == GPIO_PinSource15))
+
 void GPIO_DeInit(GPIO_TypeDef *GPIOx)
 {
     /* Check the parameters */
