@@ -48,6 +48,19 @@ typedef enum {
     CHARACTER_TIMEOUT = 0x0c
 } USART_InterruptID;
 
+/* Bit definition for LCR and IIR\FCR register */
+#define LCR_DLAB                ((uint16_t)0x0080)
+#define IIR_FCR_IIR_FIFO_ENABLE ((uint16_t)0x00C0)
+#define IIR_FCR_FCR_FIFOE       ((uint16_t)0x0001)
+
+/**
+ * @brief USART_FIFO_STATE
+ */
+#define USART_FIFO_DISABLES       ((uint16_t)0x00000000)
+#define USART_FIFO_ENABLES        ((uint16_t)0x000000C0)
+#define IS_USART_FIFO_MODE(STATE) (((STATE) == USART_FIFO_DISABLES) || \
+                                   ((STATE) == USART_FIFO_ENABLES))
+
 /**
  * @brief USART_Exported_Constants
  */
@@ -104,6 +117,7 @@ typedef enum {
 #define USART_IT_IER_MSI       0x08 /**< Modem status interrupt. */
 #define IS_USART_CONFIG_IT(IT) (((IT) == USART_IT_IER_RDI) || ((IT) == USART_IT_IER_THRI) || \
                                 ((IT) == USART_IT_IER_RLSI) || ((IT) == USART_IT_IER_MSI))
+
 /**
  * @brief USART_Interrupt_Flags
  */
@@ -119,36 +133,88 @@ typedef enum {
 /**
  * @brief USART_Line Status_Flags
  */
-#define USART_FLAG_LSR_DR       0x01 /* Data ready */
-#define USART_FLAG_LSR_OE       0x02 /* Overrun */
-#define USART_FLAG_LSR_PE       0x04 /* Parity error */
-#define USART_FLAG_LSR_FE       0x08 /* Framing error */
-#define USART_FLAG_LSR_BI       0x10 /* Break */
-#define USART_FLAG_LSR_THRE     0x20 /* Xmit holding register empty */
-#define USART_FLAG_LSR_TEMT     0x40 /* Xmitter empty */
-#define USART_FLAG_LSR_ERR      0x80 /* Error */
+#define USART_FLAG_LSR_DR       0x0001 /**< Data ready */
+#define USART_FLAG_LSR_OE       0x0002 /**< Overrun */
+#define USART_FLAG_LSR_PE       0x0004 /**< Parity error */
+#define USART_FLAG_LSR_FE       0x0008 /**< Framing error */
+#define USART_FLAG_LSR_BI       0x0010 /**< Break */
+#define USART_FLAG_LSR_THRE     0x0020 /**< Xmit holding register empty */
+#define USART_FLAG_LSR_TEMT     0x0040 /**< Xmitter empty */
+#define USART_FLAG_LSR_ERR      0x0080 /**< Error */
 #define IS_USART_LSR_FLAG(FLAG) (((FLAG) == USART_FLAG_LSR_DR) || ((FLAG) == USART_FLAG_LSR_OE) || \
                                  ((FLAG) == USART_FLAG_LSR_PE) || ((FLAG) == USART_FLAG_LSR_FE) || \
                                  ((FLAG) == USART_FLAG_LSR_BI) || ((FLAG) == USART_FLAG_LSR_THRE) || \
                                  ((FLAG) == USART_FLAG_LSR_TEMT) || ((FLAG) == USART_FLAG_LSR_ERR))
 
+#define IS_USART_CLEAR_FLAG(FLAG) ((((FLAG) & (uint16_t)0xFFFF) == 0x0000) && ((FLAG) != 0x0000))
+
 /**
  * @brief USART_Modem_Status_Flags
  */
-#define USART_FLAG_MSR_DCD      0x80 /* Data Carrier Detect */
-#define USART_FLAG_MSR_RI       0x40 /* Ring Indicator */
-#define USART_FLAG_MSR_DSR      0x20 /* Data Set Ready */
-#define USART_FLAG_MSR_CTS      0x10 /* Clear to Send */
-#define USART_FLAG_MSR_DDCD     0x08 /* Delta DCD */
-#define USART_FLAG_MSR_TERI     0x04 /* Trailing edge ring indicator */
-#define USART_FLAG_MSR_DDSR     0x02 /* Delta DSR */
-#define USART_FLAG_MSR_DCTS     0x01 /* Delta CTS */
+#define USART_FLAG_MSR_DCD      0x80 /**< Data Carrier Detect */
+#define USART_FLAG_MSR_RI       0x40 /**< Ring Indicator */
+#define USART_FLAG_MSR_DSR      0x20 /**< Data Set Ready */
+#define USART_FLAG_MSR_CTS      0x10 /**< Clear to Send */
+#define USART_FLAG_MSR_DDCD     0x08 /**< Delta DCD */
+#define USART_FLAG_MSR_TERI     0x04 /**< Trailing edge ring indicator */
+#define USART_FLAG_MSR_DDSR     0x02 /**< Delta DSR */
+#define USART_FLAG_MSR_DCTS     0x01 /**< Delta CTS */
 #define IS_USART_MSR_FLAG(FLAG) (((FLAG) == USART_FLAG_MSR_DCD) || ((FLAG) == USART_FLAG_MSR_RI) || \
                                  ((FLAG) == USART_FLAG_MSR_DSR) || ((FLAG) == USART_FLAG_MSR_CTS) || \
                                  ((FLAG) == USART_FLAG_MSR_DDCD) || ((FLAG) == USART_FLAG_MSR_TERI) || \
                                  ((FLAG) == USART_FLAG_MSR_DDSR) || ((FLAG) == USART_FLAG_MSR_DCTS))
 
 #define IS_USART_BAUDRATE(BAUDRATE) (((BAUDRATE) > 0) && ((BAUDRATE) < 0x0044AA21))
+
+/**
+ * @brief USART_DMA_Mode
+ */
+#define USART_DMA_Mode0        0x00000000
+#define USART_DMA_Mode1        0x00000008
+#define IS_USART_DMAMode(MODE) (((MODE) == USART_DMA_Mode0) || ((MODE) == USART_DMA_Mode1))
+
+/**
+ * @brief USART_DMA_Requests 
+ */
+#define USART_DMAReq_Tx         ((uint16_t)0x00000004)
+#define USART_DMAReq_Rx         ((uint16_t)0x00000002)
+#define IS_USART_DMAREQ(DMAREQ) ((((DMAREQ) & (uint16_t)0xFFFFFFF9) == 0x00000000) && ((DMAREQ) != (uint16_t)0x00000000))
+
+/**
+ * @brief USART_IrDA_Low_Power 
+ */
+#define USART_IrDAMode_LowPower  ((uint16_t)0x00FF)
+#define USART_IrDAMode_Normal    ((uint16_t)0x0000)
+#define IS_USART_IRDA_MODE(MODE) (((MODE) == USART_IrDAMode_LowPower) || \
+                                  ((MODE) == USART_IrDAMode_Normal))
+
+/**
+ * @brief USART_FIFO_Control
+ */
+#define USART_FIFO_FCR_FIFIOE              0x01 /**< FIFO Enable (or FIFOE) */
+#define USART_FIFO_FCR_RFIFOR              0x02 /**< RCVR FIFO Reset (or RFIFOR) */
+#define USART_FIFO_FCR_XFIFOR              0x04 /**< XMIT FIFO Reset (or XFIFOR) */
+#define USART_FIFO_FCR_DMAM                0x08 /**< DMA Mode (or DMAM) */
+#define USART_FIFO_FCR_TET                 0x30 /**< TX Empty Trigger (or TET) */
+#define USART_FIFO_FCR_RT                  0xC0 /**< RCVR Trigger (or RT) */
+#define IS_USART_FIFO_FCR_CONTROL(CONTROL) (((CONTROL) == USART_FIFO_FCR_FIFIOE) || ((CONTROL) == USART_FIFO_FCR_RFIFOR) || \
+                                            ((CONTROL) == USART_FIFO_FCR_XFIFOR) || ((CONTROL) == USART_FIFO_FCR_DMAM) || \
+                                            ((CONTROL) == USART_FIFO_FCR_TET) || ((CONTROL) == USART_FIFO_FCR_RT))
+
+/**
+ * @brief USART_Modem_Control
+ */
+#define USART_Modem_MCR_DTR                 0x01 /**< Data Terminal Ready */
+#define USART_Modem_MCR_RTS                 0x02 /**< Request to Send */
+#define USART_Modem_MCR_OUT1                0x04 /**< OUT1 */
+#define USART_Modem_MCR_OUT2                0x08 /**< OUT2 */
+#define USART_Modem_MCR_LoopBack            0x10 /**< LoopBack Bit */
+#define USART_Modem_MCR_AFCE                0x20 /**< Auto Flow Control Enable */
+#define USART_Modem_MCR_SIRE                0x40 /**< SIR Mode Enable */
+#define IS_USART_Modem_MCR_CONTROL(CONTROL) (((CONTROL) == USART_Modem_MCR_DTR) || ((CONTROL) == USART_Modem_MCR_RTS) || \
+                                             ((CONTROL) == USART_Modem_MCR_OUT1) || ((CONTROL) == USART_Modem_MCR_OUT2) || \
+                                             ((CONTROL) == USART_Modem_MCR_LoopBack) || ((CONTROL) == USART_Modem_MCR_AFCE) || \
+                                             ((CONTROL) == USART_Modem_MCR_SIRE))
 
 /**
  * @brief Deinitializes the USARTx peripheral registers to their default reset values.
@@ -188,6 +254,20 @@ void USART_ITConfig(USART_TypeDef *USARTx, uint16_t USART_IT, FunctionalState Ne
  * @param[in] NewState: new state of the DMA Request sources.
  */
 void USART_DMACmd(USART_TypeDef *USARTx, uint16_t USART_DMAReq, FunctionalState NewState);
+
+/**
+ * @brief Enables or disables the USART FIFO interface.
+ * @param[in] USARTx: Select the USART peripheral.
+ * @param[in] NewState: new state of the USART FIFO. 
+ */
+void USART_FIFOCmd(USART_TypeDef *USARTx, FunctionalState NewState);
+
+/**
+ * @brief Enables or disables the FIFO mode.
+ * @param[in] USARTx: Select the USART or the UART peripheral.  
+ * @param[in] USART_FIFO: FIFO mode.
+ */
+void USART_FIFOConfig(USART_TypeDef *USARTx, uint16_t USART_FIFO);
 
 /**
  * @brief Sets the address of the USART node.
