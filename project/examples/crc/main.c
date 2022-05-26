@@ -8,8 +8,8 @@
  * @copyright Copyright (c) 2022 Icore, Inc
  */
 #include "at103.h"
-uint32_t adc[] = {0x2};
-void     main(void)
+
+void main(void)
 {
     pll_init();
     sys_io_init();

@@ -343,7 +343,7 @@ void ADC_Init(ADC_TypeDef *ADCx, ADC_InitTypeDef *ADC_InitStruct);
 
 /**
  * @brief Fills each ADC_InitStruct member with its default value.
- * @param[in] ADC_InitStruct:pointer to an ADC_InitTypeDef structure which will be initialized.
+ * @param[in] ADC_InitStruct pointer to an ADC_InitTypeDef structure which will be initialized.
  * @retval None.
  */
 void ADC_StructInit(ADC_InitTypeDef *ADC_InitStruct);
@@ -364,9 +364,9 @@ void ADC_DMACmd(ADC_TypeDef *ADCx, FunctionalState NewState);
 
 /**
  * @brief Enables or disables the specified ADC interrupts.
- * @param[in] ADCx :where x can be 1 or 2 to select the ADC peripheral. 
- * @param[in] ADC_IT:specifies the ADC interrupt sources to be enabled or disabled.
- * @param[in] NewState:new state of the specified ADC interrupts.
+ * @param[in] ADCx where x can be 1 or 2 to select the ADC peripheral. 
+ * @param[in] ADC_IT specifies the ADC interrupt sources to be enabled or disabled.
+ * @param[in] NewState new state of the specified ADC interrupts.
  */
 void ADC_ITConfig(ADC_TypeDef *ADCx, uint16_t ADC_IT, FunctionalState NewState);
 
@@ -385,21 +385,21 @@ FlagStatus ADC_GetResetCalibrationStatus(ADC_TypeDef *ADCx);
 
 /**
  * @brief Starts the selected ADC calibration process.
- * @param[in] ADCx:where x can be 1 or 2.
+ * @param[in] ADCx where x can be 1 or 2.
  */
 void ADC_StartCalibration(ADC_TypeDef *ADCx);
 
 /**
  * @brief Gets the selected ADC calibration status.
- * @param[in] ADCx:where x can be 1 or 2.
- * @return FlagStatus :the new state of ADC calibration(SET or RESET).
+ * @param[in] ADCx where x can be 1 or 2.
+ * @return FlagStatus the new state of ADC calibration(SET or RESET).
  */
 FlagStatus ADC_GetCalibrationStatus(ADC_TypeDef *ADCx);
 
 /**
  * @brief Enables or disables the selected ADC software start conversion.
- * @param[in] ADCx :where x can be 1 or 2.
- * @param[in] NewState:new state of the selected ADC software start conversion.
+ * @param[in] ADCx  where x can be 1 or 2.
+ * @param[in] NewState new state of the selected ADC software start conversion.
  */
 void ADC_SoftwareStartConvCmd(ADC_TypeDef *ADCx, FunctionalState NewState);
 
@@ -479,8 +479,8 @@ void ADC_ExternalTrigInjectedConvConfig(ADC_TypeDef *ADCx, uint32_t ADC_External
 
 /**
   * @brief Enables or disables the ADCx injected channels conversion through external trigger.
-  * @param[in] ADCx : where x can be 1 or 2 to select the ADC peripheral.
-  * @param[in] NewState:new state of the selected ADC external trigger start of injected conversion.
+  * @param[in] ADCx where x can be 1 or 2 to select the ADC peripheral.
+  * @param[in] NewState new state of the selected ADC external trigger start of injected conversion.
   */
 void ADC_ExternalTrigInjectedConvCmd(ADC_TypeDef *ADCx, FunctionalState NewState);
 
@@ -509,8 +509,8 @@ void ADC_InjectedChannelConfig(ADC_TypeDef *ADCx, uint8_t ADC_Channel, uint8_t R
 
 /**
  * @brief Configures the sequencer length for injected channels
- * @param[in] ADCx : where x can be 1 or 2 to select the ADC peripheral.
- * @param[in] Length:The sequencer length. This parameter must be a number between 1 to 4.
+ * @param[in] ADCx where x can be 1 or 2 to select the ADC peripheral.
+ * @param[in] Length The sequencer length. This parameter must be a number between 1 to 4.
  */
 void ADC_InjectedSequencerLengthConfig(ADC_TypeDef *ADCx, uint8_t Length);
 

@@ -10,6 +10,8 @@
 #include "at103_crc.h"
 #ifdef CRC_MODULE_ENABLED
 
+#define IS_CRC_DATA_INVOUT(INVOUT) (((INVOUT) == CRC_Reverse) || \
+                                    ((ALIGN) == CRC_Not_Reverse))
 void CRC_ResetDR(void)
 {
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, DISABLE);

@@ -1,0 +1,1857 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="at103__dma_8h" kind="file" language="C++">
+    <compoundname>at103_dma.h</compoundname>
+    <includes local="yes">at103.h</includes>
+    <incdepgraph>
+      <node id="2">
+        <label>at103.h</label>
+      </node>
+      <node id="1">
+        <label>libraries/driver/inc/at103_dma.h</label>
+        <link refid="at103__dma_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </incdepgraph>
+    <innerclass refid="structDMA__InitTypeDef" prot="public">DMA_InitTypeDef</innerclass>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="at103__dma_8h_1a51567b748ddac277743c65c20275971a" prot="public" static="no">
+        <name>DMA_DIR_PeripheralDST</name>
+        <initializer>((uint32_t)0x00000001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA data transfer direction: peripheral as destination. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="58" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a5ce120a044359410136695a2c05df68e" prot="public" static="no">
+        <name>DMA_DIR_PeripheralSRC</name>
+        <initializer>((uint32_t)0x00000002)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA data transfer direction: peripheral as source. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="59" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1af7921ea423fb60701a091c508cd0f33a" prot="public" static="no">
+        <name>DMA_PeripheralInc_Enable</name>
+        <initializer>((uint32_t)0x00000000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA peripheral incremented mode enable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="61" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="61" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a0fe3ff9c67bec802dd239fd17c3dbd31" prot="public" static="no">
+        <name>DMA_PeripheralInc_Disable</name>
+        <initializer>((uint32_t)0x00000002)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA peripheral incremented mode disable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="62" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a4e8cb23d039c74bbbf365d7678835bbb" prot="public" static="no">
+        <name>DMA_MemoryInc_Enable</name>
+        <initializer>((uint32_t)0x00000000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA memory incremented mode enable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="64" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a795a277c997048783a383b026f19a5ab" prot="public" static="no">
+        <name>DMA_MemoryInc_Disable</name>
+        <initializer>((uint32_t)0x00000002)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA memory incremented mode disable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="65" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a7577035ae4ff413164000227a8cea346" prot="public" static="no">
+        <name>DMA_PeripheralDataSize_Byte</name>
+        <initializer>((uint32_t)0x00000000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The DMA peripheral data size is Byte. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="67" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ab1988e5005ee65c261018f62866e4585" prot="public" static="no">
+        <name>DMA_PeripheralDataSize_HalfWord</name>
+        <initializer>((uint32_t)0x00000001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The DMA peripheral data size is HalfWord. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="68" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a516ea7a40945d8325fe73e079b245ea1" prot="public" static="no">
+        <name>DMA_PeripheralDataSize_Word</name>
+        <initializer>((uint32_t)0x00000002)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The DMA peripheral data size is Word. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="69" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ad6093bccb60ff9adf81e21c73c58ba17" prot="public" static="no">
+        <name>DMA_MemoryDataSize_Byte</name>
+        <initializer>((uint32_t)0x00000000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The DMA memory data size is Byte. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="71" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a74c9b4e547f5eaaf35d4fd3d01ed5741" prot="public" static="no">
+        <name>DMA_MemoryDataSize_HalfWord</name>
+        <initializer>((uint32_t)0x00000001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The DMA memory data size is HalfWord. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="72" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1aff403722a6f82d4b34c9ef306507bb98" prot="public" static="no">
+        <name>DMA_MemoryDataSize_Word</name>
+        <initializer>((uint32_t)0x00000002)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>The DMA memory data size is Word. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="73" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a36327b14c302098fbc5823ac3f1ae020" prot="public" static="no">
+        <name>DMA_Mode_Circular</name>
+        <initializer>((uint32_t)0x00000003)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA circular mode. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="75" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a36400f5b5095f1102ede4760d7a5959c" prot="public" static="no">
+        <name>DMA_Mode_Normal</name>
+        <initializer>((uint32_t)0x00000000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA normal mode. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="76" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1adccd2f8b2ac24ba4fd485dd5b9b48671" prot="public" static="no">
+        <name>DMA_Priority_VeryHigh</name>
+        <initializer>((uint32_t)0x00000003)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA very high priority level. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="78" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ae2441c0b4d4ba9945a6f4f7d08045a8e" prot="public" static="no">
+        <name>DMA_Priority_High</name>
+        <initializer>((uint32_t)0x00000002)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA high priority level. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="79" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a8e0d4a958f4288c6c759945789490f38" prot="public" static="no">
+        <name>DMA_Priority_Medium</name>
+        <initializer>((uint32_t)0x00000001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA medium priority level. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="80" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1af414e0aa8dd42aee6f83f88ab6175179" prot="public" static="no">
+        <name>DMA_Priority_Low</name>
+        <initializer>((uint32_t)0x00000000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA low priority level. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="81" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a046a1de15235c254c0511c08cae3065a" prot="public" static="no">
+        <name>DMA_M2M_Enable</name>
+        <initializer>((uint32_t)0x00000001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA memory to memory enable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="83" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a86e0a7076f0badd509fac6576f3b5355" prot="public" static="no">
+        <name>DMA_M2M_Disable</name>
+        <initializer>((uint32_t)0x00000002)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA memory to memory disable. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="84" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a06e83dd277e0d3e5635cf8ce8dfd6e16" prot="public" static="no">
+        <name>DMA_IT_TC</name>
+        <initializer>((uint32_t)0x00000001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA transfer complete interrupt </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="86" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1af9d92649d2a0146f663ff253d8f3b59e" prot="public" static="no">
+        <name>DMA_IT_TE</name>
+        <initializer>((uint32_t)0x00000002)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA transfer error interrupt </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="87" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a89cc607d838623e1634d5d2e8c449389" prot="public" static="no">
+        <name>DMA_IT_GL1</name>
+        <initializer>((uint32_t)0x00000101)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel1 global interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="89" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="89" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1aaf59baa92327c2ed29caab0b32da6687" prot="public" static="no">
+        <name>DMA_IT_TC1</name>
+        <initializer>((uint32_t)0x00000001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel1 transfer complete interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="90" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="90" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a87aaeaa490838159920bcd424afa826e" prot="public" static="no">
+        <name>DMA_IT_TE1</name>
+        <initializer>((uint32_t)0x00000100)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel1 transfer error interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="91" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1aa05b3c641c4a3deae30ca7e5d4329609" prot="public" static="no">
+        <name>DMA_IT_GL2</name>
+        <initializer>((uint32_t)0x00000202)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel2 global interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="92" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a4e4eb96199abba8cd530369991896010" prot="public" static="no">
+        <name>DMA_IT_TC2</name>
+        <initializer>((uint32_t)0x00000002)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel2 transfer complete interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="93" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a050387d704da208a168229cb9f1c25f1" prot="public" static="no">
+        <name>DMA_IT_TE2</name>
+        <initializer>((uint32_t)0x00000200)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel2 transfer error interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="94" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a45c4849ce33dd2bfdc852fa0599e33db" prot="public" static="no">
+        <name>DMA_IT_GL3</name>
+        <initializer>((uint32_t)0x00000404)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel3 global interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="95" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a63c56f61cc367a1b8b4b70700abd006f" prot="public" static="no">
+        <name>DMA_IT_TC3</name>
+        <initializer>((uint32_t)0x00000004)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel3 transfer complete interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="96" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a9b7252dcd544ff5d4ecb7c70323d2290" prot="public" static="no">
+        <name>DMA_IT_TE3</name>
+        <initializer>((uint32_t)0x00000400)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel3 transfer error interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="97" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ae87d8d11aa6b2b3e245a88748421a8e6" prot="public" static="no">
+        <name>DMA_IT_GL4</name>
+        <initializer>((uint32_t)0x00000808)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel4 global interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="98" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a7d471493cbe9eaf2db89550bda2fa4d1" prot="public" static="no">
+        <name>DMA_IT_TC4</name>
+        <initializer>((uint32_t)0x00000008)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel4 transfer complete interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="99" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="99" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a939857c299d58a394c082fc3389a5984" prot="public" static="no">
+        <name>DMA_IT_TE4</name>
+        <initializer>((uint32_t)0x00000800)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel4 transfer error interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="100" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="100" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1acda4af5a7090c50d7861f4c767026619" prot="public" static="no">
+        <name>DMA_IT_GL5</name>
+        <initializer>((uint32_t)0x00001010)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel5 global interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="101" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="101" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a4f8de34f7fc76fdf058b5f4867bbbc0c" prot="public" static="no">
+        <name>DMA_IT_TC5</name>
+        <initializer>((uint32_t)0x00000010)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel5 transfer complete interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="102" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="102" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a25df8ec83f690501253559f410942a40" prot="public" static="no">
+        <name>DMA_IT_TE5</name>
+        <initializer>((uint32_t)0x00001000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel5 transfer error interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="103" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ad0ebd54c582e479b3956c598e65c3015" prot="public" static="no">
+        <name>DMA_IT_GL6</name>
+        <initializer>((uint32_t)0x00002020)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel6 global interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="104" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1afd8e0179056b72392aedd1b89ba17976" prot="public" static="no">
+        <name>DMA_IT_TC6</name>
+        <initializer>((uint32_t)0x00000020)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel6 transfer complete interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="105" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="105" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a1a4ac43a13c0cc67c55ba6ce53b01394" prot="public" static="no">
+        <name>DMA_IT_TE6</name>
+        <initializer>((uint32_t)0x00002000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel6 transfer error interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="106" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="106" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1af5dbf216a5f5406da47cb200330afe7a" prot="public" static="no">
+        <name>DMA_IT_GL7</name>
+        <initializer>((uint32_t)0x00004040)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel7 global interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="107" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="107" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1aa1b1dd12f207fd5e920d300a8bb10e13" prot="public" static="no">
+        <name>DMA_IT_TC7</name>
+        <initializer>((uint32_t)0x00000040)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel7 transfer complete interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="108" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="108" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1adf463cbde9e2fb2ca0e2416475c162a1" prot="public" static="no">
+        <name>DMA_IT_TE7</name>
+        <initializer>((uint32_t)0x00004000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel7 transfer error interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="109" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1abf7262f5af348def240339d00bb4e649" prot="public" static="no">
+        <name>DMA_IT_GL8</name>
+        <initializer>((uint32_t)0x00008080)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel8 global interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="110" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="110" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ade2ec6d195eb3d8bb5d4c9e03a8cdbfb" prot="public" static="no">
+        <name>DMA_IT_TC8</name>
+        <initializer>((uint32_t)0x00000080)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel8 transfer complete interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="111" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="111" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a451aaa30db891f1824da2b6d2f033961" prot="public" static="no">
+        <name>DMA_IT_TE8</name>
+        <initializer>((uint32_t)0x00008000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel8 transfer error interrupt. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="112" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a56f71da03db3e0a5dfad8cdfe46eac5c" prot="public" static="no">
+        <name>DMA_FLAG_GL1</name>
+        <initializer>((uint32_t)0x00000101)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel1 global flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="114" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="114" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a02b6c752c28b35dba79fa1d2bb55ec06" prot="public" static="no">
+        <name>DMA_FLAG_TC1</name>
+        <initializer>((uint32_t)0x00000001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel1 transfer complete flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="115" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a198c0b4984a79514964d3dd5ae546008" prot="public" static="no">
+        <name>DMA_FLAG_TE1</name>
+        <initializer>((uint32_t)0x00000100)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel1 transfer error flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="116" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="116" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a1c8da546d95df14be19e9b82d0a49ecc" prot="public" static="no">
+        <name>DMA_FLAG_GL2</name>
+        <initializer>((uint32_t)0x00000202)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel2 global flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="117" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="117" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1acdf2954f3faf8314811ed39272825ab0" prot="public" static="no">
+        <name>DMA_FLAG_TC2</name>
+        <initializer>((uint32_t)0x00000002)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel2 transfer complete flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="118" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="118" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a6d81cc881182d35ba7a34c2759cd97f3" prot="public" static="no">
+        <name>DMA_FLAG_TE2</name>
+        <initializer>((uint32_t)0x00000200)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel2 transfer error flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="119" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="119" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a245f18e8c146baf3596e7340f7ecae3b" prot="public" static="no">
+        <name>DMA_FLAG_GL3</name>
+        <initializer>((uint32_t)0x00000404)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel3 global flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="120" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="120" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a17463fb2609ad37aebe6955a044e83c7" prot="public" static="no">
+        <name>DMA_FLAG_TC3</name>
+        <initializer>((uint32_t)0x00000004)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel3 transfer complete flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="121" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="121" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a3e3d70e09d144c82ffc17d2ece186339" prot="public" static="no">
+        <name>DMA_FLAG_TE3</name>
+        <initializer>((uint32_t)0x00000400)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel3 transfer error flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="122" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="122" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a4dc75a03066b5e3700cb650daf4731e2" prot="public" static="no">
+        <name>DMA_FLAG_GL4</name>
+        <initializer>((uint32_t)0x00000808)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel4 global flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="123" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1afb3f8a8c7048d344865c47e72a598074" prot="public" static="no">
+        <name>DMA_FLAG_TC4</name>
+        <initializer>((uint32_t)0x00000008)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel4 transfer complete flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="124" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="124" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ab1bb20d71697de115b87319347216a26" prot="public" static="no">
+        <name>DMA_FLAG_TE4</name>
+        <initializer>((uint32_t)0x00000800)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel4 transfer error flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="125" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="125" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a78246e9a0d30e63e4fe5a54207c41a3e" prot="public" static="no">
+        <name>DMA_FLAG_GL5</name>
+        <initializer>((uint32_t)0x00001010)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel5 global flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="126" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="126" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a2e3a81f03ed107dbb60cfa7560c32e97" prot="public" static="no">
+        <name>DMA_FLAG_TC5</name>
+        <initializer>((uint32_t)0x00000010)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel5 transfer complete flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="127" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="127" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a04a05f5cc8f193757d8658d97a857b3a" prot="public" static="no">
+        <name>DMA_FLAG_TE5</name>
+        <initializer>((uint32_t)0x00001000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel5 transfer error flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="128" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="128" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a2ea0eb984d33f6788a59f49dcd2acee0" prot="public" static="no">
+        <name>DMA_FLAG_GL6</name>
+        <initializer>((uint32_t)0x00002020)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel6 global flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="129" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="129" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a1e3da05635b4165ce2a0075646cc9131" prot="public" static="no">
+        <name>DMA_FLAG_TC6</name>
+        <initializer>((uint32_t)0x00000020)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel6 transfer complete flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="130" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a50e2f489b50cbe42d03a80ca7cd42dad" prot="public" static="no">
+        <name>DMA_FLAG_TE6</name>
+        <initializer>((uint32_t)0x00002000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel6 transfer error flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="131" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="131" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1af4619624c5d2cde7fc58bc4cd400bfc3" prot="public" static="no">
+        <name>DMA_FLAG_GL7</name>
+        <initializer>((uint32_t)0x00004040)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel7 global flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="132" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="132" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1aacfd9fe9de9727dd862aa475b3d5aee8" prot="public" static="no">
+        <name>DMA_FLAG_TC7</name>
+        <initializer>((uint32_t)0x00000040)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel7 transfer complete flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="133" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="133" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a312e060067bffdf46136be4f7b0b614c" prot="public" static="no">
+        <name>DMA_FLAG_TE7</name>
+        <initializer>((uint32_t)0x00004000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel7 transfer error flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="134" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="134" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ab28ac0609a633f21a65331350ca200c8" prot="public" static="no">
+        <name>DMA_FLAG_GL8</name>
+        <initializer>((uint32_t)0x00008080)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel8 global flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="135" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ae14e4459b9e7adbad27c60615d611d93" prot="public" static="no">
+        <name>DMA_FLAG_TC8</name>
+        <initializer>((uint32_t)0x00000080)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel8 transfer complete flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="136" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="136" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1af4e318eece8d67cf72bc35d86af6e79f" prot="public" static="no">
+        <name>DMA_FLAG_TE8</name>
+        <initializer>((uint32_t)0x00008000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA Channel8 transfer error flag. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="137" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ae50ce330b6f49bcc558092d32b34ac94" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_ADC1</name>
+        <initializer>((uint32_t)0x00000000)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA ADC1 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="139" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="139" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ad52cd4770d2f2fc91aa3af1393599dbc" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_SPI1_TX</name>
+        <initializer>((uint32_t)0x00000002)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA SPI1_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="140" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="140" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a8ea5389d6f7dea8212387d853b983b1c" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_SPI1_RX</name>
+        <initializer>((uint32_t)0x00000001)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA SPI1_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="141" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="141" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a286b77ccd15aa2957d528313f8afc493" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_SPI2_TX</name>
+        <initializer>((uint32_t)0x00000004)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA SPI2_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="142" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="142" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a32b5c9beaca60c4deff3b0ceae2a04d2" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_SPI2_RX</name>
+        <initializer>((uint32_t)0x00000003)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA SPI2_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="143" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="143" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a06a5d4232831e1ce8087d7c5895f4ed7" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_USART1_TX</name>
+        <initializer>((uint32_t)0x0000000A)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA USART1_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="144" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="144" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a3379721c3d4423a3b1c36d7f6ef1fdd3" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_USART1_RX</name>
+        <initializer>((uint32_t)0x0000000B)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA USART1_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="145" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="145" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a0ec10d7fe622ef506e148aea69d1fe56" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_USART2_TX</name>
+        <initializer>((uint32_t)0x00000008)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA USART2_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="146" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="146" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1afa875786b34f46d0fb5f75a8f12f7882" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_USART2_RX</name>
+        <initializer>((uint32_t)0x00000009)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA USART2_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="147" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="147" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a455f5b894ebdb307948d8c341af6a221" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_USART3_TX</name>
+        <initializer>((uint32_t)0x00000006)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA USART3_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="148" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="148" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a821e1907922199667b7154dbb5f280f6" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_USART3_RX</name>
+        <initializer>((uint32_t)0x00000007)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA USART3_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="149" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="149" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a4e9baebe3feb3328987af1d6f488864a" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_I2C1_TX</name>
+        <initializer>((uint32_t)0x0000000C)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA I2C1_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="150" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="150" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1ad3ecdd34c579d47b1769965e3c2e2d5a" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_I2C1_RX</name>
+        <initializer>((uint32_t)0x0000000D)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA I2C1_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="151" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="151" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1aa0a27fd71af1a4bf4099906ec2c442e0" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_I2C2_TX</name>
+        <initializer>((uint32_t)0x0000000E)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA I2C2_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="152" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="152" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a5bef09edadc7c6f74fd2a85e153de992" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_I2C2_RX</name>
+        <initializer>((uint32_t)0x0000000F)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA I2C2_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="153" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="153" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a28035037c4ac64d5f5fafcb3c7e96d72" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM1_UP</name>
+        <initializer>((uint32_t)0x00000014)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM1_UP peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="154" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="154" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a3a67aee35c4905ee337922c7da9ed395" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM1_TRIG</name>
+        <initializer>((uint32_t)0x0000001A)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM1_TRIG peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="155" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="155" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a94bb49da8eaaccd68409a50bd3c615de" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM1_COM</name>
+        <initializer>((uint32_t)0x00000023)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM1_COM peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="156" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="156" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a9d64e4be960a9a5fcc920c50742c948d" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM1_CH1</name>
+        <initializer>((uint32_t)0x00000011)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM1_CH1 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="157" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="157" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a946fb76ac1aa86a3e48c9cc14725399d" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM1_CH2</name>
+        <initializer>((uint32_t)0x00000012)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM1_CH2 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="158" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="158" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a37dcd8ebb6f3988269493f5b4eb18210" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM1_CH3</name>
+        <initializer>((uint32_t)0x00000015)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM1_CH3 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="159" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="159" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1aa9fb07acdd259103f592657d2011455b" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM1_CH4</name>
+        <initializer>((uint32_t)0x00000013)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM1_CH4 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="160" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="160" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a46c042439f3648ab478d86a80529c8b6" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM2_UP</name>
+        <initializer>((uint32_t)0x00000018)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM2_UP peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="161" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="161" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a6898a28d4aa21fcbe98bbeb168e86aec" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM2_CH1</name>
+        <initializer>((uint32_t)0x0000001B)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM2_CH1 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="162" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="162" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a77b77a0f27c33a3e8bd8474892862f73" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM2_CH2</name>
+        <initializer>((uint32_t)0x00000016)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM2_CH2 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="163" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="163" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1aea0d28f7666e335102ec335300c84f54" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM2_CH3</name>
+        <initializer>((uint32_t)0x00000010)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM2_CH3 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="164" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="164" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a5a3b8781773549bc4d33a7228edb5e58" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM2_CH4</name>
+        <initializer>((uint32_t)0x0000001D)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM2_CH4 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="165" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="165" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a9979feee4eb50d44100a4b12ba2be9b8" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM3_UP</name>
+        <initializer>((uint32_t)0x00000022)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM3_UP peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="166" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="166" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1aa3b25f54c0bf968d8f7575e6b0a570dd" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM3_TRIG</name>
+        <initializer>((uint32_t)0x00000025)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM3_TRIG peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="167" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="167" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a4ea4bda8db78890299c972a3ffda83a0" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM3_CH1</name>
+        <initializer>((uint32_t)0x0000001C)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM3_CH1 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="168" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a6a4f4c438c4d0b39f71b14c2a124e8ee" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM3_CH3</name>
+        <initializer>((uint32_t)0x00000021)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM3_CH3 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="169" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="169" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a7136a58e3d8e95107d8a3ab12dcdb703" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM3_CH4</name>
+        <initializer>((uint32_t)0x00000019)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM3_CH4 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="170" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="170" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a5f21ff7944df9140c73d9f1817469916" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM4_UP</name>
+        <initializer>((uint32_t)0x00000026)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM4_UP peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="171" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="171" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a1e8c63292ab4591f40e9db13eccb30f9" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM4_CH1</name>
+        <initializer>((uint32_t)0x00000017)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM4_CH1 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="172" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="172" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a1a4e242d91ba5b4d6b540f7a1eacdc53" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM4_CH2</name>
+        <initializer>((uint32_t)0x00000027)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM4_CH2 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="173" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="173" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="at103__dma_8h_1a58c40389aa87eadecd9163ad36ef7caa" prot="public" static="no">
+        <name>DMA_PeripheralHandshake_TIM4_CH3</name>
+        <initializer>((uint32_t)0x00000024)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>DMA TIM4_CH3 peripheral handshake, [10:8] burst size value;[7:0] handshake value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="174" column="9" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="174" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="at103__dma_8h_1a0349a6c19a891b73b084bd416a4c262a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_DeInit</definition>
+        <argsstring>(DMA_Channel_TypeDef *DMA_Channelx)</argsstring>
+        <name>DMA_DeInit</name>
+        <param>
+          <type>DMA_Channel_TypeDef *</type>
+          <declname>DMA_Channelx</declname>
+        </param>
+        <briefdescription>
+<para>Deinitializes the DMA Channelx registers to their default reset values. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_Channelx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Where x can be 1 to 8 to select the DMA channel. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="180" column="6" declfile="libraries/driver/inc/at103_dma.h" declline="180" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="at103__dma_8h_1a73919c49efcfad87945f6c8460c456b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_Init</definition>
+        <argsstring>(DMA_Channel_TypeDef *DMA_Channelx, DMA_InitTypeDef *DMA_InitStruct)</argsstring>
+        <name>DMA_Init</name>
+        <param>
+          <type>DMA_Channel_TypeDef *</type>
+          <declname>DMA_Channelx</declname>
+        </param>
+        <param>
+          <type><ref refid="structDMA__InitTypeDef" kindref="compound">DMA_InitTypeDef</ref> *</type>
+          <declname>DMA_InitStruct</declname>
+        </param>
+        <briefdescription>
+<para>Initializes the DMA Channelx according to the specified parameters in the DMA_InitStruct. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_Channelx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Where x can be 1 to 8 to select the DMA channel. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_InitStruct</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a <ref refid="structDMA__InitTypeDef" kindref="compound">DMA_InitTypeDef</ref> structure that contains the configuration information for the specified DMA Channel. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="188" column="6" declfile="libraries/driver/inc/at103_dma.h" declline="188" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="at103__dma_8h_1a0f7f95f750a90a6824f4e9b6f58adc7e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_StructInit</definition>
+        <argsstring>(DMA_InitTypeDef *DMA_InitStruct)</argsstring>
+        <name>DMA_StructInit</name>
+        <param>
+          <type><ref refid="structDMA__InitTypeDef" kindref="compound">DMA_InitTypeDef</ref> *</type>
+          <declname>DMA_InitStruct</declname>
+        </param>
+        <briefdescription>
+<para>Fills each DMA_InitStruct member with its default value. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_InitStruct</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to a <ref refid="structDMA__InitTypeDef" kindref="compound">DMA_InitTypeDef</ref> structure which will be initialized. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="194" column="6" declfile="libraries/driver/inc/at103_dma.h" declline="194" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="at103__dma_8h_1a8ccbd3d4d9474f1deb863764f6cedac8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_Cmd</definition>
+        <argsstring>(DMA_Channel_TypeDef *DMA_Channelx, FunctionalState NewState)</argsstring>
+        <name>DMA_Cmd</name>
+        <param>
+          <type>DMA_Channel_TypeDef *</type>
+          <declname>DMA_Channelx</declname>
+        </param>
+        <param>
+          <type>FunctionalState</type>
+          <declname>NewState</declname>
+        </param>
+        <briefdescription>
+<para>Enables or disables the specified DMA Channelx. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_Channelx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Where x can be 1 to 8 to select the DMA channel. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">NewState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new state of the DMA Channelx. This parameter can be: ENABLE or DISABLE. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="202" column="6" declfile="libraries/driver/inc/at103_dma.h" declline="202" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="at103__dma_8h_1afbef980436bd2302a275789839f91961" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_ITConfig</definition>
+        <argsstring>(DMA_Channel_TypeDef *DMA_Channelx, uint32_t DMA_IT, FunctionalState NewState)</argsstring>
+        <name>DMA_ITConfig</name>
+        <param>
+          <type>DMA_Channel_TypeDef *</type>
+          <declname>DMA_Channelx</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>DMA_IT</declname>
+        </param>
+        <param>
+          <type>FunctionalState</type>
+          <declname>NewState</declname>
+        </param>
+        <briefdescription>
+<para>Enables or disables the specified DMA Channelx interrupts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_Channelx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Where x can be 1 to 8 to select the DMA channel. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_IT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the DMA interrupts sources to be enabled or disabled. This parameter can be any combination of the following values: <linebreak/>
+ DMA_IT_TC: Transfer complete interrupt mask; <linebreak/>
+ DMA_IT_TE: Transfer error interrupt mask; </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">NewState</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>new state of the specified DMA interrupts. This parameter can be: ENABLE or DISABLE. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="214" column="6" declfile="libraries/driver/inc/at103_dma.h" declline="214" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="at103__dma_8h_1a6d7df30bcceee26e92fbc628ed8610bb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_SetCurrDataCounter</definition>
+        <argsstring>(DMA_Channel_TypeDef *DMA_Channelx, uint16_t DataNumber)</argsstring>
+        <name>DMA_SetCurrDataCounter</name>
+        <param>
+          <type>DMA_Channel_TypeDef *</type>
+          <declname>DMA_Channelx</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>DataNumber</declname>
+        </param>
+        <briefdescription>
+<para>Sets the number of data units in the current DMA Channelx transfer. This function can only be used when the DMA_Channelx is disabled. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_Channelx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Where x can be 1 to 8 to select the DMA channel. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername direction="in">DataNumber</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The number of data units in the current DMA Channelx transfer. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="222" column="6" declfile="libraries/driver/inc/at103_dma.h" declline="222" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="at103__dma_8h_1a5fd6fbc4580ad9a87339ddb430c9eb8d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint16_t</type>
+        <definition>uint16_t DMA_GetCurrDataCounter</definition>
+        <argsstring>(DMA_Channel_TypeDef *DMA_Channelx)</argsstring>
+        <name>DMA_GetCurrDataCounter</name>
+        <param>
+          <type>DMA_Channel_TypeDef *</type>
+          <declname>DMA_Channelx</declname>
+        </param>
+        <briefdescription>
+<para>After the transfer has started, returns the number of completing data units in the current DMA Channelx transfer. Before the transmission starts or after the transmission ends, the return values are the values set before the transfer starts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_Channelx</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Where x can be 1 to 8 to select the DMA channel. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>uint16_t The number of data units. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="230" column="10" declfile="libraries/driver/inc/at103_dma.h" declline="230" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="at103__dma_8h_1afcb7a6712ae8d19e5bf3f329d56d1b8c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>FlagStatus</type>
+        <definition>FlagStatus DMA_GetFlagStatus</definition>
+        <argsstring>(uint32_t DMA_FLAG)</argsstring>
+        <name>DMA_GetFlagStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>DMA_FLAG</declname>
+        </param>
+        <briefdescription>
+<para>Checks whether the specified DMA Channelx flag is set or not. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_FLAG</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the flag to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>FlagStatus The new state of DMA_FLAG (SET or RESET). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="237" column="12" declfile="libraries/driver/inc/at103_dma.h" declline="237" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="function" id="at103__dma_8h_1a793d2dabd284e0c148ee1bde07ec7b20" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_ClearFlag</definition>
+        <argsstring>(uint32_t DMA_FLAG)</argsstring>
+        <name>DMA_ClearFlag</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>DMA_FLAG</declname>
+        </param>
+        <briefdescription>
+<para>Clears the DMA Channelx&apos;s pending flags. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_FLAG</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the flag to clear. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="243" column="6" declfile="libraries/driver/inc/at103_dma.h" declline="243" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="at103__dma_8h_1a5d4c26f0c6615e9647193d79386b2244" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>ITStatus</type>
+        <definition>ITStatus DMA_GetITStatus</definition>
+        <argsstring>(uint32_t DMA_IT)</argsstring>
+        <name>DMA_GetITStatus</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>DMA_IT</declname>
+        </param>
+        <briefdescription>
+<para>Checks whether the specified DMA Channelx interrupt has occurred or not. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_IT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the DMA interrupt source to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>ITStatus The new state of DMA_IT (SET or RESET). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="250" column="10" declfile="libraries/driver/inc/at103_dma.h" declline="250" declcolumn="10"/>
+      </memberdef>
+      <memberdef kind="function" id="at103__dma_8h_1a8e2490f878985d3c55d584736214187d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void DMA_ClearITPendingBit</definition>
+        <argsstring>(uint32_t DMA_IT)</argsstring>
+        <name>DMA_ClearITPendingBit</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>DMA_IT</declname>
+        </param>
+        <briefdescription>
+<para>Clears the DMA Channelx&apos;s interrupt pending bits. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername direction="in">DMA_IT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>specifies the DMA interrupt source to check. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="256" column="6" declfile="libraries/driver/inc/at103_dma.h" declline="256" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This file contains all the functions prototypes for the DMA firmware library. <linebreak/>
+ How to use this driver? <linebreak/>
+(+) At first, use DMA_DeInit(...) to reset requires DMA channel. <linebreak/>
+(+) Then, use DMA_Init(...) with DMA initialization structure to initialize a DMA channel. <linebreak/>
+ For details on the DMA initialization structure, see &quot;DMA_InitTypeDef&quot;. <linebreak/>
+(+) Use DMA_ITConfig(...) to enable interrupts that require DMA channel, and you need to implement the corresponding channel service function: DMA_Channelx_IRQHandler. <linebreak/>
+ For details on the DMA interrupt type, see DMA interrupts type definition. <linebreak/>
+(+) Finally, use DMA_Cmd(...) to start a DMA channel transfer. <linebreak/>
+(+) Of course, you can use DMA_GetFlagStatus(...) to get the state of the DMA channel at any time, this is helpful in determining whether the DMA channel has completed its transfer. <linebreak/>
+(+) Note: <linebreak/>
+ DMA channels can transfer up to 4095 units at a time. </para>
+    </briefdescription>
+    <detaileddescription>
+<para><simplesect kind="author"><para>Dong Qin (<ulink url="mailto:dong.qin@timesintelli.com">dong.qin@timesintelli.com</ulink>) </para>
+</simplesect>
+<simplesect kind="version"><para>1.0 </para>
+</simplesect>
+<simplesect kind="date"><para>2022-03-16 </para>
+</simplesect>
+<simplesect kind="copyright"><para>Copyright (c) 2022 Timesintelli, Inc </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"></codeline>
+<codeline lineno="19"><highlight class="preprocessor">#ifndef<sp/>__AT103_DMA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>__AT103_DMA_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;C&quot;</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;at103.h&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="structDMA__InitTypeDef" refkind="compound"><highlight class="keyword">typedef</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33" refid="structDMA__InitTypeDef_1a232af556de7c2eec9a82d448730bd86d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1a232af556de7c2eec9a82d448730bd86d" kindref="member">DMA_PeripheralBaseAddr</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="34" refid="structDMA__InitTypeDef_1a41e7d463f0cfbcedf3170d7d27d088df" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1a41e7d463f0cfbcedf3170d7d27d088df" kindref="member">DMA_MemoryBaseAddr</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="35" refid="structDMA__InitTypeDef_1a91b47435ccf4a40efa97bbbe631789e1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1a91b47435ccf4a40efa97bbbe631789e1" kindref="member">DMA_DIR</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="37" refid="structDMA__InitTypeDef_1a999df57215b28b3b1b3b6836c4952ca5" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1a999df57215b28b3b1b3b6836c4952ca5" kindref="member">DMA_BufferSize</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40" refid="structDMA__InitTypeDef_1ad4d427790f9a089ca0257a358fc263c2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1ad4d427790f9a089ca0257a358fc263c2" kindref="member">DMA_PeripheralInc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="42" refid="structDMA__InitTypeDef_1aaf69c680a297ec01a2ed613289e691a1" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1aaf69c680a297ec01a2ed613289e691a1" kindref="member">DMA_MemoryInc</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="44" refid="structDMA__InitTypeDef_1afb46aaadfb80a7e19277c868bd252554" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1afb46aaadfb80a7e19277c868bd252554" kindref="member">DMA_PeripheralDataSize</ref>;<sp/><sp/></highlight></codeline>
+<codeline lineno="46" refid="structDMA__InitTypeDef_1a74bb71921c4d198d6cf1979c120f694f" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1a74bb71921c4d198d6cf1979c120f694f" kindref="member">DMA_MemoryDataSize</ref>;<sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48" refid="structDMA__InitTypeDef_1a8adbe6f3e46471d109afaa3111dce220" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1a8adbe6f3e46471d109afaa3111dce220" kindref="member">DMA_Mode</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="50" refid="structDMA__InitTypeDef_1ab9a17bd51778478cbd728c868206dca0" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1ab9a17bd51778478cbd728c868206dca0" kindref="member">DMA_Priority</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="52" refid="structDMA__InitTypeDef_1a57944cc447e6fcde4e9aa6229d3b4c5d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1a57944cc447e6fcde4e9aa6229d3b4c5d" kindref="member">DMA_M2M</ref>;<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="54" refid="structDMA__InitTypeDef_1a756c0620680e03d6efd3858c177cc8fd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/><ref refid="structDMA__InitTypeDef_1a756c0620680e03d6efd3858c177cc8fd" kindref="member">DMA_PeripheralHandshake</ref>;<sp/></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}<sp/><ref refid="structDMA__InitTypeDef" kindref="compound">DMA_InitTypeDef</ref>;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="at103__dma_8h_1a51567b748ddac277743c65c20275971a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>DMA_DIR_PeripheralDST<sp/>((uint32_t)0x00000001)<sp/></highlight></codeline>
+<codeline lineno="59" refid="at103__dma_8h_1a5ce120a044359410136695a2c05df68e" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_DIR_PeripheralSRC<sp/>((uint32_t)0x00000002)<sp/></highlight></codeline>
+<codeline lineno="61" refid="at103__dma_8h_1af7921ea423fb60701a091c508cd0f33a" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralInc_Enable<sp/><sp/>((uint32_t)0x00000000)<sp/></highlight></codeline>
+<codeline lineno="62" refid="at103__dma_8h_1a0fe3ff9c67bec802dd239fd17c3dbd31" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralInc_Disable<sp/>((uint32_t)0x00000002)<sp/></highlight></codeline>
+<codeline lineno="64" refid="at103__dma_8h_1a4e8cb23d039c74bbbf365d7678835bbb" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_MemoryInc_Enable<sp/><sp/>((uint32_t)0x00000000)<sp/></highlight></codeline>
+<codeline lineno="65" refid="at103__dma_8h_1a795a277c997048783a383b026f19a5ab" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_MemoryInc_Disable<sp/>((uint32_t)0x00000002)<sp/></highlight></codeline>
+<codeline lineno="67" refid="at103__dma_8h_1a7577035ae4ff413164000227a8cea346" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralDataSize_Byte<sp/><sp/><sp/><sp/><sp/>((uint32_t)0x00000000)<sp/></highlight></codeline>
+<codeline lineno="68" refid="at103__dma_8h_1ab1988e5005ee65c261018f62866e4585" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralDataSize_HalfWord<sp/>((uint32_t)0x00000001)<sp/></highlight></codeline>
+<codeline lineno="69" refid="at103__dma_8h_1a516ea7a40945d8325fe73e079b245ea1" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralDataSize_Word<sp/><sp/><sp/><sp/><sp/>((uint32_t)0x00000002)<sp/></highlight></codeline>
+<codeline lineno="71" refid="at103__dma_8h_1ad6093bccb60ff9adf81e21c73c58ba17" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_MemoryDataSize_Byte<sp/><sp/><sp/><sp/><sp/>((uint32_t)0x00000000)<sp/></highlight></codeline>
+<codeline lineno="72" refid="at103__dma_8h_1a74c9b4e547f5eaaf35d4fd3d01ed5741" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_MemoryDataSize_HalfWord<sp/>((uint32_t)0x00000001)<sp/></highlight></codeline>
+<codeline lineno="73" refid="at103__dma_8h_1aff403722a6f82d4b34c9ef306507bb98" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_MemoryDataSize_Word<sp/><sp/><sp/><sp/><sp/>((uint32_t)0x00000002)<sp/></highlight></codeline>
+<codeline lineno="75" refid="at103__dma_8h_1a36327b14c302098fbc5823ac3f1ae020" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_Mode_Circular<sp/>((uint32_t)0x00000003)<sp/></highlight></codeline>
+<codeline lineno="76" refid="at103__dma_8h_1a36400f5b5095f1102ede4760d7a5959c" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_Mode_Normal<sp/><sp/><sp/>((uint32_t)0x00000000)<sp/></highlight></codeline>
+<codeline lineno="78" refid="at103__dma_8h_1adccd2f8b2ac24ba4fd485dd5b9b48671" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_Priority_VeryHigh<sp/>((uint32_t)0x00000003)<sp/></highlight></codeline>
+<codeline lineno="79" refid="at103__dma_8h_1ae2441c0b4d4ba9945a6f4f7d08045a8e" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_Priority_High<sp/><sp/><sp/><sp/><sp/>((uint32_t)0x00000002)<sp/></highlight></codeline>
+<codeline lineno="80" refid="at103__dma_8h_1a8e0d4a958f4288c6c759945789490f38" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_Priority_Medium<sp/><sp/><sp/>((uint32_t)0x00000001)<sp/></highlight></codeline>
+<codeline lineno="81" refid="at103__dma_8h_1af414e0aa8dd42aee6f83f88ab6175179" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_Priority_Low<sp/><sp/><sp/><sp/><sp/><sp/>((uint32_t)0x00000000)<sp/></highlight></codeline>
+<codeline lineno="83" refid="at103__dma_8h_1a046a1de15235c254c0511c08cae3065a" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_M2M_Enable<sp/><sp/>((uint32_t)0x00000001)<sp/></highlight></codeline>
+<codeline lineno="84" refid="at103__dma_8h_1a86e0a7076f0badd509fac6576f3b5355" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_M2M_Disable<sp/>((uint32_t)0x00000002)<sp/></highlight></codeline>
+<codeline lineno="86" refid="at103__dma_8h_1a06e83dd277e0d3e5635cf8ce8dfd6e16" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TC<sp/>((uint32_t)0x00000001)<sp/></highlight></codeline>
+<codeline lineno="87" refid="at103__dma_8h_1af9d92649d2a0146f663ff253d8f3b59e" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TE<sp/>((uint32_t)0x00000002)<sp/></highlight></codeline>
+<codeline lineno="89" refid="at103__dma_8h_1a89cc607d838623e1634d5d2e8c449389" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_GL1<sp/>((uint32_t)0x00000101)<sp/></highlight></codeline>
+<codeline lineno="90" refid="at103__dma_8h_1aaf59baa92327c2ed29caab0b32da6687" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TC1<sp/>((uint32_t)0x00000001)<sp/></highlight></codeline>
+<codeline lineno="91" refid="at103__dma_8h_1a87aaeaa490838159920bcd424afa826e" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TE1<sp/>((uint32_t)0x00000100)<sp/></highlight></codeline>
+<codeline lineno="92" refid="at103__dma_8h_1aa05b3c641c4a3deae30ca7e5d4329609" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_GL2<sp/>((uint32_t)0x00000202)<sp/></highlight></codeline>
+<codeline lineno="93" refid="at103__dma_8h_1a4e4eb96199abba8cd530369991896010" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TC2<sp/>((uint32_t)0x00000002)<sp/></highlight></codeline>
+<codeline lineno="94" refid="at103__dma_8h_1a050387d704da208a168229cb9f1c25f1" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TE2<sp/>((uint32_t)0x00000200)<sp/></highlight></codeline>
+<codeline lineno="95" refid="at103__dma_8h_1a45c4849ce33dd2bfdc852fa0599e33db" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_GL3<sp/>((uint32_t)0x00000404)<sp/></highlight></codeline>
+<codeline lineno="96" refid="at103__dma_8h_1a63c56f61cc367a1b8b4b70700abd006f" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TC3<sp/>((uint32_t)0x00000004)<sp/></highlight></codeline>
+<codeline lineno="97" refid="at103__dma_8h_1a9b7252dcd544ff5d4ecb7c70323d2290" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TE3<sp/>((uint32_t)0x00000400)<sp/></highlight></codeline>
+<codeline lineno="98" refid="at103__dma_8h_1ae87d8d11aa6b2b3e245a88748421a8e6" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_GL4<sp/>((uint32_t)0x00000808)<sp/></highlight></codeline>
+<codeline lineno="99" refid="at103__dma_8h_1a7d471493cbe9eaf2db89550bda2fa4d1" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TC4<sp/>((uint32_t)0x00000008)<sp/></highlight></codeline>
+<codeline lineno="100" refid="at103__dma_8h_1a939857c299d58a394c082fc3389a5984" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TE4<sp/>((uint32_t)0x00000800)<sp/></highlight></codeline>
+<codeline lineno="101" refid="at103__dma_8h_1acda4af5a7090c50d7861f4c767026619" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_GL5<sp/>((uint32_t)0x00001010)<sp/></highlight></codeline>
+<codeline lineno="102" refid="at103__dma_8h_1a4f8de34f7fc76fdf058b5f4867bbbc0c" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TC5<sp/>((uint32_t)0x00000010)<sp/></highlight></codeline>
+<codeline lineno="103" refid="at103__dma_8h_1a25df8ec83f690501253559f410942a40" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TE5<sp/>((uint32_t)0x00001000)<sp/></highlight></codeline>
+<codeline lineno="104" refid="at103__dma_8h_1ad0ebd54c582e479b3956c598e65c3015" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_GL6<sp/>((uint32_t)0x00002020)<sp/></highlight></codeline>
+<codeline lineno="105" refid="at103__dma_8h_1afd8e0179056b72392aedd1b89ba17976" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TC6<sp/>((uint32_t)0x00000020)<sp/></highlight></codeline>
+<codeline lineno="106" refid="at103__dma_8h_1a1a4ac43a13c0cc67c55ba6ce53b01394" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TE6<sp/>((uint32_t)0x00002000)<sp/></highlight></codeline>
+<codeline lineno="107" refid="at103__dma_8h_1af5dbf216a5f5406da47cb200330afe7a" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_GL7<sp/>((uint32_t)0x00004040)<sp/></highlight></codeline>
+<codeline lineno="108" refid="at103__dma_8h_1aa1b1dd12f207fd5e920d300a8bb10e13" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TC7<sp/>((uint32_t)0x00000040)<sp/></highlight></codeline>
+<codeline lineno="109" refid="at103__dma_8h_1adf463cbde9e2fb2ca0e2416475c162a1" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TE7<sp/>((uint32_t)0x00004000)<sp/></highlight></codeline>
+<codeline lineno="110" refid="at103__dma_8h_1abf7262f5af348def240339d00bb4e649" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_GL8<sp/>((uint32_t)0x00008080)<sp/></highlight></codeline>
+<codeline lineno="111" refid="at103__dma_8h_1ade2ec6d195eb3d8bb5d4c9e03a8cdbfb" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TC8<sp/>((uint32_t)0x00000080)<sp/></highlight></codeline>
+<codeline lineno="112" refid="at103__dma_8h_1a451aaa30db891f1824da2b6d2f033961" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_IT_TE8<sp/>((uint32_t)0x00008000)<sp/></highlight></codeline>
+<codeline lineno="114" refid="at103__dma_8h_1a56f71da03db3e0a5dfad8cdfe46eac5c" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_GL1<sp/>((uint32_t)0x00000101)<sp/></highlight></codeline>
+<codeline lineno="115" refid="at103__dma_8h_1a02b6c752c28b35dba79fa1d2bb55ec06" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TC1<sp/>((uint32_t)0x00000001)<sp/></highlight></codeline>
+<codeline lineno="116" refid="at103__dma_8h_1a198c0b4984a79514964d3dd5ae546008" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TE1<sp/>((uint32_t)0x00000100)<sp/></highlight></codeline>
+<codeline lineno="117" refid="at103__dma_8h_1a1c8da546d95df14be19e9b82d0a49ecc" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_GL2<sp/>((uint32_t)0x00000202)<sp/></highlight></codeline>
+<codeline lineno="118" refid="at103__dma_8h_1acdf2954f3faf8314811ed39272825ab0" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TC2<sp/>((uint32_t)0x00000002)<sp/></highlight></codeline>
+<codeline lineno="119" refid="at103__dma_8h_1a6d81cc881182d35ba7a34c2759cd97f3" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TE2<sp/>((uint32_t)0x00000200)<sp/></highlight></codeline>
+<codeline lineno="120" refid="at103__dma_8h_1a245f18e8c146baf3596e7340f7ecae3b" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_GL3<sp/>((uint32_t)0x00000404)<sp/></highlight></codeline>
+<codeline lineno="121" refid="at103__dma_8h_1a17463fb2609ad37aebe6955a044e83c7" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TC3<sp/>((uint32_t)0x00000004)<sp/></highlight></codeline>
+<codeline lineno="122" refid="at103__dma_8h_1a3e3d70e09d144c82ffc17d2ece186339" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TE3<sp/>((uint32_t)0x00000400)<sp/></highlight></codeline>
+<codeline lineno="123" refid="at103__dma_8h_1a4dc75a03066b5e3700cb650daf4731e2" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_GL4<sp/>((uint32_t)0x00000808)<sp/></highlight></codeline>
+<codeline lineno="124" refid="at103__dma_8h_1afb3f8a8c7048d344865c47e72a598074" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TC4<sp/>((uint32_t)0x00000008)<sp/></highlight></codeline>
+<codeline lineno="125" refid="at103__dma_8h_1ab1bb20d71697de115b87319347216a26" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TE4<sp/>((uint32_t)0x00000800)<sp/></highlight></codeline>
+<codeline lineno="126" refid="at103__dma_8h_1a78246e9a0d30e63e4fe5a54207c41a3e" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_GL5<sp/>((uint32_t)0x00001010)<sp/></highlight></codeline>
+<codeline lineno="127" refid="at103__dma_8h_1a2e3a81f03ed107dbb60cfa7560c32e97" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TC5<sp/>((uint32_t)0x00000010)<sp/></highlight></codeline>
+<codeline lineno="128" refid="at103__dma_8h_1a04a05f5cc8f193757d8658d97a857b3a" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TE5<sp/>((uint32_t)0x00001000)<sp/></highlight></codeline>
+<codeline lineno="129" refid="at103__dma_8h_1a2ea0eb984d33f6788a59f49dcd2acee0" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_GL6<sp/>((uint32_t)0x00002020)<sp/></highlight></codeline>
+<codeline lineno="130" refid="at103__dma_8h_1a1e3da05635b4165ce2a0075646cc9131" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TC6<sp/>((uint32_t)0x00000020)<sp/></highlight></codeline>
+<codeline lineno="131" refid="at103__dma_8h_1a50e2f489b50cbe42d03a80ca7cd42dad" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TE6<sp/>((uint32_t)0x00002000)<sp/></highlight></codeline>
+<codeline lineno="132" refid="at103__dma_8h_1af4619624c5d2cde7fc58bc4cd400bfc3" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_GL7<sp/>((uint32_t)0x00004040)<sp/></highlight></codeline>
+<codeline lineno="133" refid="at103__dma_8h_1aacfd9fe9de9727dd862aa475b3d5aee8" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TC7<sp/>((uint32_t)0x00000040)<sp/></highlight></codeline>
+<codeline lineno="134" refid="at103__dma_8h_1a312e060067bffdf46136be4f7b0b614c" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TE7<sp/>((uint32_t)0x00004000)<sp/></highlight></codeline>
+<codeline lineno="135" refid="at103__dma_8h_1ab28ac0609a633f21a65331350ca200c8" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_GL8<sp/>((uint32_t)0x00008080)<sp/></highlight></codeline>
+<codeline lineno="136" refid="at103__dma_8h_1ae14e4459b9e7adbad27c60615d611d93" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TC8<sp/>((uint32_t)0x00000080)<sp/></highlight></codeline>
+<codeline lineno="137" refid="at103__dma_8h_1af4e318eece8d67cf72bc35d86af6e79f" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_FLAG_TE8<sp/>((uint32_t)0x00008000)<sp/></highlight></codeline>
+<codeline lineno="139" refid="at103__dma_8h_1ae50ce330b6f49bcc558092d32b34ac94" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_ADC1<sp/><sp/><sp/><sp/><sp/><sp/>((uint32_t)0x00000000)<sp/></highlight></codeline>
+<codeline lineno="140" refid="at103__dma_8h_1ad52cd4770d2f2fc91aa3af1393599dbc" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_SPI1_TX<sp/><sp/><sp/>((uint32_t)0x00000002)<sp/></highlight></codeline>
+<codeline lineno="141" refid="at103__dma_8h_1a8ea5389d6f7dea8212387d853b983b1c" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_SPI1_RX<sp/><sp/><sp/>((uint32_t)0x00000001)<sp/></highlight></codeline>
+<codeline lineno="142" refid="at103__dma_8h_1a286b77ccd15aa2957d528313f8afc493" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_SPI2_TX<sp/><sp/><sp/>((uint32_t)0x00000004)<sp/></highlight></codeline>
+<codeline lineno="143" refid="at103__dma_8h_1a32b5c9beaca60c4deff3b0ceae2a04d2" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_SPI2_RX<sp/><sp/><sp/>((uint32_t)0x00000003)<sp/></highlight></codeline>
+<codeline lineno="144" refid="at103__dma_8h_1a06a5d4232831e1ce8087d7c5895f4ed7" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_USART1_TX<sp/>((uint32_t)0x0000000A)<sp/></highlight></codeline>
+<codeline lineno="145" refid="at103__dma_8h_1a3379721c3d4423a3b1c36d7f6ef1fdd3" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_USART1_RX<sp/>((uint32_t)0x0000000B)<sp/></highlight></codeline>
+<codeline lineno="146" refid="at103__dma_8h_1a0ec10d7fe622ef506e148aea69d1fe56" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_USART2_TX<sp/>((uint32_t)0x00000008)<sp/></highlight></codeline>
+<codeline lineno="147" refid="at103__dma_8h_1afa875786b34f46d0fb5f75a8f12f7882" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_USART2_RX<sp/>((uint32_t)0x00000009)<sp/></highlight></codeline>
+<codeline lineno="148" refid="at103__dma_8h_1a455f5b894ebdb307948d8c341af6a221" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_USART3_TX<sp/>((uint32_t)0x00000006)<sp/></highlight></codeline>
+<codeline lineno="149" refid="at103__dma_8h_1a821e1907922199667b7154dbb5f280f6" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_USART3_RX<sp/>((uint32_t)0x00000007)<sp/></highlight></codeline>
+<codeline lineno="150" refid="at103__dma_8h_1a4e9baebe3feb3328987af1d6f488864a" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_I2C1_TX<sp/><sp/><sp/>((uint32_t)0x0000000C)<sp/></highlight></codeline>
+<codeline lineno="151" refid="at103__dma_8h_1ad3ecdd34c579d47b1769965e3c2e2d5a" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_I2C1_RX<sp/><sp/><sp/>((uint32_t)0x0000000D)<sp/></highlight></codeline>
+<codeline lineno="152" refid="at103__dma_8h_1aa0a27fd71af1a4bf4099906ec2c442e0" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_I2C2_TX<sp/><sp/><sp/>((uint32_t)0x0000000E)<sp/></highlight></codeline>
+<codeline lineno="153" refid="at103__dma_8h_1a5bef09edadc7c6f74fd2a85e153de992" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_I2C2_RX<sp/><sp/><sp/>((uint32_t)0x0000000F)<sp/></highlight></codeline>
+<codeline lineno="154" refid="at103__dma_8h_1a28035037c4ac64d5f5fafcb3c7e96d72" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM1_UP<sp/><sp/><sp/>((uint32_t)0x00000014)<sp/></highlight></codeline>
+<codeline lineno="155" refid="at103__dma_8h_1a3a67aee35c4905ee337922c7da9ed395" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM1_TRIG<sp/>((uint32_t)0x0000001A)<sp/></highlight></codeline>
+<codeline lineno="156" refid="at103__dma_8h_1a94bb49da8eaaccd68409a50bd3c615de" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM1_COM<sp/><sp/>((uint32_t)0x00000023)<sp/></highlight></codeline>
+<codeline lineno="157" refid="at103__dma_8h_1a9d64e4be960a9a5fcc920c50742c948d" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM1_CH1<sp/><sp/>((uint32_t)0x00000011)<sp/></highlight></codeline>
+<codeline lineno="158" refid="at103__dma_8h_1a946fb76ac1aa86a3e48c9cc14725399d" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM1_CH2<sp/><sp/>((uint32_t)0x00000012)<sp/></highlight></codeline>
+<codeline lineno="159" refid="at103__dma_8h_1a37dcd8ebb6f3988269493f5b4eb18210" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM1_CH3<sp/><sp/>((uint32_t)0x00000015)<sp/></highlight></codeline>
+<codeline lineno="160" refid="at103__dma_8h_1aa9fb07acdd259103f592657d2011455b" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM1_CH4<sp/><sp/>((uint32_t)0x00000013)<sp/></highlight></codeline>
+<codeline lineno="161" refid="at103__dma_8h_1a46c042439f3648ab478d86a80529c8b6" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM2_UP<sp/><sp/><sp/>((uint32_t)0x00000018)<sp/></highlight></codeline>
+<codeline lineno="162" refid="at103__dma_8h_1a6898a28d4aa21fcbe98bbeb168e86aec" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM2_CH1<sp/><sp/>((uint32_t)0x0000001B)<sp/></highlight></codeline>
+<codeline lineno="163" refid="at103__dma_8h_1a77b77a0f27c33a3e8bd8474892862f73" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM2_CH2<sp/><sp/>((uint32_t)0x00000016)<sp/></highlight></codeline>
+<codeline lineno="164" refid="at103__dma_8h_1aea0d28f7666e335102ec335300c84f54" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM2_CH3<sp/><sp/>((uint32_t)0x00000010)<sp/></highlight></codeline>
+<codeline lineno="165" refid="at103__dma_8h_1a5a3b8781773549bc4d33a7228edb5e58" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM2_CH4<sp/><sp/>((uint32_t)0x0000001D)<sp/></highlight></codeline>
+<codeline lineno="166" refid="at103__dma_8h_1a9979feee4eb50d44100a4b12ba2be9b8" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM3_UP<sp/><sp/><sp/>((uint32_t)0x00000022)<sp/></highlight></codeline>
+<codeline lineno="167" refid="at103__dma_8h_1aa3b25f54c0bf968d8f7575e6b0a570dd" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM3_TRIG<sp/>((uint32_t)0x00000025)<sp/></highlight></codeline>
+<codeline lineno="168" refid="at103__dma_8h_1a4ea4bda8db78890299c972a3ffda83a0" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM3_CH1<sp/><sp/>((uint32_t)0x0000001C)<sp/></highlight></codeline>
+<codeline lineno="169" refid="at103__dma_8h_1a6a4f4c438c4d0b39f71b14c2a124e8ee" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM3_CH3<sp/><sp/>((uint32_t)0x00000021)<sp/></highlight></codeline>
+<codeline lineno="170" refid="at103__dma_8h_1a7136a58e3d8e95107d8a3ab12dcdb703" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM3_CH4<sp/><sp/>((uint32_t)0x00000019)<sp/></highlight></codeline>
+<codeline lineno="171" refid="at103__dma_8h_1a5f21ff7944df9140c73d9f1817469916" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM4_UP<sp/><sp/><sp/>((uint32_t)0x00000026)<sp/></highlight></codeline>
+<codeline lineno="172" refid="at103__dma_8h_1a1e8c63292ab4591f40e9db13eccb30f9" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM4_CH1<sp/><sp/>((uint32_t)0x00000017)<sp/></highlight></codeline>
+<codeline lineno="173" refid="at103__dma_8h_1a1a4e242d91ba5b4d6b540f7a1eacdc53" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM4_CH2<sp/><sp/>((uint32_t)0x00000027)<sp/></highlight></codeline>
+<codeline lineno="174" refid="at103__dma_8h_1a58c40389aa87eadecd9163ad36ef7caa" refkind="member"><highlight class="preprocessor">#define<sp/>DMA_PeripheralHandshake_TIM4_CH3<sp/><sp/>((uint32_t)0x00000024)<sp/></highlight></codeline>
+<codeline lineno="180"><highlight class="preprocessor">void<sp/>DMA_DeInit(DMA_Channel_TypeDef<sp/>*DMA_Channelx);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="188"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="at103__dma_8h_1a73919c49efcfad87945f6c8460c456b8" kindref="member">DMA_Init</ref>(DMA_Channel_TypeDef<sp/>*DMA_Channelx,<sp/><ref refid="structDMA__InitTypeDef" kindref="compound">DMA_InitTypeDef</ref><sp/>*DMA_InitStruct);</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="194"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="at103__dma_8h_1a0f7f95f750a90a6824f4e9b6f58adc7e" kindref="member">DMA_StructInit</ref>(<ref refid="structDMA__InitTypeDef" kindref="compound">DMA_InitTypeDef</ref><sp/>*DMA_InitStruct);</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="at103__dma_8h_1a8ccbd3d4d9474f1deb863764f6cedac8" kindref="member">DMA_Cmd</ref>(DMA_Channel_TypeDef<sp/>*DMA_Channelx,<sp/>FunctionalState<sp/>NewState);</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="at103__dma_8h_1afbef980436bd2302a275789839f91961" kindref="member">DMA_ITConfig</ref>(DMA_Channel_TypeDef<sp/>*DMA_Channelx,<sp/>uint32_t<sp/>DMA_IT,<sp/>FunctionalState<sp/>NewState);</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="222"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="at103__dma_8h_1a6d7df30bcceee26e92fbc628ed8610bb" kindref="member">DMA_SetCurrDataCounter</ref>(DMA_Channel_TypeDef<sp/>*DMA_Channelx,<sp/>uint16_t<sp/>DataNumber);</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal">uint16_t<sp/><ref refid="at103__dma_8h_1a5fd6fbc4580ad9a87339ddb430c9eb8d" kindref="member">DMA_GetCurrDataCounter</ref>(DMA_Channel_TypeDef<sp/>*DMA_Channelx);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal">FlagStatus<sp/><ref refid="at103__dma_8h_1afcb7a6712ae8d19e5bf3f329d56d1b8c" kindref="member">DMA_GetFlagStatus</ref>(uint32_t<sp/>DMA_FLAG);</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+<codeline lineno="243"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="at103__dma_8h_1a793d2dabd284e0c148ee1bde07ec7b20" kindref="member">DMA_ClearFlag</ref>(uint32_t<sp/>DMA_FLAG);</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="250"><highlight class="normal">ITStatus<sp/><ref refid="at103__dma_8h_1a5d4c26f0c6615e9647193d79386b2244" kindref="member">DMA_GetITStatus</ref>(uint32_t<sp/>DMA_IT);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"></highlight></codeline>
+<codeline lineno="256"><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="at103__dma_8h_1a8e2490f878985d3c55d584736214187d" kindref="member">DMA_ClearITPendingBit</ref>(uint32_t<sp/>DMA_IT);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"></highlight><highlight class="preprocessor">#ifdef<sp/>__cplusplus</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="259"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="libraries/driver/inc/at103_dma.h"/>
+  </compounddef>
+</doxygen>

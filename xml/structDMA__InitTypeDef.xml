@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.17">
+  <compounddef id="structDMA__InitTypeDef" kind="struct" language="C++" prot="public">
+    <compoundname>DMA_InitTypeDef</compoundname>
+    <includes refid="at103__dma_8h" local="no">at103_dma.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1a232af556de7c2eec9a82d448730bd86d" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_PeripheralBaseAddr</definition>
+        <argsstring></argsstring>
+        <name>DMA_PeripheralBaseAddr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies the peripheral base address for DMA Channelx. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="33" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1a41e7d463f0cfbcedf3170d7d27d088df" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_MemoryBaseAddr</definition>
+        <argsstring></argsstring>
+        <name>DMA_MemoryBaseAddr</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies the memory base address for DMA Channelx. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="34" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1a91b47435ccf4a40efa97bbbe631789e1" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_DIR</definition>
+        <argsstring></argsstring>
+        <name>DMA_DIR</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies if the peripheral is the source or destination. This parameter can be a value of DMA_data_transfer_direction. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="35" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1a999df57215b28b3b1b3b6836c4952ca5" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_BufferSize</definition>
+        <argsstring></argsstring>
+        <name>DMA_BufferSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies the buffer size, in data unit, of the specified Channel. The data unit is equal to the configuration set in DMA_PeripheralDataSize or DMA_MemoryDataSize members depending in the transfer direction. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="37" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1ad4d427790f9a089ca0257a358fc263c2" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_PeripheralInc</definition>
+        <argsstring></argsstring>
+        <name>DMA_PeripheralInc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies whether the Peripheral address register is incremented or not. This parameter can be a value of DMA_peripheral_incremented_mode. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="40" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1aaf69c680a297ec01a2ed613289e691a1" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_MemoryInc</definition>
+        <argsstring></argsstring>
+        <name>DMA_MemoryInc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies whether the memory address register is incremented or not. This parameter can be a value of DMA_memory_incremented_mode. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="42" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1afb46aaadfb80a7e19277c868bd252554" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_PeripheralDataSize</definition>
+        <argsstring></argsstring>
+        <name>DMA_PeripheralDataSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies the Peripheral data width. This parameter can be a value of DMA_peripheral_data_size. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="44" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1a74bb71921c4d198d6cf1979c120f694f" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_MemoryDataSize</definition>
+        <argsstring></argsstring>
+        <name>DMA_MemoryDataSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies the Memory data width. This parameter can be a value of DMA_memory_data_size. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="46" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1a8adbe6f3e46471d109afaa3111dce220" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_Mode</definition>
+        <argsstring></argsstring>
+        <name>DMA_Mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies the operation mode of the DMA Channelx. This parameter can be a value of DMA_circular_normal_mode. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="48" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="48" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1ab9a17bd51778478cbd728c868206dca0" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_Priority</definition>
+        <argsstring></argsstring>
+        <name>DMA_Priority</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies the software priority for the DMA Channelx. This parameter can be a value of DMA_priority_level. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="50" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="50" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1a57944cc447e6fcde4e9aa6229d3b4c5d" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_M2M</definition>
+        <argsstring></argsstring>
+        <name>DMA_M2M</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies if the DMA Channelx will be used in memory-to-memory transfer. This parameter can be a value of DMA_memory_to_memory. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="52" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structDMA__InitTypeDef_1a756c0620680e03d6efd3858c177cc8fd" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t DMA_InitTypeDef::DMA_PeripheralHandshake</definition>
+        <argsstring></argsstring>
+        <name>DMA_PeripheralHandshake</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Specifies the hardware handshake between the peripheral and DMA Channelx. This parameter can be a value of DMA_peripherals_handshake_definition. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="libraries/driver/inc/at103_dma.h" line="54" column="14" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>DMA Init structure definition. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="libraries/driver/inc/at103_dma.h" line="32" column="1" bodyfile="libraries/driver/inc/at103_dma.h" bodystart="31" bodyend="56"/>
+    <listofallmembers>
+      <member refid="structDMA__InitTypeDef_1a999df57215b28b3b1b3b6836c4952ca5" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_BufferSize</name></member>
+      <member refid="structDMA__InitTypeDef_1a91b47435ccf4a40efa97bbbe631789e1" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_DIR</name></member>
+      <member refid="structDMA__InitTypeDef_1a57944cc447e6fcde4e9aa6229d3b4c5d" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_M2M</name></member>
+      <member refid="structDMA__InitTypeDef_1a41e7d463f0cfbcedf3170d7d27d088df" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_MemoryBaseAddr</name></member>
+      <member refid="structDMA__InitTypeDef_1a74bb71921c4d198d6cf1979c120f694f" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_MemoryDataSize</name></member>
+      <member refid="structDMA__InitTypeDef_1aaf69c680a297ec01a2ed613289e691a1" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_MemoryInc</name></member>
+      <member refid="structDMA__InitTypeDef_1a8adbe6f3e46471d109afaa3111dce220" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_Mode</name></member>
+      <member refid="structDMA__InitTypeDef_1a232af556de7c2eec9a82d448730bd86d" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_PeripheralBaseAddr</name></member>
+      <member refid="structDMA__InitTypeDef_1afb46aaadfb80a7e19277c868bd252554" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_PeripheralDataSize</name></member>
+      <member refid="structDMA__InitTypeDef_1a756c0620680e03d6efd3858c177cc8fd" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_PeripheralHandshake</name></member>
+      <member refid="structDMA__InitTypeDef_1ad4d427790f9a089ca0257a358fc263c2" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_PeripheralInc</name></member>
+      <member refid="structDMA__InitTypeDef_1ab9a17bd51778478cbd728c868206dca0" prot="public" virt="non-virtual"><scope>DMA_InitTypeDef</scope><name>DMA_Priority</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

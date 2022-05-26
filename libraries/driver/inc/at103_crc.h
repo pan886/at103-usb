@@ -18,10 +18,9 @@ extern "C" {
 /**
  * @brief CRC input reverse.
  */
-#define CRC_Reverse                ((uint8_t)0x01)
-#define CRC_Not_Reverse            ((uint8_t)0x00)
-#define IS_CRC_DATA_INVOUT(INVOUT) (((INVOUT) == CRC_Reverse) || \
-                                    ((ALIGN) == CRC_Not_Reverse))
+#define CRC_Reverse                ((uint8_t)0x01) /**< CRC input reverse.*/
+#define CRC_Not_Reverse            ((uint8_t)0x00) /**< CRC input not reverse.*/
+
 
 /**
  * @brief Resets the CRC Data register (DR).
