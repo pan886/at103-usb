@@ -6,12 +6,8 @@ STACK_SIZE    = 0x400
 HEAP_SIZE     = 0x0
 NO_FLASH      = yes
 FPU           = yes
-TARGET        = ADC
-<<<<<<< HEAD
-APP_DIR       = ./test/peripherals/adc
-=======
-APP_DIR       =./test/peripherals/adc
->>>>>>> master
+TARGET        = uart_dma
+APP_DIR       = ./project/examples/uart_dma
 APP_C_SRC    += $(subst $(AT_SDK_HOME_SH),,$(call wildcards,$(AT_SDK_HOME_SH)/$(APP_DIR),%.c))
 APP_C_INC    += $(addprefix -I,$(call dirs,$(AT_SDK_HOME)/$(APP_DIR),%.h))
 APP_CPP_INC  +=

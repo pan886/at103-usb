@@ -3,9 +3,9 @@
  * @brief This file contains all the functions prototypes for the DMA firmware library. \n
  *        How to use this driver? \n
  * (+) At first, use DMA_DeInit(...) to reset requires DMA channel. \n
- * (+) Then, use DMA_Init(...) with DMA initialization structure to initialize a DMA channel. \n
+ * (+) Then, use DMA_Init(...) with DMA initialization structure to initialize a DMA channel.
  *     For details on the DMA initialization structure, see "DMA_InitTypeDef". \n
- * (+) Use DMA_ITConfig(...) to enable interrupts that require DMA channel, and you need to implement the corresponding channel service function: DMA_Channelx_IRQHandler. \n
+ * (+) Use DMA_ITConfig(...) to enable interrupts that require DMA channel, and you need to implement the corresponding channel service function: DMA_Channelx_IRQHandler.
  *     For details on the DMA interrupt type, see DMA interrupts type definition. \n
  * (+) Finally, use DMA_Cmd(...) to start a DMA channel transfer. \n
  * (+) Of course, you can use DMA_GetFlagStatus(...) to get the state of the DMA channel at any time, this is helpful in determining whether the DMA channel has completed its transfer. \n
