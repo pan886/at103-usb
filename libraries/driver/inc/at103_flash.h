@@ -3,8 +3,8 @@
  * @brief This file contains all the functions prototypes for the FLASH firmware library. \n
  *        How to use this driver? \n
  * (+) At first, use FLASH_Unlock(...) to unlock the flash. \n
- * (+) Then, use FLASH_EraseAllPages(...) to erase the entire FLASH. \n
- *     use FLASH_ErasePage(...) to specified FLASH page. \n
+ * (+) Then, use FLASH_EraseAllPages(...) to erase the entire FLASH.
+ *     Use FLASH_ErasePage(...) to specified FLASH page. \n
  * (+) Use FLASH_ProgramDoubleWord(...) to programs a double word at a specified address. \n
  * (+) Of course, you can use FLASH_GetStatus(...) to get the state of the FLASH at any time. \n
  * (+) Finally, use FLASH_Lock(...) to lock the flash.
