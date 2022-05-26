@@ -1442,7 +1442,7 @@ typedef struct
             __IOM uint32_t JSQ2 : 5;
             __IOM uint32_t JSQ3 : 5;
             __IOM uint32_t JSQ4 : 5;
-            __IOM uint32_t JSQ5 : 2;
+            __IOM uint32_t L : 2;
             __IOM          uint32_t : 10;
         };
         __IOM uint32_t value;

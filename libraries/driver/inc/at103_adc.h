@@ -325,6 +325,9 @@ typedef struct
 /* ADC1 DR register base address */
 #define DR_ADDRESS ((uint32_t)0x4001244C)
 
+/* ADC_regular_discontinuous_mode_number */
+#define IS_ADC_REGULAR_DISC_NUMBER(NUMBER) (((NUMBER) >= 0x1) && ((NUMBER) <= 0x8))
+
 /**
   * @brief Deinitializes the ADCx peripheral registers to their default reset values.
   * @param[in] ADCx : where x can be 1 or 2 to select the ADC peripheral.

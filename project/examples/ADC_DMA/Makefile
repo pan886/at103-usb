@@ -5,7 +5,6 @@ CHIP          = AT103
 STACK_SIZE    = 0x400
 HEAP_SIZE     = 0x0
 NO_FLASH      = yes
-FPU           = yes
 TARGET        = ADC_DMA
 APP_DIR       = ./project/examples/ADC_DMA
 APP_C_SRC    += $(subst $(AT_SDK_HOME_SH),,$(call wildcards,$(AT_SDK_HOME_SH)/$(APP_DIR),%.c))
