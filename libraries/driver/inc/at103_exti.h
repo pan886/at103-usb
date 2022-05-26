@@ -2,8 +2,8 @@
  * @file at103_exti.h
  * @brief This file contains all the functions prototypes for the EXTI firmware library. \n
  *        How to use this driver? \n
- * (+) Use EXTI_Init(...) with EXTI initialization structure to initialize a EXTI line, this module must work with the GPIO module. \n
- *     For details on the EXTI initialization structure, see "EXTI_InitTypeDef". \n
+ * (+) Use EXTI_Init(...) with EXTI initialization structure to initialize a EXTI line, this module must work with the GPIO module.
+ *     For details on the EXTI initialization structure, see "EXTI_InitTypeDef".
  * @author Dong Qin (dong.qin@timesintelli.com)
  * @version 1.0
  * @date 2022-03-11
@@ -46,22 +46,22 @@ typedef struct
     FunctionalState     EXTI_LineCmd; /**< Specifies the new state of the selected EXTI lines. */
 } EXTI_InitTypeDef;
 
-#define EXTI_Line0  ((uint32_t)0x0001) /**< EXTI line 0. */
-#define EXTI_Line1  ((uint32_t)0x0002) /**< EXTI line 1. */
-#define EXTI_Line2  ((uint32_t)0x0004) /**< EXTI line 2. */
-#define EXTI_Line3  ((uint32_t)0x0008) /**< EXTI line 3. */
-#define EXTI_Line4  ((uint32_t)0x0010) /**< EXTI line 4. */
-#define EXTI_Line5  ((uint32_t)0x0020) /**< EXTI line 5. */
-#define EXTI_Line6  ((uint32_t)0x0040) /**< EXTI line 6. */
-#define EXTI_Line7  ((uint32_t)0x0080) /**< EXTI line 7. */
-#define EXTI_Line8  ((uint32_t)0x0100) /**< EXTI line 8. */
-#define EXTI_Line9  ((uint32_t)0x0200) /**< EXTI line 9. */
-#define EXTI_Line10 ((uint32_t)0x0400) /**< EXTI line 10. */
-#define EXTI_Line11 ((uint32_t)0x0800) /**< EXTI line 11. */
-#define EXTI_Line12 ((uint32_t)0x1000) /**< EXTI line 12. */
-#define EXTI_Line13 ((uint32_t)0x2000) /**< EXTI line 13. */
-#define EXTI_Line14 ((uint32_t)0x4000) /**< EXTI line 14. */
-#define EXTI_Line15 ((uint32_t)0x8000) /**< EXTI line 15. */
+#define EXTI_Line0  ((uint32_t)0x0001) /**< EXTI line0. */
+#define EXTI_Line1  ((uint32_t)0x0002) /**< EXTI line1. */
+#define EXTI_Line2  ((uint32_t)0x0004) /**< EXTI line2. */
+#define EXTI_Line3  ((uint32_t)0x0008) /**< EXTI line3. */
+#define EXTI_Line4  ((uint32_t)0x0010) /**< EXTI line4. */
+#define EXTI_Line5  ((uint32_t)0x0020) /**< EXTI line5. */
+#define EXTI_Line6  ((uint32_t)0x0040) /**< EXTI line6. */
+#define EXTI_Line7  ((uint32_t)0x0080) /**< EXTI line7. */
+#define EXTI_Line8  ((uint32_t)0x0100) /**< EXTI line8. */
+#define EXTI_Line9  ((uint32_t)0x0200) /**< EXTI line9. */
+#define EXTI_Line10 ((uint32_t)0x0400) /**< EXTI line10. */
+#define EXTI_Line11 ((uint32_t)0x0800) /**< EXTI line11. */
+#define EXTI_Line12 ((uint32_t)0x1000) /**< EXTI line12. */
+#define EXTI_Line13 ((uint32_t)0x2000) /**< EXTI line13. */
+#define EXTI_Line14 ((uint32_t)0x4000) /**< EXTI line14. */
+#define EXTI_Line15 ((uint32_t)0x8000) /**< EXTI line15. */
 
 /**
  * @brief Deinitializes the EXTI peripheral registers to their default reset values.

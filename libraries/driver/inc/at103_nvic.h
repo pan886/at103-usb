@@ -2,7 +2,7 @@
  * @file at103_nvic.h
  * @brief This file contains all the functions prototypes for the NVIC firmware library. \n
  *        How to use this driver? \n
- * (+) Use NVIC_Init(...) with NVIC initialization structure to initialize a interrupt channel. \n
+ * (+) Use NVIC_Init(...) with NVIC initialization structure to initialize a interrupt channel.
  *        For details on the NVIC initialization structure, see "NVIC_InitTypeDef". \n
  * (+) Use NVIC_EnableIRQ(...) or NVIC_DisableIRQ(...) to enable or disable a channel interrupt, must use __enable_irq() to turn on global interrupts before doing so.
  * @author Dong Qin (dong.qin@timesintelli.com)

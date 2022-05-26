@@ -2,10 +2,10 @@
  * @file at103_gpio.h
  * @brief This file contains all the functions prototypes for the GPIO firmware library. \n
  *        How to use this driver? \n
- * (+) Use GPIO_Init(...) with GPIO initialization structure to initialize GPIO pins. \n
+ * (+) Use GPIO_Init(...) with GPIO initialization structure to initialize GPIO pins.
  *     For details on the GPIO initialization structure, see "GPIO_InitTypeDef". \n
  * (+) Use GPIO_SetBits(...) or GPIO_ResetBits(...) to set level of GPIO pins. \n
- * (+) Of course, you can use GPIO_ReadInputData(...) or GPIO_ReadInputDataBit(...) to get level of GPIO pins. \n
+ * (+) Of course, you can use GPIO_ReadInputData(...) or GPIO_ReadInputDataBit(...) to get level of GPIO pins.
  * @author Dong Qin (dong.qin@timesintelli.com)
  * @version 1.0
  * @date 2022-03-14
@@ -56,26 +56,26 @@ typedef struct
  * @brief  Bit_SET and Bit_RESET enumeration.
  */
 typedef enum {
-    Bit_RESET = 0, /**< Bit set. */
-    Bit_SET        /**< Bit reset. */
+    Bit_RESET = 0, /**< Bit reset. */
+    Bit_SET        /**< Bit set. */
 } BitAction;
 
-#define GPIO_Pin_0   ((uint16_t)0x0001) /**< Pin 0 selected. */
-#define GPIO_Pin_1   ((uint16_t)0x0002) /**< Pin 1 selected. */
-#define GPIO_Pin_2   ((uint16_t)0x0004) /**< Pin 2 selected. */
-#define GPIO_Pin_3   ((uint16_t)0x0008) /**< Pin 3 selected. */
-#define GPIO_Pin_4   ((uint16_t)0x0010) /**< Pin 4 selected. */
-#define GPIO_Pin_5   ((uint16_t)0x0020) /**< Pin 5 selected. */
-#define GPIO_Pin_6   ((uint16_t)0x0040) /**< Pin 6 selected. */
-#define GPIO_Pin_7   ((uint16_t)0x0080) /**< Pin 7 selected. */
-#define GPIO_Pin_8   ((uint16_t)0x0100) /**< Pin 8 selected. */
-#define GPIO_Pin_9   ((uint16_t)0x0200) /**< Pin 9 selected. */
-#define GPIO_Pin_10  ((uint16_t)0x0400) /**< Pin 10 selected. */
-#define GPIO_Pin_11  ((uint16_t)0x0800) /**< Pin 11 selected. */
-#define GPIO_Pin_12  ((uint16_t)0x1000) /**< Pin 12 selected. */
-#define GPIO_Pin_13  ((uint16_t)0x2000) /**< Pin 13 selected. */
-#define GPIO_Pin_14  ((uint16_t)0x4000) /**< Pin 14 selected. */
-#define GPIO_Pin_15  ((uint16_t)0x8000) /**< Pin 15 selected. */
+#define GPIO_Pin_0   ((uint16_t)0x0001) /**< Pin0 selected. */
+#define GPIO_Pin_1   ((uint16_t)0x0002) /**< Pin1 selected. */
+#define GPIO_Pin_2   ((uint16_t)0x0004) /**< Pin2 selected. */
+#define GPIO_Pin_3   ((uint16_t)0x0008) /**< Pin3 selected. */
+#define GPIO_Pin_4   ((uint16_t)0x0010) /**< Pin4 selected. */
+#define GPIO_Pin_5   ((uint16_t)0x0020) /**< Pin5 selected. */
+#define GPIO_Pin_6   ((uint16_t)0x0040) /**< Pin6 selected. */
+#define GPIO_Pin_7   ((uint16_t)0x0080) /**< Pin7 selected. */
+#define GPIO_Pin_8   ((uint16_t)0x0100) /**< Pin8 selected. */
+#define GPIO_Pin_9   ((uint16_t)0x0200) /**< Pin9 selected. */
+#define GPIO_Pin_10  ((uint16_t)0x0400) /**< Pin10 selected. */
+#define GPIO_Pin_11  ((uint16_t)0x0800) /**< Pin11 selected. */
+#define GPIO_Pin_12  ((uint16_t)0x1000) /**< Pin12 selected. */
+#define GPIO_Pin_13  ((uint16_t)0x2000) /**< Pin13 selected. */
+#define GPIO_Pin_14  ((uint16_t)0x4000) /**< Pin14 selected. */
+#define GPIO_Pin_15  ((uint16_t)0x8000) /**< Pin15 selected. */
 #define GPIO_Pin_All ((uint16_t)0xFFFF) /**< All pins selected. */
 
 #define GPIO_Remap_SPI1          ((uint32_t)0x00000001) /**< SPI1 Alternate Function mapping. */
