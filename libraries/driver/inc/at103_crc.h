@@ -1,6 +1,6 @@
 /**
  * @file at103_crc.h
- * @brief This file contains all the functions prototypes for the CRC firmware library.
+ * @brief This file contains all the functions prototypes for the CRC firmware library. \n
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-05-17
@@ -18,9 +18,8 @@ extern "C" {
 /**
  * @brief CRC input reverse.
  */
-#define CRC_Reverse                ((uint8_t)0x01) /**< CRC input reverse.*/
-#define CRC_Not_Reverse            ((uint8_t)0x00) /**< CRC input not reverse.*/
-
+#define CRC_Reverse     ((uint8_t)0x01) /**< CRC input reverse.*/
+#define CRC_Not_Reverse ((uint8_t)0x00) /**< CRC input not reverse.*/
 
 /**
  * @brief Resets the CRC Data register (DR).
