@@ -5,7 +5,7 @@
  * (+) At first, use RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, ENABLE) to enable the CRC clock.
  * (+) Then,use CRC_Seed_Config(...) to config the the initial value of crc.
  * (+) Finally,use CRC_CalcCRC(...) to get the crc value.
- * 
+ * (+) Note: \n
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-05-17
