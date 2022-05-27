@@ -3,10 +3,10 @@
  * @brief This file contains all the functions prototypes for the WWDG firmware 
  *         library. \n
  *        How to use this driver? \n
- * (+) At first, use  WWDG_Enable() to enable WWDG.
- * (+) Then,use WWDG_SetMode(...)to set the mode of wwdg.the mode can be interrupt or reset.
- * (+) Use WWDG_SetPrescaler(...)to set the Prescaler value.
- * (+) Finally,use WWDG_ReloadCounter() to restart the WWDG counter.
+ * (+) At first, use  WWDG_Enable() to enable WWDG. \n
+ * (+) Then,use WWDG_SetMode(...)to set the mode of wwdg.the mode can be interrupt or reset. \n
+ * (+) Use WWDG_SetPrescaler(...)to set the Prescaler value. \n
+ * (+) Finally,use WWDG_ReloadCounter() to restart the WWDG counter. \n
  * (+) Note: \n
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
