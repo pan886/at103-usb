@@ -7,7 +7,7 @@
  * (+) Then,use WWDG_SetMode(...)to set the mode of wwdg.the mode can be interrupt or reset. \n
  * (+) Use WWDG_SetPrescaler(...)to set the Prescaler value. \n
  * (+) Finally,use WWDG_ReloadCounter() to restart the WWDG counter. \n
- * (+) Note: \n
+
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-03-17
@@ -70,25 +70,25 @@ void WWDG_ClearFlag(void);
 
 /**
  * @brief Reloads WWDG counter with value defined in the reload register
- * @param[in] Reload :Watchdog Timer load value 
+ * @param[in] Reload Watchdog Timer load value 
  */
 void WWDG_SetReload(uint32_t Reload);
 
 /**
- * @brief :Set the length of Watchdog Timer Reset Pulse
+ * @brief Set the length of Watchdog Timer Reset Pulse
  * @param[in] length The value of reset pulse length is the number of pclk cycles. At the least 2 pclk cycles
  */
 void WWDG_Set_Reset_Pulselength(uint16_t length);
 
 /**
- * @brief :Sets WWDG higher and lower Prescaler value
+ * @brief Sets WWDG higher and lower Prescaler value
  * @param[in] WWDG_Higher_Prescaler specifies the WWDG higher presaclaer value
  * @param[in] WWDG_Lower_Prescaler specifies the WWDG lower presaclaer value
  */
 void WWDG_SetPrescaler(uint32_t WWDG_Higher_Prescaler, uint32_t WWDG_Lower_Prescaler);
 
 /**
- * @brief :set Time-out time,When a WDT Interrupt is generated, if it is not cleared before the Time-out time, then it generates a system reset.
+ * @brief set Time-out time,When a WDT Interrupt is generated, if it is not cleared before the Time-out time, then it generates a system reset.
  * @param[in] cycle WWDG Counter clock cycles. 
  */
 void WWDG_Set_Timeout_range(uint8_t cycle);
@@ -104,12 +104,12 @@ void WWDG_Enable();
 void WWDG_Disable();
 
 /**
- * @brief :Set the mode of WWDG
- * @param[in] Mode :reset or interrupt
+ * @brief Set the mode of WWDG
+ * @param[in] Mode reset or interrupt
  */
 void WWDG_SetMode(uint8_t Mode);
 
 /**
- * @brief: Restart the WWDG counter.
+ * @brief Restart the WWDG counter.
  */
 void WWDG_ReloadCounter(void);
