@@ -23,7 +23,6 @@ typedef enum {
     SET   = !RESET,
 } FlagStatus;
 typedef FlagStatus ITStatus;
-
 typedef enum {
     DISABLE = 0,
     ENABLE  = !DISABLE,
@@ -1241,10 +1240,294 @@ typedef struct {
 } DMA_TypeDef;
 
 /**
+ * @brief TIM Peripheral Interface
+ */
+typedef struct {
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_CR1_CEN : 1;  /**< Counter enable. */
+            __IOM uint32_t TIM_CR1_UDIS : 1; /**< Update disable. */
+            __IOM uint32_t TIM_CR1_URS : 1;  /**< Update request source. */
+            __IOM uint32_t TIM_CR1_OPM : 1;  /**< One pulse mode. */
+            __IOM uint32_t TIM_CR1_DIR : 1;  /**<  Direction. */
+            __IOM uint32_t TIM_CR1_CMS : 2;  /**< Center-aligned mode selection. */
+            __IOM uint32_t TIM_CR1_ARPE : 1; /**< Auto-reload preload enable. */
+            __IOM uint32_t TIM_CR1_CKD : 2;  /**< Clock division. */
+            __IOM          uint32_t : 22;    /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_CR1;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_CR2_CCPC : 1;  /**< Capture/compare preloaded control. */
+            __IOM          uint32_t : 1;      /**< Reserved. */
+            __IOM uint32_t TIM_CR2_CCUS : 1;  /**< Capture/compare control update selection. */
+            __IOM uint32_t TIM_CR2_CCDS : 1;  /**< Capture/compare DMA selection. */
+            __IOM uint32_t TIM_CR2_MMS : 3;   /**< Master mode selection. */
+            __IOM uint32_t TIM_CR2_TI1S : 1;  /**< TI1 selection. */
+            __IOM uint32_t TIM_CR2_OIS1 : 1;  /**< Output Idle state 1 (OC1 output). */
+            __IOM uint32_t TIM_CR2_OIS1N : 1; /**< Output Idle state 1 (OC1N output). */
+            __IOM uint32_t TIM_CR2_OIS2 : 1;  /**< Output Idle state 2 (OC2 output). */
+            __IOM uint32_t TIM_CR2_OIS2N : 1; /**< Output Idle state 2 (OC2N output). */
+            __IOM uint32_t TIM_CR2_OIS3 : 1;  /**< Output Idle state 3 (OC3 output). */
+            __IOM uint32_t TIM_CR2_OIS3N : 1; /**< Output Idle state 3 (OC3N output). */
+            __IOM uint32_t TIM_CR2_OIS4 : 1;  /**< Output Idle state 4 (OC4 output) . */
+            __IOM          uint32_t : 17;     /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_CR2;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_SMCR_SMS : 3;  /**< Slave mode selection. */
+            __IOM          uint32_t : 1;      /**< Reserved. */
+            __IOM uint32_t TIM_SMCR_TS : 3;   /**< Trigger selection. */
+            __IOM uint32_t TIM_SMCR_MSM : 1;  /**< Master/slave mode. */
+            __IOM uint32_t TIM_SMCR_ETF : 4;  /**< External trigger filter. */
+            __IOM uint32_t TIM_SMCR_ETPS : 2; /**< External trigger prescaler. */
+            __IOM uint32_t TIM_SMCR_ECE : 1;  /**< External clock enable. */
+            __IOM uint32_t TIM_SMCR_ETP : 1;  /**< External trigger polarity. */
+            __IOM          uint32_t : 16;     /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_SMCR;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_DIER_UIE : 1;   /**< Update interrupt enable. */
+            __IOM uint32_t TIM_DIER_CC1IE : 1; /**< Capture/Compare 1 interrupt enable. */
+            __IOM uint32_t TIM_DIER_CC2IE : 1; /**< Capture/Compare 2 interrupt enable. */
+            __IOM uint32_t TIM_DIER_CC3IE : 1; /**< Capture/Compare 3 interrupt enable. */
+            __IOM uint32_t TIM_DIER_CC4IE : 1; /**< Capture/Compare 4 interrupt enable. */
+            __IOM uint32_t TIM_DIER_COMIE : 1; /**< COM interrupt enable. */
+            __IOM uint32_t TIM_DIER_TIE : 1;   /**< Trigger interrupt enable. */
+            __IOM uint32_t TIM_DIER_BIE : 1;   /**< Break interrupt enable. */
+            __IOM uint32_t TIM_DIER_UDE : 1;   /**< Update DMA request enable. */
+            __IOM uint32_t TIM_DIER_CC1DE : 1; /**< Capture/Compare 1 DMA request enable. */
+            __IOM uint32_t TIM_DIER_CC2DE : 1; /**< Capture/Compare 2 DMA request enable. */
+            __IOM uint32_t TIM_DIER_CC3DE : 1; /**< Capture/Compare 3 DMA request enable. */
+            __IOM uint32_t TIM_DIER_CC4DE : 1; /**< Capture/Compare 4 DMA request enable. */
+            __IOM uint32_t TIM_DIER_COMDE : 1; /**< COM DMA request enable. */
+            __IOM uint32_t TIM_DIER_TDE : 1;   /**< Trigger DMA request enable. */
+            __IOM          uint32_t : 17;      /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_DIER;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_SR_UIF : 1;   /**< Update interrupt flag. */
+            __IOM uint32_t TIM_SR_CC1IF : 1; /**< Capture/Compare 1 interrupt flag. */
+            __IOM uint32_t TIM_SR_CC2IF : 1; /**< Capture/Compare 2 interrupt flag. */
+            __IOM uint32_t TIM_SR_CC3IF : 1; /**< Capture/Compare 3 interrupt flag. */
+            __IOM uint32_t TIM_SR_CC4IF : 1; /**< Capture/Compare 4 interrupt flag. */
+            __IOM uint32_t TIM_SR_COMIF : 1; /**< COM interrupt flag. */
+            __IOM uint32_t TIM_SR_TIF : 1;   /**< Trigger interrupt flag. */
+            __IOM uint32_t TIM_SR_BIF : 1;   /**< Break interrupt flag. */
+            __IOM          uint32_t : 1;     /**< Reserved. */
+            __IOM uint32_t TIM_SR_CC1OF : 1; /**< Capture/Compare 1 overcapture flag. */
+            __IOM uint32_t TIM_SR_CC2OF : 1; /**< Capture/Compare 2 overcapture flag. */
+            __IOM uint32_t TIM_SR_CC3OF : 1; /**< Capture/Compare 3 overcapture flag. */
+            __IOM uint32_t TIM_SR_CC4OF : 1; /**< Capture/Compare 4 overcapture flag. */
+            __IOM          uint32_t : 19;    /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_SR;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_EGR_UG : 1;   /**< Update Generation . */
+            __IOM uint32_t TIM_EGR_CC1G : 1; /**< Capture/Compare 1 Generation. */
+            __IOM uint32_t TIM_EGR_CC2G : 1; /**< Capture/Compare 2 Generation . */
+            __IOM uint32_t TIM_EGR_CC3G : 1; /**< Capture/Compare 3 Generation. */
+            __IOM uint32_t TIM_EGR_CC4G : 1; /**< Capture/Compare 4 Generation. */
+            __IOM uint32_t TIM_EGR_COMG : 1; /**< Capture/Compare Control Update Generation. */
+            __IOM uint32_t TIM_EGR_TG : 1;   /**< Trigger Generation. */
+            __IOM uint32_t TIM_EGR_BG : 1;   /**< Break Generation. */
+            __IOM          uint32_t : 24;    /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_EGR;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_CCMR1_CC1S : 2;  /**< Compare 1 selection. */
+            __IOM uint32_t TIM_CCMR1_OC1FE : 1; /**< Output Compare 1 Fast enable. */
+            __IOM uint32_t TIM_CCMR1_OC1PE : 1; /**< Output Compare 1 Preload enable. */
+            __IOM uint32_t TIM_CCMR1_OC1M : 3;  /**< Output Compare 1 Mode. */
+            __IOM uint32_t TIM_CCMR1_OC1CE : 1; /**< Output Compare 1 Clear Enable. */
+            __IOM uint32_t TIM_CCMR1_CC2S : 2;  /**< Compare 2 Selection. */
+            __IOM uint32_t TIM_CCMR1_OC2FE : 1; /**< Output Compare 2 fast enable. */
+            __IOM uint32_t TIM_CCMR1_OC2PE : 1; /**< Output Compare 2 preload enable. */
+            __IOM uint32_t TIM_CCMR1_OC2M : 3;  /**< Output Compare 2 mode. */
+            __IOM uint32_t TIM_CCMR1_OC2CE : 1; /**< Output Compare 2 clear enable. */
+            __IOM          uint32_t : 16;       /**< Reserved. */
+        };
+        struct
+        {
+            __IOM uint32_t TIM_CCMR1_CC1S2 : 2;  /**< Capture 1 selection. */
+            __IOM uint32_t TIM_CCMR1_IC1PSC : 2; /**< Input capture 1 prescaler. */
+            __IOM uint32_t TIM_CCMR1_IC1F : 4;   /**< Input capture 1 filter. */
+            __IOM uint32_t TIM_CCMR1_CC2S2 : 2;  /**< Capture 2 Selection. */
+            __IOM uint32_t TIM_CCMR1_IC2PSC : 2; /**< Input capture 2 prescaler. */
+            __IOM uint32_t TIM_CCMR1_IC2F : 4;   /**< Input capture 2 filter. */
+            __IOM          uint32_t : 16;        /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_CCMR1;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_CCMR2_CC3S : 2;  /**< Compare 3 selection . */
+            __IOM uint32_t TIM_CCMR2_OC3FE : 1; /**< Output Compare 3 Fast enable. */
+            __IOM uint32_t TIM_CCMR2_OC3PE : 1; /**< Output Compare 3 Preload enable . */
+            __IOM uint32_t TIM_CCMR2_OC3M : 3;  /**< Output Compare 3 Mode. */
+            __IOM uint32_t TIM_CCMR2_OC3CE : 1; /**< Output Compare 3 Clear Enable. */
+            __IOM uint32_t TIM_CCMR2_CC4S : 2;  /**< Capture/Compare 4 Selection. */
+            __IOM uint32_t TIM_CCMR2_OC4FE : 1; /**< Output Compare 4 fast enable. */
+            __IOM uint32_t TIM_CCMR2_OC4PE : 1; /**< Output Compare 4 preload enable. */
+            __IOM uint32_t TIM_CCMR2_OC4M : 3;  /**< Output Compare 4 mode. */
+            __IOM uint32_t TIM_CCMR2_OC4CE : 1; /**< Output Compare 4 clear enable. */
+            __IOM          uint32_t : 16;       /**< Reserved. */
+        };
+        struct
+        {
+            __IOM uint32_t TIM_CCMR2_CC3S2 : 2;  /**< Capture 3 selection . */
+            __IOM uint32_t TIM_CCMR2_IC3PSC : 2; /**< Input Capture 3 Prescaler. */
+            __IOM uint32_t TIM_CCMR2_IC3F : 4;   /**< Input Capture 3 Filter. */
+            __IOM uint32_t TIM_CCMR2_CC4S2 : 2;  /**< Capture 4 Selection. */
+            __IOM uint32_t TIM_CCMR2_IC4PSC : 2; /**< Input Capture 4 Prescaler. */
+            __IOM uint32_t TIM_CCMR2_IC4F : 4;   /**< Input Capture 4 Filter. */
+            __IOM          uint32_t : 16;        /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_CCMR2;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_CCER_CC1E : 1;  /**< Capture/Compare 1 output enable . */
+            __IOM uint32_t TIM_CCER_CC1P : 1;  /**< Capture/Compare 1 output polarity. */
+            __IOM uint32_t TIM_CCER_CC1NE : 1; /**< Capture/Compare 1 complementary output enable. */
+            __IOM uint32_t TIM_CCER_CC1NP : 1; /**< Capture/Compare 1 complementary output polarity. */
+            __IOM uint32_t TIM_CCER_CC2E : 1;  /**< Capture/Compare 2 output enable. */
+            __IOM uint32_t TIM_CCER_CC2P : 1;  /**< Capture/Compare 2 output polarity. */
+            __IOM uint32_t TIM_CCER_CC2NE : 1; /**< Capture/Compare 2 complementary output enable. */
+            __IOM uint32_t TIM_CCER_CC2NP : 1; /**< Capture/Compare 2 complementary output polarity. */
+            __IOM uint32_t TIM_CCER_CC3E : 1;  /**< Capture/Compare 3 output enable. */
+            __IOM uint32_t TIM_CCER_CC3P : 1;  /**< Capture/Compare 3 output polarity. */
+            __IOM uint32_t TIM_CCER_CC3NE : 1; /**< Capture/Compare 3 complementary output enable. */
+            __IOM uint32_t TIM_CCER_CC3NP : 1; /**< Capture/Compare 3 complementary output polarity. */
+            __IOM uint32_t TIM_CCER_CC4E : 1;  /**< Capture/Compare 4 output enable. */
+            __IOM uint32_t TIM_CCER_CC4P : 1;  /**< Capture/Compare 4 output polarity. */
+            __IOM          uint32_t : 18;      /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_CCER;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_CNT_CNT : 16; /**< Counter Value . */
+            __IOM          uint32_t : 16;    /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_CNT;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_PSC_PSC : 16; /**< Prescaler Value . */
+            __IOM          uint32_t : 16;    /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_PSC;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_ARR_ARR : 16; /**< actual auto-reload Value . */
+            __IOM          uint32_t : 16;    /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_ARR;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_RCR_REP : 8; /**< Repetition Counter Value . */
+            __IOM          uint32_t : 24;   /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_RCR;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_CCR1_CCR1 : 16; /**< Capture/Compare 1 value . */
+            __IOM          uint32_t : 16;      /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_CCR1;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_CCR2_CCR2 : 16; /**< Capture/Compare 2 value . */
+            __IOM          uint32_t : 16;      /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_CCR2;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_CCR3_CCR3 : 16; /**< Capture/Compare 3 value . */
+            __IOM          uint32_t : 16;      /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_CCR3;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_CCR4_CCR4 : 16; /**< Capture/Compare 4 value . */
+            __IOM          uint32_t : 16;      /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_CCR4;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_BDTR_DTG : 8;  /**< Dead-Time Generator set-up . */
+            __IOM uint32_t TIM_BDTR_LOCK : 2; /**< Lock Configuration . */
+            __IOM uint32_t TIM_BDTR_OSSI : 1; /**< Off-State Selection for Idle mode . */
+            __IOM uint32_t TIM_BDTR_OSSR : 1; /**< Off-State Selection for Run mode . */
+            __IOM uint32_t TIM_BDTR_BKE : 1;  /**< Break enable . */
+            __IOM uint32_t TIM_BDTR_BKP : 1;  /**< Break Polarity . */
+            __IOM uint32_t TIM_BDTR_AOE : 1;  /**< Automatic Output enable . */
+            __IOM uint32_t TIM_BDTR_MOE : 1;  /**< Main Output enable . */
+            __IOM          uint32_t : 16;     /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_BDTR;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_DCR_DBA : 5; /**< DMA Base Address . */
+            __IOM          uint32_t : 3;    /**< Reserved. */
+            __IOM uint32_t TIM_DCR_DBL : 5; /**< DMA Burst Length . */
+            __IOM          uint32_t : 19;   /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_DCR;
+    union {
+        struct
+        {
+            __IOM uint32_t TIM_DMAR_DMAB : 16; /**< DMA register for burst accesses . */
+            __IOM          uint32_t : 16;      /**< Reserved. */
+        };
+        __IOM uint32_t value;
+    } TIM_DMAR;
+} TIM_TypeDef;
+
+/**
  * @brief ADC Peripheral Interface
  */
-typedef struct
-{
+typedef struct {
     union {
         struct
         {
@@ -1775,6 +2058,10 @@ typedef struct
 #define DMA_Channel6 ((DMA_Channel_TypeDef *)DMA_Channel6_BASE)
 #define DMA_Channel7 ((DMA_Channel_TypeDef *)DMA_Channel7_BASE)
 #define DMA_Channel8 ((DMA_Channel_TypeDef *)DMA_Channel8_BASE)
+#define TIM1         ((TIM_TypeDef *)TIM1_BASE)
+#define TIM2         ((TIM_TypeDef *)TIM2_BASE)
+#define TIM3         ((TIM_TypeDef *)TIM3_BASE)
+#define TIM4         ((TIM_TypeDef *)TIM4_BASE)
 #define WWDG         ((WWDG_TypeDef *)WWDG_BASE)
 #define ADC1         ((ADC_TypeDef *)ADC1_BASE)
 #define ADC2         ((ADC_TypeDef *)ADC2_BASE)
@@ -1788,10 +2075,13 @@ typedef struct
 #include "at103_conf.h"
 
 /** peripherals driver */
+
+#ifdef TIM_MODULE_ENABLED
+#include "at103_tim.h"
+#endif /* TIM_MODULE_ENABLED */
 #ifdef DMA_MODULE_ENABLED
 #include "at103_dma.h"
 #endif /* DMA_MODULE_ENABLED */
-
 #ifdef NVIC_MODULE_ENABLED
 #include "at103_nvic.h"
 #endif /* NVIC_MODULE_ENABLED */
