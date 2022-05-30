@@ -1,0 +1,28 @@
+/**
+ * @file at103_config.h
+ * @brief Library configuration file.
+ * @author liyouchuang (lycdemeng@163.com)
+ * @version 1.0
+ * @date 2022-05-18
+ * @copyright Copyright (c) 2022 Icore, Inc
+ */
+
+#ifndef __AT103_CONFIG_H
+#define __AT103_CONFIG_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#define USART_MODULE_ENABLED
+#define GPIO_MODULE_ENABLED
+#define NVIC_MODULE_ENABLED
+#define RCC_MODULE_ENABLED
+#define DMA_MODULE_ENABLED
+#define TIM_MODULE_ENABLED
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* __AT103_CONFIG_H */
