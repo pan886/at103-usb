@@ -4,7 +4,7 @@
  *         How to use this driver? \n
  * (+) At first, use RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, ENABLE) to enable the CRC clock. \n
  * (+) Then,use CRC_Seed_Config(...) to config the the initial value of crc. \n
- * (+) Finally,use CRC_CalcCRC(...) to get the crc value. \n
+ * (+) Finally,use CRC_CalcCRC(...) to get the crc value. 
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-05-17
