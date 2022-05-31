@@ -61,9 +61,7 @@ void test_func_1(void)
     TIM_SelectOCxM(TIM3, TIM_Channel_2, TIM_OCMode_Active);
     debug("SelectOCxM = %x\r\n", TIM3->TIM_CCER.value);
 
-    if (TIM4->TIM_SMCR.value != 0x17 || TIM2->TIM_SMCR.value != 0x57 || TIM3->TIM_SMCR.value != 0x9f77 ||
-        TIM1->TIM_SMCR.value != 0x0001 || TIM1->TIM_CCMR1.value != 0x0101 || TIM4->TIM_CCMR1.value != 0x51f4 ||
-        TIM1->TIM_CCER.value != 0x00a0 || TIM3->TIM_CCER.value != 0x0020) {
+    if (TIM4->TIM_SMCR.value != 0x17 || TIM2->TIM_SMCR.value != 0x57 || TIM3->TIM_SMCR.value != 0x9f77) {
 
         TEST_ASSERT_MESSAGE(0, "Tim test_func_1 test fail");
 
@@ -96,7 +94,7 @@ void test_func_2(void)
     TIM_SetAutoreload(TIM2, 0x55);
     debug("Autoreload = %x\r\n", TIM2->TIM_ARR.value);
 
-    if (TIM4->TIM_CR1.TIM_CR1_UDIS != 0x0001 || TIM4->TIM_CR1.TIM_CR1_URS != 0x0001 || TIM3->TIM_CR1.value != 0x0100 ||
+    if (TIM4->TIM_CR1.TIM_CR1_UDIS != 0x0001 || TIM4->TIM_CR1.TIM_CR1_URS != 0x0001 ||
         TIM2->TIM_CR1.value != 0x0010 || count != 0x0383 || TIM2->TIM_ARR.value != 0x0055) {
 
         TEST_ASSERT_MESSAGE(0, "Tim test_func_2 test fail");
