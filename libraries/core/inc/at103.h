@@ -2482,7 +2482,6 @@ typedef struct
         };
         __IOM uint32_t value;
     } SPBRG;
-
     union {
         struct
         {
@@ -2509,6 +2508,41 @@ typedef struct
         __IOM uint32_t value;
     } SCSR;
 } SPI_TypeDef;
+
+typedef struct
+{
+
+    uint32_t CRC_IN;
+    uint32_t RESERVED[16380];
+    union {
+        struct
+        {
+            uint32_t COUT : 16;
+            uint32_t RESERVED : 16;
+        };
+        __IOM uint32_t value;
+    } CRC_OUT;
+
+    union {
+        struct
+        {
+            uint32_t INVOUT : 1;
+            uint32_t CLEAR : 1;
+            uint32_t RESERVED : 30;
+        };
+        __IOM uint32_t value;
+    } CRC_CTL;
+    union {
+        struct
+        {
+
+            uint32_t SEED : 16;
+            uint32_t RESERVED : 16;
+        };
+        __IOM uint32_t value;
+    } CRCSEED;
+
+} CRC_TypeDef;
 
 /** Peripheral declaration */
 #define ICACHE       ((ICACHE_TypeDef *)ICACHE_BASE)
@@ -2544,6 +2578,7 @@ typedef struct
 #define SPI1         ((SPI_TypeDef *)SPI1_BASE)
 #define SPI2         ((SPI_TypeDef *)SPI2_BASE)
 #define RTC          ((RTC_TypeDef *)RTC_BASE)
+#define CRC          ((CRC_TypeDef *)CRC_BASE)
 /** system level driver */
 #include "at103_icache.h"
 
@@ -2598,6 +2633,10 @@ typedef struct
 #ifdef RTC_MODULE_ENABLED
 #include "at103_rtc.h"
 #endif /* RTC_MODULE_ENABLED */
+
+#ifdef CRC_MODULE_ENABLED
+#include "at103_crc.h"
+#endif /* CRC_MODULE_ENABLED */
 /**
  * @brief  The assert_param macro is used for function's parameters check.
  * @param  expr: If expr is false, it calls assert_failed function which reports
