@@ -756,6 +756,481 @@ typedef struct
     } USART_IREN;
 } AFIO_TypeDef;
 
+typedef struct
+{
+    union {
+        struct
+        {
+            __IOM uint32_t THSEC : 8;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } THSEC_100;
+    union {
+        struct
+        {
+            __IOM uint32_t SEC : 7;
+            __IOM          uint32_t : 25;
+        };
+        __IOM uint32_t value;
+    } SECOND;
+
+    union {
+
+        struct {
+            __IOM uint32_t MIN : 7;
+            __IOM          uint32_t : 25;
+        };
+        __IOM uint32_t value;
+
+        /* data */
+    } MINUTE;
+    union {
+        struct
+        {
+            __IOM uint32_t HOUR19 : 5;
+            __IOM uint32_t H20_PA : 1;
+            __IOM          uint32_t : 1;
+            __IOM uint32_t H12_24 : 1;
+            __IOM          uint32_t : 24;
+        };
+
+        __IOM uint32_t value;
+    } HOUR;
+
+    union {
+        struct
+        {
+            __IOM uint32_t WK : 3;
+            __IOM          uint32_t : 29;
+        };
+        __IOM uint32_t value;
+    } WEEK;
+
+    union {
+        struct
+        {
+            __IOM uint32_t DY : 5;
+            __IOM          uint32_t : 27;
+        };
+        __IOM uint32_t value;
+    } DAY;
+    union {
+        struct
+        {
+            __IOM uint32_t MONTH : 5;
+            __IOM          uint32_t : 2;
+            __IOM uint32_t CEN : 1;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } CEN_MONTH;
+
+    union {
+        struct
+        {
+            __IOM uint32_t YR : 8;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+
+    } YEAR;
+
+    __IOM uint32_t RESERVED0[4];
+    union {
+        struct
+        {
+            __IOM uint32_t A1100THSEC : 8;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } ALM1_100THSEC;
+
+    union {
+        struct
+        {
+            __IOM uint32_t SEC : 7;
+            __IOM          uint32_t : 25;
+        };
+        __IOM uint32_t value;
+    } ALM1_SEC;
+
+    union {
+        struct
+        {
+            __IOM uint32_t MIN : 7;
+            __IOM          uint32_t : 25;
+        };
+        __IOM uint32_t value;
+
+    } ALM1_MIN;
+
+    union {
+        struct
+        {
+            __IOM uint32_t HOUR19 : 5;
+            __IOM uint32_t H20_PA : 2;
+            __IOM uint32_t H12_24 : 1;
+            __IOM          uint32_t : 24;
+        };
+
+        __IOM uint32_t value;
+    } ALM1_HOUR;
+
+    union {
+        struct
+        {
+            __IOM uint32_t WEEK : 3;
+            __IOM          uint32_t : 29;
+        };
+        __IOM uint32_t value;
+    } ALM1_WEEK;
+
+    union {
+        struct
+        {
+            __IOM uint32_t DAY : 6;
+            __IOM          uint32_t : 26;
+        };
+        __IOM uint32_t value;
+    } ALM1_DAY;
+
+    union {
+        struct
+        {
+            __IOM uint32_t MON : 5;
+            __IOM          uint32_t : 27;
+        };
+        __IOM uint32_t value;
+    } ALM1_MONTH;
+    union {
+        struct
+        {
+            __IOM uint32_t YEAR : 5;
+            __IOM          uint32_t : 27;
+        };
+        __IOM uint32_t value;
+    } ALM1_YEAR;
+
+    union {
+        struct
+        {
+            __IOM uint32_t A1100THSEC : 1;
+            __IOM uint32_t A1MSEC : 1;
+            __IOM uint32_t A1MMIN : 1;
+            __IOM uint32_t A1MHOUR : 1;
+            __IOM uint32_t A1MWEEK : 1;
+            __IOM uint32_t A1MDAY : 1;
+            __IOM uint32_t A1MMON : 1;
+            __IOM uint32_t A1MYEAR : 1;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } ALM1_MASK;
+
+    union {
+        struct
+        {
+            __IOM uint32_t ALM2_PDSET : 4;
+            __IOM          uint32_t : 28;
+        };
+        __IOM uint32_t value;
+    } ALM2_SET;
+
+    union {
+        struct
+        {
+            __IOM uint32_t ALM1_EN : 1;
+            __IOM uint32_t ALM2_EN : 1;
+            __IOM          uint32_t : 30;
+        };
+        __IOM uint32_t value;
+    } ALM_EN;
+
+    union {
+        struct
+        {
+            __IOM uint32_t ALM1_IRQ_RAW : 1;
+            __IOM uint32_t ALM2_IRQ_RAW : 1;
+            __IOM          uint32_t : 30;
+        };
+        __IOM uint32_t value;
+        /* data */
+    } IRQ_RAW;
+
+    union {
+        struct
+        {
+            __IOM uint32_t ALM1_IRQ_MASK : 1;
+            __IOM uint32_t ALM2_IRQ_MASK : 1;
+            __IOM          uint32_t : 30;
+        };
+        __IOM uint32_t value;
+    } IRQ_MASK;
+    union {
+        struct
+        {
+            __IOM uint32_t ALM1_IRQ_STA : 1;
+            __IOM uint32_t ALM2_IRQ_STA : 1;
+            __IOM          uint32_t : 30;
+        };
+        __IOM uint32_t value;
+    } IRQ_STA;
+
+    union {
+        struct
+        {
+            __IOM uint32_t ALM1_IRQ_CLR : 1;
+            __IOM uint32_t ALM2_IRQ_CLR : 1;
+            __IOM          uint32_t : 30;
+        };
+        __IOM uint32_t value;
+    } RTC_IRQ_CLR;
+
+    __IOM uint32_t RESERVED1[5];
+    union {
+        struct
+        {
+            __IOM uint32_t COMPENSATE : 8;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+        /* data */
+    } TRIM;
+    union {
+        struct
+        {
+            __IOM uint32_t ENABLE : 1;
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } TRIM_EN;
+    union {
+        struct
+        {
+            __IOM uint32_t TRIM_MODE : 2;
+            __IOM uint32_t VLD_MODE : 2;
+            __IOM          uint32_t : 28;
+        };
+        __IOM uint32_t value;
+    } TRIM_MODE;
+
+    union {
+        struct
+        {
+            __IOM uint32_t ENABLE : 1;
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } VLD_EN;
+
+    union {
+        struct
+        {
+            __IOM uint32_t SECCNTUP : 1;
+            __IOM uint32_t MINCNTUP : 1;
+            __IOM uint32_t HOURCNTUP : 1;
+            __IOM uint32_t DAYCNTUP : 1;
+            __IOM uint32_t MONTHCNTUP : 1;
+            __IOM          uint32_t : 27;
+        };
+        __IOM uint32_t value;
+    } RTC_TEST;
+    union {
+        struct
+        {
+            __IOM uint32_t EN : 1;
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } RTC_TEST_EN;
+
+    __IOM uint32_t RESERVED2[2];
+    union {
+        struct
+        {
+            __IOM uint32_t PEND_WR : 1;
+            __IOM          uint32_t : 31;
+        };
+
+        __IOM uint32_t value;
+    } RTC_PEND_WR;
+    union {
+        struct
+        {
+            __IOM uint32_t WRSTA : 1;
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } RTC_WRSTA_A7;
+
+    union {
+        struct
+        {
+            __IOM uint32_t WRSTP : 1;
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } RTC_WRSTP_A7;
+
+    union {
+        struct {
+            __IOM uint32_t RDSTA : 1;
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } RTC_RDSTA_A7;
+
+    union {
+        struct
+        {
+            __IOM uint32_t RDSTP : 1;
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+        /* data */
+    } RTC_RDSTP_A7;
+
+    __IOM uint32_t RESERVED3[7];
+    union {
+        struct
+        {
+            __IOM uint32_t REG_XTAL32K : 8;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } OSC32K_CONTROL_0;
+    union {
+        struct
+        {
+            __IOM uint32_t XTAL32K_BYP : 1;
+            __IOM uint32_t XTAL32K_EN : 1;
+            __IOM uint32_t RTC_SEL : 2;
+            __IOM          uint32_t : 28;
+        };
+        __IOM uint32_t value;
+    } OSC32K_CONTROL_1;
+    union {
+        struct
+        {
+            __IOM uint32_t RC32K_SW_OSC : 8;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } RC32K_CONTROL_0;
+
+    union {
+        struct
+        {
+            __IOM uint32_t RC32K_EN : 1;
+            __IOM uint32_t RC32K_SW_IOP : 2;
+            __IOM uint32_t RC32K_SW_FREQ : 2;
+            __IOM uint32_t RC32K_OK : 1;
+            __IOM          uint32_t : 26;
+        };
+        __IOM uint32_t value;
+    } RC32K_CONTROL_1;
+
+    union {
+        struct
+        {
+            __IOM uint32_t TAMPER_RTC_DR : 2;
+            __IOM uint32_t TAMPER_RTC_IS : 1;
+            __IOM uint32_t TAMPER_RTC_PS : 1;
+            __IOM uint32_t TAMPER_RTC_PE : 1;
+            __IOM uint32_t TAMPER_RTC_IE : 1;
+            __IOM uint32_t TAMPER_RTC_OE : 1;
+            __IOM uint32_t TAMPER_SEL : 1;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } PC13_IO_CONTRL;
+
+    __IOM uint32_t RESERVED4[5];
+    union {
+        struct
+        {
+            __IOM uint32_t PWRUP_TIMER_CFG : 1;
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } BBU_SOFT_RST;
+
+    __IOM uint32_t RESERVED5;
+    union {
+        struct
+        {
+            __IOM uint32_t DEB_TIME : 2;
+            __IOM uint32_t DET_MODE : 3;
+            __IOM          uint32_t : 27;
+        };
+        __IOM uint32_t value;
+    } TAMP_CONFIG;
+    union {
+        struct
+        {
+            __IOM uint32_t ENA : 1;
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+
+    } TAMP_CTRL;
+
+    union {
+        struct
+        {
+            __IOM uint32_t CNT : 6;
+            __IOM          uint32_t : 26;
+        };
+        __IOM uint32_t value;
+
+    } TAMP_COUNT;
+
+    union {
+        struct
+        {
+            __IOM uint32_t CLR : 1;
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } TAMP_COUNT_CLR;
+    union {
+        struct
+        {
+            __IOM uint32_t STA : 1;
+            __IOM          uint32_t : 31;
+        };
+
+        __IOM uint32_t value;
+    } TAMP_IRQ_STA;
+
+    union {
+        struct
+        {
+            __IOM uint32_t CLR : 1;
+            __IOM          uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } TAMP_IRQ_CLR;
+    union {
+        struct
+        {
+            __IOM uint32_t ENA : 1;
+            __IOM          uint32_t : 31;
+        };
+
+        __IOM uint32_t value;
+    } TAMP_IRQ_EN;
+
+    __IOM uint32_t RESERVED6[9];
+    struct
+    {
+        __IOM uint32_t BKP : 8;
+        __IOM          uint32_t : 24;
+    } BKP_DR[20];
+
+} RTC_TypeDef;
+
 /**
  * @brief WWDG Peripheral Interface
  */
@@ -2068,6 +2543,7 @@ typedef struct
 #define FLASH        ((FLASH_TypeDef *)FLASH_R_BASE)
 #define SPI1         ((SPI_TypeDef *)SPI1_BASE)
 #define SPI2         ((SPI_TypeDef *)SPI2_BASE)
+#define RTC          ((RTC_TypeDef *)RTC_BASE)
 /** system level driver */
 #include "at103_icache.h"
 
@@ -2119,6 +2595,9 @@ typedef struct
 #include "at103_spi.h"
 #endif /* SPI_MODULE_ENABLED */
 
+#ifdef RTC_MODULE_ENABLED
+#include "at103_rtc.h"
+#endif /* RTC_MODULE_ENABLED */
 /**
  * @brief  The assert_param macro is used for function's parameters check.
  * @param  expr: If expr is false, it calls assert_failed function which reports
