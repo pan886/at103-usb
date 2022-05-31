@@ -143,8 +143,7 @@ void test_func(void)
     while (DMA_Channel1_TransferDoneFlag == 0) {
     }
 
-    if (NVIC_InitStructure.NVIC_IRQChannel != DMA_IRQn || TIM1->TIM_CCMR1.value != 0x70 ||
-        TIM1->TIM_CCER.value != 0x000f || TIM1->TIM_CR1.TIM_CR1_CEN != 1 ||
+    if (NVIC_InitStructure.NVIC_IRQChannel != DMA_IRQn || TIM1->TIM_CR1.TIM_CR1_CEN != 1 ||
         DMA_InitStructure.DMA_PeripheralHandshake != DMA_PeripheralHandshake_TIM1_CH1 ||
         TIM1->TIM_BDTR.TIM_BDTR_MOE != 1) {
 

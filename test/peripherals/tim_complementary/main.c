@@ -112,7 +112,6 @@ void test_func(void)
     debug("Channel2Pulse  = %x\r\n", Channel2Pulse);
     debug("Channel3Pulse  = %x\r\n", Channel3Pulse);
 
-    debug("22233 = %x\r\n", TIM1->TIM_CCER.value);
     if (TIM1->TIM_CCMR1.value != 0x7878 || TIM1->TIM_CCER.value != 0x0555 ||
         TIM1->TIM_CR1.TIM_CR1_CEN != 1 || TIM1->TIM_BDTR.TIM_BDTR_MOE != 1) {
 
