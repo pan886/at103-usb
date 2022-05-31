@@ -65,4 +65,8 @@ void CRC_Seed_Config(uint16_t value);
  */
 uint16_t CRC_CalcBlockCRC(uint32_t pBuffer[], uint32_t BufferLength);
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #endif
