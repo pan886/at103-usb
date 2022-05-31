@@ -3,8 +3,8 @@
  * @brief This file contains all the functions prototypes for the CRC firmware library. \n
  *         How to use this driver? \n
  * (+) At first, use RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, ENABLE) to enable the CRC clock. \n
- * (+) Then,use CRC_Seed_Config(...) to config the the initial value of crc. \n
- * (+) Finally,use CRC_CalcCRC(...) to get the crc value. 
+ * (+) Then,use CRC_SeedConfig(...) to config the the initial value of crc. \n
+ * (+) Finally,use CRC_CalCRC(...) to get the crc value. 
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-05-17
@@ -43,19 +43,19 @@ uint16_t CRC_GetCRC(void);
 /**
  * @brief clear CRC value.
  */
-void CRC_Clear_Value(void);
+void CRC_ClearValue(void);
 
 /**
  * @brief CRC input inversion.
  * @param[in] invout can be 0x1 0r 0x0;
  */
-void CRC_Input_Control(uint8_t invout);
+void CRC_InputControl(uint8_t invout);
 
 /**
  * @brief config CRC seed value. 
  * @param[in] value  the initial value of crc before CRC computation.
  */
-void CRC_Seed_Config(uint16_t value);
+void CRC_SeedConfig(uint16_t value);
 
 /**
  * @brief  Computes the 16-bit CRC of a given buffer of data word(32-bit).

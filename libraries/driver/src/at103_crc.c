@@ -31,18 +31,18 @@ uint16_t CRC_GetCRC(void)
     return (CRC->CRC_OUT.COUT);
 }
 
-void CRC_Clear_Value(void)
+void CRC_ClearValue(void)
 {
     CRC->CRC_CTL.CLEAR = 1;
 }
 
-void CRC_Input_Control(uint8_t invout)
+void CRC_InputControl(uint8_t invout)
 {
     assert_param(IS_CRC_DATA_INVOUT(INVOUT));
     CRC->CRC_CTL.INVOUT = invout;
 }
 
-void CRC_Seed_Config(uint16_t value)
+void CRC_SeedConfig(uint16_t value)
 {
     CRC->CRCSEED.SEED = value;
 }
@@ -53,7 +53,7 @@ uint16_t CRC_CalcBlockCRC(uint32_t pBuffer[], uint32_t BufferLength)
     uint32_t input = 0;
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, DISABLE);
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, ENABLE);
-    CRC_Clear_Value();
+    CRC_ClearValue();
 
     for (index = 0; index < BufferLength; index++) {
         input = (pBuffer[index] & 0xff) << 24 | ((pBuffer[index] & 0xff00) >> 8) << 16 | ((pBuffer[index] & 0xff0000) >> 16) << 8 | (pBuffer[index] & 0xff000000) >> 24;
