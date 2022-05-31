@@ -50,7 +50,7 @@ void test_func(void)
 
     /*read GPIO input test*/
     GPIOE_inputdata = GPIO_ReadInputData(GPIOE);
-    TEST_ASSERT_MESSAGE(GPIOE_inputdata == 0xffff, "GPIO input data test fail");
+    TEST_ASSERT_MESSAGE(GPIOE_inputdata == 0xff83, "GPIO input data test fail");
     debug("GPIOE_inputdata = %x\n", GPIOE_inputdata);
     GPIOE_inputdatabit = GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_0);
     debug("GPIOE_inputdatabit = %x\n", GPIOE_inputdatabit);
@@ -126,7 +126,6 @@ void test_func(void)
     GPIO_PinRemapConfig(GPIO_Remap_SPI1, ENABLE);
     GPIO_PinRemapConfig(GPIO_Remap_I2C1, ENABLE);
     GPIO_PinRemapConfig(GPIO_Remap_USART1, ENABLE);
-    //GPIO_PinRemapConfig(GPIO_Remap_USART2, ENABLE);/*this is a HW bug*/
     GPIO_PinRemapConfig(GPIO_PartialRemap_USART3, ENABLE);
     GPIO_PinRemapConfig(GPIO_FullRemap_USART3, ENABLE);
     GPIO_PinRemapConfig(GPIO_PartialRemap_TIM1, ENABLE);
@@ -141,9 +140,10 @@ void test_func(void)
     GPIO_PinRemapConfig(GPIO_Remap2_CAN, ENABLE);
     GPIO_PinRemapConfig(GPIO_Remap_PD01, ENABLE);
     GPIO_PinRemapConfig(GPIO_Remap_SPI2, ENABLE);
+
     Pinmap_SPI = *((uint32_t *)(AFIO_BASE));
     debug("Pinmap_SPI = %x\n", Pinmap_SPI);
-    TEST_ASSERT_MESSAGE(Pinmap_SPI == 0x1ffff, "GPIO pinmap test fail");
+    TEST_ASSERT_MESSAGE(Pinmap_SPI == 0x1fff7, "GPIO pinmap test fail");
 
     debug("GPIO function test pass !!!\r\n");
 }
