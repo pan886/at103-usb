@@ -12,7 +12,64 @@
 
 #ifdef SPI_MODULE_ENABLED
 
+#define IS_SPI_ALL_PERIPH(PERIPH) (((PERIPH) == SPI1) || \
+                                   ((PERIPH) == SPI2))
+
+#define IS_SPI_DIRECTION_MODE(MODE) (((MODE) == SPI_Direction_2Lines_FullDuplex) || \
+                                     ((MODE) == SPI_Direction_2Lines_RxOnly) || \
+                                     (SPI_Direction_1Line_Rx) || \
+                                     (SPI_Direction_1Line_Tx))
+
+#define IS_SPI_DIRECTION(DIRECTION) (((DIRECTION) == SPI_Direction_Rx) || \
+                                     ((DIRECTION) == SPI_Direction_Tx))
+
+#define IS_SPI_MODE(MODE) (((MODE) == SPI_Mode_Master) || \
+                           ((MODE) == SPI_Mode_Slave))
+
+#define IS_SPI_DATASIZE(DATASIZE) (((DATASIZE) == SPI_DataSize_16b) || \
+                                   ((DATASIZE) == SPI_DataSize_8b))
+
+#define IS_SPI_CPOL(CPOL) (((CPOL) == SPI_CPOL_Low) || \
+                           ((CPOL) == SPI_CPOL_High))
+
+#define IS_SPI_CPHA(CPHA) (((CPHA) == SPI_CPHA_1Edge) || \
+                           ((CPHA) == SPI_CPHA_2Edge))
+
+#define IS_SPI_NSS(NSS) ((NSS) == SPI_NSS_Hard)
+
+#define IS_SPI_BAUDRATE_PRESCALER(PRESCALER) (((PRESCALER) == SPI_BaudRatePrescaler_2) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_4) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_8) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_16) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_32) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_64) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_128) || \
+                                              ((PRESCALER) == SPI_BaudRatePrescaler_256))
+
+#define IS_SPI_FIRST_BIT(BIT) (((BIT) == SPI_FirstBit_MSB) || \
+                               ((BIT) == SPI_FirstBit_LSB))
+
+#define IS_SPI_CONFIG_IT(IT) (((IT) == SPI_IT_TXE) || \
+                              ((IT) == SPI_IT_RXNE) || \
+                              ((IT) == SPI_IT_ERR) || \
+                              ((IT) == SPI_IT_ALL))
+#define IS_SPI_GET_IT(IT) (((IT) == SPI_IT_RXNE) || ((IT) == SPI_IT_TXE) || \
+                           ((IT) == SPI_IT_TX) || ((IT) == SPI_IT_OVR) || \
+                           ((IT) == SPI_IT_ALL) || ((IT) == SPI_IT_ERR) || \
+                           ((IT) == SPI_IT_UDR) || ((IT) == SPI_IT_RXFULL))
+
+#define IS_SPI_CLEAR_IT(IT) (((IT) == SPI_IT_RXNE) || ((IT) == SPI_IT_TXE) || \
+                             ((IT) == SPI_IT_TX) || ((IT) == SPI_IT_OVR) || \
+                             ((IT) == SPI_IT_ALL) || ((IT) == SPI_IT_ERR) || \
+                             ((IT) == SPI_IT_UDR) || ((IT) == SPI_IT_RXFULL))
+
+#define IS_SPI_GET_FLAG(FLAG) (((FLAG) == SPI_FLAG_TXFULL) || ((FLAG) == SPI_FLAG_RXAVL_4) || \
+                               ((FLAG) == SPI_FLAG_TXE) || ((FLAG) == SPI_FLAG_RXNE))
+
+#define IS_SPI_DMAREQ(DMAREQ) (((DMAREQ) == SPI_DMAReq_Tx) || ((DMAREQ) == SPI_DMAReq_Rx))
+
 /** SPI SPE mask */
+
 #define GCTL_SPE_Set   ((uint32_t)0x00000001)
 #define GCTL_SPE_Reset ((uint32_t)0xFFFFFFFE)
 
@@ -24,9 +81,15 @@
 #define GCTL_DMA_txReset ((uint32_t)0xFFFFFC7F)
 #define GCTL_DMA_rxReset ((uint32_t)0xFFFFFD9F)
 
-/* SPI SSOE mask */
+/** SPI SSOE mask */
 #define CSN_SSOE_Set   ((uint32_t)0xFFFFFFFE)
 #define CSN_SSOE_Reset ((uint32_t)0x00000001)
+
+/** SPI Direction mask */
+#define SPI_Direction_MASK ((uint32_t)0xffffffe7)
+
+/** SPI DataSize mask */
+#define SPI_DataSize_MASK ((uint32_t)0xffffe0ff)
 
 void SPI_DeInit(SPI_TypeDef *SPIx)
 {
