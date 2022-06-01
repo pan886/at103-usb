@@ -2,9 +2,9 @@
  * @file at103_crc.h
  * @brief This file contains all the functions prototypes for the CRC firmware library. \n
  *         How to use this driver? \n
- * (+) At first, use RCC_AHBPeriphClockCmd(RCC_AHBPeriph_CRC, ENABLE) to enable the CRC clock. \n
- * (+) Then,use CRC_SeedConfig(...) to config the the initial value of crc. \n
- * (+) Finally,use CRC_CalCRC(...) to get the crc value. 
+ * (+) At first, use RCC_AHBPeriphClockCmd(...) to enable the CRC clock. \n
+ * (+) Then use CRC_SeedConfig(...) to config the the initial value of crc. \n
+ * (+) Finally, use CRC_CalCRC(...) to get the crc value. 
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-05-17
