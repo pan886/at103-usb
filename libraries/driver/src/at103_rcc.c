@@ -10,6 +10,48 @@
 #include "at103_rcc.h"
 #ifdef RCC_MODULE_ENABLED
 
+#define IS_RCC_HSE(HSE) (((HSE) == RCC_HSE_OFF) || ((HSE) == RCC_HSE_ON) || \
+                         ((HSE) == RCC_HSE_Bypass))
+
+#define IS_RCC_APB1_PERIPH(PERIPH) ((((PERIPH)&0xFFFFF000) == 0x00) && ((PERIPH) != 0x00))
+
+#define IS_RCC_APB2_PERIPH(PERIPH) ((((PERIPH)&0xE000FFFF) == 0x00) && ((PERIPH) != 0x00))
+
+#define IS_RCC_APB1_REST_PERIPH(PERIPH) ((((PERIPH)&0xFFFFF000) == 0x00) && ((PERIPH) != 0x00))
+
+#define IS_RCC_APB2_REST_PERIPH(PERIPH) ((((PERIPH)&0xE000FFFF) == 0x00) && ((PERIPH) != 0x00))
+
+#define IS_RCC_AHB_PERIPH(PERIPH) (((PERIPH) == RCC_AHBPeriph_USB) || ((PERIPH) == RCC_AHBPeriph_CRC) || \
+                                   ((PERIPH) == RCC_AHBPeriph_DMA) || ((PERIPH) == RCC_AHBPeriph_EFC))
+
+#define IS_RCC_EN_IT(IT) (((IT) == RCC_IT_LSIRDY) || ((IT) == RCC_IT_PLLRDY))
+#define IS_RCC_IT(IT)    (((IT) == RCC_IT_LSIRDY) || ((IT) == RCC_IT_PLLRDY) || ((IT) == RCC_IT_HSESTOP))
+
+#define IS_RCC_FLAG(FLAG) (((FLAG) == RCC_FLAG_PORRST) || ((FLAG) == RCC_FLAG_SFTRST) || \
+                           ((FLAG) == RCC_FLAG_WDTRST))
+
+#define IS_RCC_HCLK(HCLK) (((HCLK) == RCC_SYSCLK_Div1) || ((HCLK) == RCC_SYSCLK_Div2) || \
+                           ((HCLK) == RCC_SYSCLK_Div4) || ((HCLK) == RCC_SYSCLK_Div8) || \
+                           ((HCLK) == RCC_SYSCLK_Div16) || ((HCLK) == RCC_SYSCLK_Div64) || \
+                           ((HCLK) == RCC_SYSCLK_Div128) || ((HCLK) == RCC_SYSCLK_Div256) || \
+                           ((HCLK) == RCC_SYSCLK_Div512))
+
+#define IS_RCC_PCLK(PCLK) (((PCLK) == RCC_HCLK_Div1) || ((PCLK) == RCC_HCLK_Div2) || \
+                           ((PCLK) == RCC_HCLK_Div4) || ((PCLK) == RCC_HCLK_Div8) || \
+                           ((PCLK) == RCC_HCLK_Div16))
+
+#define IS_RCC_PLL_SOURCE(SOURCE) (((SOURCE) == RCC_PLLSource_HSI_Div2) || \
+                                   ((SOURCE) == RCC_PLLSource_HSE_Div1) || \
+                                   ((SOURCE) == RCC_PLLSource_HSE_Div2))
+
+#define IS_RCC_SYSCLK_SOURCE(SOURCE) (((SOURCE) == RCC_SYSCLKSource_HSI) || \
+                                      ((SOURCE) == RCC_SYSCLKSource_HSE) || \
+                                      ((SOURCE) == RCC_SYSCLKSource_PLLCLK))
+
+#define IS_RCC_MCO(MCO) (((MCO) == RCC_MCO_NoClock) || ((MCO) == RCC_MCO_HSI) || \
+                         ((MCO) == RCC_MCO_SYSCLK) || ((MCO) == RCC_MCO_HSE) || \
+                         ((MCO) == RCC_MCO_PLLCLK_Div2))
+
 void RCC_DeInit(void)
 {
     /* Enable HSI */

@@ -1,7 +1,6 @@
 /**
  * @file at103_uart.c
  * @brief This file provides all the USART firmware functions.
- * 
  * @author zhangsheng (zhangsheng@zhangsheng.ic.com)
  * @version 1.0
  * @date 2022-01-27
@@ -10,6 +9,67 @@
 
 #include "at103_uart.h"
 #ifdef USART_MODULE_ENABLED
+
+#define IS_USART_FIFO_MODE(STATE) (((STATE) == USART_FIFO_DISABLES) || \
+                                   ((STATE) == USART_FIFO_ENABLES))
+
+#define IS_USART_ALL_PERIPH(PERIPH) (((PERIPH) == USART1) || \
+                                     ((PERIPH) == USART2) || \
+                                     ((PERIPH) == USART3))
+
+#define IS_USART_WORD_LENGTH(LENGTH) (((LENGTH) == USART_WordLength_5b) || \
+                                      ((LENGTH) == USART_WordLength_6b) || \
+                                      ((LENGTH) == USART_WordLength_7b) || \
+                                      ((LENGTH) == USART_WordLength_8b))
+
+#define IS_USART_STOPBITS(STOPBITS) (((STOPBITS) == USART_StopBits_1) || \
+                                     ((STOPBITS) == USART_StopBits_1_5) || \
+                                     ((STOPBITS) == USART_StopBits_2))
+
+#define IS_USART_PARITY(PARITY) (((PARITY) == USART_Parity_No) || \
+                                 ((PARITY) == USART_Parity_Even) || \
+                                 ((PARITY) == USART_Parity_Odd))
+
+#define IS_USART_HARDWARE_FLOW_CONTROL(CONTROL) \
+    (((CONTROL) == USART_HardwareFlowControl_None) || \
+     ((CONTROL) == USART_HardwareFlowControl_RTS_CTS))
+
+#define IS_USART_CONFIG_IT(IT) (((IT) == USART_IT_IER_RDI) || ((IT) == USART_IT_IER_THRI) || \
+                                ((IT) == USART_IT_IER_RLSI) || ((IT) == USART_IT_IER_MSI))
+
+#define IS_USART_FLAG(FLAG) (((FLAG) == USART_FLAG_IIR_MSI) || ((FLAG) == USART_FLAG_IIR_THRI) || \
+                             ((FLAG) == USART_FLAG_IIR_RDI) || ((FLAG) == USART_FLAG_IIR_CHTO) || \
+                             ((FLAG) == USART_FLAG_IIR_RLSI))
+
+#define IS_USART_LSR_FLAG(FLAG) (((FLAG) == USART_FLAG_LSR_DR) || ((FLAG) == USART_FLAG_LSR_OE) || \
+                                 ((FLAG) == USART_FLAG_LSR_PE) || ((FLAG) == USART_FLAG_LSR_FE) || \
+                                 ((FLAG) == USART_FLAG_LSR_BI) || ((FLAG) == USART_FLAG_LSR_THRE) || \
+                                 ((FLAG) == USART_FLAG_LSR_TEMT) || ((FLAG) == USART_FLAG_LSR_ERR))
+
+#define IS_USART_CLEAR_FLAG(FLAG) ((((FLAG) & (uint16_t)0xFFFF) == 0x0000) && ((FLAG) != 0x0000))
+
+#define IS_USART_MSR_FLAG(FLAG) (((FLAG) == USART_FLAG_MSR_DCD) || ((FLAG) == USART_FLAG_MSR_RI) || \
+                                 ((FLAG) == USART_FLAG_MSR_DSR) || ((FLAG) == USART_FLAG_MSR_CTS) || \
+                                 ((FLAG) == USART_FLAG_MSR_DDCD) || ((FLAG) == USART_FLAG_MSR_TERI) || \
+                                 ((FLAG) == USART_FLAG_MSR_DDSR) || ((FLAG) == USART_FLAG_MSR_DCTS))
+
+#define IS_USART_BAUDRATE(BAUDRATE) (((BAUDRATE) > 0) && ((BAUDRATE) < 0x0044AA21))
+
+#define IS_USART_DMAMode(MODE) (((MODE) == USART_DMA_Mode0) || ((MODE) == USART_DMA_Mode1))
+
+#define IS_USART_DMAREQ(DMAREQ) ((((DMAREQ) & (uint16_t)0xFFFFFFF9) == 0x00000000) && ((DMAREQ) != (uint16_t)0x00000000))
+
+#define IS_USART_IRDA_MODE(MODE) (((MODE) == USART_IrDAMode_LowPower) || \
+                                  ((MODE) == USART_IrDAMode_Normal))
+
+#define IS_USART_FIFO_FCR_CONTROL(CONTROL) (((CONTROL) == USART_FIFO_FCR_FIFIOE) || ((CONTROL) == USART_FIFO_FCR_RFIFOR) || \
+                                            ((CONTROL) == USART_FIFO_FCR_XFIFOR) || ((CONTROL) == USART_FIFO_FCR_DMAM) || \
+                                            ((CONTROL) == USART_FIFO_FCR_TET) || ((CONTROL) == USART_FIFO_FCR_RT))
+
+#define IS_USART_Modem_MCR_CONTROL(CONTROL) (((CONTROL) == USART_Modem_MCR_DTR) || ((CONTROL) == USART_Modem_MCR_RTS) || \
+                                             ((CONTROL) == USART_Modem_MCR_OUT1) || ((CONTROL) == USART_Modem_MCR_OUT2) || \
+                                             ((CONTROL) == USART_Modem_MCR_LoopBack) || ((CONTROL) == USART_Modem_MCR_AFCE) || \
+                                             ((CONTROL) == USART_Modem_MCR_SIRE))
 
 void USART_DeInit(USART_TypeDef *USARTx)
 {

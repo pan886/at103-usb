@@ -64,7 +64,13 @@ static void test_func(void)
     }
 
     TEST_ASSERT_MESSAGE(FLASH_EnableWriteProtection(FLASH_WRProt_Pages32to63) == FLASH_COMPLETE, "Failed to read flash page0.");
-    FLASH_ProgramDoubleWord(FLASH_BASE + 1, (uint64_t)0x02);
+    FLASH_ErasePage(FLASH_BASE);
+    /* Wait for last operation to be completed */
+    if (FLASH_WaitForLastOperation(0xFFFF) == FLASH_COMPLETE) {
+        *(__IO uint64_t *)(FLASH_BASE + 1) = (uint64_t)0x02;
+        /* Wait for last operation to be completed */
+        FLASH_WaitForLastOperation(FLASH_COMPLETE);
+    }
     TEST_ASSERT_MESSAGE(FLASH_GetFlagStatus(FLASH_FLAG_UNAL_ERR) == SET, "Failed to trigger flash flag.");
     FLASH_ClearFlag(FLASH_FLAG_UNAL_ERR);
     TEST_ASSERT_MESSAGE(FLASH_GetFlagStatus(FLASH_FLAG_UNAL_ERR) == RESET, "Failed to clear flash flag.");

@@ -23,7 +23,7 @@ extern "C" {
 #define INTERRUPT_MODE 0x1 /**< interrupt mode. */
 
 #define Counter_Cycles_64 ((uint8_t)0x0000) /**< 64K of WWDG Counter clock cycles. */
-#define Counter_Cycles_32 ((uint8_t)0x0001) /**< 32K of WWDF Counter clock cycles. */
+#define Counter_Cycles_32 ((uint8_t)0x0001) /**< 32K of WWDG Counter clock cycles. */
 #define Counter_Cycles_16 ((uint8_t)0x0002) /**< 16K of WWDG Counter clock cycles. */
 #define Counter_Cycles_8  ((uint8_t)0x0003) /**< 8K of WWDG Counter clock cycles. */
 #define Counter_Cycles_4  ((uint8_t)0x0004) /**< 4K of WWDG Counter clock cycles. */
@@ -105,7 +105,7 @@ void WWDG_Disable();
 
 /**
  * @brief Set the mode of WWDG.
- * @param[in] Mode reset or interrupt.
+ * @param[in] Mode reset or interrupt
  */
 void WWDG_SetMode(uint8_t Mode);
 

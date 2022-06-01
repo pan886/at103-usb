@@ -10,6 +10,145 @@
 #include "at103_adc.h"
 #include "at103_rcc.h"
 #ifdef ADC_MODULE_ENABLED
+
+#define IS_ADC_CHANNEL(CHANNEL) (((CHANNEL) == ADC_Channel_0) || ((CHANNEL) == ADC_Channel_1) || \
+                                 ((CHANNEL) == ADC_Channel_2) || ((CHANNEL) == ADC_Channel_3) || \
+                                 ((CHANNEL) == ADC_Channel_4) || ((CHANNEL) == ADC_Channel_5) || \
+                                 ((CHANNEL) == ADC_Channel_6) || ((CHANNEL) == ADC_Channel_7) || \
+                                 ((CHANNEL) == ADC_Channel_8) || ((CHANNEL) == ADC_Channel_9) || \
+                                 ((CHANNEL) == ADC_Channel_10) || ((CHANNEL) == ADC_Channel_11) || \
+                                 ((CHANNEL) == ADC_Channel_11) || ((CHANNEL) == ADC_Channel_12) || \
+                                 ((CHANNEL) == ADC_Channel_13) || ((CHANNEL) == ADC_Channel_14) || \
+                                 ((CHANNEL) == ADC_Channel_15) || ((CHANNEL) == ADC_Channel_16))
+
+#define IS_ADC_ALL_PERIPH(PERIPH) (((PERIPH) == ADC1) || \
+                                   ((PERIPH) == ADC2))
+
+#define IS_ADC_MODE(MODE) (((MODE) == ADC_Mode_Independent) || \
+                           ((MODE) == ADC_Mode_RegInjectSimult) || \
+                           ((MODE) == ADC_Mode_RegSimult_AlterTrig) || \
+                           ((MODE) == ADC_Mode_InjecSimult_FastInterl) || \
+                           ((MODE) == ADC_Mode_InjectSimult_SlowInterl) || \
+                           ((MODE) == ADC_Mode_InjectSimult) || \
+                           ((MODE) == ADC_Mode_RegSimult) || \
+                           ((MODE) == ADC_Mode_FastInterl) || \
+                           ((MODE) == ADC_Mode_SlowInterl) || \
+                           ((MODE) == ADC_Mode_AlterTrig))
+
+#define IS_ADC_INJECTED_CHANNEL(CHANNEL) (((CHANNEL) == ADC_InjectedChannel_1) || \
+                                          ((CHANNEL) == ADC_InjectedChannel_2) || \
+                                          ((CHANNEL) == ADC_InjectedChannel_3) || \
+                                          ((CHANNEL) == ADC_InjectedChannel_4))
+
+#define IS_ADC_SAMPLE_TIME(TIME) (((TIME) == ADC_SampleTime_1Cycles) || \
+                                  ((TIME) == ADC_SampleTime_7Cycles) || \
+                                  ((TIME) == ADC_SampleTime_13Cycles) || \
+                                  ((TIME) == ADC_SampleTime_28Cycles) || \
+                                  ((TIME) == ADC_SampleTime_41Cycles) || \
+                                  ((TIME) == ADC_SampleTime_55Cycles) || \
+                                  ((TIME) == ADC_SampleTime_71Cycles) || \
+                                  ((TIME) == ADC_SampleTime_239Cycles))
+
+#define IS_ADC_IT(IT) ((((IT) & (uint16_t)0xF81F) == 0x00) && ((IT) != 0x00))
+
+#define IS_ADC_GET_IT(IT) (((IT) == ADC_IT_EOC) || ((IT) == ADC_IT_AWD) || \
+                           ((IT) == ADC_IT_JEOC))
+
+#define IS_ADC_CLEAR_FLAG(FLAG) ((((FLAG) & (uint8_t)0xE0) == 0x00) && ((FLAG) != 0x00))
+#define IS_ADC_GET_FLAG(FLAG)   (((FLAG) == ADC_FLAG_AWD) || ((FLAG) == ADC_FLAG_EOC) || \
+                               ((FLAG) == ADC_FLAG_JEOC) || ((FLAG) == ADC_FLAG_JSTRT) || \
+                               ((FLAG) == ADC_FLAG_STRT))
+
+#define IS_ADC_DATA_ALIGN(ALIGN) (((ALIGN) == ADC_DataAlign_Right) || \
+                                  ((ALIGN) == ADC_DataAlign_Left))
+
+#define IS_ADC_EXT_TRIG(REGTRIG) (((REGTRIG) == ADC_ExternalTrigConv_T1_CC1) || \
+                                  ((REGTRIG) == ADC_ExternalTrigConv_T1_CC2) || \
+                                  ((REGTRIG) == ADC_ExternalTrigConv_T1_CC3) || \
+                                  ((REGTRIG) == ADC_ExternalTrigConv_T2_CC2) || \
+                                  ((REGTRIG) == ADC_ExternalTrigConv_T3_TRGO) || \
+                                  ((REGTRIG) == ADC_ExternalTrigConv_T4_CC4) || \
+                                  ((REGTRIG) == ADC_ExternalTrigConv_Ext_IT11_TIM8_TRGO) || \
+                                  ((REGTRIG) == ADC_ExternalTrigConv_None))
+
+#define IS_ADC_ANALOG_WATCHDOG(WATCHDOG) (((WATCHDOG) == ADC_AnalogWatchdog_SingleRegEnable) || \
+                                          ((WATCHDOG) == ADC_AnalogWatchdog_SingleInjecEnable) || \
+                                          ((WATCHDOG) == ADC_AnalogWatchdog_SingleRegOrInjecEnable) || \
+                                          ((WATCHDOG) == ADC_AnalogWatchdog_AllRegEnable) || \
+                                          ((WATCHDOG) == ADC_AnalogWatchdog_AllInjecEnable) || \
+                                          ((WATCHDOG) == ADC_AnalogWatchdog_AllRegAllInjecEnable) || \
+                                          ((WATCHDOG) == ADC_AnalogWatchdog_None))
+#define CR1_DISCNUM_Reset ((uint32_t)0xFFFF1FFF) /**< ADC DISCNUM reset */
+
+#define CR1_DISCEN_Set   ((uint32_t)0x00000800) /**< ADC DISCEN set */
+#define CR1_DISCEN_Reset ((uint32_t)0xFFFFF7FF) /**< ADC DISCEN reset*/
+
+#define CR1_JAUTO_Set   ((uint32_t)0x00000400) /**< ADC JAUTO set*/
+#define CR1_JAUTO_Reset ((uint32_t)0xFFFFFBFF) /**< ADC JAUTO reset*/
+
+#define CR1_JDISCEN_Set   ((uint32_t)0x00001000) /**< ADC JDISCEN set */
+#define CR1_JDISCEN_Reset ((uint32_t)0xFFFFEFFF) /**< ADC JDISCEN reset */
+
+#define CR1_AWDCH_Reset ((uint32_t)0xFFFFFFE0) /**< ADC AWDCH reset */
+
+#define CR1_AWDMode_Reset ((uint32_t)0xFF3FFDFF) /**< ADC Analog watchdog enable mode mask */
+
+#define CR1_CLEAR_Mask ((uint32_t)0xFFF0FEFF) /**< CR1 register Mask */
+
+#define CR2_ADON_Set   ((uint32_t)0x00000001) /**< ADC ADON set */
+#define CR2_ADON_Reset ((uint32_t)0xFFFFFFFE) /**< ADC ADON reset */
+
+#define CR2_DMA_Set   ((uint32_t)0x00000100) /**< ADC DMA set */
+#define CR2_DMA_Reset ((uint32_t)0xFFFFFEFF) /**< ADC DMA reset */
+
+#define CR2_RSTCAL_Set ((uint32_t)0x00000008) /**< ADC RSTCAL mask */
+
+#define CR2_CAL_Set ((uint32_t)0x00000004) /**< ADC CAL mask */
+
+#define CR2_SWSTART_Set ((uint32_t)0x00400000) /**< ADC SWSTART mask */
+
+#define CR2_EXTTRIG_Set   ((uint32_t)0x00100000) /**< ADC EXTTRIG set */
+#define CR2_EXTTRIG_Reset ((uint32_t)0xFFEFFFFF) /**< ADC EXTTRIG reset */
+
+#define CR2_EXTTRIG_SWSTART_Set   ((uint32_t)0x00500000) /**<  ADC Software start set */
+#define CR2_EXTTRIG_SWSTART_Reset ((uint32_t)0xFFAFFFFF) /**<  ADC Software start reset */
+
+#define CR2_JEXTSEL_Reset ((uint32_t)0xFFFF8FFF) /**< ADC JEXTSEL reset */
+
+#define CR2_JEXTTRIG_Set   ((uint32_t)0x00008000) /**< ADC JEXTTRIG set*/
+#define CR2_JEXTTRIG_Reset ((uint32_t)0xFFFF7FFF) /**< ADC JEXTTRIG reset*/
+
+#define CR2_JSWSTART_Set ((uint32_t)0x00200000) /**< ADC JSWSTART mask */
+
+#define CR2_JEXTTRIG_JSWSTART_Set   ((uint32_t)0x00208000) /**<  ADC injected software start set*/
+#define CR2_JEXTTRIG_JSWSTART_Reset ((uint32_t)0xFFDF7FFF) /**<  ADC injected software start reset*/
+
+#define CR2_TSVREFE_Set   ((uint32_t)0x00800000) /**< ADC TSPD set */
+#define CR2_TSVREFE_Reset ((uint32_t)0xFF7FFFFF) /**< ADC TSPD reset*/
+
+#define CR2_CLEAR_Mask ((uint32_t)0xFFF1F7FD) /**< CR2 register Mask */
+
+#define SQR3_SQ_Set ((uint32_t)0x0000001F) /**< ADC SQ3 set mask */
+#define SQR2_SQ_Set ((uint32_t)0x0000001F) /**< ADC SQ2 set mask */
+#define SQR1_SQ_Set ((uint32_t)0x0000001F) /**< ADC SQ1 set mask */
+
+#define SQR1_CLEAR_Mask ((uint32_t)0xFF0FFFFF) /**< SQR1 register Mask */
+
+#define JSQR_JSQ_Set ((uint32_t)0x0000001F) /**<  ADC JSQx mask */
+
+#define JSQR_JL_Set   ((uint32_t)0x00300000) /**< ADC JL set */
+#define JSQR_JL_Reset ((uint32_t)0xFFCFFFFF) /**< ADC JL reset */
+
+#define SMPR1_SMP_Set ((uint32_t)0x00000007) /**< ADC SMP1 smp set*/
+#define SMPR2_SMP_Set ((uint32_t)0x00000007) /**< ADC SMP2 smp set*/
+
+#define JDR_Offset ((uint8_t)0x28) /**< ADC JDRx registers offset */
+
+#define DR_ADDRESS ((uint32_t)0x4001244C) /**< ADC1 DR register base address */
+
+#define IS_ADC_REGULAR_DISC_NUMBER(NUMBER) (((NUMBER) >= 0x1) && ((NUMBER) <= 0x8))
+#define IS_ADC_REGULAR_LENGTH(LENGTH)      (((LENGTH) >= 0x1) && ((LENGTH) <= 0x10))
+#define IS_ADC_INJECTED_RANK(RANK)         (((RANK) >= 0x1) && ((RANK) <= 0x4))
 void ADC_DeInit(ADC_TypeDef *ADCx)
 {
     /* Check the parameters */
