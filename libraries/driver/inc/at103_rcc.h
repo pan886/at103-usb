@@ -100,13 +100,13 @@ extern "C" {
  */
 typedef struct
 {
-    uint32_t SYSCLK_Frequency; /**< return SYSCLK clock frequency expressed in Hz. */
-    uint32_t HCLK_Frequency;   /**< return AHBCLK clock frequency expressed in Hz. */
-    uint32_t PCLK1_Frequency;  /**< return APBCLK1 clock frequency expressed in Hz. */
-    uint32_t PCLK2_Frequency;  /**< return APBCLK2 clock frequency expressed in Hz. */
-    uint32_t ADCCLK_Frequency; /**< return ADCCLK clock frequency expressed in Hz. */
-    uint32_t USART_Frequencey; /**< return USART clock frequency expressed in Hz. */
-    uint32_t USB_Frequencey;   /**< return USB clock frequency expressed in Hz. */
+    uint32_t SYSCLK_Frequency; /**< SYSCLK clock frequency expressed in Hz. */
+    uint32_t HCLK_Frequency;   /**< AHBCLK clock frequency expressed in Hz. */
+    uint32_t PCLK1_Frequency;  /**< APBCLK1 clock frequency expressed in Hz. */
+    uint32_t PCLK2_Frequency;  /**< APBCLK2 clock frequency expressed in Hz. */
+    uint32_t ADCCLK_Frequency; /**< ADCCLK clock frequency expressed in Hz. */
+    uint32_t USART_Frequencey; /**< USART clock frequency expressed in Hz. */
+    uint32_t USB_Frequencey;   /**< USB clock frequency expressed in Hz. */
 } RCC_ClocksTypeDef;
 
 #define RCC_SYSCLK_Div1   ((uint32_t)0x00000000) /**< AHB system clock Prescaler: Div1. */
