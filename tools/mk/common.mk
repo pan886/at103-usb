@@ -223,7 +223,7 @@ $(GDB_SCRIPT)::
 -include $(DEPS)
 
 burn: $(BIN)
-	@$(AT_SDK_HOME_SH)/tools/burn_image/burn_image.sh $(AT_SDK_HOME_SH)/$(APP_DIR)/$< $(AT_SDK_HOME_SH)/tools/burn_image
+	@$(AT_SDK_HOME_SH)/tools/burn_image/burn_image.sh $(AT_SDK_HOME_SH)/$(APP_DIR)/$< $(AT_SDK_HOME_SH)/tools/burn_image $(SerialPort)
 
 
 clean:
