@@ -5,7 +5,7 @@
  * (+) At first, use ADC_Init(...) with ADC initialization structure to initialize ADC. \n
  * (+) Then use ADC_Cmd(...) to enable ADC. \n
  * (+) Use ADC_ResetCalibration(...) to reset calibration register and use ADC_StartCalibration(...) to Start ADC1 calibration. \n
- * (+) Finally,use ADC_SoftwareStartConvCmd(...) to Start ADC Software Conversion. \n
+ * (+) Finally, use ADC_SoftwareStartConvCmd(...) to Start ADC Software Conversion. 
  * @author pantianwen (pantianwen@163.com)
  * @version 1.0
  * @date 2022-03-20
@@ -25,10 +25,10 @@ extern "C" {
  */
 typedef struct
 {
-    uint32_t ADC_Mode; /**< configures the ADC to operate in Dual mode */
+    uint32_t ADC_Mode; /**< configures the ADC to operate in Dual mode. */
 
     FunctionalState ADC_ScanConvMode; /**< Specifies whether the conversion is performed in
-                                         Scan (multichannels) or Single (one channel) mode.*/
+                                         Scan (multichannels) or Single (one channel) mode. */
 
     FunctionalState ADC_ContinuousConvMode; /**< Specifies whether the conversion is performed in
                                                Continuous or Single mode. */
@@ -40,86 +40,86 @@ typedef struct
 
     uint8_t ADC_NbrOfChannel; /**< Specifies the number of ADC channels that will be converted
                                    using the sequencer for regular channel group. */
-    uint8_t resolution;       /**< Specifies the ADC resolution */
+    uint8_t resolution;       /**< Specifies the ADC resolution. */
 
 } ADC_InitTypeDef;
 
-#define ADC_Channel_0  ((uint8_t)0x00) /**< ADC channel 0.*/
-#define ADC_Channel_1  ((uint8_t)0x01) /**< ADC channel 1.*/
-#define ADC_Channel_2  ((uint8_t)0x02) /**< ADC channel 2.*/
-#define ADC_Channel_3  ((uint8_t)0x03) /**< ADC channel 3.*/
-#define ADC_Channel_4  ((uint8_t)0x04) /**< ADC channel 4.*/
-#define ADC_Channel_5  ((uint8_t)0x05) /**< ADC channel 5.*/
-#define ADC_Channel_6  ((uint8_t)0x06) /**< ADC channel 6.*/
-#define ADC_Channel_7  ((uint8_t)0x07) /**< ADC channel 7.*/
-#define ADC_Channel_8  ((uint8_t)0x08) /**< ADC channel 8.*/
-#define ADC_Channel_9  ((uint8_t)0x09) /**< ADC channel 9.*/
-#define ADC_Channel_10 ((uint8_t)0x0A) /**< ADC channel 10.*/
-#define ADC_Channel_11 ((uint8_t)0x0B) /**< ADC channel 11.*/
-#define ADC_Channel_12 ((uint8_t)0x0C) /**< ADC channel 12.*/
-#define ADC_Channel_13 ((uint8_t)0x0D) /**< ADC channel 13.*/
-#define ADC_Channel_14 ((uint8_t)0x0E) /**< ADC channel 14.*/
-#define ADC_Channel_15 ((uint8_t)0x0F) /**< ADC channel 15.*/
-#define ADC_Channel_16 ((uint8_t)0x10) /**< ADC channel 16.*/
-#define ADC_Channel_17 ((uint8_t)0x11) /**< ADC channel 17.*/
+#define ADC_Channel_0  ((uint8_t)0x00) /**< ADC channel 0. */
+#define ADC_Channel_1  ((uint8_t)0x01) /**< ADC channel 1. */
+#define ADC_Channel_2  ((uint8_t)0x02) /**< ADC channel 2. */
+#define ADC_Channel_3  ((uint8_t)0x03) /**< ADC channel 3. */
+#define ADC_Channel_4  ((uint8_t)0x04) /**< ADC channel 4. */
+#define ADC_Channel_5  ((uint8_t)0x05) /**< ADC channel 5. */
+#define ADC_Channel_6  ((uint8_t)0x06) /**< ADC channel 6. */
+#define ADC_Channel_7  ((uint8_t)0x07) /**< ADC channel 7. */
+#define ADC_Channel_8  ((uint8_t)0x08) /**< ADC channel 8. */
+#define ADC_Channel_9  ((uint8_t)0x09) /**< ADC channel 9. */
+#define ADC_Channel_10 ((uint8_t)0x0A) /**< ADC channel 10. */
+#define ADC_Channel_11 ((uint8_t)0x0B) /**< ADC channel 11. */
+#define ADC_Channel_12 ((uint8_t)0x0C) /**< ADC channel 12. */
+#define ADC_Channel_13 ((uint8_t)0x0D) /**< ADC channel 13. */
+#define ADC_Channel_14 ((uint8_t)0x0E) /**< ADC channel 14. */
+#define ADC_Channel_15 ((uint8_t)0x0F) /**< ADC channel 15. */
+#define ADC_Channel_16 ((uint8_t)0x10) /**< ADC channel 16. */
+#define ADC_Channel_17 ((uint8_t)0x11) /**< ADC channel 17. */
 
-#define ADC_Channel_TempSensor ((uint8_t)ADC_Channel_16) /**< ADC channel tempture sensor */
-#define ADC_Channel_Vrefint    ((uint8_t)ADC_Channel_17) /**< ADC channel vrefint */
+#define ADC_Channel_TempSensor ((uint8_t)ADC_Channel_16) /**< ADC channel tempture sensor. */
+#define ADC_Channel_Vrefint    ((uint8_t)ADC_Channel_17) /**< ADC channel vrefint. */
 
-#define ADC_Mode_Independent             ((uint32_t)0x0000) /**< Independent mode */
-#define ADC_Mode_RegInjectSimult         ((uint32_t)0x0001) /**< Combined regular simultaneous + injected simultaneous mode*/
-#define ADC_Mode_RegSimult_AlterTrig     ((uint32_t)0x0002) /**< Combined regular simultaneous + alternate trigger mode*/
-#define ADC_Mode_InjecSimult_FastInterl  ((uint32_t)0x0003) /**< Combined injected simultaneous + fast interleaved mode*/
-#define ADC_Mode_InjectSimult_SlowInterl ((uint32_t)0x0004) /**< Combined injected simultaneous + slow Interleaved mode*/
-#define ADC_Mode_InjectSimult            ((uint32_t)0x0005) /**< Injected simultaneous mode only*/
-#define ADC_Mode_RegSimult               ((uint32_t)0x0006) /**< Regular simultaneous mode only*/
-#define ADC_Mode_FastInterl              ((uint32_t)0x0007) /**< Fast interleaved mode only*/
-#define ADC_Mode_SlowInterl              ((uint32_t)0x0008) /**< Slow interleaved mode only*/
-#define ADC_Mode_AlterTrig               ((uint32_t)0x0009) /**< Alternate trigger mode only*/
+#define ADC_Mode_Independent             ((uint32_t)0x0000) /**< Independent mode. */
+#define ADC_Mode_RegInjectSimult         ((uint32_t)0x0001) /**< Combined regular simultaneous + injected simultaneous mode.*/
+#define ADC_Mode_RegSimult_AlterTrig     ((uint32_t)0x0002) /**< Combined regular simultaneous + alternate trigger mode.*/
+#define ADC_Mode_InjecSimult_FastInterl  ((uint32_t)0x0003) /**< Combined injected simultaneous + fast interleaved mode.*/
+#define ADC_Mode_InjectSimult_SlowInterl ((uint32_t)0x0004) /**< Combined injected simultaneous + slow Interleaved mode.*/
+#define ADC_Mode_InjectSimult            ((uint32_t)0x0005) /**< Injected simultaneous mode only.*/
+#define ADC_Mode_RegSimult               ((uint32_t)0x0006) /**< Regular simultaneous mode only.*/
+#define ADC_Mode_FastInterl              ((uint32_t)0x0007) /**< Fast interleaved mode only.*/
+#define ADC_Mode_SlowInterl              ((uint32_t)0x0008) /**< Slow interleaved mode only.*/
+#define ADC_Mode_AlterTrig               ((uint32_t)0x0009) /**< Alternate trigger mode only.*/
 
-#define ADC_InjectedChannel_1 ((uint8_t)0x14) /**< ADC injected channel1 */
-#define ADC_InjectedChannel_2 ((uint8_t)0x18) /**< ADC injected channel2 */
-#define ADC_InjectedChannel_3 ((uint8_t)0x1C) /**< ADC injected channel3 */
-#define ADC_InjectedChannel_4 ((uint8_t)0x20) /**< ADC injected channel4*/
+#define ADC_InjectedChannel_1 ((uint8_t)0x14) /**< ADC injected channel1. */
+#define ADC_InjectedChannel_2 ((uint8_t)0x18) /**< ADC injected channel2. */
+#define ADC_InjectedChannel_3 ((uint8_t)0x1C) /**< ADC injected channel3. */
+#define ADC_InjectedChannel_4 ((uint8_t)0x20) /**< ADC injected channel4.*/
 
-#define ADC_ExternalTrigConv_T1_CC1             ((uint32_t)0x000000)   /**< external trigger sources for regular channels conversion,For ADC1 and ADC2 */
-#define ADC_ExternalTrigConv_T1_CC2             ((uint32_t)0x020000)   /**< external trigger sources for regular channels conversion,For ADC1 and ADC2 */
-#define ADC_ExternalTrigConv_T2_CC2             ((uint32_t)0x060000)   /**< external trigger sources for regular channels conversion, For ADC1 and ADC2 */
-#define ADC_ExternalTrigConv_T3_TRGO            ((uint32_t)0x080000)   /**< external trigger sources for regular channels conversion, For ADC1 and ADC2 */
-#define ADC_ExternalTrigConv_T4_CC4             ((uint32_t)0x0A0000)   /**< external trigger sources for regular channels conversion, For ADC1 and ADC2*/
-#define ADC_ExternalTrigConv_Ext_IT11_TIM8_TRGO ((uint32_t)0x0C0000)   /**< external trigger sources for regular channels conversion, For ADC1 and ADC2 */
-#define ADC_ExternalTrigConv_T1_CC3             ((uint32_t)0x00040000) /**< external trigger sources for regular channels conversion,For ADC1 and ADC2 */
-#define ADC_ExternalTrigConv_None               ((uint32_t)0x000E0000) /**< external trigger sources for regular channels conversion,For ADC1 and ADC2 */
+#define ADC_ExternalTrigConv_T1_CC1             ((uint32_t)0x000000)   /**< External trigger sources for regular channels conversion,For ADC1 and ADC2. */
+#define ADC_ExternalTrigConv_T1_CC2             ((uint32_t)0x020000)   /**< External trigger sources for regular channels conversion,For ADC1 and ADC2. */
+#define ADC_ExternalTrigConv_T2_CC2             ((uint32_t)0x060000)   /**< External trigger sources for regular channels conversion, For ADC1 and ADC2. */
+#define ADC_ExternalTrigConv_T3_TRGO            ((uint32_t)0x080000)   /**< External trigger sources for regular channels conversion, For ADC1 and ADC2. */
+#define ADC_ExternalTrigConv_T4_CC4             ((uint32_t)0x0A0000)   /**< External trigger sources for regular channels conversion, For ADC1 and ADC2.*/
+#define ADC_ExternalTrigConv_Ext_IT11_TIM8_TRGO ((uint32_t)0x0C0000)   /**< External trigger sources for regular channels conversion, For ADC1 and ADC2. */
+#define ADC_ExternalTrigConv_T1_CC3             ((uint32_t)0x00040000) /**< External trigger sources for regular channels conversion,For ADC1 and ADC2. */
+#define ADC_ExternalTrigConv_None               ((uint32_t)0x000E0000) /**< External trigger sources for regular channels conversion,For ADC1 and ADC2. */
 
-#define ADC_SampleTime_1Cycles   ((uint8_t)0x00) /**< 1.5 cycles sample time*/
-#define ADC_SampleTime_7Cycles   ((uint8_t)0x01) /**< 7.5 cycles sample time*/
-#define ADC_SampleTime_13Cycles  ((uint8_t)0x02) /**< 13.5 cycles sample time*/
-#define ADC_SampleTime_28Cycles  ((uint8_t)0x03) /**< 28.5 cycles sample time*/
-#define ADC_SampleTime_41Cycles  ((uint8_t)0x04) /**< 41.5 cycles sample time*/
-#define ADC_SampleTime_55Cycles  ((uint8_t)0x05) /**< 55.5 cycles sample time*/
-#define ADC_SampleTime_71Cycles  ((uint8_t)0x06) /**< 71.5 cycles sample time */
-#define ADC_SampleTime_239Cycles ((uint8_t)0x07) /**< 239.5 cycles sample time */
+#define ADC_SampleTime_1Cycles   ((uint8_t)0x00) /**< 1.5 cycles sample time.*/
+#define ADC_SampleTime_7Cycles   ((uint8_t)0x01) /**< 7.5 cycles sample time.*/
+#define ADC_SampleTime_13Cycles  ((uint8_t)0x02) /**< 13.5 cycles sample time.*/
+#define ADC_SampleTime_28Cycles  ((uint8_t)0x03) /**< 28.5 cycles sample time.*/
+#define ADC_SampleTime_41Cycles  ((uint8_t)0x04) /**< 41.5 cycles sample time.*/
+#define ADC_SampleTime_55Cycles  ((uint8_t)0x05) /**< 55.5 cycles sample time.*/
+#define ADC_SampleTime_71Cycles  ((uint8_t)0x06) /**< 71.5 cycles sample time. */
+#define ADC_SampleTime_239Cycles ((uint8_t)0x07) /**< 239.5 cycles sample time. */
 
-#define ADC_IT_EOC  ((uint16_t)0x0220) /**< end of conversion interrupt */
-#define ADC_IT_AWD  ((uint16_t)0x0140) /**< analog watchdog interrupt */
-#define ADC_IT_JEOC ((uint16_t)0x0480) /**< the end of conversion interrupt for injected channels */
+#define ADC_IT_EOC  ((uint16_t)0x0220) /**< End of conversion interrupt. */
+#define ADC_IT_AWD  ((uint16_t)0x0140) /**< Analog watchdog interrupt. */
+#define ADC_IT_JEOC ((uint16_t)0x0480) /**< The end of conversion interrupt for injected channels. */
 
-#define ADC_FLAG_AWD   ((uint8_t)0x01) /**< analog watchdog flag */
-#define ADC_FLAG_EOC   ((uint8_t)0x02) /**< end of conversion */
-#define ADC_FLAG_JEOC  ((uint8_t)0x04) /**< injected channel end of conversion*/
-#define ADC_FLAG_JSTRT ((uint8_t)0x08) /**< injected channel start flag */
-#define ADC_FLAG_STRT  ((uint8_t)0x10) /**< regular channel start flag */
+#define ADC_FLAG_AWD   ((uint8_t)0x01) /**< Analog watchdog flag. */
+#define ADC_FLAG_EOC   ((uint8_t)0x02) /**< End of conversion. */
+#define ADC_FLAG_JEOC  ((uint8_t)0x04) /**< Injected channel end of conversion.*/
+#define ADC_FLAG_JSTRT ((uint8_t)0x08) /**< Injected channel start flag. */
+#define ADC_FLAG_STRT  ((uint8_t)0x10) /**< Regular channel start flag. */
 
-#define ADC_DataAlign_Right ((uint32_t)0x00000000) /**< Right alignment */
-#define ADC_DataAlign_Left  ((uint32_t)0x00000800) /**< Left alignment */
+#define ADC_DataAlign_Right ((uint32_t)0x00000000) /**< Right alignment. */
+#define ADC_DataAlign_Left  ((uint32_t)0x00000800) /**< Left alignment. */
 
-#define ADC_AnalogWatchdog_SingleRegEnable        ((uint32_t)0x00800200) /**< analog watchdog single regular channel enable.*/
-#define ADC_AnalogWatchdog_SingleInjecEnable      ((uint32_t)0x00400200) /**< analog watchdog single injected channel enable.*/
-#define ADC_AnalogWatchdog_SingleRegOrInjecEnable ((uint32_t)0x00C00200) /**< analog watchdog single regular or injected channel enable.*/
-#define ADC_AnalogWatchdog_AllRegEnable           ((uint32_t)0x00800000) /**< analog watchdog  all regular channel enable. */
-#define ADC_AnalogWatchdog_AllInjecEnable         ((uint32_t)0x00400000) /**< analog watchdog all injected channel enable.*/
-#define ADC_AnalogWatchdog_AllRegAllInjecEnable   ((uint32_t)0x00C00000) /**< analog watchdog  all regular injected enable.*/
-#define ADC_AnalogWatchdog_None                   ((uint32_t)0x00000000) /**< analog watchdog none*/
+#define ADC_AnalogWatchdog_SingleRegEnable        ((uint32_t)0x00800200) /**< Analog watchdog single regular channel enable. */
+#define ADC_AnalogWatchdog_SingleInjecEnable      ((uint32_t)0x00400200) /**< Analog watchdog single injected channel enable. */
+#define ADC_AnalogWatchdog_SingleRegOrInjecEnable ((uint32_t)0x00C00200) /**< Analog watchdog single regular or injected channel enable. */
+#define ADC_AnalogWatchdog_AllRegEnable           ((uint32_t)0x00800000) /**< Analog watchdog  all regular channel enable. */
+#define ADC_AnalogWatchdog_AllInjecEnable         ((uint32_t)0x00400000) /**< Analog watchdog all injected channel enable. */
+#define ADC_AnalogWatchdog_AllRegAllInjecEnable   ((uint32_t)0x00C00000) /**< Analog watchdog  all regular injected enable. */
+#define ADC_AnalogWatchdog_None                   ((uint32_t)0x00000000) /**< Analog watchdog none. */
 
 /**
   * @brief Deinitializes the ADCx peripheral registers to their default reset values.
