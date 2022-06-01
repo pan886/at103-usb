@@ -18,7 +18,7 @@ void main(void)
     sys_io_init();
     uart_init(UART_BOOT_PORT, UART_PARITY_NONE, UART_STOPBITS_1, UART_DATABITS_8, UART_BOOT_BD);
 
-    RTCCLK_Select(RTC_LSE);
+    RTC_SelClk(RTC_LSE);
 
     NVIC_InitStructure.NVIC_IRQChannel                   = TAMPER_IRQn;
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
@@ -27,10 +27,10 @@ void main(void)
     NVIC_Init(&NVIC_InitStructure);
     __enable_irq();
 
-    Tamper_Init();
+    BKP_TamperInit();
     BKP_TamperPinLevelConfig(BKP_TamperPinLevel_High);
     BKP_TamperPinCmd(ENABLE);
-    TAMPER_Irq_Enable();
+    BKP_TamperIrqEnable();
     BKP_WriteBackupRegister(BKP_DR1, 0x1A2B);
 
     while (1) {
@@ -41,5 +41,5 @@ void main(void)
 void TAMPER_IRQHandler(void)
 {
     debug("enter tamper interruot!\n");
-    BKP_ClearIT_Tamper();
+    BKP_TamperClearIT();
 }

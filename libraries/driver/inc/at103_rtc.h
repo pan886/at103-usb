@@ -19,45 +19,45 @@ extern "C" {
 
 #include "at103.h"
 
-#define RTC_LSE ((uint16_t)0x0001) /**< select LSE */
-#define RTC_LSI ((uint16_t)0x0002) /**< select LSI */
-#define RTC_HSE ((uint16_t)0x0003) /**< select HSE */
+#define RTC_LSE ((uint16_t)0x0001) /**< Select LSE clock. */
+#define RTC_LSI ((uint16_t)0x0002) /**< Select LSI clock. */
+#define RTC_HSE ((uint16_t)0x0003) /**< Select HSE clock. */
 
-#define RTC_IT_ALR1 ((uint16_t)0x0001) /**< Alarm1 interrupt */
-#define RTC_IT_ALR2 ((uint16_t)0x0002) /**< Alarm2 interrupt */
+#define RTC_IT_ALR1 ((uint16_t)0x0001) /**< Alarm1 interrupt. */
+#define RTC_IT_ALR2 ((uint16_t)0x0002) /**< Alarm2 interrupt. */
 
-#define BKP_TamperPinLevel_High         ((uint16_t)0x0000) /**< Tamper Pin active high level*/
-#define BKP_TamperPinLevel_Low          ((uint16_t)0x0001) /**< Tamper Pin active low level*/
-#define BKP_TamperPinLevel_Both_edge    ((uint16_t)0x0002) /**< Tamper Pin active Both edge*/
-#define BKP_TamperPinLevel_Pos_Over_Deb ((uint16_t)0x0003) /**< Tamper Pin active Rising edge */
-#define BKP_TamperPinLevel_Neg_Over_Deb ((uint16_t)0x0004) /**< Tamper Pin active Falling edge*/
+#define BKP_TamperPinLevel_High         ((uint16_t)0x0000) /**< Tamper Pin active high level.*/
+#define BKP_TamperPinLevel_Low          ((uint16_t)0x0001) /**< Tamper Pin active low level.*/
+#define BKP_TamperPinLevel_Both_edge    ((uint16_t)0x0002) /**< Tamper Pin active Both edge.*/
+#define BKP_TamperPinLevel_Pos_Over_Deb ((uint16_t)0x0003) /**< Tamper Pin active Rising edge. */
+#define BKP_TamperPinLevel_Neg_Over_Deb ((uint16_t)0x0004) /**< Tamper Pin active Falling edge.*/
 
-#define BKP_DR1  ((uint16_t)0x0001) /**< Backup data register1*/
-#define BKP_DR2  ((uint16_t)0x0002) /**< Backup data register2*/
-#define BKP_DR3  ((uint16_t)0x0003) /**< Backup data register3*/
-#define BKP_DR4  ((uint16_t)0x0004) /**< Backup data register4*/
-#define BKP_DR5  ((uint16_t)0x0005) /**< Backup data register5*/
-#define BKP_DR6  ((uint16_t)0x0006) /**< Backup data register6*/
-#define BKP_DR7  ((uint16_t)0x0007) /**< Backup data register7*/
-#define BKP_DR8  ((uint16_t)0x0008) /**< Backup data register8*/
-#define BKP_DR9  ((uint16_t)0x0009) /**< Backup data register9*/
-#define BKP_DR10 ((uint16_t)0x000A) /**< Backup data register10*/
+#define BKP_DR1  ((uint16_t)0x0001) /**< Backup data register1.*/
+#define BKP_DR2  ((uint16_t)0x0002) /**< Backup data register2.*/
+#define BKP_DR3  ((uint16_t)0x0003) /**< Backup data register3.*/
+#define BKP_DR4  ((uint16_t)0x0004) /**< Backup data register4.*/
+#define BKP_DR5  ((uint16_t)0x0005) /**< Backup data register5.*/
+#define BKP_DR6  ((uint16_t)0x0006) /**< Backup data register6.*/
+#define BKP_DR7  ((uint16_t)0x0007) /**< Backup data register7.*/
+#define BKP_DR8  ((uint16_t)0x0008) /**< Backup data register8.*/
+#define BKP_DR9  ((uint16_t)0x0009) /**< Backup data register9.*/
+#define BKP_DR10 ((uint16_t)0x000A) /**< Backup data register10.*/
 
 #define RTC_TAMP ((uint16_t)0x0001) /**< Tamper interrupt */
 
-#define RTC_PERIOD_NOOUTPUT  ((uint16_t)0x0000) /*!< Not output */
-#define RTC_PERIOD_1_sec     ((uint16_t)0x0001) /*!< Period of alarm2 interrupt 1 sec */
-#define RTC_PERIOD_1_sec_2   ((uint16_t)0x0002) /*!< Period of alarm2 interrupt 1/2 sec */
-#define RTC_PERIOD_1_sec_4   ((uint16_t)0x0003) /*!< Period of alarm2 interrupt 1/4 sec */
-#define RTC_PERIOD_1_sec_8   ((uint16_t)0x0004) /*!< Period of alarm2 interrupt 1/8 sec */
-#define RTC_PERIOD_1_sec_16  ((uint16_t)0x0005) /*!< Period of alarm2 interrupt 1/16 sec*/
-#define RTC_PERIOD_1_sec_32  ((uint16_t)0x0006) /*!< Period of alarm2 interrupt 1/32 sec */
-#define RTC_PERIOD_1_sec_64  ((uint16_t)0x0007) /*!< Period of alarm2 interrupt 1/64 sec */
-#define RTC_PERIOD_1_sec_128 ((uint16_t)0x0008) /*!< Period of alarm2 interrupt 1/128 sec */
-#define RTC_PERIOD_1_min     ((uint16_t)0x0009) /*!< Period of alarm2 interrupt 1 min */
+#define RTC_PERIOD_NOOUTPUT  ((uint16_t)0x0000) /*!< Not output. */
+#define RTC_PERIOD_1_sec     ((uint16_t)0x0001) /*!< Period of alarm2 interrupt 1 sec. */
+#define RTC_PERIOD_1_sec_2   ((uint16_t)0x0002) /*!< Period of alarm2 interrupt 1/2 sec. */
+#define RTC_PERIOD_1_sec_4   ((uint16_t)0x0003) /*!< Period of alarm2 interrupt 1/4 sec. */
+#define RTC_PERIOD_1_sec_8   ((uint16_t)0x0004) /*!< Period of alarm2 interrupt 1/8 sec. */
+#define RTC_PERIOD_1_sec_16  ((uint16_t)0x0005) /*!< Period of alarm2 interrupt 1/16 sec.*/
+#define RTC_PERIOD_1_sec_32  ((uint16_t)0x0006) /*!< Period of alarm2 interrupt 1/32 sec. */
+#define RTC_PERIOD_1_sec_64  ((uint16_t)0x0007) /*!< Period of alarm2 interrupt 1/64 sec. */
+#define RTC_PERIOD_1_sec_128 ((uint16_t)0x0008) /*!< Period of alarm2 interrupt 1/128 sec. */
+#define RTC_PERIOD_1_min     ((uint16_t)0x0009) /*!< Period of alarm2 interrupt 1 min.*/
 
 /**
- * @brief selection of week.
+ * @brief Selection of week.
  */
 typedef enum {
     Sunday = 0,
@@ -70,7 +70,7 @@ typedef enum {
 } RTC_WeekTypeDef;
 
 /**
- * @brief selection of month.
+ * @brief Selection of month.
  */
 typedef enum {
     January   = 0x1,
@@ -92,17 +92,17 @@ typedef enum {
  */
 typedef struct
 {
-    uint8_t          sec;   /**< second */
-    uint8_t          min;   /**< minute */
-    uint8_t          hour;  /**< hour */
-    uint8_t          day;   /**< day */
-    RTC_WeekTypeDef  week;  /**< week*/
-    RTC_MonthTypeDef month; /**< month*/
-    uint8_t          year;  /**< year*/
+    uint8_t          sec;   /**< second. */
+    uint8_t          min;   /**< minute. */
+    uint8_t          hour;  /**< hour. */
+    uint8_t          day;   /**< day. */
+    RTC_WeekTypeDef  week;  /**< week.*/
+    RTC_MonthTypeDef month; /**< month.*/
+    uint8_t          year;  /**< year.*/
 } RTC_TimeTypeDef;
 
 /**
- * @brief configuration of trim mode.
+ * @brief Configuration of trim mode.
  */
 typedef enum {
     every_60sec = 0x0,
@@ -112,7 +112,7 @@ typedef enum {
 } RTC_TrimmodeTypeDef;
 
 /**
- * @brief configuration of VLD.
+ * @brief Configuration of VLD.
  */
 typedef enum {
     VLD_ON_60sec = 0,
@@ -122,7 +122,7 @@ typedef enum {
 } RTC_VldmodeTypeDef;
 
 /**
- * @brief trim init structure definition.
+ * @brief Trim init structure definition.
  */
 typedef struct
 {
@@ -139,7 +139,7 @@ typedef struct
 void RTC_WaitForLastTask(void);
 
 /**
- * @brief select the clock of RTC.
+ * @brief Select the clock of RTC.
  * @param[in] RTCCLK  Can be RTC_LSE,RTC_HSE,RTC_LSI.
  */
 void RTC_SelClk(uint8_t RTCCLK);
@@ -157,10 +157,16 @@ void RTC_SetTimeDate(RTC_TimeTypeDef time);
 void RTC_SetAlarm(RTC_TimeTypeDef time);
 
 /**
- * @brief set the periodical tick interrupt.
- * @param[in] RTC_Period Can be RTC_PERIOD_1_sec,RTC_PERIOD_1_sec_2,RTC_PERIOD_1_sec_4,
- * RTC_PERIOD_1_sec_8,RTC_PERIOD_1_sec_16,RTC_PERIOD_1_sec_32,RTC_PERIOD_1_sec_64,
- * RTC_PERIOD_1_sec_128,RTC_PERIOD_1_min.
+ * @brief Set the periodical tick interrupt.
+ * @param[in] RTC_Period Can be RTC_PERIOD_1_sec \n
+ * RTC_PERIOD_1_sec_2 \n
+ * RTC_PERIOD_1_sec_4 \n
+ * RTC_PERIOD_1_sec_8 \n 
+ * RTC_PERIOD_1_sec_16 \n
+ * RTC_PERIOD_1_sec_32 \n
+ * RTC_PERIOD_1_sec_64 \n
+ * RTC_PERIOD_1_sec_128 \n
+ * RTC_PERIOD_1_min.
  */
 void RTC_SetSecINT(uint16_t RTC_Period);
 
