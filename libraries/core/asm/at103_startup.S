@@ -133,7 +133,6 @@
                 .endm
 
 /* Hardware interrupt vector table */
-                .option  norvc
                 .section .vectors
                 .align   2
                 .globl   __HW_Vectors
@@ -315,6 +314,8 @@ __Vectors_End:
 
 
 /* Peripherals interrupt unified function */
+                .text
+                .align   2
                 .type    IRQ_Handler, %function
                 .weak    IRQ_Handler
                 .func    IRQ_Handler
@@ -370,6 +371,8 @@ IRQ_Handler:
                 Set_IRQ_Handler  HW_USB_DMA_IRQHandler
 
 /* Default interrupt handler */
+                .text
+                .align   2
                 .type    Default_Handler, %function
                 .weak    Default_Handler
                 .func    Default_Handler
@@ -388,6 +391,8 @@ Infinite_Loop:
                 .set     \Handler_Name, Default_Handler
                 .endm
 
+                .text
+                .align   2
                 .type    IllegalInstruction_Handler, %function
                 .weak    IllegalInstruction_Handler
                 .func    IllegalInstruction_Handler
@@ -397,6 +402,8 @@ IllegalInstruction_Handler:
                 .endfunc
                 .size    IllegalInstruction_Handler, . - IllegalInstruction_Handler
 
+                .text
+                .align   2
                 .type    ECALL_InstructionExecuted_Handler, %function
                 .weak    ECALL_InstructionExecuted_Handler
                 .func    ECALL_InstructionExecuted_Handler

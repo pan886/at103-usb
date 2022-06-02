@@ -1,6 +1,6 @@
 /**
  * @file at103_icache.h
- * @brief This file contains all the functions prototypes for the ICACHE firmware library. 
+ * @brief This file contains all the functions prototypes for the ICACHE firmware library.
  * @author Dong Qin (dong.qin@timesintelli.com)
  * @version 1.0
  * @date 2022-01-07
@@ -21,7 +21,8 @@ extern "C" {
  */
 static inline void __icache_enable()
 {
-    ICACHE->ENABLE.EN_BIT = 1;
+    ICACHE->FLUSH.FLUSH_BIT = 1;
+    ICACHE->ENABLE.EN_BIT   = 1;
 }
 
 /**
@@ -29,7 +30,8 @@ static inline void __icache_enable()
  */
 static inline void __icache_disable()
 {
-    ICACHE->ENABLE.EN_BIT = 0;
+    ICACHE->FLUSH.FLUSH_BIT = 1;
+    ICACHE->ENABLE.EN_BIT   = 0;
 }
 
 /**

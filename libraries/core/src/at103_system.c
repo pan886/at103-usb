@@ -15,8 +15,8 @@ extern "C" {
 
 void _SysInit(void)
 {
-    __icache_enable();
     __icache_flush();
+    __icache_enable();
 
     /*init flash controller*/
     while (FLASH->STS0.INIT_STATUS == 0) {
