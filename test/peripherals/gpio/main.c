@@ -50,9 +50,10 @@ void test_func(void)
 
     /*read GPIO input test*/
     GPIOE_inputdata = GPIO_ReadInputData(GPIOE);
-    TEST_ASSERT_MESSAGE(GPIOE_inputdata == 0xff83, "GPIO input data test fail");
     debug("GPIOE_inputdata = %x\n", GPIOE_inputdata);
-    GPIOE_inputdatabit = GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_0);
+    TEST_ASSERT_MESSAGE(((GPIOE_inputdata & 0x4000) >> 14) == 0x1, "GPIO input data test fail");
+
+    GPIOE_inputdatabit = GPIO_ReadInputDataBit(GPIOE, GPIO_Pin_14);
     debug("GPIOE_inputdatabit = %x\n", GPIOE_inputdatabit);
     TEST_ASSERT_MESSAGE(GPIOE_inputdatabit == 0x1, "GPIO input data bit test fail");
 
@@ -60,7 +61,7 @@ void test_func(void)
     GPIOE_struct.GPIO_Mode = GPIO_Mode_AIN;
     GPIO_Init(GPIOE, &GPIOE_struct);
     GPIOE_Func = *((uint32_t *)(AFIO_BASE + 0x90));
-    TEST_ASSERT_MESSAGE(GPIOE_Func == 0xffffffff, "GPIO Analog function test fail");
+    TEST_ASSERT_MESSAGE(((GPIOE_Func & 0x4000) >> 14) == 0x1, "GPIO Analog function test fail");
     debug("GPIOE_Func = %x\n", GPIOE_Func);
 
     /*GPIO Alternate function test*/
