@@ -2544,6 +2544,509 @@ typedef struct
 
 } CRC_TypeDef;
 
+/**
+ * @brief IIC Module
+ */
+typedef struct {
+    union {
+        struct {
+
+            __IOM uint32_t MASTER_MODE : 1;
+            __IOM uint32_t SPEED : 2;
+            __IOM uint32_t _10BITADDR_SLAVE : 1;
+            __IOM uint32_t _10BITADDR_MASTER : 1;
+            __IOM uint32_t RESTART_EN : 1;
+            __IOM uint32_t SLAVE_DISABLE : 1;
+            __IOM uint32_t STOP_DET_IFADDRESSED : 1;
+            __IOM uint32_t TX_EMPTY_CTRL : 1;
+            __IOM uint32_t RX_FIFO_FULL_HLD_CTRL : 1;
+            __IOM uint32_t STOP_DET_IF_MASTER_ACTIVE : 1;
+            __IM           uint32_t : 21;
+        };
+        __IOM uint32_t value;
+    } CON;
+    union {
+        struct {
+            __IOM uint32_t TAR : 10;
+            __IOM uint32_t GC_OR_START : 1;
+            __IOM uint32_t SPECIAL : 1;
+            __IOM          uint32_t : 20;
+        };
+        __IOM uint32_t value;
+    } TAR;
+
+    union {
+        struct {
+            __IOM uint32_t SAR : 10;
+            __IOM          uint32_t : 22;
+        };
+        __IOM uint32_t value;
+    } SAR;
+
+    union {
+        struct {
+            __IOM uint32_t HS_MAR : 3;
+            __IOM          uint32_t : 29;
+        };
+        __IOM uint32_t value;
+    } HS_MADDR;
+
+    union {
+        struct {
+            __IOM uint32_t DAT : 8;
+            __OM uint32_t  CMD : 1;
+            __OM uint32_t  STOP : 1;
+            __OM uint32_t  RESTART : 1;
+            __IM           uint32_t : 21;
+        };
+        __IOM uint32_t value;
+    } DATA_CMD;
+
+    union {
+        struct {
+            __IOM uint32_t SS_SCL_HCNT : 16;
+            __IM           uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } SS_SCL_HCNT;
+
+    union {
+        struct {
+            __IOM uint32_t SS_SCL_LCNT : 16;
+            __IM           uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } SS_SCL_LCNT;
+
+    union {
+        struct {
+            __IOM uint32_t FS_SCL_HCNT : 16;
+            __IM           uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } FS_SCL_HCNT;
+
+    union {
+        struct {
+            __IOM uint32_t FS_SCL_LCNT : 16;
+            __IM           uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } FS_SCL_LCNT;
+
+    union {
+        struct {
+            __IOM uint32_t HS_SCL_HCNT : 16;
+            __IM           uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } HS_SCL_HCNT;
+
+    union {
+        struct {
+            __IOM uint32_t HS_SCL_LCNT : 16;
+            __IM           uint32_t : 16;
+        };
+        __IOM uint32_t value;
+    } HS_SCL_LCNT;
+
+    union {
+        struct {
+            __IM uint32_t R_RX_UNDER : 1;
+            __IM uint32_t R_RX_OVER : 1;
+            __IM uint32_t R_RX_FULL : 1;
+            __IM uint32_t R_TX_OVER : 1;
+            __IM uint32_t R_TX_EMPTY : 1;
+            __IM uint32_t R_RD_REQ : 1;
+            __IM uint32_t R_TX_ABRT : 1;
+            __IM uint32_t R_RX_DONE : 1;
+            __IM uint32_t R_ACTIVITY : 1;
+            __IM uint32_t R_STOP_DET : 1;
+            __IM uint32_t R_START_DET : 1;
+            __IM uint32_t R_GEN_CALL : 1;
+            __IM uint32_t R_RESTART_DET : 1;
+            __IM uint32_t R_MST_ON_HOLD : 1;
+            __IM uint32_t R_SCL_STUCK_AT_LOW : 1;
+            __IM          uint32_t : 17;
+        };
+        __IM uint32_t value;
+    } INTR_STAT;
+
+    union {
+        struct {
+            __IOM uint32_t M_RX_UNDER : 1;
+            __IOM uint32_t M_RX_OVER : 1;
+            __IOM uint32_t M_RX_FULL : 1;
+            __IOM uint32_t M_TX_OVER : 1;
+            __IOM uint32_t M_TX_EMPTY : 1;
+            __IOM uint32_t M_RD_REQ : 1;
+            __IOM uint32_t M_TX_ABRT : 1;
+            __IOM uint32_t M_RX_DONE : 1;
+            __IOM uint32_t M_ACTIVITY : 1;
+            __IOM uint32_t M_STOP_DET : 1;
+            __IOM uint32_t M_START_DET : 1;
+            __IOM uint32_t M_GEN_CALL : 1;
+            __IOM uint32_t M_RESTART_DET : 1;
+            __IM uint32_t  M_MST_ON_HOLD : 1;
+            __IM uint32_t  M_SCL_STUCK_AT_LOW : 1;
+            __IM           uint32_t : 17;
+        };
+        __IOM uint32_t value;
+    } INTR_MASK;
+
+    union {
+        struct {
+            __IM uint32_t RX_UNDER : 1;
+            __IM uint32_t RX_OVER : 1;
+            __IM uint32_t RX_FULL : 1;
+            __IM uint32_t TX_OVER : 1;
+            __IM uint32_t TX_EMPTY : 1;
+            __IM uint32_t RD_REQ : 1;
+            __IM uint32_t TX_ABRT : 1;
+            __IM uint32_t RX_DONE : 1;
+            __IM uint32_t ACTIVITY : 1;
+            __IM uint32_t STOP_DET : 1;
+            __IM uint32_t START_DET : 1;
+            __IM uint32_t GEN_CALL : 1;
+            __IM uint32_t RESTART_DET : 1;
+            __IM uint32_t MST_ON_HOLD : 1;
+            __IM uint32_t SCL_STUCK_AT_LOW : 1;
+            __IM          uint32_t : 17;
+        };
+        __IM uint32_t value;
+    } RAW_INTR_STAT;
+    union {
+        struct {
+            __IOM uint32_t RX_TL : 8;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } RX_TL;
+    union {
+        struct {
+            __IOM uint32_t TX_TL : 8;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } TX_TL;
+
+    union {
+        struct {
+            __IM uint32_t CLR_INTR : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_INTR;
+
+    union {
+        struct {
+            __IM uint32_t CLR_RX_UNDER : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_RX_UNDER;
+
+    union {
+        struct {
+            __IM uint32_t CLR_RX_OVER : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_RX_OVER;
+
+    union {
+        struct {
+            __IM uint32_t CLR_TX_OVER : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_TX_OVER;
+
+    union {
+        struct {
+            __IM uint32_t CLR_RD_REQ : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_RD_REQ;
+
+    union {
+        struct {
+            __IM uint32_t CLR_TX_ABRT : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_TX_ABRT;
+
+    union {
+        struct {
+            __IM uint32_t CLR_RX_DONE : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_RX_DONE;
+
+    union {
+        struct {
+            __IM uint32_t CLR_ACTIVITY : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_ACTIVITY;
+
+    union {
+        struct {
+            __IM uint32_t CLR_STOP_DET : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_STOP_DET;
+
+    union {
+        struct {
+            __IM uint32_t CLR_START_DET : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_START_DET;
+
+    union {
+        struct {
+            __IM uint32_t CLR_GEN_CALL : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_GEN_CALL;
+
+    union {
+        struct {
+            __IOM uint32_t ENABLE : 1;
+            __IOM uint32_t ABORT : 1;
+            __IOM uint32_t TX_CMD_BLOCK : 1;
+            __IOM          uint32_t : 29;
+        };
+        __IOM uint32_t value;
+    } ENABLE;
+
+    union {
+        struct {
+            __IM uint32_t ACTIVITY : 1;
+            __IM uint32_t TFNF : 1;
+            __IM uint32_t TFE : 1;
+            __IM uint32_t RFNE : 1;
+            __IM uint32_t RFF : 1;
+            __IM uint32_t MST_ACTIVITY : 1;
+            __IM uint32_t SLV_ACTIVITY : 1;
+            __IM uint32_t MST_HOLD_TX_FIFO_EMPTY : 1;
+            __IM uint32_t MST_HOLD_RX_FIFO_FULL : 1;
+            __IM uint32_t SLV_HOLD_TX_FIFO_EMPTY : 1;
+            __IM uint32_t SLV_HOLD_RX_FIFO_FULL : 1;
+            __IM          uint32_t : 21;
+        };
+        __IOM uint32_t value;
+    } STATUS;
+
+    union {
+        struct {
+            __IM uint32_t TXFLR : 5;
+            __IM          uint32_t : 27;
+        };
+        __IM uint32_t value;
+    } TXFLR;
+
+    union {
+        struct {
+            __IM uint32_t RXFLR : 5;
+            __IM          uint32_t : 27;
+        };
+        __IM uint32_t value;
+    } RXFLR;
+
+    union {
+        struct {
+            __IOM uint32_t SDA_TX_HOLD : 8;
+            __IOM uint32_t SDA_RX_HOLD : 8;
+            __IM           uint32_t : 16;
+        };
+        __IM uint32_t value;
+    } SDA_HOLD;
+
+    union {
+        struct {
+            __IM uint32_t ABRT_7B_ADDR_NOACK : 1;
+            __IM uint32_t ABRT_10ADDR1_NOACK : 1;
+            __IM uint32_t ABRT_10ADDR2_NOACK : 1;
+            __IM uint32_t ABRT_TXDATA_NOACK : 1;
+            __IM uint32_t ABRT_GCALL_NOACK : 1;
+            __IM uint32_t ABRT_GCALL_READ : 1;
+            __IM uint32_t ABRT_HS_ACKDET : 1;
+            __IM uint32_t ABRT_SBYTE_ACKDET : 1;
+            __IM uint32_t ABRT_HS_NORSTRT : 1;
+            __IM uint32_t ABRT_SBYTE_NORSTRT : 1;
+            __IM uint32_t ABRT_10B_RD_NORSTRT : 1;
+            __IM uint32_t ABRT_MASTER_DIS : 1;
+
+            __IM uint32_t ARB_LOST : 1;
+            __IM uint32_t ABRT_SLVFLUSH_TXFIFO : 1;
+            __IM uint32_t ABRT_SLV_ARBLOST : 1;
+            __IM uint32_t ABRT_SLVRD_INTX : 1;
+            __IM uint32_t ABRT_USER_ABRT : 1;
+
+            __IM uint32_t ABRT_SDA_STUCK_AT_LOW : 1;
+            __IM uint32_t ABRT_DEVICE_NOACK : 1;
+            __IM uint32_t ABRT_DEVICE_SLVADDR_NOACK : 1;
+            __IM uint32_t ABRT_DEVICE_WRITE : 1;
+            __IM          uint32_t : 2;
+            __IM uint32_t TX_FLUSH_CNT : 9;
+        };
+        __IM uint32_t value;
+    } TX_ABRT_SOURCE;
+
+    union {
+        struct {
+            __IOM uint32_t NACK : 1;
+            __IM           uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } SLV_DATA_NACK_ONLY;
+
+    union {
+        struct {
+            __IOM uint32_t RDMAE : 1;
+            __IOM uint32_t TDMAE : 1;
+            __IM           uint32_t : 30;
+        };
+        __IOM uint32_t value;
+    } DMA_CR;
+
+    union {
+        struct {
+            __IOM uint32_t DMATDL : 6;
+            __IOM          uint32_t : 26;
+        };
+        __IOM uint32_t value;
+    } DMA_TDLR;
+
+    union {
+        struct {
+            __IOM uint32_t DMARDL : 6;
+            __IOM          uint32_t : 26;
+        };
+        __IOM uint32_t value;
+    } DMA_RDLR;
+
+    union {
+        struct {
+            __IOM uint32_t SDA_SETUP : 8;
+            __IOM          uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } SDA_SETUP;
+
+    union {
+        struct {
+            __IOM uint32_t ACK_GEN_CALL : 1;
+            __IM           uint32_t : 31;
+        };
+        __IOM uint32_t value;
+    } ACK_GENERAL_CALL;
+
+    union {
+        struct {
+            __IM uint32_t EN : 1;
+            __IM uint32_t SLV_DISABLED_WHILE_BUSY : 1;
+            __IM uint32_t SLV_RX_DATA_LOST : 1;
+            __IM          uint32_t : 29;
+        };
+        __IOM uint32_t value;
+    } ENABLE_STATUS;
+
+    union {
+        struct {
+            __IOM uint32_t FS_SPKLEN : 8;
+            __IM           uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } FS_SPKLEN;
+
+    union {
+        struct {
+            __IOM uint32_t HS_SPKLEN : 8;
+            __IM           uint32_t : 24;
+        };
+        __IOM uint32_t value;
+    } HS_SPKLEN;
+
+    union {
+        struct {
+            __IM uint32_t CLR_RESTART_DET : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_RESTART_DET;
+
+    union {
+        struct {
+            __IOM uint32_t SCL_STUCK_AT_LOW_TIMEOUT : 32;
+        };
+        __IOM uint32_t value;
+    } SCL_STUCK_AT_LOW_TIMEOUT;
+
+    union {
+        struct {
+            __IOM uint32_t SDA_STUCK_AT_LOW_TIMEOUT : 32;
+        };
+        __IOM uint32_t value;
+    } SDA_STUCK_AT_LOW_TIMEOUT;
+
+    union {
+        struct {
+            __IM uint32_t CLR_SCL_STUCK : 1;
+            __IM          uint32_t : 31;
+        };
+        __IM uint32_t value;
+    } CLR_SCL_STUCK_DET;
+
+    union {
+        struct {
+            __IM uint32_t DEVICE_ID : 24;
+            __IM          uint32_t : 8;
+        };
+        __IM uint32_t value;
+    } DEVICE_ID;
+
+    __IOM uint32_t RESERVED[14];
+
+    union {
+        struct {
+            __IM uint32_t APB_DATA_WIDTH : 2;
+            __IM uint32_t MAX_SPEED_MODE : 2;
+            __IM uint32_t HC_COUNT_VALUES : 1;
+            __IM uint32_t INTR_IO : 1;
+            __IM uint32_t HAS_DMA : 1;
+            __IM uint32_t ADD_ENCODED_PARAMS : 1;
+            __IM uint32_t RX_BUFFER_DEPTH : 8;
+            __IM uint32_t TX_BUFFER_DEPTH : 8;
+            __IM          uint32_t : 8;
+        };
+        __IM uint32_t value;
+    } COMP_PARAM_1;
+
+    union {
+        struct {
+            __IM uint32_t COMP_VERSION : 32;
+        };
+        __IM uint32_t value;
+    } COMP_VERSION;
+
+    union {
+        struct {
+            __IM uint32_t COMP_TYPE : 32;
+        };
+        __IM uint32_t value;
+    } COMP_TYPE;
+} I2C_TypeDef;
+
 /** Peripheral declaration */
 #define ICACHE       ((ICACHE_TypeDef *)ICACHE_BASE)
 #define RCC          ((RCC_TypeDef *)RCC_BASE)
@@ -2579,6 +3082,8 @@ typedef struct
 #define SPI2         ((SPI_TypeDef *)SPI2_BASE)
 #define RTC          ((RTC_TypeDef *)RTC_BASE)
 #define CRC          ((CRC_TypeDef *)CRC_BASE)
+#define I2C1         ((I2C_TypeDef *)I2C1_BASE)
+#define I2C2         ((I2C_TypeDef *)I2C2_BASE)
 /** system level driver */
 #include "at103_icache.h"
 
@@ -2637,6 +3142,10 @@ typedef struct
 #ifdef CRC_MODULE_ENABLED
 #include "at103_crc.h"
 #endif /* CRC_MODULE_ENABLED */
+
+#ifdef I2C_MODULE_ENABLED
+#include "at103_i2c.h"
+#endif /* I2C_MODULE_ENABLED */
 /**
  * @brief  The assert_param macro is used for function's parameters check.
  * @param  expr: If expr is false, it calls assert_failed function which reports
