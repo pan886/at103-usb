@@ -27,6 +27,11 @@ fi
 echo "Use $ttyx for burn"
 
 cp $2/burn_template.ini burn.ini
+if [ -f ./burn/ext_burn.ini ];
+then
+	echo "User defined imgs"
+	sed '/verifyflash 0x0,template.bin/r ./burn/ext_burn.ini' $2/burn_template.ini > burn.ini
+fi
 sed -i -e "s/template.bin/$filename.bin/g" burn.ini
 cp $2/flashburn_stub-data.bin ./
 cp $2/flashburn_stub-text.bin ./
