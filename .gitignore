@@ -19,3 +19,5 @@ link.lds
 load.gdb
 burn.ini
 !tools/burn_image/*
+!**/flash_data/*
+
