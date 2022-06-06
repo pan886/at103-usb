@@ -132,7 +132,7 @@ void main(void)
     DMA_InitStructure.DMA_M2M                 = DMA_M2M_Disable;
     DMA_InitStructure.DMA_PeripheralHandshake = DMA_PeripheralHandshake_SPI1_RX;
     DMA_Init(DMA_Channel2, &DMA_InitStructure);
-    debug("DMA4 transfer data length: %d\r\n", DMA_GetCurrDataCounter(DMA_Channel2));
+    debug("DMA2 transfer data length: %d\r\n", DMA_GetCurrDataCounter(DMA_Channel2));
 
     DMA_DeInit(DMA_Channel3);
     DMA_StructInit(&DMA_InitStructure);
@@ -217,10 +217,6 @@ void main(void)
 
     while (DMA_GetFlagStatus(DMA_FLAG_GL2) == RESET) {
     }
-    if (DMA_GetFlagStatus(DMA_FLAG_TE1) == SET) {
-        debug("DMA channel1 transfer error.\r\n");
-    }
-
     if (DMA_GetFlagStatus(DMA_FLAG_TE2) == SET) {
         debug("DMA channel2 transfer error.\r\n");
     }
