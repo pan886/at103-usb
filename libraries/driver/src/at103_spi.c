@@ -221,14 +221,13 @@ void SPI_DMACmd(SPI_TypeDef *SPIx, uint16_t SPI_DMAReq, FunctionalState NewState
     assert_param(IS_SPI_ALL_PERIPH(SPIx));
     assert_param(IS_FUNCTIONAL_STATE(NewState));
     assert_param(IS_SPI_DMAREQ(SPI_DMAReq));
+    if (SPI_DMAReq == SPI_DMAReq_Tx) {
+        SPIx->GCTL.value &= GCTL_DMA_txReset;
+    } else {
+        SPIx->GCTL.value &= GCTL_DMA_rxReset;
+    }
     if (NewState != DISABLE) {
         SPIx->GCTL.value |= SPI_DMAReq;
-    } else {
-        if (SPI_DMAReq == SPI_DMAReq_Tx) {
-            SPIx->GCTL.value &= GCTL_DMA_txReset;
-        } else {
-            SPIx->GCTL.value &= GCTL_DMA_rxReset;
-        }
     }
 }
 
