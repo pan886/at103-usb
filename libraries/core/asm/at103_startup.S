@@ -325,7 +325,7 @@ IRQ_Handler:
                 csrr     t1, mcause
                 slli     t1, t1, 2
                 add      t0, t1, t0
-                lw	     t0,0(t0)
+                lw	     t0, 0(t0)
                 jalr     t0
                 restore_context
                 mret

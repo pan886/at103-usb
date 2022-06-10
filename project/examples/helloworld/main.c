@@ -9,7 +9,7 @@
 
 #include "at103.h"
 
-void main(void)
+__NOT_IN_FLASH void main(void)
 {
     pll_init();
     sys_io_init();
