@@ -18,6 +18,11 @@ extern "C" {
 
 #include "at103_memmap.h"
 
+#ifdef CONFIG_NO_FALSH
+#define __NOT_IN_FLASH
+#else
+#define __NOT_IN_FLASH __attribute__((section(".__not_in_flash")))
+#endif
 typedef enum {
     RESET = 0,
     SET   = !RESET,
