@@ -1,0 +1,7 @@
+{
+    "AT103": {
+        "evb": {
+            "peripherals": ["adc", "bbu", "crc", "dma", "flash", "gpio", "interrupt", "tim", "tim_complementary", "tim_dma", "tim_inputcapture", "tim_otherAPI", "usart", "usart_DMA", "wwdg"]
+        }
+    }
+}
