@@ -16,5 +16,8 @@ export AT_SDK_HOME_SH=`pwd`
 ## for at103 scripts
 export PATH=$AT_SDK_HOME_SH/tools/scripts:$PATH
 
+## for release
+export PATH=$AT_SDK_HOME_SH/tools/release:$PATH
+
 export RELEASE=no
 
