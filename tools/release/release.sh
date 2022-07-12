@@ -69,7 +69,7 @@ echo -e "\n\e[93m#STEP2: Rename files...\e[0m\n"
 
 if [ -n "$2" ];then
 
-FILE_LIST= FILE_LIST="$(find $RELEASE_SDK_PATH -type f 2>/dev/null| grep -iE "\.h$|\.c$|\.lds$|\.S$|\.mk$|\.gdb$|\/Makefile$"|sort)";
+FILE_LIST= FILE_LIST="$(find $RELEASE_SDK_PATH -type f 2>/dev/null| grep -iE "\.h$|\.c$|\.lds$|\.S$|\.mk$|\.gdb$|\/Makefile$|\.sh$"|sort)";
 FILE_MATCH_TYPE='at103';
 FILE_MATCH_TARGET="${2,,}";
 match_string_replace "${FILE_LIST[*]}" "$FILE_MATCH_TYPE" "$FILE_MATCH_TARGET";

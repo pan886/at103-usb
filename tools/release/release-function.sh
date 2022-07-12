@@ -7,7 +7,10 @@ function match_string_replace(){
     echo -e "\e[32;1m[note][$FUNCNAME][match:$2]\e[0m";
     for file in $1;
     do
-        awk '{
+        awk 'BEGIN{ 
+                system("cp -a '$file' FILENAME;:>FILENAME");
+            }
+            {
                 if(match($0,/'$2'/)){
                     gsub(/'$2'/,"'$3'",$0);
                 }
