@@ -3052,6 +3052,128 @@ typedef struct {
     } COMP_TYPE;
 } I2C_TypeDef;
 
+typedef struct
+{
+    union {
+        struct
+        {
+            __IOM uint8_t ADDR : 7;
+            __IOM         uint8_t : 1;
+        };
+
+        __IOM uint8_t value;
+    } FADDR;
+
+    union {
+        struct
+        {
+            __IOM uint8_t EN_SUSPENDM : 1;
+            __IOM uint8_t SUSPEND_MODE : 1;
+            __IOM uint8_t RESUME : 1;
+            __IOM uint8_t RESET : 1;
+            __IOM uint8_t HS_MODE : 1;
+            __IOM uint8_t HS_ENAB : 1;
+            __IOM uint8_t SOFT_CONN : 1;
+            __IOM uint8_t ISO_UPDATE : 1;
+        };
+        __IOM uint8_t value;
+    } POWER;
+
+    __IM uint16_t INTRTX;
+    __IM uint16_t INTRRX;
+    //__IM uint16_t ;
+
+    union {
+        struct
+        {
+            __IM uint8_t SUSPEND : 1;
+            __IM uint8_t RESUME : 1;
+            __IM uint8_t RESET_BABBLE : 1;
+            __IM uint8_t SOF : 1;
+            __IM uint8_t CONN : 1;
+            __IM uint8_t DISCON : 1;
+            __IM uint8_t SESS_REQ : 1;
+            __IM uint8_t VBUS_ERROR : 1;
+        };
+        __IOM uint8_t value;
+    } INTRRXE;
+
+    union {
+        struct
+        {
+            __IOM uint8_t SUSPEND : 1;
+            __IOM uint8_t RESUME : 1;
+            __IOM uint8_t RESET_BABBLE : 1;
+            __IOM uint8_t SOF : 1;
+            __IOM uint8_t Conn : 1;
+            __IOM uint8_t Discon : 1;
+            __IOM uint8_t Sess_Req : 1;
+            __IOM uint8_t VBus_Error : 1;
+        };
+        __IOM uint8_t value;
+    } INTRUSBE;
+
+    __IM uint16_t Frame;
+
+    union {
+        struct
+        {
+            __IOM uint8_t INDEX : 4;
+            __IOM         uint8_t : 4;
+        };
+        __IOM uint8_t value;
+    } INDEX;
+
+    union {
+        struct
+        {
+            __IOM uint8_t Test_SE0_NAK : 1;
+            __IOM uint8_t Test_J : 1;
+            __IOM uint8_t Test_K : 1;
+            __IOM uint8_t Test_Packet : 1;
+            __IOM uint8_t Force_HS : 1;
+            __IOM uint8_t Force_FS : 1;
+            __IOM uint8_t FIFO_Access : 1;
+            __IOM uint8_t Force_Host : 1;
+        };
+        __IOM uint8_t value;
+    } TESTMODE;
+
+    union {
+        struct
+        {
+            __IOM uint8_t SESSION : 1;
+            __IOM uint8_t HOST_REQ : 1;
+            __IOM uint8_t HOST_MODE : 1;
+            __IOM uint8_t VBUS0 : 1;
+            __IOM uint8_t VBUS1 : 1;
+            __IOM uint8_t LSDev : 1;
+            __IOM uint8_t FSDev : 1;
+            __IOM uint8_t B_Device : 1;
+        };
+        __IOM uint8_t value;
+    } DEVCTL;
+
+    union {
+        struct
+        {
+            __IOM uint8_t rx_edma;
+            __IOM uint8_t tx_edma;
+            __IOM         uint8_t : 6;
+        };
+        __IOM uint8_t value;
+    } MISC;
+
+    union {
+
+        struct
+        {
+            __IOM uint8_t RxPktRdy : 1;
+        };
+    };
+
+} USB_TypeDef;
+
 /** Peripheral declaration */
 #define ICACHE       ((ICACHE_TypeDef *)ICACHE_BASE)
 #define RCC          ((RCC_TypeDef *)RCC_BASE)
