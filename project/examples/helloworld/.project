@@ -24,4 +24,21 @@
 		<nature>org.eclipse.cdt.managedbuilder.core.managedBuildNature</nature>
 		<nature>org.eclipse.cdt.managedbuilder.core.ScannerConfigNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>core_asm</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/libraries/core/asm</locationURI>
+		</link>
+		<link>
+			<name>core_src</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/libraries/core/src</locationURI>
+		</link>
+		<link>
+			<name>drv_src</name>
+			<type>2</type>
+			<locationURI>PARENT-3-PROJECT_LOC/libraries/driver/src</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>

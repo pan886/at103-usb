@@ -137,10 +137,10 @@ typedef struct
 #define DMA_FLAG_TE8 ((uint32_t)0x00008000) /**< DMA Channel8 transfer error flag. */
 
 #define DMA_PeripheralHandshake_ADC1      ((uint32_t)0x00000000) /**< DMA ADC1 peripheral handshake, [10:8] burst size value;[7:0] handshake value. */
-#define DMA_PeripheralHandshake_SPI1_TX   ((uint32_t)0x00000002) /**< DMA SPI1_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. */
-#define DMA_PeripheralHandshake_SPI1_RX   ((uint32_t)0x00000001) /**< DMA SPI1_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. */
-#define DMA_PeripheralHandshake_SPI2_TX   ((uint32_t)0x00000004) /**< DMA SPI2_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. */
-#define DMA_PeripheralHandshake_SPI2_RX   ((uint32_t)0x00000003) /**< DMA SPI2_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. */
+#define DMA_PeripheralHandshake_SPI1_TX   ((uint32_t)0x00000202) /**< DMA SPI1_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. */
+#define DMA_PeripheralHandshake_SPI1_RX   ((uint32_t)0x00000201) /**< DMA SPI1_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. */
+#define DMA_PeripheralHandshake_SPI2_TX   ((uint32_t)0x00000204) /**< DMA SPI2_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. */
+#define DMA_PeripheralHandshake_SPI2_RX   ((uint32_t)0x00000203) /**< DMA SPI2_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. */
 #define DMA_PeripheralHandshake_USART1_TX ((uint32_t)0x0000000A) /**< DMA USART1_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. */
 #define DMA_PeripheralHandshake_USART1_RX ((uint32_t)0x0000000B) /**< DMA USART1_RX peripheral handshake, [10:8] burst size value;[7:0] handshake value. */
 #define DMA_PeripheralHandshake_USART2_TX ((uint32_t)0x00000008) /**< DMA USART2_TX peripheral handshake, [10:8] burst size value;[7:0] handshake value. */

@@ -3,7 +3,6 @@ AT_SDK_HOME   = $(AT_SDK_HOME_SH)
 DEBUG         = yes
 CHIP          = AT103
 STACK_SIZE    = 0x400
-HEAP_SIZE     = 0x0
 NO_FLASH      = yes
 TARGET        = flash
 APP_DIR       = ./test/peripherals/flash
