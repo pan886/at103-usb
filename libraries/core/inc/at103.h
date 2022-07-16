@@ -3142,6 +3142,151 @@ typedef struct
     union {
         struct
         {
+
+            __IOM uint16_t MAX_PAYLOAD_TRAN : 11;
+            __IOM uint16_t M1 : 5;
+        };
+        __IOM uint16_t value;
+    } TXMAXP;
+    union {
+        struct
+        {
+            __IOM uint8_t TXPKTRDY : 1;
+            __IOM uint8_t FIFO_NOTEMPTY : 1;
+            __IOM uint8_t UNDERRUN : 1;
+            __IOM uint8_t FLUSHFIFO : 1;
+            __IOM uint8_t SENDSTALL : 1;
+            __IOM uint8_t SENTSTALL : 1;
+            __IOM uint8_t CLRDATATOG : 1;
+            __IOM uint8_t INCOMPTX : 1;
+        };
+        __IOM uint8_t value;
+    } TxCSRL;
+
+    union {
+        struct
+        {
+            __IOM         uint8_t : 2;
+            __IOM uint8_t DMAREQMODE : 1;
+            __IOM uint8_t FRCDATATOG : 1;
+            __IOM uint8_t DMAREQENAB : 1;
+            __IOM uint8_t MODE : 1;
+            __IOM uint8_t ISO : 1;
+            __IOM uint8_t AUTOSET : 1;
+        } Peripheral;
+
+        struct
+        {
+            __IOM uint8_t DATA_TOGGLE : 1;
+            __IOM uint8_t WR_ENABLE : 1;
+            __IOM uint8_t DMAREQ_MODE : 1;
+            __IOM uint8_t FRC_DATATOG : 1;
+            __IOM uint8_t DMAREQ_EN : 1;
+            __IOM uint8_t MODE : 1;
+            __IOM         uint8_t : 1;
+            __IOM uint8_t AUTOSET : 1;
+        } HOST;
+
+        __IOM uint8_t value;
+    } TxCSRH;
+
+    union {
+        struct
+        {
+            __IOM uint16_t Max_Pay_tran : 11;
+            __IOM uint16_t m1 : 5;
+        } RXMAXP;
+
+    } RXMAXP;
+
+    union {
+        struct
+        {
+            __IOM uint8_t RXPKTRDY : 1;
+            __IOM uint8_t FIFOFULL : 1;
+            __IOM uint8_t OVERRUN : 1;
+            __IOM uint8_t DATAERROR : 1;
+            __IOM uint8_t FLUSHFIFO : 1;
+            __IOM uint8_t SENDSTALL : 1;
+            __IOM uint8_t SENTSTALL : 1;
+            __IOM uint8_t CLRDATATOG : 1;
+        };
+        __IOM uint8_t value;
+    } RxCSRL;
+
+    union {
+        struct
+        {
+            __IOM uint8_t IncompRx : 1;
+            __IOM uint8_t uint8_t : 2;
+            __IOM uint8_t DMAReqMode : 1;
+            __IOM uint8_t DisNyet_PID_Error : 1;
+            __IOM uint8_t DMAReq_En : 1;
+            __IOM uint8_t ISO : 1;
+            __IOM uint8_t AutoClear : 1;
+        };
+        __IOM uint8_t value;
+    } RxCSRH;
+
+    union {
+        struct
+        {
+
+            __IOM uint16_t RXCOUNT : 14;
+            __IOM          uint16_t : 2;
+        };
+        __IOM uint16_t value;
+    } RXCOUNT;
+
+    union {
+        struct
+        {
+            __IOM uint8_t TARGET_EP_NO : 4;
+            __IOM uint8_t PROTOCOL : 2;
+            __IOM uint8_t SPEED : 2;
+        };
+        __IOM uint8_t value;
+    } TxType;
+
+    __IOM uint8_t TxInterval;
+    union {
+        struct
+        {
+            __IOM uint8_t TARGET_EP_NO : 4;
+            __IOM uint8_t PROTOCOL : 2;
+            __IOM uint8_t SPEED : 2;
+        };
+    } RxType;
+
+    __IOM uint8_t RxInterval;
+    __IOM uint8_t RESEVED;
+    union {
+        struct
+        {
+            __IOM uint8_t Tx_FIFO_Size : 4;
+            __IOM uint8_t Rx_FIFO_Size : 4;
+        } FIFOSize;
+        struct
+        {
+            __IOM uint8_t UTMI_DATAWIDTH : 1;
+            __IOM uint8_t SOFTCONE : 1;
+            __IOM uint8_t SDynFIFO_Sizing : 1;
+            __IOM uint8_t HBTxE : 1;
+            __IOM uint8_t HBRxE : 1;
+            __IOM uint8_t BIGENDIAN : 1;
+            __IOM uint8_t MPTxE : 1;
+            __IOM uint8_t MPRxE : 1;
+        } ConfigData;
+
+        __IOM uint8_t value;
+    } FIFOCONFIG;
+
+    __IOM uint8_t FIFO[16];
+
+#if 1
+    union {
+        struct
+        {
             __IOM uint8_t SESSION : 1;
             __IOM uint8_t HOST_REQ : 1;
             __IOM uint8_t HOST_MODE : 1;
@@ -3168,9 +3313,66 @@ typedef struct
 
         struct
         {
-            __IOM uint8_t RxPktRdy : 1;
+            __IOM uint8_t SZ : 4;
+            __IOM uint8_t DPB : 1;
+            __IOM         uint8_t : 4;
         };
-    };
+    } TXFIFOSZ;
+
+    union {
+        struct
+        {
+            __IOM uint8_t SZ : 4;
+            __IOM uint8_t DPB : 1;
+            __IOM         uint8_t : 3;
+        };
+
+    } RXFIFOSZ;
+
+    union {
+        struct
+        {
+            __IOM uint16_t AD : 13;
+            __IOM          uint16_t : 3;
+        };
+        __IOM uint16_t value;
+    } TXFIFOADD;
+
+    union {
+        struct
+        {
+            __IOM uint16_t AD : 13;
+            __IOM          uint16_t : 3;
+        };
+        __IOM uint16_t value;
+    } RXFIFOADD;
+
+    union {
+        uint32_t VCONTROL;
+        uint32_t VSTATUS;
+    } PHY;
+
+    union {
+        struct
+        {
+            uint32_t YYY : 10;
+            uint32_t XX : 5;
+            uint32_t RC : 1;
+        };
+
+    } HWVers;
+    uint8_t RESERVED[8];
+
+    union {
+        struct
+        {
+            uint8_t TxEndPoints : 4;
+            uint8_t RxEndPoints : 4;
+        };
+        uint8_t value;
+    } EPInfo;
+
+#endif
 
 } USB_TypeDef;
 
