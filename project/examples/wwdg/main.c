@@ -19,7 +19,7 @@ void set_led(uint8_t led_state);
 void WWDG_Init(void);
 void main(void)
 {
-    GPIO_InitTypeDef GPIOE_struct1;
+    GPIO_InitTypeDef GPIOB_struct;
     NVIC_InitTypeDef NVIC_InitStructure;
     pll_init();
     sys_io_init();
@@ -32,10 +32,10 @@ void main(void)
     __enable_irq();
 
     /*set the GPIO mode :Push-pull output */
-    GPIOE_struct1.GPIO_Mode  = GPIO_Mode_Out_PP;
-    GPIOE_struct1.GPIO_Pin   = GPIO_Pin_2 | GPIO_Pin_3 | GPIO_Pin_4 | GPIO_Pin_5 | GPIO_Pin_6;
-    GPIOE_struct1.GPIO_Speed = GPIO_Speed_2MHz;
-    GPIO_Init(GPIOE, &GPIOE_struct1);
+    GPIOB_struct.GPIO_Mode  = GPIO_Mode_Out_PP;
+    GPIOB_struct.GPIO_Pin   = GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15;
+    GPIOB_struct.GPIO_Speed = GPIO_Speed_2MHz;
+    GPIO_Init(GPIOB, &GPIOB_struct);
 
     /*light up the LED*/
     set_led(LED_ON);
@@ -67,17 +67,16 @@ void WWDG_Init()
 void set_led(uint8_t led_state)
 {
     if (led_state == LED_ON) {
-        GPIO_SetBits(GPIOE, GPIO_Pin_2);
-        GPIO_SetBits(GPIOE, GPIO_Pin_3);
-        GPIO_SetBits(GPIOE, GPIO_Pin_4);
-        GPIO_SetBits(GPIOE, GPIO_Pin_5);
-        GPIO_SetBits(GPIOE, GPIO_Pin_6);
+
+        GPIO_SetBits(GPIOB, GPIO_Pin_13);
+        GPIO_SetBits(GPIOB, GPIO_Pin_14);
+        GPIO_SetBits(GPIOB, GPIO_Pin_15);
+
     } else {
-        GPIO_ResetBits(GPIOE, GPIO_Pin_2);
-        GPIO_ResetBits(GPIOE, GPIO_Pin_3);
-        GPIO_ResetBits(GPIOE, GPIO_Pin_4);
-        GPIO_ResetBits(GPIOE, GPIO_Pin_5);
-        GPIO_ResetBits(GPIOE, GPIO_Pin_6);
+
+        GPIO_ResetBits(GPIOB, GPIO_Pin_13);
+        GPIO_ResetBits(GPIOB, GPIO_Pin_14);
+        GPIO_ResetBits(GPIOB, GPIO_Pin_15);
     }
 }
 
