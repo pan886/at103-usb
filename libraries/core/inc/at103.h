@@ -3079,9 +3079,97 @@ typedef struct
         __IOM uint8_t value;
     } POWER;
 
-    __IM uint16_t INTRTX;
-    __IM uint16_t INTRRX;
-    //__IM uint16_t ;
+    union {
+        struct
+        {
+            __IM uint8_t EP0_TX : 1;
+            __IM uint8_t EP1_TX : 1;
+            __IM uint8_t EP2_TX : 1;
+            __IM uint8_t EP3_TX : 1;
+            __IM uint8_t EP4_TX : 1;
+            __IM uint8_t EP5_TX : 1;
+            __IM uint8_t EP6_TX : 1;
+            __IM uint8_t EP7_TX : 1;
+            __IM uint8_t EP8_TX : 1;
+            __IM uint8_t EP9_TX : 1;
+            __IM uint8_t EP10_TX : 1;
+            __IM uint8_t EP11_TX : 1;
+            __IM uint8_t EP12_TX : 1;
+            __IM uint8_t EP13_TX : 1;
+            __IM uint8_t EP14_TX : 1;
+            __IM uint8_t EP15_TX : 1;
+        };
+        __IM uint16_t value;
+    } INTRTX;
+
+    union {
+        struct
+        {
+            __IM         uint8_t : 1;
+            __IM uint8_t EP1_RX : 1;
+            __IM uint8_t EP2_RX : 1;
+            __IM uint8_t EP3_RX : 1;
+            __IM uint8_t EP4_RX : 1;
+            __IM uint8_t EP5_RX : 1;
+            __IM uint8_t EP6_RX : 1;
+            __IM uint8_t EP7_RX : 1;
+            __IM uint8_t EP8_RX : 1;
+            __IM uint8_t EP9_RX : 1;
+            __IM uint8_t EP10_RX : 1;
+            __IM uint8_t EP11_RX : 1;
+            __IM uint8_t EP12_RX : 1;
+            __IM uint8_t EP13_RX : 1;
+            __IM uint8_t EP14_RX : 1;
+            __IM uint8_t EP15_RX : 1;
+        };
+        __IM uint16_t value;
+    } INTRRX;
+
+    union {
+        struct
+        {
+            __IOM uint8_t EP0_TXE;
+            __IOM uint8_t EP1_TXE;
+            __IOM uint8_t EP2_TXE;
+            __IOM uint8_t EP3_TXE;
+            __IOM uint8_t EP4_TXE;
+            __IOM uint8_t EP5_TXE;
+            __IOM uint8_t EP6_TXE;
+            __IOM uint8_t EP7_TXE;
+            __IOM uint8_t EP8_TXE;
+            __IOM uint8_t EP9_TXE;
+            __IOM uint8_t EP10_TXE;
+            __IOM uint8_t EP11_TXE;
+            __IOM uint8_t EP12_TXE;
+            __IOM uint8_t EP13_TXE;
+            __IOM uint8_t EP14_TXE;
+            __IOM uint8_t EP15_TXE;
+        };
+        __IOM uint16_t value;
+    } INTRTXE;
+
+    union {
+        struct
+        {
+            __IOM         uint8_t : 1;
+            __IOM uint8_t EP1_RXE : 1;
+            __IOM uint8_t EP2_RXE : 1;
+            __IOM uint8_t EP3_RXE : 1;
+            __IOM uint8_t EP4_RXE : 1;
+            __IOM uint8_t EP5_RXE : 1;
+            __IOM uint8_t EP6_RXE : 1;
+            __IOM uint8_t EP7_RXE : 1;
+            __IOM uint8_t EP8_RXE : 1;
+            __IOM uint8_t EP9_RXE : 1;
+            __IOM uint8_t EP10_RXE : 1;
+            __IOM uint8_t EP11_RXE : 1;
+            __IOM uint8_t EP12_RXE : 1;
+            __IOM uint8_t EP13_RXE : 1;
+            __IOM uint8_t EP14_RXE : 1;
+            __IOM uint8_t EP15_RXE : 1;
+        };
+        __IOM uint16_t value;
+    } INTRRXE;
 
     union {
         struct
@@ -3096,29 +3184,35 @@ typedef struct
             __IM uint8_t VBUS_ERROR : 1;
         };
         __IOM uint8_t value;
-    } INTRRXE;
+    } INTRUSB;
+
+    // union {
+    //     struct
+    //     {
+    //         __IOM uint8_t SUSPEND_EN : 1;
+    //         __IOM uint8_t RESUME_EN : 1;
+    //         __IOM uint8_t RESET_BABBLE_EN : 1;
+    //         __IOM uint8_t SOF_EN : 1;
+    //         __IOM uint8_t CONN_EN : 1;
+    //         __IOM uint8_t DISCON_EN : 1;
+    //         __IOM uint8_t SESS_REQ_EN : 1;
+    //         __IOM uint8_t VBUS_ERROR_EN : 1;
+    //     };
+    __IOM uint8_t INTRUSBE;
 
     union {
         struct
         {
-            __IOM uint8_t SUSPEND : 1;
-            __IOM uint8_t RESUME : 1;
-            __IOM uint8_t RESET_BABBLE : 1;
-            __IOM uint8_t SOF : 1;
-            __IOM uint8_t Conn : 1;
-            __IOM uint8_t Discon : 1;
-            __IOM uint8_t Sess_Req : 1;
-            __IOM uint8_t VBus_Error : 1;
+            __IM uint16_t number : 10;
+            __IM          uint16_t : 6;
         };
-        __IOM uint8_t value;
-    } INTRUSBE;
-
-    __IM uint16_t Frame;
+        __IM uint16_t value;
+    } Frame;
 
     union {
         struct
         {
-            __IOM uint8_t INDEX : 4;
+            __IOM uint8_t SEL_EP : 4;
             __IOM         uint8_t : 4;
         };
         __IOM uint8_t value;
@@ -3144,7 +3238,7 @@ typedef struct
         {
 
             __IOM uint16_t MAX_PAYLOAD_TRAN : 11;
-            __IOM uint16_t M1 : 5;
+            __IOM uint16_t M_1 : 5;
         };
         __IOM uint16_t value;
     } TXMAXP;
@@ -3210,9 +3304,22 @@ typedef struct
             __IOM uint8_t SENDSTALL : 1;
             __IOM uint8_t SENTSTALL : 1;
             __IOM uint8_t CLRDATATOG : 1;
-        };
+        } Peripheral;
+
+        struct
+        {
+            __IOM uint8_t RxPktRdy : 1;
+            __IOM uint8_t FIFOFULL : 1;
+            __IOM uint8_t ERROR : 1;
+            __IOM uint8_t DataErr_NAK_Timeout : 1;
+            __IOM uint8_t FLUSHFIFO : 1;
+            __IOM uint8_t REQPKT : 1;
+            __IOM uint8_t RxStall : 1;
+            __IOM uint8_t CLRDATATOG : 1;
+        } HOST;
+
         __IOM uint8_t value;
-    } RxCSRL;
+    } RXCSRL;
 
     union {
         struct
@@ -3224,7 +3331,20 @@ typedef struct
             __IOM uint8_t DMAReq_En : 1;
             __IOM uint8_t ISO : 1;
             __IOM uint8_t AutoClear : 1;
-        };
+        } PERIPHERAL;
+
+        struct
+        {
+            __IOM uint8_t INCOMPRX : 1;
+            __IOM uint8_t Data_Tog : 1;
+            __IOM uint8_t Data_Tog_WE : 1;
+            __IOM uint8_t DMAReqMode : 1;
+            __IOM uint8_t PID_ERROR : 1;
+            __IOM uint8_t DMAREQEN : 1;
+            __IOM uint8_t AUTOREQ : 1;
+            __IOM uint8_t AUTOCLEAR : 1;
+        } HOST;
+
         __IOM uint8_t value;
     } RxCSRH;
 
@@ -3259,31 +3379,31 @@ typedef struct
     } RxType;
 
     __IOM uint8_t RxInterval;
+
     __IOM uint8_t RESEVED;
     union {
         struct
         {
-            __IOM uint8_t Tx_FIFO_Size : 4;
-            __IOM uint8_t Rx_FIFO_Size : 4;
-        } FIFOSize;
+            __IM uint8_t TX_FIFO_SIZE : 4;
+            __IM uint8_t RX_FIFO_SIZE : 4;
+        } FIFOSIZE;
         struct
         {
-            __IOM uint8_t UTMI_DATAWIDTH : 1;
-            __IOM uint8_t SOFTCONE : 1;
-            __IOM uint8_t SDynFIFO_Sizing : 1;
-            __IOM uint8_t HBTxE : 1;
-            __IOM uint8_t HBRxE : 1;
-            __IOM uint8_t BIGENDIAN : 1;
-            __IOM uint8_t MPTxE : 1;
-            __IOM uint8_t MPRxE : 1;
-        } ConfigData;
+            __IM uint8_t UTMI_DATAWIDTH : 1;
+            __IM uint8_t SOFTCONE : 1;
+            __IM uint8_t SDYNFIFO_SIZING : 1;
+            __IM uint8_t HBTXE : 1;
+            __IM uint8_t HBRXE : 1;
+            __IM uint8_t BIGENDIAN : 1;
+            __IM uint8_t MPTXE : 1;
+            __IM uint8_t MPRXE : 1;
+        } CONFIGDATA;
 
         __IOM uint8_t value;
     } FIFOCONFIG;
 
-    __IOM uint8_t FIFO[16];
+    __IOM uint32_t FIFO[16];
 
-#if 1
     union {
         struct
         {
@@ -3292,9 +3412,9 @@ typedef struct
             __IOM uint8_t HOST_MODE : 1;
             __IOM uint8_t VBUS0 : 1;
             __IOM uint8_t VBUS1 : 1;
-            __IOM uint8_t LSDev : 1;
-            __IOM uint8_t FSDev : 1;
-            __IOM uint8_t B_Device : 1;
+            __IOM uint8_t LSDEV : 1;
+            __IOM uint8_t FSDEV : 1;
+            __IOM uint8_t B_DEVICE : 1;
         };
         __IOM uint8_t value;
     } DEVCTL;
@@ -3302,8 +3422,8 @@ typedef struct
     union {
         struct
         {
-            __IOM uint8_t rx_edma;
-            __IOM uint8_t tx_edma;
+            __IOM uint8_t RX_EDMA;
+            __IOM uint8_t TX_EDMA;
             __IOM         uint8_t : 6;
         };
         __IOM uint8_t value;
@@ -3348,33 +3468,361 @@ typedef struct
     } RXFIFOADD;
 
     union {
-        uint32_t VCONTROL;
-        uint32_t VSTATUS;
+        __IOM uint32_t VCONTROL;
+        __IM uint32_t  VSTATUS;
     } PHY;
 
     union {
         struct
         {
-            uint32_t YYY : 10;
-            uint32_t XX : 5;
-            uint32_t RC : 1;
+            __IM uint16_t YYY : 10;
+            __IM uint16_t XX : 5;
+            __IM uint16_t RC : 1;
         };
-
+        __IM uint16_t value;
     } HWVers;
-    uint8_t RESERVED[8];
+    uint8_t RESERVED[10];
 
     union {
         struct
         {
-            uint8_t TxEndPoints : 4;
-            uint8_t RxEndPoints : 4;
+            __IM uint8_t TXENDPOINTS : 4;
+            __IM uint8_t RXENDPOINTS : 4;
         };
-        uint8_t value;
+        __IM uint8_t value;
     } EPInfo;
 
-#endif
+    union {
+        struct
+        {
+            __IM uint8_t RAMBITS : 4;
+            __IM uint8_t DMACHANS : 4;
+        };
+        __IM uint8_t value;
+    } RAMINFO;
+
+    union {
+        struct
+        {
+            __IOM uint8_t WTID : 4;
+            __IOM uint8_t WTCON : 4;
+        };
+        __IOM uint8_t value;
+
+    } LINKINFO;
+
+    __IOM uint8_t VPLEN;
+    __IOM uint8_t HS_EOF1;
+    __IOM uint8_t FS_EOF1;
+    union {
+        struct
+        {
+            __IOM uint8_t NRST : 1;
+            __IOM uint8_t NRSTX : 1;
+            __IOM         uint8_t : 6;
+        };
+        __IOM uint8_t value;
+    } SOFT_RST;
+
+    __IOM uint8_t TXFUNCADDR;
+    __IOM uint8_t RESERVED0;
+    union {
+        struct
+        {
+            __IOM uint8_t HUB_ADDRESS : 7;
+            __IOM uint8_t MULTI_TRANS : 1;
+        };
+        __IOM uint8_t value;
+    } TXHUBADDR;
+
+    union {
+        struct
+        {
+            __IOM uint8_t HUBPORT : 7;
+            __IOM         uint8_t : 1;
+        };
+
+        __IOM uint8_t value;
+    } TxHubPort;
+
+    union {
+        struct
+        {
+            uint8_t ADD_TAR_FUNC : 7;
+            uint8_t : 1;
+        };
+        uint8_t value;
+    } RxFuncAddr;
+
+    uint8_t RESERVED1;
+
+    union {
+        struct
+        {
+            __IOM uint8_t HUB_ADD : 7;
+            __IOM uint8_t MULTI_TRANS : 1;
+        };
+        __IOM uint8_t value;
+    } RXHUBADDR;
+    union {
+        struct
+        {
+            __IOM uint8_t HubPort : 7;
+            __IOM         uint8_t : 1;
+        };
+        __IOM uint8_t value;
+    } RxHubPort;
+    uint8_t RESERVED2[178];
+    union {
+        struct
+        {
+            uint8_t CH1_DMA_INTR : 1;
+            uint8_t CH2_DMA_INTR : 1;
+            uint8_t CH3_DMA_INTR : 1;
+            uint8_t CH4_DMA_INTR : 1;
+            uint8_t CH5_DMA_INTR : 1;
+            uint8_t CH6_DMA_INTR : 1;
+            uint8_t CH7_DMA_INTR : 1;
+            uint8_t CH8_DMA_INTR : 1;
+        };
+        uint8_t value;
+    } DMA_INTR;
+
+    union {
+        struct
+        {
+            __IOM uint8_t DMA_ENAB : 1;
+            __IOM uint8_t DMA_DIR : 1;
+            __IOM uint8_t DMAMODE : 1;
+            __IOM uint8_t DMAIE : 1;
+            __IOM uint8_t DMAEP : 4;
+            __IOM uint8_t DMA_ERR : 1;
+            __IOM uint8_t DMA_BRSTM : 2;
+            __IOM         uint8_t : 5;
+        };
+        __IOM uint16_t value;
+    } DMA_CNTL;
+    __IOM uint32_t DMA_ADDR;
+    __IOM uint32_t DMA_COUNT;
+    __IOM uint32_t RQPKTCOUNT;
+    __IOM uint32_t RESERVED3[39];
+    union {
+        struct
+        {
+            uint8_t UNUSED : 1;
+            uint8_t EP1_RxDis : 1;
+            uint8_t EP2_RxDis : 1;
+            uint8_t EP3_RxDis : 1;
+            uint8_t EP4_RxDis : 1;
+            uint8_t EP5_RxDis : 1;
+            uint8_t EP6_RxDis : 1;
+            uint8_t EP7_RxDis : 1;
+            uint8_t EP8_RxDis : 1;
+            uint8_t EP9_RxDis : 1;
+            uint8_t EP10_RxDis : 1;
+            uint8_t EP11_RxDis : 1;
+            uint8_t EP12_RxDis : 1;
+            uint8_t EP13_RxDis : 1;
+            uint8_t EP14_RxDis : 1;
+            uint8_t EP15_RxDis : 1;
+        };
+        uint16_t value;
+    } RX_DPKTBUFDIS;
+
+    union {
+        struct
+        {
+            uint8_t UNUSED : 1;
+            uint8_t EP1_TxDis : 1;
+            uint8_t EP2_TxDis : 1;
+            uint8_t EP3_TxDis : 1;
+            uint8_t EP4_TxDis : 1;
+            uint8_t EP5_TxDis : 1;
+            uint8_t EP6_TxDis : 1;
+            uint8_t EP7_TxDis : 1;
+            uint8_t EP8_TxDis : 1;
+            uint8_t EP9_TxDis : 1;
+            uint8_t EP10_TxDis : 1;
+            uint8_t EP11_TxDis : 1;
+            uint8_t EP12_TxDis : 1;
+            uint8_t EP13_TxDis : 1;
+            uint8_t EP14_TxDis : 1;
+            uint8_t EP15_TxDis : 1;
+        };
+        uint16_t value;
+    } TX_DPKTBUFDIS;
+    uint16_t C_T_UCH;
+    uint16_t C_T_HSRTN;
+    uint8_t  reserved[18];
+    union {
+        struct
+        {
+            uint8_t LINKSTATE : 4;
+            uint8_t HIRD : 4;
+            uint8_t RmtWak : 1;
+            uint8_t : 3;
+            uint8_t EndPnt : 4;
+        };
+        uint16_t value;
+    } LPM_ATTR;
+
+    union {
+        struct
+        {
+            uint8_t LPMXMT : 1;
+            uint8_t LPMRES : 1;
+            uint8_t Reserved : 6;
+        } HOST;
+
+        struct
+        {
+            uint8_t LPMXMT : 1;
+            uint8_t LPMRES : 1;
+            uint8_t LPMEN : 2;
+            uint8_t LPMNAK : 1;
+            uint8_t Reserved : 3;
+        } Peripheral;
+
+        /* data */
+    } LPM_CNTRL;
+    union {
+        struct
+        {
+            uint8_t LPMSTEN : 1;
+            uint8_t LPMNYEN : 1;
+            uint8_t LPMACKEN : 1;
+            uint8_t LPMNCEN : 1;
+            uint8_t LPMRESEN : 1;
+            uint8_t LPMERREN : 1;
+            uint8_t RESERVED : 2;
+        };
+        uint8_t value;
+    } LPM_INTREN;
+
+    union {
+        struct
+        {
+            uint8_t LPMST : 1;
+            uint8_t LPMNY : 1;
+            uint8_t LPMACK : 1;
+            uint8_t LPMNC : 1;
+            uint8_t LPMRES : 1;
+            uint8_t LkPMERR : 1;
+            uint8_t : 2;
+        } PERIPHERAL;
+        struct
+        {
+            uint8_t LPMST : 1;
+            uint8_t LPMNY : 1;
+            uint8_t LPMACK : 1;
+            uint8_t LPMNC : 1;
+            uint8_t LPMRES : 1;
+            uint8_t LkPMERR : 1;
+            uint8_t : 2;
+        } HOST;
+
+    } LPM_INTR;
+
+    union {
+        struct
+        {
+            uint8_t FADDR : 7;
+            uint8_t : 1;
+        };
+        uint8_t value;
+    } LPM_FADDR;
 
 } USB_TypeDef;
+
+// MCU registers
+#define REG_FADDR     0x00
+#define REG_POWER     0x01
+#define REG_INTRTX    0x02
+#define REG_INTRRX    0x04
+#define REG_INTRTXE   0x06
+#define REG_INTRRXE   0x08
+#define REG_INTRUSB   0x0A
+#define REG_INTRUSBE  0x0B
+#define REG_FRAME     0x0C
+#define REG_INDEX     0x0E
+#define REG_TESTMODE  0x0F
+#define REG_CSR0L     0x12
+#define REG_CSR0H     0x13
+#define REG_EP0_COUNT 0x18
+#define REG_EP0_INTV  0x1B
+#define REG_EP_TXMAXP 0x10
+#define REG_EP_TXCSR  0x12
+#define REG_EP_RXMAXP 0x14
+#define REG_EP_RXCSRL 0x16
+#define REG_EP_RXCSRH 0x17
+
+#define REG_EP_COUNT 0x18
+
+#define REG_FIFOSIZE    0x1F
+#define REG_EP0_FIFO    0x20
+#define REG_EP1_FIFO    0x24
+#define REG_EP2_FIFO    0x28
+#define REG_EP3_FIFO    0x2C
+#define REG_EP4_FIFO    0x30
+#define REG_EP5_FIFO    0x34
+#define REG_EP6_FIFO    0x38
+#define REG_EP7_FIFO    0x3C
+#define REG_EP8_FIFO    0x40
+#define REG_EP9_FIFO    0x44
+#define REG_EP10_FIFO   0x48
+#define REG_EP11_FIFO   0x4C
+#define REG_EP12_FIFO   0x50
+#define REG_EP13_FIFO   0x54
+#define REG_EP14_FIFO   0x58
+#define REG_EP15_FIFO   0x5C
+#define REG_DEVCTL      0x60
+#define REG_MISC        0x61
+#define REG_EP_TXFIFOS  0x62
+#define REG_EP_RXFIFOS  0x63
+#define REG_EP_TXFIFOA  0x64
+#define REG_EP_RXFIFOA  0x66
+#define REG_VCNTRL      0x68
+#define REG_VSTAT       0x68
+#define REG_HWVERS      0x6C
+#define REG_LPI_VBUS    0x70
+#define REG_LPI_CARCTRL 0x71
+#define REG_LPI_IMASK   0x72
+#define REG_LPI_ISTAT   0x73
+#define REG_LPI_DATA    0x74
+#define REG_LPI_ADDR    0x75
+#define REG_LPI_CTRL    0x76
+#define REG_LPI_RXDATA  0x77
+#define REG_EPINFO      0x78
+#define REG_RAMSIZE     0x79
+#define REG_PHYWT       0x7A
+#define REG_PHYTMVBUS   0x7B
+#define REG_TMHSEOF1    0x7C
+#define REG_TMFSEOF1    0x7D
+#define REG_TMLSEOF1    0x7E
+#define REG_RSTS        0x7F
+#define REG_DMA_ADDR    0x208
+
+#define REG_RXDPBDL  0x340
+#define REG_RXDPBDH  0x341
+#define REG_TXDPBDL  0x342
+#define REG_TXDPBDH  0x343
+#define REG_UCHL     0x344
+#define REG_UCHH     0x345
+#define REG_HHSRTNL  0x346
+#define REG_HHSRTNH  0x347
+#define REG_HSBT     0x348
+#define REG_LPMATTR  0x360
+#define REG_LPMCNTRL 0x362
+#define REG_LPMINTEN 0x363
+#define REG_LPMINT   0x364
+#define REG_LPMFADDR 0x365
+// Endpoint target address off
+#define REG_TXTFADDR_OFF 0x0
+#define REG_TXTHADDR_OFF 0x2
+#define REG_TXTHPORT_OFF 0x3
+#define REG_RXTFADDR_OFF 0x4
+#define REG_RXTHADDR_OFF 0x6
+#define REG_RXTHPORT_OFF 0x7
 
 /** Peripheral declaration */
 #define ICACHE       ((ICACHE_TypeDef *)ICACHE_BASE)
@@ -3413,6 +3861,7 @@ typedef struct
 #define CRC          ((CRC_TypeDef *)CRC_BASE)
 #define I2C1         ((I2C_TypeDef *)I2C1_BASE)
 #define I2C2         ((I2C_TypeDef *)I2C2_BASE)
+#define USB          ((USB_TypeDef *)USB_BASE)
 /** system level driver */
 #include "at103_icache.h"
 
@@ -3475,6 +3924,11 @@ typedef struct
 #ifdef I2C_MODULE_ENABLED
 #include "at103_i2c.h"
 #endif /* I2C_MODULE_ENABLED */
+
+#ifdef USB_MODULE_ENABLED
+
+#endif
+
 /**
  * @brief  The assert_param macro is used for function's parameters check.
  * @param  expr: If expr is false, it calls assert_failed function which reports
