@@ -11,12 +11,30 @@
 #define REG32(x)  (*((volatile uint32_t *)(x)))
 #define USB_BAS   0x40028000
 #define REG_POWER 0x1
+volatile unsigned int cnt;
+volatile unsigned int start_addr = 0x14800;
+volatile unsigned int next_addr;
+volatile unsigned int usbAddr   = 0x57;
+volatile unsigned int i0        = 0;
+volatile unsigned int i1        = 0;
+volatile unsigned int i2        = 0;
+volatile unsigned int i3        = 0;
+volatile unsigned int i4        = 0;
+volatile unsigned int fail_flag = 0;
 
+#ifndef RX_EP
+volatile unsigned int rxEp = 1;
+#else
+volatile unsigned int rxEp = RX_EP;
+#endif
+
+volatile unsigned int rxMaxP = 0x40;
 #include "at103.h"
 NVIC_InitTypeDef    NVIC_InitStructure;
 GPIO_InitTypeDef    GPIOA_struct;
 __NOT_IN_FLASH void main(void)
 {
+    uint8_t val = 0;
     pll_init();
     sys_io_init();
     uart_init(UART_BOOT_PORT, UART_PARITY_NONE, UART_STOPBITS_1, UART_DATABITS_8, UART_BOOT_BD);
@@ -24,20 +42,51 @@ __NOT_IN_FLASH void main(void)
     GPIOA_struct.GPIO_Pin  = GPIO_Pin_12 | GPIO_Pin_11;
     GPIO_Init(GPIOA, &GPIOA_struct);
 
-    RCC_OTGFSCLKConfig(0xB);
+    // RCC_OTGFSCLKConfig(0xB);
     RCC->USBPHY_CTRL.CLK_MODE_BIT   = 0x1;
     RCC->USBPHY_CTRL.PLL_EN_BIT     = 0x1;
     RCC->USBPHY_CTRL.IDDIG_BIT      = 0x1;
     RCC->USBPHY_CTRL.REFCLK_SEL_BIT = 0x1;
+    /*USB AHB clk enable*/
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_USB, ENABLE);
 
+    RCC_AHBPeriphResetCmd(RCC_AHBPeriph_USB, ENABLE);
+    debug("USB Dev wait xclk catch the rst.\n");
+    RCC_AHBPeriphResetCmd(RCC_AHBPeriph_USB, DISABLE);
+    debug("USB Dev wait rst finish.\n");
+
+    RCC_OTGFSCLKConfig(0xB); //usb PHY ref clk(12M) div(TBD)
+                             //6:iddig; 4:vbus sessend; 3:avalid; 2:vbus valid; 1:PHY PLL enable; 0:sel ref clk
+    RCC->USBPHY_CTRL.value                               = (0x1 << 6) | (0x1 << 1) | (0x1 << 0) | (0x1 << 4);
+    RCC->USBPHY_CTRL.value                               = (0x1 << 6) | (0x1 << 1) | (0x1 << 0) | (0x0 << 4) | (0x1 << 3) | (0x1 << 2);
     NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0;
     NVIC_InitStructure.NVIC_IRQChannelSubPriority        = 0;
     NVIC_InitStructure.NVIC_IRQChannelCmd                = ENABLE;
     NVIC_InitStructure.NVIC_IRQChannel                   = USB_MC_IRQn;
     __enable_irq();
 
+    cnt        = 0;
+    start_addr = 0x14800;
+    usbAddr    = 0x57;
+    rxEp       = 1;
+    rxMaxP     = 0x40;
+    next_addr  = start_addr;
+    i0         = 0;
+    i1         = 0;
+    i2         = 0;
+    i3         = 0;
+    i4         = 0;
+    fail_flag  = 0;
     debug("\r\n");
+
+    while (1) {
+        val = REG8(USB_BAS + REG_DEVCTL);
+
+        if ((val & 0x10) == 0x10) {
+            debug("Detect VBUS_VALID, USB_DEVCTL=%x\n", val);
+            break;
+        }
+    }
 #if 1
     // *((uint32_t *)(0x40028001)) = 0x60;
     // USB->POWER.EN_SUSPENDM      = 0x1;
@@ -57,7 +106,7 @@ __NOT_IN_FLASH void main(void)
     REG16(USB_BAS + REG_INTRTXE) = 0xff;
     REG8(USB_BAS + REG_INTRUSBE) = 0xfe;
     //USB->INTRUSBE.value = 0xff;
-    USB->FADDR.value = 0x0;
+    USB->FADDR.value = 0x5a;
     // USB->INDEX.SEL_EP = 0x1;
     REG8(USB_BAS + REG_INDEX) = 0x0;
     REG8(USB_BAS + REG_CSR0H) |= 0x1;
