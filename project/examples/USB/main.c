@@ -6,6 +6,26 @@
  * @date 2022-01-07
  * @copyright Copyright (c) 2022 Timesintelli, Inc
  */
+#include "at103.h"
+static const uint8_t musb_test_packet[53] = {
+    /* implicit SYNC then DATA0 to start */
+
+    /* JKJKJKJK x9 */
+    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+    /* JJKKJJKK x8 */
+    0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,
+    /* JJJJKKKK x8 */
+    0xee, 0xee, 0xee, 0xee, 0xee, 0xee, 0xee, 0xee,
+    /* JJJJJJJKKKKKKK x8 */
+    0xfe, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
+    /* JJJJJJJK x8 */
+    0x7f, 0xbf, 0xdf, 0xef, 0xf7, 0xfb, 0xfd,
+    /* JKKKKKKK x10, JK */
+    0xfc, 0x7e, 0xbf, 0xdf, 0xef, 0xf7, 0xfb, 0xfd, 0x7e
+
+    /* implicit CRC16 then EOP to end */
+};
+
 #define REG8(x)   (*((volatile uint8_t *)(x)))
 #define REG16(x)  (*((volatile uint16_t *)(x)))
 #define REG32(x)  (*((volatile uint32_t *)(x)))
@@ -29,7 +49,7 @@ volatile unsigned int rxEp = RX_EP;
 #endif
 
 volatile unsigned int rxMaxP = 0x40;
-#include "at103.h"
+
 NVIC_InitTypeDef    NVIC_InitStructure;
 GPIO_InitTypeDef    GPIOA_struct;
 __NOT_IN_FLASH void main(void)
@@ -38,6 +58,7 @@ __NOT_IN_FLASH void main(void)
     pll_init();
     sys_io_init();
     uart_init(UART_BOOT_PORT, UART_PARITY_NONE, UART_STOPBITS_1, UART_DATABITS_8, UART_BOOT_BD);
+    AFIO->GPIO[0].IC &= ~(0x3 << 27);
     GPIOA_struct.GPIO_Mode = GPIO_Mode_AIN;
     GPIOA_struct.GPIO_Pin  = GPIO_Pin_12 | GPIO_Pin_11;
     GPIO_Init(GPIOA, &GPIOA_struct);
@@ -49,7 +70,7 @@ __NOT_IN_FLASH void main(void)
     RCC->USBPHY_CTRL.REFCLK_SEL_BIT = 0x1;
     /*USB AHB clk enable*/
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_USB, ENABLE);
-
+    debug("xclk will be 60M after a few time!\n");
     RCC_AHBPeriphResetCmd(RCC_AHBPeriph_USB, ENABLE);
     debug("USB Dev wait xclk catch the rst.\n");
     RCC_AHBPeriphResetCmd(RCC_AHBPeriph_USB, DISABLE);
@@ -78,7 +99,8 @@ __NOT_IN_FLASH void main(void)
     i4         = 0;
     fail_flag  = 0;
     debug("\r\n");
-
+    usb_dev_cfg_before_u_rst();
+    REG8(USB_BAS + REG_DEVCTL) |= 0x1;
     while (1) {
         val = REG8(USB_BAS + REG_DEVCTL);
 
@@ -87,35 +109,46 @@ __NOT_IN_FLASH void main(void)
             break;
         }
     }
+
+    // REG8(USB_BAS + REG_TXCSRL) = 0x8;
+
+    //REG8(USB_BAS + REG_TXCSRL) |= 0x1;
 #if 1
     // *((uint32_t *)(0x40028001)) = 0x60;
     // USB->POWER.EN_SUSPENDM      = 0x1;
 
-    RCC->USBPHY_CTRL.value = 0x77;
-    USB->POWER.EN_SUSPENDM = 0x1;
-    USB->POWER.HS_ENAB     = 0x1;
-
+    //RCC->USBPHY_CTRL.value = 0x77;
+    //USB->POWER.EN_SUSPENDM = 0x1;
+    //USB->POWER.HS_ENAB     = 0x1;
+    // REG8(USB_BAS + REG_POWER) |= 0x4;
     /* interrupt enable bits for each of the interrupts in IntrUSB*/
     //USB->INTRUSBE = 0xff;
 
-    REG8(USB_BASE + REG_POWER) = 0x40; /*soft connect*/
-    if (REG32(USB_BASE + REG_POWER) == 0x40)
-        debug("soft connect complete!\n");
-    //USB->DEVCTL.
-    REG16(USB_BAS + REG_INTRRXE) = 0xfe;
-    REG16(USB_BAS + REG_INTRTXE) = 0xff;
-    REG8(USB_BAS + REG_INTRUSBE) = 0xfe;
-    //USB->INTRUSBE.value = 0xff;
-    USB->FADDR.value = 0x5a;
-    // USB->INDEX.SEL_EP = 0x1;
-    REG8(USB_BAS + REG_INDEX) = 0x0;
-    REG8(USB_BAS + REG_CSR0H) |= 0x1;
-    REG16(USB_BAS + REG_EP_TXMAXP) = 0x3;
-    REG16(USB_BAS + REG_EP_RXCSRL) = 0x110;
-    REG32(USB_BASE + REG_DMA_ADDR) = 0xfffffff;
-    REG32(USB_BASE + REG_EP0_FIFO) = 0x12;
+    // REG8(USB_BASE + REG_POWER) = 0x40; /*soft connect*/
+    // if (REG32(USB_BASE + REG_POWER) == 0x40)
+    //     debug("soft connect complete!\n");
 
+    //USB->INTRUSBE.value = 0xff;
+    // USB->FADDR.value = 0x0;
+    // USB->INDEX.SEL_EP = 0x1;
+
+    // REG8(USB_BAS + REG_CSR0H) |= 0x1;
+    // REG16(USB_BAS + REG_EP_TXMAXP) = 0x3;
+    // REG16(USB_BAS + REG_EP_RXCSRL) = 0x110;
+    // REG32(USB_BASE + REG_DMA_ADDR) = 0xfffffff;
+    REG8(USB_BASE + REG_INDEX)     = 0xf;  //0x1;
+    REG8(USB_BASE + REG_EP0_FIFO)  = 0x55; //0x12;
+    REG32(USB_BASE + REG_EP1_FIFO) = 0x34;
+    REG32(USB_BASE + REG_EP2_FIFO) = 0x56;
+    REG8(USB_BASE + REG_CSR0L) |= 0x2;
     // USB->INTRRXE.value  = 0xfe;
+    debug("REG_EP0_FIFO= %x\n", REG8(USB_BASE + REG_EP0_FIFO));
+    debug("REG_EP1_FIFO= %x\n", REG8(USB_BASE + REG_EP1_FIFO));
+    debug("REG_EP2_FIFO= %x\n", REG8(USB_BASE + REG_EP2_FIFO));
+    debug("REG_EP3_FIFO= %x\n", REG8(USB_BASE + REG_EP3_FIFO));
+    debug("REG_EP4_FIFO= %x\n", REG8(USB_BASE + REG_EP4_FIFO));
+    debug("REG_EP5_FIFO= %x\n", REG8(USB_BASE + REG_EP5_FIFO));
+    debug("REG_Raminfo= %x\n", REG8(USB_BASE + REG_Raminfo));
     debug("FIFOSIZE = %x\n", REG8(USB_BAS + REG_FIFOSIZE));
     debug("FADDR.value = %x\n", USB->FADDR.value);
     debug("power.value = %x\n", REG32(USB_BASE + REG_POWER));
@@ -141,9 +174,32 @@ __NOT_IN_FLASH void main(void)
     debug("REG_INDEX = %x\n", REG16(USB_BAS + REG_INDEX));
     //debug("REG_CSR0H = %x\n", REG16(USB_BAS + REG_CSR0H));
     debug("REG_EP0_COUNT = %x\n", REG8(USB_BAS + REG_EP0_COUNT));
-    debug("REG_EP0_FIFO = %x\n", REG32(USB_BASE + REG_EP0_FIFO));
+    debug("REG_EP0_FIFO = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
     debug("REG_HWVERS = %x\n", REG32(USB_BASE + REG_HWVERS));
-    debug("REG_CSR0L = %x\n", REG32(USB_BASE + REG_CSR0L));
+    //debug("REG_CSR0L = %x\n", REG32(USB_BASE + REG_CSR0L));
     while (1) {
+        //  debug("REG_DEVCTL = %x\n", REG8(USB_BAS + REG_DEVCTL));
     }
+}
+
+usb_dev_cfg_before_u_rst()
+{
+    //REG16(USB_BAS + REG_C_T_UCH)  = 0x1100;
+    REG16(USB_BAS + REG_INTRTXE) = 0x0;
+    REG16(USB_BAS + REG_INTRRXE) = 0x0;
+    REG8(USB_BAS + REG_INTRUSBE) = 0x0;
+    REG8(USB_BAS + REG_TESTMODE) = 0x0;
+
+    // REG16(USB_BAS + REG_LinkInfo) = 0x51;
+    // REG8(USB_BAS + REG_INDEX)     = 0x0;
+    // REG16(USB_BAS + REG_TXCSRL)   = 0x0100;
+    // REG8(USB_BAS + REG_Raminfo);
+    // REG8(USB_BAS + REG_INTRUSBE) = 0xfe;
+    REG8(USB_BAS + REG_POWER) |= 0x4;
+}
+
+void USB_MC_IRQHandler(void)
+{
+
+    debug("enter interrupt!");
 }
