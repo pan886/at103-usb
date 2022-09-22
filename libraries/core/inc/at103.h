@@ -3777,7 +3777,7 @@ typedef struct
 #define REG_EP15_FIFO   0x5C
 #define REG_DEVCTL      0x60
 #define REG_MISC        0x61
-#define REG_EP_TXFIFOS  0x62
+#define EP_TXFIFOSize   0x62
 #define REG_EP_RXFIFOS  0x63
 #define REG_EP_TXFIFOA  0x64
 #define REG_EP_RXFIFOA  0x66
