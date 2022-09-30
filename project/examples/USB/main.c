@@ -7,40 +7,30 @@
  * @copyright Copyright (c) 2022 Timesintelli, Inc
  */
 #include "at103.h"
-uint16_t             abc                  = 0;
-static const uint8_t musb_test_packet[53] = {
-    /* implicit SYNC then DATA0 to start */
-
-    /* JKJKJKJK x9 */
-    0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-    /* JJKKJJKK x8 */
-    0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa, 0xaa,
-    /* JJJJKKKK x8 */
-    0xee, 0xee, 0xee, 0xee, 0xee, 0xee, 0xee, 0xee,
-    /* JJJJJJJKKKKKKK x8 */
-    0xfe, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff,
-    /* JJJJJJJK x8 */
-    0x7f, 0xbf, 0xdf, 0xef, 0xf7, 0xfb, 0xfd,
-    /* JKKKKKKK x10, JK */
-    0xfc, 0x7e, 0xbf, 0xdf, 0xef, 0xf7, 0xfb, 0xfd, 0x7e
-
-    /* implicit CRC16 then EOP to end */
-};
-
+uint16_t abc = 0;
+uint16_t i, j = 0;
 #define REG8(x)   (*((volatile uint8_t *)(x)))
 #define REG16(x)  (*((volatile uint16_t *)(x)))
 #define REG32(x)  (*((volatile uint32_t *)(x)))
 #define USB_BAS   0x40028000
 #define REG_POWER 0x1
 
-uint8_t             fifo_0 = 0;
-uint8_t             fifo_1 = 0;
-uint8_t             fifo_2 = 0;
-uint8_t             fifo_3 = 0;
-uint8_t             fifo_4 = 0;
-uint8_t             fifo_5 = 0;
-uint8_t             fifo_6 = 0;
-uint8_t             fifo_7 = 0;
+uint8_t             fifo_0  = 0;
+uint8_t             fifo_1  = 0;
+uint8_t             fifo_2  = 0;
+uint8_t             fifo_3  = 0;
+uint8_t             fifo_4  = 0;
+uint8_t             fifo_5  = 0;
+uint8_t             fifo_6  = 0;
+uint8_t             fifo_7  = 0;
+uint8_t             fifo_8  = 0;
+uint8_t             fifo_9  = 0;
+uint8_t             fifo_10 = 0;
+uint8_t             fifo_11 = 0;
+uint8_t             fifo_12 = 0;
+uint8_t             fifo_13 = 0;
+uint8_t             fifo_14 = 0;
+uint8_t             fifo_15 = 0;
 NVIC_InitTypeDef    NVIC_InitStructure;
 GPIO_InitTypeDef    GPIOA_struct;
 __NOT_IN_FLASH void main(void)
@@ -95,13 +85,7 @@ __NOT_IN_FLASH void main(void)
 
     //REG8(USB_BAS + REG_TXCSRL) |= 0x1;
 #if 1
-    // *((uint32_t *)(0x40028001)) = 0x60;
-    // USB->POWER.EN_SUSPENDM      = 0x1;
 
-    //RCC->USBPHY_CTRL.value = 0x77;
-    //USB->POWER.EN_SUSPENDM = 0x1;
-    //USB->POWER.HS_ENAB     = 0x1;
-    // REG8(USB_BAS + REG_POWER) |= 0x4;
     /* interrupt enable bits for each of the interrupts in IntrUSB*/
     //USB->INTRUSBE = 0xff;
 
@@ -110,21 +94,13 @@ __NOT_IN_FLASH void main(void)
     //     debug("soft connect complete!\n");
 
     //USB->INTRUSBE.value = 0xff;
-    //
-    // USB->INDEX.SEL_EP = 0x1;
-    //REG8(USB_BAS + REG_FADDR) = 0x1;
-    // REG8(USB_BAS + REG_CSR0H) |= 0x1;
-    // REG16(USB_BAS + REG_EP_TXMAXP) = 0x3;
-    // REG16(USB_BAS + REG_EP_RXCSRL) = 0x110;
-    // REG32(USB_BASE + REG_DMA_ADDR) = 0xfffffff;
+
     REG8(USB_BAS + REG_EP_RXFIFOS) |= 0x9;
     REG8(USB_BAS + REG_EP_RXFIFOA) = 0;
 
-    REG16(USB_BAS + REG_INTRTXE) = 0x1;
-    REG8(USB_BASE + REG_INDEX)   = 0x3; //0x1;
+    REG16(USB_BAS + REG_INTRTXE) = 0x3; //0x1;
+    REG8(USB_BASE + REG_INDEX)   = 0xf;
 
-    // REG8(USB_BASE + REG_EP2_FIFO) = 0x56;
-    // REG8(USB_BASE + REG_CSR0L) |= 0x3;
     REG8(USB_BAS + REG_INTRUSBE) = 0x0;
     REG8(USB_BAS + REG_POWER) &= ~0x4;
     REG8(USB_BAS + REG_POWER) &= ~0x20;
@@ -138,13 +114,7 @@ __NOT_IN_FLASH void main(void)
     //REG8(USB_BASE + REG_EP1_FIFO)   = 0x34;
 
     REG8(USB_BASE + REG_EP_TXFIFOA) = 0x1FFF;
-    //REG8(USB_BASE + REG_CSR0L) |= 0x3;
-    // debug("REG_EP0_FIFO= %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-    // debug("REG_EP1_FIFO= %x\n", REG8(USB_BASE + REG_EP1_FIFO));
-    // debug("REG_EP2_FIFO= %x\n", REG8(USB_BASE + REG_EP2_FIFO));
-    // debug("REG_EP3_FIFO= %x\n", REG8(USB_BASE + REG_EP3_FIFO));
-    // debug("REG_EP4_FIFO= %x\n", REG8(USB_BASE + REG_EP4_FIFO));
-    // debug("REG_EP5_FIFO= %x\n", REG8(USB_BASE + REG_EP5_FIFO));
+
     debug("REG_Raminfo= %x\n", REG8(USB_BASE + REG_Raminfo));
     debug("FIFOSIZE = %x\n", REG8(USB_BAS + REG_FIFOSIZE));
     debug("FADDR.value = %x\n", USB->FADDR.value);
@@ -160,7 +130,7 @@ __NOT_IN_FLASH void main(void)
     }
     debug("REG_EP_TXMAXP = %x\n", REG16(USB_BAS + REG_EP_TXMAXP));
     debug("REG_EP0_COUNT = %x\n", REG8(USB_BAS + REG_EP0_COUNT));
-    // USB->TESTMODE.value = 0x1 << 3;
+
 #endif
     debug("REG_EPINFO = %x\n", REG8(USB_BAS + REG_EPINFO));
     debug("INTRRX.value = %x\n", USB->INTRRX.value);
@@ -171,12 +141,16 @@ __NOT_IN_FLASH void main(void)
 
     debug("REG_DEVCTL = %x\n", REG8(USB_BAS + REG_DEVCTL));
     debug("REG_INDEX = %x\n", REG16(USB_BAS + REG_INDEX));
-    //debug("REG_CSR0H = %x\n", REG16(USB_BAS + REG_CSR0H));
+
     debug("REG_EP0_COUNT = %x\n", REG8(USB_BAS + REG_EP0_COUNT));
     debug("REG_EP0_FIFO = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
     debug("REG_HWVERS = %x\n", REG32(USB_BASE + REG_HWVERS));
-    //debug("REG_CSR0L = %x\n", REG32(USB_BASE + REG_CSR0L));
+
     while (1) {
+        REG8(USB_BASE + REG_EP1_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP1_FIFO) = 0x14;
+        REG8(USB_BASE + REG_EP1_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP1_FIFO) = 0x0;
     }
 }
 
@@ -188,11 +162,6 @@ usb_dev_cfg_before_u_rst()
     REG8(USB_BAS + REG_INTRUSBE) = 0x0;
     REG8(USB_BAS + REG_TESTMODE) = 0x0;
 
-    // REG16(USB_BAS + REG_LinkInfo) = 0x51;
-    // REG8(USB_BAS + REG_INDEX)     = 0x0;
-    // REG16(USB_BAS + REG_TXCSRL)   = 0x0100;
-    // REG8(USB_BAS + REG_Raminfo);
-    // REG8(USB_BAS + REG_INTRUSBE) = 0xfe;
     REG8(USB_BAS + REG_POWER) |= 0x4 | 0x80;
 }
 
@@ -201,14 +170,7 @@ void USB_MC_IRQHandler(void)
 
     debug("enter interrupt!\n");
 
-    //REG8(USB_BASE + REG_EP1_FIFO) = 0x56;
-    // debug("REG_INTRUSB = %x\n", REG8(USB_BAS + REG_INTRUSB));
-    //debug("REG_INTRUSBE= %x\n", REG8(USB_BAS + REG_INTRUSBE));
-    //REG8(USB_BAS + REG_INTRUSBE) = 0x0;
-    // REG8(USB_BASE + REG_CSR0L) |= 0x1;
-    //REG8(USB_BAS + REG_CSR0H) |= 0x1;
-    //  debug("REG_CSR0L = %x\n", REG16(USB_BASE + REG_CSR0L));
-    REG8(USB_BAS + REG_EP_RXCSRH) |= 0x1 << 7;
+    // REG8(USB_BAS + REG_EP_RXCSRH) |= 0x1 << 7;
     fifo_0 = REG8(USB_BASE + REG_EP0_FIFO);
     fifo_1 = REG8(USB_BASE + REG_EP0_FIFO);
     fifo_2 = REG8(USB_BASE + REG_EP0_FIFO);
@@ -217,122 +179,111 @@ void USB_MC_IRQHandler(void)
     fifo_5 = REG8(USB_BASE + REG_EP0_FIFO);
     fifo_6 = REG8(USB_BASE + REG_EP0_FIFO);
     fifo_7 = REG8(USB_BASE + REG_EP0_FIFO);
-    debug("fifo_0 = %x\n", fifo_0);
-    debug("fifo_1 = %x\n", fifo_1);
-    debug("fifo_2 = %x\n", fifo_2);
-    debug("fifo_3 = %x\n", fifo_3);
-    debug("fifo_4 = %x\n", fifo_4);
-    debug("fifo_5 = %x\n", fifo_5);
-    debug("fifo_6 = %x\n", fifo_6);
-    debug("fifo_7 = %x\n", fifo_7);
 
+    // fifo_8  = REG8(USB_BASE + REG_EP0_FIFO);
+    // fifo_9  = REG8(USB_BASE + REG_EP0_FIFO);
+    // fifo_10 = REG8(USB_BASE + REG_EP0_FIFO);
+    // fifo_11 = REG8(USB_BASE + REG_EP0_FIFO);
+    // fifo_12 = REG8(USB_BASE + REG_EP0_FIFO);
+    // fifo_13 = REG8(USB_BASE + REG_EP0_FIFO);
+    // fifo_14 = REG8(USB_BASE + REG_EP0_FIFO);
+    // fifo_15 = REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // REG8(USB_BASE + REG_EP0_FIFO);
+    // debug("fifo_0 = %x\n", fifo_0);
+    // debug("fifo_1 = %x\n", fifo_1);
+    // debug("fifo_2 = %x\n", fifo_2);
+    // debug("fifo_3 = %x\n", fifo_3);
+    // debug("fifo_4 = %x\n", fifo_4);
+    // debug("fifo_5 = %x\n", fifo_5);
+    // debug("fifo_6 = %x\n", fifo_6);
+    // debug("fifo_7 = %x\n", fifo_7);
+    // debug("fifo_8 = %x\n", fifo_8);
+    // debug("fifo_9 = %x\n", fifo_9);
+    // debug("fifo_10 = %x\n", fifo_10);
+    // debug("fifo_11 = %x\n", fifo_11);
+    // debug("fifo_12 = %x\n", fifo_12);
+    // debug("fifo_13 = %x\n", fifo_13);
+    // debug("fifo_14 = %x\n", fifo_14);
+    // debug("fifo_15 = %x\n", fifo_15);
     REG8(USB_BASE + REG_CSR0L) = 0x0;
     REG8(USB_BASE + REG_CSR0H) = 0x1;
-    if (abc == 0) {
+    // while (REG8(USB_BASE + REG_CSR0H) != 0x1)
+    //     ;
 
-        //  REG16(USB_BASE + REG_CSR0L) = 0x19;
-        //REG8(USB_BASE + REG_CSR0L) |= 0x2;
-        // REG8(USB_BASE + REG_CSR0H) |= 0x1;
-        //debug("REG_CSR0L = %x\n", REG8(USB_BASE + REG_CSR0L));
-        // REG8(USB_BASE + REG_EP_RXCSRL) |= 0x11;
-        //REG8(USB_BASE + REG_CSR0H) |= 0x1;c
+    if ((fifo_0 == 0x80) && (fifo_1 == 0x6) && (fifo_2 == 0) && (fifo_3 == 0x1) && (fifo_4 == 0) && (fifo_5 == 0) && (fifo_6 == 0x40)) {
+        REG8(USB_BASE + REG_CSR0H)    = 0x1;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x12;
-        //REG8(USB_BASE + REG_CSR0L) |= 0x2;
-        // debug("REG_EP0_FIF0 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
-        //REG8(USB_BASE + REG_CSR0L) |= 0x2;
-        // debug("REG_EP0_FIF1 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        //REG8(USB_BASE + REG_CSR0L) |= 0x2;mk
-        // debug("REG_EP0_FIF2 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
-
-        //   debug("REG_EP0_FIF3 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // REG8(USB_BASE + REG_CSR0L) |= 0x2;
-        // REG8(USB_BASE + REG_CSR0H) |= 0x1;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        //debug("REG_EP0_FIF4 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // debug("REG_EP0_FIF5 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        //   debug("REG_EP0_FIF6 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0x40;
-        //   debug("REG_EP0_FIF7 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0xFF;
-        //  debug("REG_EP0_FIF8 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0xFF;
-        //   debug("REG_EP0_FIF9 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0x10;
-        //  debug("REG_EP0_FIF10 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0x57;
-        // debug("REG_EP0_FIF11 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        //   debug("REG_EP0_FIF12 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
-        //  debug("REG_EP0_FIF13 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
         //    REG16(USB_BASE + REG_CSR0H) |= 0x1;
+    }
 
-        // REG8(USB_BASE + REG_CSR0L) |= 0x10;
-        // debug("REG_EP0_FIFO = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF1 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF2 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
+    if ((fifo_0 == 0) && (fifo_1 == 0x5)) {
+        // REG16(USB_BASE + REG_CSR0H) |= 0x1;
+        debug("REG_EP0_FIF1 = %x\n");
+        //  REG8(USB_BASE + REG_EP0_FIFO); //debug("REG_EP0_FIFO = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
+        //   debug("REG_EP0_FIF1 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
+
+        REG8(USB_BASE + REG_FADDR) = fifo_2; //REG8(USB_BASE + REG_EP0_FIFO);
+
         // debug("REG_EP0_FIF3 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         // debug("REG_EP0_FIF4 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         // debug("REG_EP0_FIF5 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         // debug("REG_EP0_FIF6 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         // debug("REG_EP0_FIF7 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF8 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF9 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF10 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF11 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF12 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF13 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF14 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF15 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF16 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF17 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF18 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-    }
-    if ((abc >= 1) && (abc <= 1)) {
-        debug("REG_EP0_FIFO = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        debug("REG_EP0_FIF1 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-
-        REG8(USB_BASE + REG_FADDR) = REG8(USB_BASE + REG_EP0_FIFO);
-
-        debug("REG_EP0_FIF3 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        debug("REG_EP0_FIF4 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        debug("REG_EP0_FIF5 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        debug("REG_EP0_FIF6 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        debug("REG_EP0_FIF7 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         //REG8(USB_BASE + REG_CSR0L) |= 0x72;
         // REG8(USB_BASE + REG_CSR0L) |= 0x10;
         //REG8(USB_BASE + REG_CSR0H) |= 0x1;
         debug("faddr = %x\n", REG8(USB_BASE + REG_FADDR));
     }
-    // if (abc == 2)
+
     if ((fifo_1 == 0x6) && (fifo_3 == 0x1)) {
-        // debug("REG_EP0_FIFO = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF1 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF2 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF3 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF4 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF5 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF6 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        // debug("REG_EP0_FIF7 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         REG16(USB_BASE + REG_CSR0H) |= 0x1;
-        /// REG16(USB_BASE + REG_CSR0L)   = 0x19;
+
         REG8(USB_BASE + REG_EP0_FIFO) = 0x12;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x40;
         REG8(USB_BASE + REG_EP0_FIFO) = 0xFF;
         REG8(USB_BASE + REG_EP0_FIFO) = 0xFF;
@@ -346,9 +297,9 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
     }
-
-    //if (abc == 3)
+    /*config*/
     if ((fifo_2 == 0) && (fifo_3 == 0x2) && (fifo_4 == 0) && (fifo_5 == 0)) {
+        REG16(USB_BASE + REG_CSR0H) |= 0x1;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x09;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x22;
@@ -386,241 +337,126 @@ void USB_MC_IRQHandler(void)
 
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
     }
-
-    if ((fifo_1 == 0x6) && (fifo_2 == 0x3) && (fifo_3 == 0x3) && (fifo_4 == 0x9) && (fifo_5 == 0x4)) {
-
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x1A;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x43;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4D;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x33;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x32;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4D;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x31;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x30;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x31;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x41;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    }
-
-    if ((fifo_0 == 0x80) && (fifo_1 == 0x6) && (fifo_2 == 0) && (fifo_3 == 0x3) && (fifo_4 == 0) && (fifo_5 == 0) && (fifo_6 == 0xff)) {
-        REG8(USB_BASE + REG_CSR0H) |= 0x1;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
-
-        REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    }
-
-    // if ((abc == 5)) {
-    //     REG8(USB_BASE + REG_CSR0H) |= 0x1;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
+    // /*serial number*/
+    // if ((fifo_1 == 0x6) && (fifo_2 == 0x3) && (fifo_3 == 0x3) && (fifo_4 == 0x9) && (fifo_5 == 0x4)) {
+    //     REG16(USB_BASE + REG_CSR0H) |= 0x1;
+    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x1A;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
-    //     //REG8(USB_BASE + REG_EP0_FIFO) = 0x20;
-
-    //     REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    // }
-
-    // if (abc == 6) {
-    //     REG8(USB_BASE + REG_CSR0H) |= 0x1;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-
-    //     REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    // }
-
-    //if (abc == 6)
-    if ((fifo_2 == 0x2) && (fifo_3 == 0x3) && (fifo_4 == 0x9) && (fifo_5 == 0x4)) {
-
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x26;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x64;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x27;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x31;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x72;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0xAF;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x82;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x32;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x41;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x69;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x30;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x31;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x41;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x20;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4A;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x6f;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x79;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x73;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x74;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x69;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x63;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x6B;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    }
-
-    if ((fifo_0 == 0x80) && (fifo_1 == 0x6) && (fifo_2 == 0) && (fifo_3 == 0x6) && (fifo_4 == 0) && (fifo_5 == 0) && (fifo_6 == 0xA)) {
-
-        REG8(USB_BASE + REG_CSR0H) |= 0x1;
-        REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    }
-
-    // if (abc == 7) {
-    //     REG8(USB_BASE + REG_EP0_FIFO);
-    //     REG8(USB_BASE + REG_EP0_FIFO);
-    //     REG8(USB_BASE + REG_EP0_FIFO);
-    //     REG8(USB_BASE + REG_EP0_FIFO);
-    //     REG8(USB_BASE + REG_EP0_FIFO);
-    //     REG8(USB_BASE + REG_EP0_FIFO);
-    //     REG8(USB_BASE + REG_EP0_FIFO);
-    //     REG8(USB_BASE + REG_EP0_FIFO);
-    // }
-
-    if (abc == 8) {
-        REG8(USB_BASE + REG_CSR0H) |= 0x1;
-        // while (REG8(USB_BASE + REG_CSR0H) != 1)
-        //     ;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-
-        REG8(USB_BASE + REG_CSR0L) |= 0x2;
-        //REG8(USB_BASE + REG_EP_RXCSRL) |= 0x1;
-    }
-    if ((abc == 0x9)) {
-        REG8(USB_BASE + REG_CSR0H) |= 0x1;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
-
-        REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    }
-    // if ((abc == 12)) {
-    //     REG8(USB_BASE + REG_CSR0H) |= 0x1;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x26;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x43;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x4D;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x49;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x4F;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x54;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    // }
-    // if ((abc == 14)) {
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x26;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x43;
+    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x41;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x4d;
+    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x69;
+    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x50;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x33;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x32;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x4d;
+    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x52;
+    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x56;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x31;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x30;
+    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x35;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x31;
+    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x58;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x41;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x20;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x4A;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x6f;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x79;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x73;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x74;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x69;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x63;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x6B;
     //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
     //     REG8(USB_BASE + REG_CSR0L) |= 0x2;
     // }
-    //if ((abc >= 15) && (abc < 16))
-    if ((fifo_3 == 0x2) && (fifo_4 == 0) && (fifo_6 == 0x9)) {
+    /* lang ID*/
+    if ((fifo_0 == 0x80) && (fifo_1 == 0x6) && (fifo_3 == 0x3) && (fifo_6 == 0xff)) {
+        REG8(USB_BASE + REG_CSR0H) |= 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
+
+        REG8(USB_BASE + REG_CSR0L) |= 0x2;
+    }
+    /*iproduct*/
+    if ((fifo_2 == 0x2) && (fifo_3 == 0x3) && (fifo_4 == 0x9) && (fifo_5 == 0x4)) {
+        REG16(USB_BASE + REG_CSR0H) |= 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x26;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x41;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x69;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x70;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x33;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x32;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x52;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x56;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x31;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x35;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x58;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_CSR0L) |= 0x2;
+    }
+
+    if ((fifo_0 == 0x80) && (fifo_1 == 0x6) && (fifo_2 == 0x3) && (fifo_3 == 0x3) && (fifo_4 == 0x9) && (fifo_5 == 0x4)) {
+        REG8(USB_BASE + REG_CSR0H) |= 0x1;
+
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x1A;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x41;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x69;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x50;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x33;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x32;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x52;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x56;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x31;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x35;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x58;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+
+        REG8(USB_BASE + REG_CSR0L) |= 0x2;
+    }
+
+    /*configuration*/
+    if ((fifo_3 == 0x2) && (fifo_6 == 0x9)) {
         REG8(USB_BASE + REG_CSR0H) |= 0x1;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
@@ -635,49 +471,10 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
     }
 
-    // if ((abc == 17)) {
-    //     REG8(USB_BASE + REG_CSR0H) |= 0x1;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x26;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x43;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x4D;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x49;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x4F;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x54;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-    //     REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    // }
+    if ((fifo_0 == 0x21) && (fifo_1 == 0xA)) {
+        //   REG8(USB_BASE + REG_CSR0H) |= 0x1;
+        REG8(USB_BASE + REG_CSR0L) |= 0x1 << 5;
+    }
 
     if ((fifo_0 == 0x80) && (fifo_1 == 0x6) && (fifo_3 == 0x2) && (fifo_6 == 0x22)) {
         REG8(USB_BASE + REG_CSR0H) |= 0x1;
@@ -719,145 +516,138 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
     }
 
-#if 0
-    if (abc == 8) {
-        REG8(USB_BASE + REG_CSR0H) |= 0x1;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
-
-        REG8(USB_BASE + REG_CSR0L) |= 0x2;
+    if (fifo_6 == 0xa) {
+        // REG8(USB_BASE + REG_CSR0H) |= 0x1;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0xA;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x6;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x40;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_CSR0L) |= (0x1 << 5);
     }
 
-    if ((abc == 9) || (abc == 10)) {
-        REG8(USB_BASE + REG_CSR0H) |= 0x1;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
-
-        REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    }
-    // if ((abc == 11)) {
+    // if ((fifo_0 == 0x21) && (fifo_1 == 0xA)) {
     //     REG8(USB_BASE + REG_CSR0H) |= 0x1;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x22;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0xe0;
-    //     REG8(USB_BASE + REG_EP0_FIFO) = 0x32;
-
-    //     REG8(USB_BASE + REG_CSR0L) |= 0x2;
+    //     REG8(USB_BASE + REG_CSR0L) |= (0x1 << 5);
     // }
-    //     if (abc == 11) {
-    // REG8(USB_BASE + REG_EP0_FIFO) = 0x
 
-    //     }
+    if ((fifo_0 == 0x81) && (fifo_1 == 0x6)) {
 
-    if ((abc == 11)) {
         REG8(USB_BASE + REG_CSR0H) |= 0x1;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x26;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x5;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0xA1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0xA1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x5;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x19;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x29;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x43;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4D;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x49;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4F;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x54;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    }
-
-    if ((abc == 13)) {
-        REG8(USB_BASE + REG_CSR0H) |= 0x1;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x22;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x15;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x25;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0xe0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x32;
-
-        REG8(USB_BASE + REG_CSR0L) |= 0x2;
-    }
-    if ((abc == 14)) {
-        REG8(USB_BASE + REG_CSR0H) |= 0x1;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x09;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x22;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x00;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x01;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x01;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0xe0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x32;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x95;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x75;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x81;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x21;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x95;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x22;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4A;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x7;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x75;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x5;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x81;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x5;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x30;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x31;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x38;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x15;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x81;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x25;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x7f;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x75;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x8;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x95;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x81;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x6;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0xC0;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x3C;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x5;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0xFF;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x15;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP0_FIFO) = 0x20;
-
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x25;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x75;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        REG8(USB_BASE + REG_EP0_FIFO) = 0x95;
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
+        while (REG8(USB_BASE + REG_CSR0L) & 0x2)
+            ;
+
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0xb1;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x22;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x75;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x6;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x95;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0xb1;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+        // REG8(USB_BASE + REG_EP0_FIFO) = 0xC0;
+        for (i = 0; i < 0xf; i++)
+            ;
+        {
+            //REG8(USB_BASE + REG_EP_TXCSR) |= 0x1 << 3 | 0x1;
+            REG8(USB_BASE + REG_CSR0H) |= 0x1;
+            REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
+            REG8(USB_BASE + REG_EP0_FIFO) = 0xb1;
+            REG8(USB_BASE + REG_EP0_FIFO) = 0x22;
+            REG8(USB_BASE + REG_EP0_FIFO) = 0x75;
+            REG8(USB_BASE + REG_EP0_FIFO) = 0x6;
+            REG8(USB_BASE + REG_EP0_FIFO) = 0x95;
+            REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+            REG8(USB_BASE + REG_EP0_FIFO) = 0xb1;
+            REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+            REG8(USB_BASE + REG_EP0_FIFO) = 0xC0;
+            REG8(USB_BASE + REG_CSR0L) |= 0x2;
+            // while (REG8(USB_BASE + REG_CSR0L) & 0x2)
+            //     ;
+            REG8(USB_BASE + REG_CSR0L) |= 0x1 << 4;
+        }
     }
-#endif
-    debug("REG_EP_RXCSRL = %x\n", REG8(USB_BASE + REG_EP_RXCSRL));
-    debug("REG_EP_COUNT = %x\n", REG8(USB_BASE + REG_EP_COUNT));
-    if (abc <= 0xff)
-        abc++;
+    // if ((fifo_0 = 0x21) && (fifo_1 == 0xA)) {
+    //     REG8(USB_BASE + REG_CSR0L) |= (0x1 << 5);
+    // }
+
+    debug("fifo_0 = %x\n", fifo_0);
+    debug("fifo_1 = %x\n", fifo_1);
+    debug("fifo_2 = %x\n", fifo_2);
+    debug("fifo_3 = %x\n", fifo_3);
+    debug("fifo_4 = %x\n", fifo_4);
+    debug("fifo_5 = %x\n", fifo_5);
+    debug("fifo_6 = %x\n", fifo_6);
+    debug("fifo_7 = %x\n", fifo_7);
 }
