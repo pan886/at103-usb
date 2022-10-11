@@ -14,36 +14,41 @@ uint16_t i, j = 0;
 #define REG32(x)  (*((volatile uint32_t *)(x)))
 #define USB_BAS   0x40028000
 #define REG_POWER 0x1
+void tfp_printf(char *fmt, ...);
 
-uint8_t             fifo_0  = 0;
-uint8_t             fifo_1  = 0;
-uint8_t             fifo_2  = 0;
-uint8_t             fifo_3  = 0;
-uint8_t             fifo_4  = 0;
-uint8_t             fifo_5  = 0;
-uint8_t             fifo_6  = 0;
-uint8_t             fifo_7  = 0;
-uint8_t             fifo_8  = 0;
-uint8_t             fifo_9  = 0;
-uint8_t             fifo_10 = 0;
-uint8_t             fifo_11 = 0;
-uint8_t             fifo_12 = 0;
-uint8_t             fifo_13 = 0;
-uint8_t             fifo_14 = 0;
-uint8_t             fifo_15 = 0;
-NVIC_InitTypeDef    NVIC_InitStructure;
-GPIO_InitTypeDef    GPIOA_struct;
+#define printf tfp_printf
+uint8_t          fifo_0    = 0;
+uint8_t          fifo_1    = 0;
+uint8_t          fifo_2    = 0;
+uint8_t          fifo_3    = 0;
+uint8_t          fifo_4    = 0;
+uint8_t          fifo_5    = 0;
+uint8_t          fifo_6    = 0;
+uint8_t          fifo_7    = 0;
+uint8_t          fifo_8    = 0;
+uint8_t          fifo_9    = 0;
+uint8_t          fifo_10   = 0;
+uint8_t          fifo_11   = 0;
+uint8_t          fifo_12   = 0;
+uint8_t          fifo_13   = 0;
+uint8_t          fifo_14   = 0;
+uint8_t          fifo_15   = 0;
+uint8_t          stop_flag = 0;
+NVIC_InitTypeDef NVIC_InitStructure;
+GPIO_InitTypeDef GPIOA_struct;
+
 __NOT_IN_FLASH void main(void)
 {
     uint8_t val = 0;
     pll_init();
     sys_io_init();
     uart_init(UART_BOOT_PORT, UART_PARITY_NONE, UART_STOPBITS_1, UART_DATABITS_8, UART_BOOT_BD);
+
     AFIO->GPIO[0].IC &= ~(0x3 << 27);
     GPIOA_struct.GPIO_Mode = GPIO_Mode_AIN;
     GPIOA_struct.GPIO_Pin  = GPIO_Pin_12 | GPIO_Pin_11;
     GPIO_Init(GPIOA, &GPIOA_struct);
-
+#if 1
     // RCC_OTGFSCLKConfig(0xB);
     RCC->USBPHY_CTRL.CLK_MODE_BIT   = 0x1;
     RCC->USBPHY_CTRL.PLL_EN_BIT     = 0x1;
@@ -99,7 +104,7 @@ __NOT_IN_FLASH void main(void)
     REG8(USB_BAS + REG_EP_RXFIFOA) = 0;
 
     REG16(USB_BAS + REG_INTRTXE) = 0x3; //0x1;
-    REG8(USB_BASE + REG_INDEX)   = 0xf;
+    REG8(USB_BASE + REG_INDEX)   = 0x1;
 
     REG8(USB_BAS + REG_INTRUSBE) = 0x0;
     REG8(USB_BAS + REG_POWER) &= ~0x4;
@@ -144,13 +149,18 @@ __NOT_IN_FLASH void main(void)
 
     debug("REG_EP0_COUNT = %x\n", REG8(USB_BAS + REG_EP0_COUNT));
     debug("REG_EP0_FIFO = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
+
     debug("REG_HWVERS = %x\n", REG32(USB_BASE + REG_HWVERS));
+#endif
+    // printf("abc");
 
     while (1) {
-        REG8(USB_BASE + REG_EP1_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP1_FIFO) = 0x14;
-        REG8(USB_BASE + REG_EP1_FIFO) = 0x0;
-        REG8(USB_BASE + REG_EP1_FIFO) = 0x0;
+        // REG8(USB_BASE + REG_EP1_FIFO) = 0x0;
+        // REG8(USB_BASE + REG_EP1_FIFO) = 0x14;
+        // REG8(USB_BASE + REG_EP1_FIFO) = 0x0;
+        // REG8(USB_BASE + REG_EP1_FIFO) = 0x0;
+        //debug("jump!\n");
+        printf("sb!\n");
     }
 }
 
@@ -165,71 +175,41 @@ usb_dev_cfg_before_u_rst()
     REG8(USB_BAS + REG_POWER) |= 0x4 | 0x80;
 }
 
+#if 1
 void USB_MC_IRQHandler(void)
 {
 
     debug("enter interrupt!\n");
+    printf("REG_CSR0L = %x\n", REG8(USB_BAS + REG_CSR0L));
+    if (REG8(USB_BAS + REG_CSR0L) & 0x1) {
+        /*  clear the RxPktRdy bit. */
+        //  REG8(USB_BASE + REG_CSR0L) |= 0x1 << 6;
+        fifo_0 = REG8(USB_BASE + REG_EP0_FIFO);
+        fifo_1 = REG8(USB_BASE + REG_EP0_FIFO);
+        fifo_2 = REG8(USB_BASE + REG_EP0_FIFO);
+        fifo_3 = REG8(USB_BASE + REG_EP0_FIFO);
+        fifo_4 = REG8(USB_BASE + REG_EP0_FIFO);
+        fifo_5 = REG8(USB_BASE + REG_EP0_FIFO);
+        fifo_6 = REG8(USB_BASE + REG_EP0_FIFO);
+        fifo_7 = REG8(USB_BASE + REG_EP0_FIFO);
+        /*  clear the RxPktRdy bit. */
+        REG8(USB_BASE + REG_CSR0L) |= 0x1 << 6;
+        // REG8(USB_BAS + REG_CSR0L) |= 0x1 << 7;
+        REG8(USB_BASE + REG_CSR0L) = 0x0;
+        REG8(USB_BASE + REG_CSR0H) = 0x1;
 
-    // REG8(USB_BAS + REG_EP_RXCSRH) |= 0x1 << 7;
-    fifo_0 = REG8(USB_BASE + REG_EP0_FIFO);
-    fifo_1 = REG8(USB_BASE + REG_EP0_FIFO);
-    fifo_2 = REG8(USB_BASE + REG_EP0_FIFO);
-    fifo_3 = REG8(USB_BASE + REG_EP0_FIFO);
-    fifo_4 = REG8(USB_BASE + REG_EP0_FIFO);
-    fifo_5 = REG8(USB_BASE + REG_EP0_FIFO);
-    fifo_6 = REG8(USB_BASE + REG_EP0_FIFO);
-    fifo_7 = REG8(USB_BASE + REG_EP0_FIFO);
+    } else {
+        REG8(USB_BAS + REG_CSR0L) |= 0x1 << 3;
+        /*  clear the RxPktRdy bit. */
+        REG8(USB_BASE + REG_CSR0L) |= 0x1 << 6;
+    }
 
-    // fifo_8  = REG8(USB_BASE + REG_EP0_FIFO);
-    // fifo_9  = REG8(USB_BASE + REG_EP0_FIFO);
-    // fifo_10 = REG8(USB_BASE + REG_EP0_FIFO);
-    // fifo_11 = REG8(USB_BASE + REG_EP0_FIFO);
-    // fifo_12 = REG8(USB_BASE + REG_EP0_FIFO);
-    // fifo_13 = REG8(USB_BASE + REG_EP0_FIFO);
-    // fifo_14 = REG8(USB_BASE + REG_EP0_FIFO);
-    // fifo_15 = REG8(USB_BASE + REG_EP0_FIFO);
+    //REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
+    // if (stop_flag == 0x1) {
+    //     REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
+    // }
+
     // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // REG8(USB_BASE + REG_EP0_FIFO);
-    // debug("fifo_0 = %x\n", fifo_0);
-    // debug("fifo_1 = %x\n", fifo_1);
-    // debug("fifo_2 = %x\n", fifo_2);
-    // debug("fifo_3 = %x\n", fifo_3);
-    // debug("fifo_4 = %x\n", fifo_4);
-    // debug("fifo_5 = %x\n", fifo_5);
-    // debug("fifo_6 = %x\n", fifo_6);
-    // debug("fifo_7 = %x\n", fifo_7);
-    // debug("fifo_8 = %x\n", fifo_8);
-    // debug("fifo_9 = %x\n", fifo_9);
-    // debug("fifo_10 = %x\n", fifo_10);
-    // debug("fifo_11 = %x\n", fifo_11);
-    // debug("fifo_12 = %x\n", fifo_12);
-    // debug("fifo_13 = %x\n", fifo_13);
-    // debug("fifo_14 = %x\n", fifo_14);
-    // debug("fifo_15 = %x\n", fifo_15);
-    REG8(USB_BASE + REG_CSR0L) = 0x0;
-    REG8(USB_BASE + REG_CSR0H) = 0x1;
-    // while (REG8(USB_BASE + REG_CSR0H) != 0x1)
-    //     ;
 
     if ((fifo_0 == 0x80) && (fifo_1 == 0x6) && (fifo_2 == 0) && (fifo_3 == 0x1) && (fifo_4 == 0) && (fifo_5 == 0) && (fifo_6 == 0x40)) {
         REG8(USB_BASE + REG_CSR0H)    = 0x1;
@@ -251,18 +231,22 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
+        //REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
+        //  REG8(USB_BASE + REG_CSR0L) |= 0x1 << 6;
         //    REG16(USB_BASE + REG_CSR0H) |= 0x1;
     }
 
     if ((fifo_0 == 0) && (fifo_1 == 0x5)) {
         // REG16(USB_BASE + REG_CSR0H) |= 0x1;
-        debug("REG_EP0_FIF1 = %x\n");
-        //  REG8(USB_BASE + REG_EP0_FIFO); //debug("REG_EP0_FIFO = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
-        //   debug("REG_EP0_FIF1 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
+        //debug("REG_EP0_FIF1 = %x\n");
+        // debug("REG_EP0_FIFO = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
+        // debug("REG_EP0_FIF1 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
 
-        REG8(USB_BASE + REG_FADDR) = fifo_2; //REG8(USB_BASE + REG_EP0_FIFO);
-
+        //REG8(USB_BASE + REG_EP0_FIFO);
+        // while (REG8(USB_BASE + REG_FADDR) != fifo_2)
+        //     ;
         // debug("REG_EP0_FIF3 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         // debug("REG_EP0_FIF4 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
         // debug("REG_EP0_FIF5 = %x\n", REG8(USB_BASE + REG_EP0_FIFO));
@@ -271,6 +255,15 @@ void USB_MC_IRQHandler(void)
         //REG8(USB_BASE + REG_CSR0L) |= 0x72;
         // REG8(USB_BASE + REG_CSR0L) |= 0x10;
         //REG8(USB_BASE + REG_CSR0H) |= 0x1;
+        debug("fifo_0 = %x\n", fifo_0);
+        debug("fifo_1 = %x\n", fifo_1);
+        debug("fifo_2 = %x\n", fifo_2);
+        debug("fifo_3 = %x\n", fifo_3);
+        debug("fifo_4 = %x\n", fifo_4);
+        debug("fifo_5 = %x\n", fifo_5);
+        debug("fifo_6 = %x\n", fifo_6);
+        debug("fifo_7 = %x\n", fifo_7);
+        REG8(USB_BASE + REG_FADDR) = fifo_2;
         debug("faddr = %x\n", REG8(USB_BASE + REG_FADDR));
     }
 
@@ -295,7 +288,9 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x3;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
+
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
+        //REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
     }
     /*config*/
     if ((fifo_2 == 0) && (fifo_3 == 0x2) && (fifo_4 == 0) && (fifo_5 == 0)) {
@@ -336,6 +331,8 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_EP0_FIFO) = 0x20;
 
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
+        // REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
+        //REG8(USB_BASE + REG_CSR0L) |= 0x1 << 6;
     }
     // /*serial number*/
     // if ((fifo_1 == 0x6) && (fifo_2 == 0x3) && (fifo_3 == 0x3) && (fifo_4 == 0x9) && (fifo_5 == 0x4)) {
@@ -377,6 +374,7 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_EP0_FIFO) = 0x4;
 
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
+        //REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
     }
     /*iproduct*/
     if ((fifo_2 == 0x2) && (fifo_3 == 0x3) && (fifo_4 == 0x9) && (fifo_5 == 0x4)) {
@@ -419,7 +417,9 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
+        // REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
     }
 
     if ((fifo_0 == 0x80) && (fifo_1 == 0x6) && (fifo_2 == 0x3) && (fifo_3 == 0x3) && (fifo_4 == 0x9) && (fifo_5 == 0x4)) {
@@ -453,6 +453,7 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
 
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
+        //REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
     }
 
     /*configuration*/
@@ -469,11 +470,15 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_EP0_FIFO) = 0x32;
 
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
+        //REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
     }
 
     if ((fifo_0 == 0x21) && (fifo_1 == 0xA)) {
         //   REG8(USB_BASE + REG_CSR0H) |= 0x1;
+        REG8(USB_BASE + REG_CSR0L) |= 0x1 << 2;
         REG8(USB_BASE + REG_CSR0L) |= 0x1 << 5;
+
+        REG8(USB_BASE + REG_CSR0L) |= (0x1 << 6);
     }
 
     if ((fifo_0 == 0x80) && (fifo_1 == 0x6) && (fifo_3 == 0x2) && (fifo_6 == 0x22)) {
@@ -514,31 +519,28 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_EP0_FIFO) = 0x20;
 
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
+        //REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
     }
 
     if (fifo_6 == 0xa) {
-        // REG8(USB_BASE + REG_CSR0H) |= 0x1;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0xA;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x6;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x40;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x0;
+
         REG8(USB_BASE + REG_CSR0L) |= (0x1 << 5);
+        REG8(USB_BASE + REG_CSR0L) |= (0x1 << 6);
     }
 
-    // if ((fifo_0 == 0x21) && (fifo_1 == 0xA)) {
-    //     REG8(USB_BASE + REG_CSR0H) |= 0x1;
-    //     REG8(USB_BASE + REG_CSR0L) |= (0x1 << 5);
-    // }
-
     if ((fifo_0 == 0x81) && (fifo_1 == 0x6)) {
-
+        // stop_flag = 0x1;
+        // while (REG8(USB_BASE + REG_CSR0L) & 0x1 != 0)
+        //     ;
         REG8(USB_BASE + REG_CSR0H) |= 0x1;
+        debug("fifo_0 = %x\n", fifo_0);
+        debug("fifo_1 = %x\n", fifo_1);
+        debug("fifo_2 = %x\n", fifo_2);
+        debug("fifo_3 = %x\n", fifo_3);
+        debug("fifo_4 = %x\n", fifo_4);
+        debug("fifo_5 = %x\n", fifo_5);
+        debug("fifo_6 = %x\n", fifo_6);
+        debug("fifo_7 = %x\n", fifo_7);
         REG8(USB_BASE + REG_EP0_FIFO) = 0x5;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x9;
@@ -603,22 +605,12 @@ void USB_MC_IRQHandler(void)
         REG8(USB_BASE + REG_EP0_FIFO) = 0x75;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
         REG8(USB_BASE + REG_EP0_FIFO) = 0x95;
+        //REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
         REG8(USB_BASE + REG_CSR0L) |= 0x2;
+
         while (REG8(USB_BASE + REG_CSR0L) & 0x2)
             ;
 
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x2;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0xb1;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x22;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x75;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x6;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x95;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0xb1;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
-        // REG8(USB_BASE + REG_EP0_FIFO) = 0xC0;
-        for (i = 0; i < 0xf; i++)
-            ;
         {
             //REG8(USB_BASE + REG_EP_TXCSR) |= 0x1 << 3 | 0x1;
             REG8(USB_BASE + REG_CSR0H) |= 0x1;
@@ -632,22 +624,27 @@ void USB_MC_IRQHandler(void)
             REG8(USB_BASE + REG_EP0_FIFO) = 0xb1;
             REG8(USB_BASE + REG_EP0_FIFO) = 0x1;
             REG8(USB_BASE + REG_EP0_FIFO) = 0xC0;
+            REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
             REG8(USB_BASE + REG_CSR0L) |= 0x2;
+            //  REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
+            while (REG8(USB_BASE + REG_CSR0L) & 0x2)
+                ;
+            //   REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
+            // REG8(USB_BASE + REG_CSR0H) |= 0x1;
+            // while (REG8(USB_BASE + REG_CSR0H) & 0x1 == 0)
+            //     ;
+            // REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
+
             // while (REG8(USB_BASE + REG_CSR0L) & 0x2)
             //     ;
-            REG8(USB_BASE + REG_CSR0L) |= 0x1 << 4;
+
+            // REG8(USB_BASE + REG_CSR0L) |= 0x1 << 4;
         }
     }
-    // if ((fifo_0 = 0x21) && (fifo_1 == 0xA)) {
-    //     REG8(USB_BASE + REG_CSR0L) |= (0x1 << 5);
-    // }
+    if ((fifo_1 == 0x9) && (fifo_2 == 0x1)) {
 
-    debug("fifo_0 = %x\n", fifo_0);
-    debug("fifo_1 = %x\n", fifo_1);
-    debug("fifo_2 = %x\n", fifo_2);
-    debug("fifo_3 = %x\n", fifo_3);
-    debug("fifo_4 = %x\n", fifo_4);
-    debug("fifo_5 = %x\n", fifo_5);
-    debug("fifo_6 = %x\n", fifo_6);
-    debug("fifo_7 = %x\n", fifo_7);
+        REG8(USB_BASE + REG_CSR0L) |= 0x1 << 6;
+        REG8(USB_BASE + REG_CSR0L) |= 0x1 << 3;
+    }
 }
+#endif
