@@ -3735,28 +3735,45 @@ typedef struct
 } USB_TypeDef;
 
 // MCU registers
-#define REG_FADDR     0x00
-#define REG_POWER     0x01
-#define REG_INTRTX    0x02
-#define REG_INTRRX    0x04
-#define REG_INTRTXE   0x06
-#define REG_INTRRXE   0x08
-#define REG_INTRUSB   0x0A
-#define REG_INTRUSBE  0x0B
-#define REG_FRAME     0x0C
-#define REG_INDEX     0x0E
-#define REG_TESTMODE  0x0F
-#define REG_CSR0L     0x12
-#define REG_CSR0H     0x13
-#define REG_EP0_COUNT 0x18
-#define REG_EP0_INTV  0x1B
-#define REG_EP_TXMAXP 0x10
-#define REG_EP_TXCSR  0x12
-#define REG_EP_RXMAXP 0x14
-#define REG_EP_RXCSRL 0x16
-#define REG_EP_RXCSRH 0x17
+#define REG_FADDR      0x00
+#define REG_POWER      0x01
+#define REG_INTRTX     0x02
+#define REG_INTRRX     0x04
+#define REG_INTRTXE    0x06
+#define REG_INTRRXE    0x08
+#define REG_INTRUSB    0x0A
+#define REG_INTRUSBE   0x0B
+#define REG_FRAME      0x0C
+#define REG_INDEX      0x0E
+#define REG_TESTMODE   0x0F
+#define REG_CSR0L      0x12
+#define REG_CSR0H      0x13
+#define REG_EP0_COUNT  0x18
+#define REG_TXINTERVAL 0x1B
+#define REG_EP_TXMAXP  0x10
+#define REG_EP_TXCSR   0x12
+#define REG_EP_RXMAXP  0x14
+#define REG_EP_RXCSRL  0x16
+#define REG_EP_RXCSRH  0x17
 
 #define REG_EP_COUNT 0x18
+
+/* Offsets to endpoint registers */
+#define MUSB_TXMAXP     0x00
+#define MUSB_TXCSR      0x02
+#define MUSB_CSR0       MUSB_TXCSR /* Re-used for EP0 */
+#define MUSB_RXMAXP     0x04
+#define MUSB_RXCSR      0x06
+#define MUSB_RXCOUNT    0x08
+#define MUSB_COUNT0     MUSB_RXCOUNT /* Re-used for EP0 */
+#define MUSB_TXTYPE     0x0A
+#define MUSB_TYPE0      MUSB_TXTYPE /* Re-used for EP0 */
+#define MUSB_TXINTERVAL 0x0B
+#define MUSB_NAKLIMIT0  MUSB_TXINTERVAL /* Re-used for EP0 */
+#define MUSB_RXTYPE     0x0C
+#define MUSB_RXINTERVAL 0x0D
+#define MUSB_FIFOSIZE   0x0F
+#define MUSB_CONFIGDATA MUSB_FIFOSIZE /* Re-used for EP0 */
 
 #define REG_FIFOSIZE    0x1F
 #define REG_EP0_FIFO    0x20
@@ -3853,7 +3870,7 @@ typedef struct
 #define MUSB_DEVCTL_BDEVICE    0x80
 #define MUSB_DEVCTL_FSDEV      0x40
 #define MUSB_DEVCTL_LSDEV      0x20
-#define MUSB_DEVCTL_VBUS       0x18
+#define MUSB_DEVCTL_VBUS       0x10
 #define MUSB_DEVCTL_VBUS_SHIFT 3
 #define MUSB_DEVCTL_HM         0x04
 #define MUSB_DEVCTL_HR         0x02
@@ -3941,6 +3958,7 @@ typedef struct
 #define MUSB_TXCSR_FRCDATATOG   0x0800
 #define MUSB_TXCSR_DMAMODE      0x0400
 #define MUSB_TXCSR_CLRDATATOG   0x0040
+#define MUSB_TXCSR_SENTSTALL    0x0020
 #define MUSB_TXCSR_FLUSHFIFO    0x0008
 #define MUSB_TXCSR_FIFONOTEMPTY 0x0002
 #define MUSB_TXCSR_TXPKTRDY     0x0001
@@ -4179,7 +4197,7 @@ typedef struct
 #endif /* I2C_MODULE_ENABLED */
 
 #ifdef USB_MODULE_ENABLED
-
+#include "at103_usb.h"
 #endif
 
 /**

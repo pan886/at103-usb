@@ -13,8 +13,19 @@ extern "C" {
 
 #include "usb_desc.h"
 
-DEVICE_PROP *   pProperty;
-USB_DeviceMess *pInformation;
+DEVICE_PROP *       pProperty;
+USB_DeviceMess *    pInformation;
+
+DEVICE_PROP         Device_Property =
+    {
+        Usb_init,
+        Usb_Reset,
+        GetDeviceDescriptor,
+        GetConfigDescriptor,
+        GetStringDescriptor,
+        0x40 /*MAX PACKET SIZE*/
+};
+
 /* USB Standard Device Descriptor */
 const uint8_t DeviceDescriptor[SIZ_DEVICE_DESC] =
     {
