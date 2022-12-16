@@ -82,3 +82,31 @@ void musb_load_testpacket()
     REG8(USB_BASE + REG_TESTMODE) = MUSB_TEST_PACKET | MUSB_TEST_FIFO_ACCESS | MUSB_TEST_FORCE_FS;
     REG8(USB_BASE + REG_CSR0L)    = MUSB_CSR0_TXPKTRDY;
 }
+
+
+ void musb_set_host()
+ {
+    uint8_t devctl;
+    devctl = REG8(USB_BASE + REG_DEVCTL);
+    if (!(devctl & MUSB_DEVCTL_BDEVICE)) {
+       debug("already in host mode\n");
+    }
+    devctl |= MUSB_DEVCTL_SESSION;
+    REG8(USB_BASE + REG_DEVCTL) = devctl;
+ }
+
+ void musb_h_tx_start(uint8_t EP)
+{
+    uint16_t txcsr;
+
+    /* NOTE: no locks here; caller should lock and select EP */
+    if (EP) {
+        txcsr = REG16(CONFIG_EP(EP) + MUSB_TXCSR);
+        txcsr |= MUSB_TXCSR_TXPKTRDY | MUSB_TXCSR_H_WZC_BITS;
+        REG16(CONFIG_EP(EP) + MUSB_TXCSR) = txcsr;
+    } else {
+        txcsr                            = MUSB_CSR0_H_SETUPPKT | MUSB_CSR0_TXPKTRDY;
+        REG16(CONFIG_EP(EP) + MUSB_CSR0) = txcsr;
+    }
+}
+

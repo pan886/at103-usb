@@ -1,10 +1,10 @@
 /**
- * @file at103_conf.h
+ * @file at103_config.h
  * @brief
- * @author liyouchuang (lycdemeng@163.com)
+ * @author Dong Qin (dong.qin@timesintelli.com)
  * @version 1.0
- * @date 2022-03-31
- * @copyright Copyright (c) 2022 Icore, Inc
+ * @date 2022-01-07
+ * @copyright Copyright (c) 2022 Timesintelli, Inc
  */
 
 #ifndef __AT103_CONFIG_H
@@ -18,10 +18,7 @@ extern "C" {
 #define GPIO_MODULE_ENABLED
 #define RCC_MODULE_ENABLED
 #define NVIC_MODULE_ENABLED
-#define TIM_MODULE_ENABLED
-#define DMA_MODULE_ENABLED
-#define USE_FULL_ASSERT
-
+#define USB_MODULE_ENABLED
 #ifdef __cplusplus
 }
 #endif

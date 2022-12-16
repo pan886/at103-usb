@@ -72,11 +72,12 @@ void main(void)
     pll_init();
     sys_io_init();
     uart_init(UART_BOOT_PORT, UART_PARITY_NONE, UART_STOPBITS_1, UART_DATABITS_8, UART_BOOT_BD);
+    debug("sb!\n");
     Set_System();
     Cfg_IO();
     pProperty = &Device_Property;
     pProperty->Init();
-
+    musb_set_host();
     // REG8(USB_BASE + REG_POWER) &= ~0x4;
     // REG8(USB_BASE + REG_POWER) &= ~0x20;
 
@@ -177,7 +178,7 @@ void USB_MC_IRQHandler(void)
         }
 
         if ((pInformation->USBwValue1 == REPORT_DESCRIPTOR)) {
-
+            REG16(USB_BASE + REG_CSR0L) |= MUSB_CSR0_FLUSHFIFO;
             musb_write_fifo(EP0, ReportDescriptor, SIZ_REPORT_DESC);
             REG8(USB_BASE + REG_CSR0L) |= MUSB_CSR0_TXPKTRDY;
 

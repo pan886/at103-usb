@@ -1,6 +1,6 @@
 include $(AT_SDK_HOME_SH)/tools/mk/function.mk
 AT_SDK_HOME   = $(AT_SDK_HOME_SH)
-DEBUG         = no
+DEBUG         = yes
 CHIP          = AT103
 STACK_SIZE    = 0x400
 NO_FLASH      = yes
