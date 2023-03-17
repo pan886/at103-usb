@@ -13,10 +13,10 @@ extern "C" {
 
 #include "usb_desc.h"
 
-DEVICE_PROP *       pProperty;
-USB_DeviceMess *    pInformation;
+DEVICE_PROP *   pProperty;
+USB_DeviceMess *pInformation;
 
-DEVICE_PROP         Device_Property =
+DEVICE_PROP Device_Property =
     {
         Usb_init,
         Usb_Reset,
@@ -188,6 +188,19 @@ const uint8_t StringProduct[SIZ_STRING_PRODUCT] =
         'A', 0, 'I', 0, 'P', 0, '3', 0, '2', 0, 'R', 0, 'V', 0, '1', 0, '5', 0, ' ', 0,
         'm', 0, 'o', 0, 'u', 0, 's', 0, 'e', 0};
 
+const uint8_t Device_SetUp_Request[8] =
+    {
+        80,
+        06, /*brequest*/
+        00, /*wvalue*/
+        01,
+        00, /*windex*/
+        00,
+        40, /*wlength*/
+        00
+
+};
+
 USB_OneDescriptor Device_Descriptor = {(uint8_t *)DeviceDescriptor, SIZ_DEVICE_DESC};
 
 USB_OneDescriptor Config_Descriptor = {(uint8_t *)ConfigDescriptor, SIZ_CONFIG_DESC};
@@ -208,5 +221,5 @@ USB_OneDescriptor String_Descriptor[3] = {{(uint8_t *)StringLangID, SIZ_STRING_L
  */
 uint8_t *GetConfigDescriptor(uint16_t Length)
 {
-    return Standard_GetDescriptorData(Length, &Config_Descriptor);
+    //return Standard_GetDescriptorData(Length, &Config_Descriptor);
 }

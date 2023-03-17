@@ -7,6 +7,8 @@
  * @date 2022-11-21
  * @copyright Copyright (c) 2022 Icore, Inc
  */
+#define printf  tfp_printf
+#define sprintf tfp_sprintf
 #include "at103.h"
 #define USB_DEVICE_DESCRIPTOR_TYPE        0x01
 #define USB_CONFIGURATION_DESCRIPTOR_TYPE 0x02
