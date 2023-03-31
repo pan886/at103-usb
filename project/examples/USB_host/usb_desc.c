@@ -188,16 +188,135 @@ const uint8_t StringProduct[SIZ_STRING_PRODUCT] =
         'A', 0, 'I', 0, 'P', 0, '3', 0, '2', 0, 'R', 0, 'V', 0, '1', 0, '5', 0, ' ', 0,
         'm', 0, 'o', 0, 'u', 0, 's', 0, 'e', 0};
 
-const uint8_t Device_SetUp_Request[8] =
+uint8_t HOST_Discriptor_Device_SetUp[SETUP_SIZE] =
     {
-        80,
-        06, /*brequest*/
-        00, /*wvalue*/
-        01,
-        00, /*windex*/
-        00,
-        40, /*wlength*/
-        00
+        0x80,
+        0x06, /*brequest*/
+        0x00, /*wvalue*/
+        0x01,
+        0x00, /*windex*/
+        0x00,
+        0x40, /*wlength*/
+        0x00
+
+};
+
+uint8_t HOST_Set_Address_Setup[SETUP_SIZE] =
+    {
+
+        0x00,
+        0x05,
+        0x0, /*address*/
+        0x00,
+        0x00,
+        0x00,
+        0x00,
+        0x00
+
+};
+
+uint8_t HOST_Discriptor_config_SetUp[SETUP_SIZE] =
+    {
+        0x80,
+        0x6,
+        0x00,
+        0x2,
+        0x00,
+        0x00,
+        0x22,
+        0x00
+
+};
+
+uint8_t HOST_Discriptor_Iserial_Number[SETUP_SIZE] =
+    {
+        0x80,
+        0x06,
+        0x3,
+        0x3,
+        0x9,
+        0x4,
+        0xff,
+        0x00
+
+};
+
+uint8_t Host_Discriptor_LangID[SETUP_SIZE] =
+    {
+
+        0x80,
+        0x6,
+        0x00,
+        0x3,
+        0x00,
+        0x00,
+        0xff,
+        0x00
+
+};
+
+uint8_t Host_Discriptor_configuration[SETUP_SIZE] =
+    {
+        0x80,
+        0x6,
+        0x0,
+        0x2,
+        0x0,
+        0x0,
+        0x9,
+        0x0
+
+};
+
+uint8_t Host_Discriptor_Iproduct[SETUP_SIZE] =
+    {
+        0x80,
+        0x6,
+        0x2,
+        0x3,
+        0x9,
+        0x4,
+        0xff,
+        0x0
+
+};
+
+uint8_t Host_Set_Configuration[SETUP_SIZE] = {
+    0x00,
+    0x9,
+    0x1,
+    0x0,
+    0x0,
+    0x0,
+    0x0,
+    0x0
+
+};
+
+uint8_t Host_Set_Idle[SETUP_SIZE] = {
+
+    0x21,
+    0xA,
+    0x0,
+    0x0,
+    0x0,
+    0x0,
+    0x0,
+    0x0
+
+};
+
+uint8_t Host_Discriptor_report[SETUP_SIZE] =
+    {
+
+        0x81,
+        0x6,
+        0x0,
+        0x22,
+        0x0,
+        0x0,
+        0x8A,
+        0x0
 
 };
 
@@ -213,13 +332,3 @@ USB_OneDescriptor String_Descriptor[3] = {{(uint8_t *)StringLangID, SIZ_STRING_L
 
                                           {(uint8_t *)StringProduct, SIZ_STRING_PRODUCT},
                                           {(uint8_t *)StringSerial, SIZ_STRING_SERIAL}};
-
-/**
- * @brief 
- * @param[in] Length
- * @return uint8_t*  
- */
-uint8_t *GetConfigDescriptor(uint16_t Length)
-{
-    //return Standard_GetDescriptorData(Length, &Config_Descriptor);
-}

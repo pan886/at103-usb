@@ -29,6 +29,26 @@
 #define SIZ_STRING_SERIAL  21
 
 #define STANDARD_ENDPOINT_DESC_SIZE 0x09
+#define SETUP_SIZE                  0x8
+
+uint8_t HOST_Discriptor_Device_SetUp[SETUP_SIZE];
+
+uint8_t HOST_Discriptor_Iserial_Number[SETUP_SIZE];
+
+uint8_t Host_Set_Idle[SETUP_SIZE];
+
+uint8_t Host_Discriptor_report[SETUP_SIZE];
+
+uint8_t Host_Set_Configuration[SETUP_SIZE];
+
+uint8_t HOST_Set_Address_Setup[SETUP_SIZE];
+
+uint8_t Host_Discriptor_LangID[SETUP_SIZE];
+
+uint8_t Host_Discriptor_Iproduct[SETUP_SIZE];
+
+uint8_t Host_Discriptor_configuration[SETUP_SIZE];
+
 extern const uint8_t   ConfigDescriptor[SIZ_CONFIG_DESC];
 extern uint8_t         StringSerial[SIZ_STRING_SERIAL];
 extern const uint8_t   StringLangID[SIZ_STRING_LANGID];
