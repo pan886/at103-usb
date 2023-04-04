@@ -34,22 +34,12 @@ extern const uint8_t   StringProduct[SIZ_STRING_PRODUCT];
 extern const uint8_t   ReportDescriptor[SIZ_REPORT_DESC];
 extern const uint8_t   DeviceDescriptor[SIZ_DEVICE_DESC];
 extern USB_DeviceMess *pInformation;
+extern void            Usb_init(void);
 typedef struct _DEVICE_PROP {
-    void (*Init)(void);  /* Initialize the device */
-    void (*Reset)(void); /* Reset routine of this device */
-
-    uint8_t *(*GetDeviceDescriptor)(uint16_t Length);
-    uint8_t *(*GetConfigDescriptor)(uint16_t Length);
-    uint8_t *(*GetStringDescriptor)(uint16_t Length);
-
+    void (*Init)(void); /* Initialize the device */
     uint8_t MaxPacketSize;
 
 } DEVICE_PROP;
-void     Usb_init(void);
-void     Usb_Reset(void);
-uint8_t *GetDeviceDescriptor(uint16_t Length);
-uint8_t *GetConfigDescriptor(uint16_t Length);
-uint8_t *GetStringDescriptor(uint16_t Length);
 
 DEVICE_PROP         Device_Property;
 extern DEVICE_PROP *pProperty;
