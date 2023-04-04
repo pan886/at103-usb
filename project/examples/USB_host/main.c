@@ -22,12 +22,12 @@ void    delay()
         for (j = 0; j < 0xff; j++)
             ;
 }
-void putc(void *p, char c)
-{
-    if (c == '\n')
-        uart_putc(UART_DEBUG_PORT, '\r');
-    uart_putc(UART_DEBUG_PORT, c);
-}
+// void putc(void *p, char c)
+// {
+//     if (c == '\n')
+//         uart_putc(UART_DEBUG_PORT, '\r');
+//     uart_putc(UART_DEBUG_PORT, c);
+// }
 
 NVIC_InitTypeDef        NVIC_InitStructure;
 NVIC_InitTypeDef        NVIC_InitStructure1;
@@ -79,7 +79,7 @@ void    main(void)
     pll_init();
     sys_io_init();
     uart_init(UART_BOOT_PORT, UART_PARITY_NONE, UART_STOPBITS_1, UART_DATABITS_8, UART_BOOT_BD);
-    init_printf(NULL, putc);
+    //init_printf(NULL, putc);
     Set_System();
     Cfg_IO();
     Usb_init();
@@ -93,10 +93,10 @@ void    main(void)
     Usb_Host_Txtype.PROTOCOL = INTERRUPT;
     Usb_Host_Txtype.EP_NUM   = EP7;
     Usb_Host_Wait();
-
+    Usb_Start_Session(ENABLE);
     while (1) {
 
-        printf("main progress!\n");
+        debug("main progress!\n");
     }
 }
 
@@ -109,13 +109,12 @@ void USB_MC_IRQHandler(void)
 {
     uint8_t INTRUSB = 0;
 
-    printf("enter int!!!!!!!!!!!!!!!\n");
     INTRUSB = REG8(USB_BASE + MUSB_INTRUSB);
 
     if (INTRUSB & MUSB_INTR_SESSREQ) {
 
         REG8(USB_BASE + MUSB_DEVCTL) = MUSB_DEVCTL_SESSION | MUSB_DEVCTL_HM;
-        printf("Session Request signaling has been detected.\n");
+        debug("Session Request signaling has been detected.\n");
     }
 
     if (INTRUSB & MUSB_INTR_CONNECT) {
@@ -123,13 +122,13 @@ void USB_MC_IRQHandler(void)
         delay();
         Usb_Host_Reset(DISABLE);
 
-        printf("enter connect interrupt!\n");
+        debug("enter connect interrupt!\n");
 
         REG8(USB_BASE + MUSB_DEVCTL) = MUSB_DEVCTL_SESSION | MUSB_DEVCTL_HM | MUSB_INTR_CONNECT;
     }
 
     if (INTRUSB & MUSB_INTR_SOF) {
-        printf("enter sof interrupt!\n");
+        debug("enter sof interrupt!\n");
 
         {
             // if (REG16(USB_BASE + REG_CSR0L) & MUSB_CSR0_H_ERROR) {
@@ -146,7 +145,6 @@ void USB_MC_IRQHandler(void)
 
                 if ((REG16(CONFIG_EP(EP0) + MUSB_CSR0) & MUSB_CSR0_TXPKTRDY) == 0) {
 
-                    Usb_Host_Ep0_Flush_Fifo();
                     cnt++;
 
                     if ((cnt % 21 == 0x1)) {
@@ -159,7 +157,7 @@ void USB_MC_IRQHandler(void)
                     }
 
                     if ((cnt % 21 == 0x3)) {
-                        Usb_Host_Set_Address(0x20);
+                        Usb_Set_Address(0x20);
                         HOST_Discriptor_Device_SetUp[6] = 0x12;
                         Usb_Write_Fifo(EP0, HOST_Discriptor_Device_SetUp, SETUP_SIZE);
                     }
@@ -181,12 +179,11 @@ void USB_MC_IRQHandler(void)
                         Usb_Write_Fifo(EP0, Host_Discriptor_configuration, SETUP_SIZE);
                     }
                     if ((cnt % 21 == 0x4) || (cnt % 21 == 0x9) || (cnt % 21 == 0x12)) {
-                        //Host_Discriptor_configuration[6] = 0x22;
                         Usb_Write_Fifo(EP0, Host_Discriptor_configuration, SETUP_SIZE);
                     }
 
                     if ((cnt % 21 == 0xA)) {
-                        Usb_Host_Set_Address(0x0);
+                        Usb_Set_Address(0x0);
                         HOST_Discriptor_Device_SetUp[6] = 0x40;
                         Usb_Write_Fifo(EP0, HOST_Discriptor_Device_SetUp, SETUP_SIZE);
                     }
@@ -197,7 +194,7 @@ void USB_MC_IRQHandler(void)
                     }
 
                     if (cnt % 21 == 0xC) {
-                        Usb_Host_Set_Address(0x21);
+                        Usb_Set_Address(0x21);
                         HOST_Discriptor_Device_SetUp[6] = 0x12;
                         Usb_Write_Fifo(EP0, HOST_Discriptor_Device_SetUp, SETUP_SIZE);
                     }
@@ -239,7 +236,6 @@ void USB_MC_IRQHandler(void)
                     if ((cnt % 21 != 0x2) && (cnt % 21 != 0xb) && (cnt % 21 != 0x13) && (cnt % 21 != 0x14)) {
 
                         Usb_Host_Receive_data(EP0, EPFIFO);
-                        Usb_Host_Ep0_Flush_Fifo();
                         Usb_Host_Out_Transaction(EP0);
                     }
                 }
@@ -253,7 +249,7 @@ void USB_MC_IRQHandler(void)
                 }
             }
             if (flg == 0x1) {
-                Usb_Host_Tx_RX_Type(&Usb_Host_Rxtype, HOST_RX);
+                Usb_Host_Tx_RX_Type(&Usb_Host_Rxtype, RX);
                 // REG8(USB_BASE + MUSB_INDEX)      = EP7;
                 // REG16(USB_BASE + MUSB_TXFIFOADD) = 0x1;
                 // REG8(USB_BASE + MUSB_TXFIFOSZ)   = 9;
@@ -264,10 +260,7 @@ void USB_MC_IRQHandler(void)
                 REG16(CONFIG_EP(EP1) + MUSB_RXMAXP)    = 0x1ff;
                 REG8(CONFIG_EP(EP1) + MUSB_RXINTERVAL) = 1;
                 Usb_Host_Req_IN_transaction(EP1);
-                printf("RqPktCount = %x\n", REG16(USB_BASE + 0x300 + 4));
                 Usb_Host_Receive_data(EP1, EPFIFO);
-
-                printf("MUSB_RXCSR = %x\n", REG16(CONFIG_EP(EP1) + MUSB_RXCSR));
             }
         }
     }
