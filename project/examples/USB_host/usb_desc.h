@@ -62,11 +62,7 @@ typedef struct _DEVICE_PROP {
     uint8_t MaxPacketSize;
 
 } DEVICE_PROP;
-void     Usb_init(void);
-void     Usb_Reset(void);
-uint8_t *GetDeviceDescriptor(uint16_t Length);
-uint8_t *GetConfigDescriptor(uint16_t Length);
-uint8_t *GetStringDescriptor(uint16_t Length);
+void Usb_init(void);
 
 DEVICE_PROP         Device_Property;
 extern DEVICE_PROP *pProperty;
